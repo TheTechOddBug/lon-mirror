@@ -1,0 +1,68 @@
+name: OMNIA CAS Gate
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  cas-gate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout PR/HEAD
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install (editable)
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: Generate CAS for HEAD (B)
+        run: |
+          python tools/ci_make_cas.py --out artifacts/cas_B.json --rounds 2 --top_k 8
+
+      - name: Checkout base (merge-base) into worktree
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE_REF="origin/${{ github.base_ref }}"
+          else
+            BASE_REF="origin/main"
+          fi
+
+          git fetch origin main --depth=1 || true
+          BASE_SHA=$(git merge-base $BASE_REF ${{ github.sha }})
+          echo "BASE_SHA=$BASE_SHA"
+          mkdir -p /tmp/omnia_base
+          git worktree add /tmp/omnia_base $BASE_SHA
+
+      - name: Install base version
+        run: |
+          cd /tmp/omnia_base
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: Generate CAS for BASE (A)
+        run: |
+          cd /tmp/omnia_base
+          python tools/ci_make_cas.py --out /tmp/cas_A.json --rounds 2 --top_k 8
+
+      - name: Compare CAS (A vs B) and gate
+        run: |
+          python tools/ci_gate.py --a /tmp/cas_A.json --b artifacts/cas_B.json --out artifacts/cas_diff.json
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: omnia-cas-artifacts
+          path: artifacts/
