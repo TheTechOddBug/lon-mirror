@@ -11,8 +11,10 @@ class PermutationLens:
     """
     Permutation Lens
 
-    Generates deterministic order-variant representations.
-    Used to detect order-dependence and rhetorical structure.
+    Generates deterministic order-variant representations of the same object.
+    Used to detect order-dependence (rhetorical fragility / sequencing effects).
+
+    This lens produces views only. It does not score, decide, or interpret.
     """
     id: str = "permutation"
     seed: int = 0
@@ -22,12 +24,17 @@ class PermutationLens:
         parts = [p.strip() for p in text.split(".") if p.strip()]
 
         reps: List[Representation] = [
-            Representation(name="orig", payload=text, meta={})
+            Representation(
+                name="orig",
+                payload=text,
+                meta={"transform": "identity"},
+            )
         ]
 
         if len(parts) < 2:
             return reps
 
+        # Deterministic shuffle via LCG (no random import)
         idx = list(range(len(parts)))
         x = (self.seed + 1) & 0x7FFFFFFF
         for k in range(len(idx) - 1, 0, -1):
@@ -40,7 +47,12 @@ class PermutationLens:
             Representation(
                 name=f"perm_seed_{self.seed}",
                 payload=permuted,
-                meta={"seed": self.seed, "n_parts": len(parts)},
+                meta={
+                    "seed": self.seed,
+                    "n_parts": len(parts),
+                    "transform": "sentence_permutation",
+                },
             )
         )
+
         return reps
