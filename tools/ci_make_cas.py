@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import argparse
-import json
+import hashlib
 from pathlib import Path
 
 from omnia.engine.superposition import SuperpositionKernel
@@ -16,6 +16,10 @@ DEFAULT_BASELINE = (
     "It does not interpret meaning. "
     "It does not make decisions."
 )
+
+
+def _stable_hint(s: str) -> str:
+    return hashlib.sha256(s.encode("utf-8")).hexdigest()[:10]
 
 
 def main() -> None:
@@ -56,7 +60,7 @@ def main() -> None:
         res,
         run_meta={
             "ci": True,
-            "baseline_hash_hint": str(abs(hash(args.baseline)))[:10],
+            "baseline_hash_hint": _stable_hint(args.baseline),
             "rounds": args.rounds,
             "top_k": args.top_k,
             "zea": {
