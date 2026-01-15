@@ -1,11 +1,11 @@
 # OMNIA / MB-X.01 — Logical Origin Node (L.O.N.)
 
-**OMNIA** is a deterministic measurement engine for **structural coherence, instability, saturation, and irreversibility**
-across numbers, time, causality, and token sequences.
+**OMNIA** is a deterministic measurement engine for **structural coherence, instability, saturation, irreversibility,
+and invariant residue** across numbers, time, causality, and token sequences.
 
 It does not interpret meaning.  
 It does not make decisions.  
-It **measures invariants, limits, and path-dependent loss**.
+It **measures invariants, limits, path-dependent loss, and non-reducible structure**.
 
 This repository (`Tuttotorna/lon-mirror`) is the **canonical public mirror**
 of the **MB-X.01 / OMNIA** research line.
@@ -24,6 +24,7 @@ OMNIA is a **pure diagnostic layer**.
 
 ### Output
 - Structure-only, machine-readable metrics
+- Convergence and boundary certificates
 
 ### Constraints
 - No semantic assumptions  
@@ -164,22 +165,6 @@ SEI prepares, but does not trigger, higher-order boundary reasoning.
 
 ---
 
-## Visual Diagnostic — SEI Trend
-
-Minimal visual artifact:
-
-assets/diagnostics/sei_trend.png
-
-Shows:
-- marginal structural yield
-- flattening or decline under increasing computation
-
-No thresholds.  
-No stop conditions.  
-Evidence, not instruction.
-
----
-
 ## Layer-2: Irreversibility / Hysteresis (IRI)
 
 IRI measures **path-dependent structural loss**.
@@ -205,6 +190,61 @@ omnia/irreversibility.py examples/irreversibility_from_sei_report.py examples/ir
 
 IRI does not stop systems.  
 It documents **loss of options**.
+
+---
+
+## Ω (Omega-set): Structural Origin by Subtraction
+
+After exhaustive superposition, what remains is **Ω**.
+
+**Ω (Omega-set)** is the **minimal invariant residue** that survives:
+- all representations
+- all lenses
+- all compressions
+- all reorderings
+- all admissible constraints
+
+Ω is **not** observed directly.  
+Ω is **deduced by subtraction**.
+
+> Remove every representation.  
+> What cannot be removed without destroying coherence is Ω.
+
+### Ω̂ (Omega-hat): Computable Approximation
+
+OMNIA approximates Ω via **iterative convergence**:
+
+1. Generate representations via independent lenses  
+2. Measure superposition invariance  
+3. Add new independent lenses  
+4. Track invariance convergence (Δ → 0)  
+5. Observe SEI → 0 and IRI stabilization  
+
+The result is **Ω̂**, an operational estimate of the invariant residue.
+
+**Ω is an origin only in this sense**:
+> the minimal set of structural constraints  
+> without which no representation is possible.
+
+Ω is **structural**, not ontological.  
+It is a **condition of possibility**, not a cause.
+
+---
+
+## OMNIA-LIMIT and Structural Non-Reducibility
+
+When:
+- invariance converges  
+- SEI → 0  
+- irreversibility persists  
+- fractures cannot be reduced  
+
+OMNIA-LIMIT issues a **Structural Non-Reducibility Certificate (SNRC)**.
+
+This is a **legitimate stop condition**.
+
+OMNIA does not claim ultimate truth.  
+It certifies when **no further structure can be extracted**.
 
 ---
 
@@ -251,7 +291,7 @@ Structure-based diagnostics do.
 
 ## Architecture Overview
 
-Signal (numbers / time / tokens / causality) ↓ +-------------------------------------------+ |              OMNIA LENSES                  | | BASE · TIME · CAUSA · TOKEN · LCR          | | COMPRESSION · PERMUTATION · CONSTRAINTS   | +-------------------------------------------+ ↓ +-------------------------------------------+ |              METRIC CORE                  | |   TruthΩ · Co⁺ · Δ · κ · ε                | +-------------------------------------------+ ↓ +-------------------------------------------+ |          SEI (Layer-1, trend only)         | |   Marginal Yield / Saturation Detection   | +-------------------------------------------+ ↓ +-------------------------------------------+ |          IRI (Layer-2, hysteresis)         | |   Path Irreversibility / Option Loss      | +-------------------------------------------+ ↓ +-------------------------------------------+ |              ICE ENVELOPE                 | |   Impossibility & Confidence Envelope     | +-------------------------------------------+
+Signal (numbers / time / tokens / causality) ↓ +-------------------------------------------+ |              OMNIA LENSES                  | | BASE · TIME · CAUSA · TOKEN · LCR          | | COMPRESSION · PERMUTATION · CONSTRAINTS   | +-------------------------------------------+ ↓ +-------------------------------------------+ |              METRIC CORE                  | |   TruthΩ · Co⁺ · Δ · κ · ε                | +-------------------------------------------+ ↓ +-------------------------------------------+ |          SEI (Layer-1, trend only)         | |   Marginal Yield / Saturation Detection   | +-------------------------------------------+ ↓ +-------------------------------------------+ |          IRI (Layer-2, hysteresis)         | |   Path Irreversibility / Option Loss      | +-------------------------------------------+ ↓ +-------------------------------------------+ |          Ω̂ / OMNIA-LIMIT                  | |   Structural Non-Reducibility (SNRC)      | +-------------------------------------------+
 
 OMNIA outputs diagnostics, never judgments.
 
@@ -265,43 +305,7 @@ A fixed, reproducible execution path is provided.
 
 colab/OMNIA_REAL_RUN.ipynb
 
-Steps:
-1. Clone repository  
-2. Install fixed dependencies  
-3. Lock random seeds  
-4. Run benchmarks  
-5. Produce machine-readable reports  
-
 Goal: **verification**, not exploration.
-
----
-
-## Recorded Benchmark Outputs (Closed Models)
-
-results/closed_models/
-
-Examples:
-- `gpt4_metrics.jsonl`
-- `gpt4_metrics_omnia.jsonl`
-
-All files are deterministic, post-hoc, and machine-readable.
-
----
-
-## Tests
-
-tests/test_metrics.py
-
-They verify:
-- algebraic identities  
-- monotonicity  
-- edge cases  
-- numerical stability  
-- API contracts  
-
-Run:
-
-pytest
 
 ---
 
@@ -317,19 +321,6 @@ Validated boundary:
 - Decision systems = policy / intent / judgment  
 
 OMNIA is institution-agnostic and architecture-agnostic.
-
----
-
-## Architecture Context (Downstream, Optional)
-
-Aligned projects:
-- **OMNIAMIND**  
-  https://github.com/Tuttotorna/OMNIAMIND
-- **OMNIA-LIMIT**  
-  https://github.com/Tuttotorna/omnia-limit
-
-These systems consume OMNIA signals.  
-OMNIA itself remains independent.
 
 ---
 
@@ -353,10 +344,10 @@ There is no secondary mirror.
 - Metrics core: stable  
 - SEI (Layer-1): active  
 - IRI (Layer-2): active  
-- Visual diagnostics: present  
-- Tests: invariant-based  
+- Superposition operator: active  
+- Ω̂ estimation: active  
+- OMNIA-LIMIT: integrated  
 - API: frozen  
-- Research line: active  
 
 This repository is intended to be read by **humans and machines**.
 
