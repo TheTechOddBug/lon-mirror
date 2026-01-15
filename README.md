@@ -74,7 +74,7 @@ A deterministic encoding of the same object under a specific transformation
 
 **Lens**  
 A deterministic generator of one or more representations.  
-A lens does not score, decide, or interpret.
+A lens does **not** score, decide, or interpret.
 
 **Superposition**  
 Given multiple representations of the same object, OMNIA measures:
@@ -92,14 +92,27 @@ If invariance collapses, the property is representation-dependent, not structura
 
 ## Core Lenses (Implemented)
 
+OMNIA lenses generate **views only**.  
+All scoring happens in the metric core.
+
+### Foundational Lenses
 - **BASE** — multi-base numeric representations  
 - **TIME** — multi-granularity temporal views  
-- **CAUSA** — causal consistency and constraint views  
+- **CAUSA** — causal consistency views  
 - **TOKEN** — tokenization-dependent views  
 - **LCR** — local consistency / rigidity views  
 
-All lenses generate views only.  
-All scoring happens in the metric core.
+### Superposition-Based Extension Lenses
+(Proof of universality)
+
+- **COMPRESSION** — survivability under lossy / lossless reduction  
+- **PERMUTATION** — order-dependence and rhetorical fragility  
+- **CONSTRAINTS** — robustness under restriction (length, budget, form)
+
+Demos:
+- `examples/superposition_minimal_demo.py`
+- `examples/compression_superposition_demo.py`
+- `examples/multi_lens_superposition_demo.py`
 
 ---
 
@@ -157,7 +170,7 @@ Minimal visual artifact:
 
 assets/diagnostics/sei_trend.png
 
-Shows SEI vs iteration index, highlighting:
+Shows:
 - marginal structural yield
 - flattening or decline under increasing computation
 
@@ -182,9 +195,9 @@ State_t → Forward → State_t+1 State_t+1 → Inverse_Projection → State'_t 
 
 IRI = hysteresis_residue / forward_distance
 
-- IRI ≈ 0 → reversible
-- IRI ↑ → loss of reversibility
-- IRI → 1 → strong hysteresis
+- IRI ≈ 0 → reversible  
+- IRI ↑ → loss of reversibility  
+- IRI → 1 → strong hysteresis  
 
 ### Artifacts
 
@@ -212,7 +225,7 @@ It separates primes from composites without:
 - Result: **AUC = 0.816**
 
 Lower PBII → primes  
-Higher PBII → composites
+Higher PBII → composites  
 
 Notebook:
 
@@ -238,7 +251,7 @@ Structure-based diagnostics do.
 
 ## Architecture Overview
 
-Signal (numbers / time / tokens / causality) ↓ +-------------------------------------------+ |              OMNIA LENSES                  | |   BASE · TIME · CAUSA · TOKEN · LCR        | +-------------------------------------------+ ↓ +-------------------------------------------+ |              METRIC CORE                  | |   TruthΩ · Co⁺ · Δ · κ · ε                | +-------------------------------------------+ ↓ +-------------------------------------------+ |          SEI (Layer-1, trend only)         | |   Marginal Yield / Saturation Detection   | +-------------------------------------------+ ↓ +-------------------------------------------+ |          IRI (Layer-2, hysteresis)         | |   Path Irreversibility / Option Loss      | +-------------------------------------------+ ↓ +-------------------------------------------+ |              ICE ENVELOPE                 | |   Impossibility & Confidence Envelope     | +-------------------------------------------+
+Signal (numbers / time / tokens / causality) ↓ +-------------------------------------------+ |              OMNIA LENSES                  | | BASE · TIME · CAUSA · TOKEN · LCR          | | COMPRESSION · PERMUTATION · CONSTRAINTS   | +-------------------------------------------+ ↓ +-------------------------------------------+ |              METRIC CORE                  | |   TruthΩ · Co⁺ · Δ · κ · ε                | +-------------------------------------------+ ↓ +-------------------------------------------+ |          SEI (Layer-1, trend only)         | |   Marginal Yield / Saturation Detection   | +-------------------------------------------+ ↓ +-------------------------------------------+ |          IRI (Layer-2, hysteresis)         | |   Path Irreversibility / Option Loss      | +-------------------------------------------+ ↓ +-------------------------------------------+ |              ICE ENVELOPE                 | |   Impossibility & Confidence Envelope     | +-------------------------------------------+
 
 OMNIA outputs diagnostics, never judgments.
 
@@ -322,13 +335,13 @@ OMNIA itself remains independent.
 
 ## Repository Identity (Canonical)
 
-Canonical repository:
+Canonical repository:  
 https://github.com/Tuttotorna/lon-mirror
 
-Project name:
+Project name:  
 **OMNIA / MB-X.01**
 
-Author / Logical Origin Node:
+Author / Logical Origin Node:  
 **Massimiliano Brighindi**
 
 There is no secondary mirror.
