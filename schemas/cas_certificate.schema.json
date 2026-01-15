@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/cas_certificate.schema.json",
+  "title": "OMNIA CAS Certificate",
+  "type": "object",
+  "required": ["schema", "engine", "artifact", "timestamp_utc", "baseline", "summary", "buckets"],
+  "properties": {
+    "schema": { "type": "string", "enum": ["CAS-1.0"] },
+    "engine": { "type": "string" },
+    "artifact": { "type": "string", "enum": ["CAS"] },
+    "timestamp_utc": { "type": "string" },
+    "run_meta": { "type": "object" },
+
+    "baseline": {
+      "type": "object",
+      "required": ["text"],
+      "properties": { "text": { "type": "string" } }
+    },
+
+    "summary": {
+      "type": "object",
+      "required": ["status", "stop_recommended", "stop_reason", "counts"],
+      "properties": {
+        "status": { "type": "string", "enum": ["OPEN", "SATURATED", "ILLEGITIMATE"] },
+        "stop_recommended": { "type": "boolean" },
+        "stop_reason": { "type": "string", "enum": ["continue", "structural_saturation", "noise_regime"] },
+        "counts": {
+          "type": "object",
+          "required": ["accepted", "saturated", "rejected"],
+          "properties": {
+            "accepted": { "type": "integer", "minimum": 0 },
+            "saturated": { "type": "integer", "minimum": 0 },
+            "rejected": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    },
+
+    "buckets": {
+      "type": "object",
+      "required": ["accepted", "saturated", "rejected"],
+      "properties": {
+        "accepted": { "$ref": "#/$defs/items" },
+        "saturated": { "$ref": "#/$defs/items" },
+        "rejected": { "$ref": "#/$defs/items" }
+      }
+    }
+  },
+
+  "$defs": {
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/item" }
+    },
+    "item": {
+      "type": "object",
+      "required": ["op", "text", "delta_omega", "omega_before", "omega_after", "snrc_candidate", "saturation_margin", "notes"],
+      "properties": {
+        "op": { "type": "string" },
+        "text": { "type": "string" },
+        "delta_omega": { "type": "number" },
+        "omega_before": { "type": "number" },
+        "omega_after": { "type": "number" },
+        "snrc_candidate": { "type": "boolean" },
+        "saturation_margin": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "notes": { "type": "string" },
+        "details": { "type": "object" }
+      }
+    }
+  }
+}
