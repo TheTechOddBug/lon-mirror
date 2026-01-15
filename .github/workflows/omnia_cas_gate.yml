@@ -30,21 +30,24 @@ jobs:
 
       - name: Generate CAS for HEAD (B)
         run: |
+          mkdir -p artifacts
           python tools/ci_make_cas.py --out artifacts/cas_B.json --rounds 2 --top_k 8
 
       - name: Checkout base (merge-base) into worktree
         run: |
+          # Ensure we have a reference to main
+          git fetch origin main --depth=1 || true
+
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             BASE_REF="origin/${{ github.base_ref }}"
           else
             BASE_REF="origin/main"
           fi
 
-          git fetch origin main --depth=1 || true
-          BASE_SHA=$(git merge-base $BASE_REF ${{ github.sha }})
+          BASE_SHA=$(git merge-base "$BASE_REF" "${{ github.sha }}")
           echo "BASE_SHA=$BASE_SHA"
           mkdir -p /tmp/omnia_base
-          git worktree add /tmp/omnia_base $BASE_SHA
+          git worktree add /tmp/omnia_base "$BASE_SHA"
 
       - name: Install base version
         run: |
