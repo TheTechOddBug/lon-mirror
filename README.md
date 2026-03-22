@@ -7,6 +7,7 @@
 
 https://doi.org/10.5281/zenodo.19149140
 
+DEMO
 https://lon-reflect.emergent.host/
 
 **Ω · Ω̂ · SEI · IRI · OMNIA-LIMIT · τ · SCI · CG · OPI · PV · INFERENCE · SI · GOV**  
