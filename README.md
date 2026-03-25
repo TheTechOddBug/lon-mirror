@@ -7,10 +7,10 @@
 
 https://doi.org/10.5281/zenodo.19149140
 
-DEMO
+DEMO  
 https://lon-reflect.emergent.host/
 
-**Ω · Ω̂ · SEI · IRI · OMNIA-LIMIT · τ · SCI · CG · OPI · PV · INFERENCE · SI · GOV**  
+**Ω · Ω̂ · SEI · IRI · OMNIA-LIMIT · τ · SCI · CG · OPI · PV · INFERENCE · SI · GOV · SELF-MODEL ERROR**  
 **MB-X.01**
 
 **Author:** Massimiliano Brighindi
@@ -31,7 +31,7 @@ https://github.com/Tuttotorna/lon-mirror/blob/main/ECOSYSTEM.md
 **OMNIA** is a **post-hoc structural measurement engine**.
 
 It measures **structural coherence, instability, compatibility, limits, perturbations,
-inference regimes, and structural indistinguishability** of representations under
+inference regimes, structural indistinguishability, and self-model divergence** of representations under
 **independent, non-semantic transformations**.
 
 OMNIA:
@@ -49,6 +49,7 @@ OMNIA measures:
 - how structure degrades under perturbation  
 - which inferential regime is active before collapse  
 - when different internal codifications are structurally undecidable  
+- when a system diverges from its own internal model  
 
 **The output is measurement, never narrative.**
 
@@ -57,6 +58,46 @@ OMNIA measures:
 ## Core Principle
 
 > **Structural truth is what survives the removal of representation.**
+
+---
+
+## Extended Principle — Self-Model Divergence
+
+Determinism is not prediction.
+
+It is diagnosis of difference.
+
+A system evolves:
+
+S(t+1) = F(S(t))
+
+But real systems act on internal models:
+
+S(t+1) = F(S(t), A(M(t)))  
+M(t+1) = G(M(t), O(S(t)))
+
+Divergence does not require randomness.
+
+It can emerge from:
+
+- incomplete observation  
+- internal model mismatch  
+
+Define:
+
+E(t) = d( φ(S(t)), M(t) )
+
+E_p(t+1) = d( φ(S(t+1)), P(M(t)) )
+
+C(t) = d( M(t+1), G̃(M(t)) )
+
+This introduces a second axis of instability:
+
+- dynamic instability (Lyapunov)  
+- epistemic instability (self-model error)  
+
+**Difference is not noise.  
+It is unresolved structure.**
 
 ---
 
@@ -120,6 +161,7 @@ OMNIA
 → OPI (Observer Perturbation Index)
 → PV (Perturbation Vector)
 → SI (Structural Indistinguishability)
+→ SELF-MODEL ERROR (E, E_p, C)
 → OMNIA-GOV (Trajectory Certification)
 
 Each step is measured, never inferred.
@@ -156,7 +198,6 @@ Structural instability in token sequences.
 
 LCR — Logical Coherence Reduction
 External coherence lens for audit and benchmarking.
-
 
 All lenses are deterministic, composable, and non-semantic.
 
@@ -212,15 +253,10 @@ Inference is treated as a structural trajectory, not a decision.
 States:
 
 S1 — RIGID_INVARIANCE
-
 S2 — ELASTIC_INVARIANCE
-
 S3 — META_STABLE
-
 S4 — COHERENT_DRIFT
-
 S5 — PRE_LIMIT_FRAGMENTATION
-
 
 Implementation:
 
@@ -234,11 +270,8 @@ omnia/inference/
 Declares a STOP condition when:
 
 SEI → 0
-
 IRI > 0
-
 Ω̂ is stable
-
 
 OMNIA-LIMIT does not retry, optimize, or escalate.
 
@@ -309,8 +342,7 @@ PV captures direction, composition, and intensity of structural loss.
 
 Principle:
 
-> If all observable structural relations are invariant,
-internal codifications are undecidable.
+> If all observable structural relations are invariant, internal codifications are undecidable.
 
 
 
@@ -323,7 +355,48 @@ omnia/meta/structural_indistinguishability.py
 
 ---
 
-15. OMNIA-GOV — Trajectory Certification Layer (NEW)
+15. SELF-MODEL ERROR — Epistemic Divergence Layer (NEW)
+
+OMNIA extends measurement from representation to self-representation.
+
+Define:
+
+S(t) = real state
+M(t) = internal model
+
+Errors:
+
+E(t) = self-model error
+E_p(t) = predictive error
+C(t) = internal coherence
+
+This introduces:
+
+epistemic drift
+
+model divergence
+
+internal misalignment
+
+
+Key distinction:
+
+Lyapunov divergence → sensitivity to initial conditions
+Self-model divergence → sensitivity to internal representation
+
+This layer allows OMNIA to detect:
+
+systems that function but misrepresent themselves
+
+systems that predict incorrectly despite structural stability
+
+systems that remain internally coherent but externally false
+
+
+
+---
+
+16. OMNIA-GOV — Trajectory Certification Layer
 
 Hallucinations are local failures.
 The next failure class is global: irreversible trajectory collapse.
@@ -335,37 +408,28 @@ OMNIA-GOV introduces no semantics and no learning.
 It provides:
 
 CVI — Constraint Violation Index
-
 IRI_act — Irreversibility in action-space
-
 HCI — Hypercoherence Collapse Index
-
 SNRC-ACT — Boundary certificate for action-space
-
 
 Output:
 
 ALLOW
-
 BOUNDARY_ONLY
-
 REFUSE
-
 
 Implementation:
 
 omnia/gov/
-  policy.py
-  metrics.py
-  invariants.py
-  types.py
-
-This extends OMNIA from representation measurement to trajectory certification, while preserving the non-decision constraint: measurement first, enforcement external.
+policy.py
+metrics.py
+invariants.py
+types.py
 
 
 ---
 
-16. Experimental Module — Prime Regime Sensor
+17. Experimental Module — Prime Regime Sensor
 
 OMNIA can be applied to prime number sequences as a non-semantic structural regime sensor.
 
@@ -376,13 +440,9 @@ PrimeState = (Φ, S, T, τ)
 Where:
 
 Φ: modular residue vector (multi-base structure)
-
 S: gap-distribution stability
-
 T: structural drift
-
 τ: structural time
-
 
 This is not a prime oracle.
 
@@ -398,17 +458,17 @@ examples/prime_gap_knn_demo.py
 
 ---
 
-17. Repository Structure
+18. Repository Structure
 
 omnia/
-  inference/
-  lenses/
-  meta/
-  runtime/
-  gov/
-  omega_set.py
-  sei.py
-  iri.py
+inference/
+lenses/
+meta/
+runtime/
+gov/
+omega_set.py
+sei.py
+iri.py
 
 examples/
 tests/
@@ -417,16 +477,13 @@ docs/
 All modules are:
 
 deterministic
-
 standalone
-
 import-safe
-
 
 
 ---
 
-18. What OMNIA Is Not
+19. What OMNIA Is Not
 
 OMNIA is not:
 
@@ -448,14 +505,14 @@ OMNIA is a measurement instrument.
 
 ---
 
-19. License
+20. License
 
 MIT License.
 
 
 ---
 
-20. Citation
+21. Citation
 
 Brighindi, M.
 OMNIA — Unified Structural Measurement Engine (MB-X.01)
