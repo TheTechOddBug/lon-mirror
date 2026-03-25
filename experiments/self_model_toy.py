@@ -2,6 +2,7 @@
 MB-X.01 / OMNIA
 Self-model toy system
 
+
 Purpose:
 - simulate a deterministic real system S_t
 - simulate a partial observation O(S_t)
