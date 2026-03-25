@@ -85,10 +85,8 @@ It can emerge from:
 
 Define:
 
-E(t) = d( φ(S(t)), M(t) )
-
-E_p(t+1) = d( φ(S(t+1)), P(M(t)) )
-
+E(t) = d( φ(S(t)), M(t) )  
+E_p(t+1) = d( φ(S(t+1)), P(M(t)) )  
 C(t) = d( M(t+1), G̃(M(t)) )
 
 This introduces a second axis of instability:
@@ -112,17 +110,46 @@ Run the prime regime demo:
 
 python examples/prime_gap_knn_demo.py
 
-The demo prints:
 
-current prime
+---
 
-true next gap
+Toy Self-Model Experiment (NEW)
 
-predicted gap (if admissible)
+Minimal operational system implementing:
 
-confidence
+real state S(t)
 
-STOP / OK reason
+internal model M(t)
+
+partial observation O(S(t))
+
+self-model error E(t)
+
+predictive error E_p(t)
+
+internal coherence C(t)
+
+
+Run:
+
+python experiments/self_model_toy.py
+
+This produces:
+
+real trajectory
+
+model trajectory
+
+divergence metrics
+
+
+Purpose:
+
+convert theory → measurement
+
+expose epistemic instability
+
+isolate model-driven divergence
 
 
 
@@ -185,19 +212,10 @@ It reflects internal structural consistency, not correctness, usefulness, or sem
 OMNIA operates through independent, composable lenses:
 
 BASE — Omniabase
-Multi-base numeric structure analysis.
-
 TIME — Omniatempo
-Temporal drift and regime instability.
-
 CAUSA — Omniacausa
-Lagged relational and causal structure.
-
 TOKEN
-Structural instability in token sequences.
-
 LCR — Logical Coherence Reduction
-External coherence lens for audit and benchmarking.
 
 All lenses are deterministic, composable, and non-semantic.
 
@@ -208,8 +226,6 @@ All lenses are deterministic, composable, and non-semantic.
 
 Measures invariants that persist under transformations without a privileged observer.
 
-Isolates structure that exists independently of human perception or encoding.
-
 
 ---
 
@@ -217,40 +233,28 @@ Isolates structure that exists independently of human perception or encoding.
 
 Ω̂ is deduced by subtraction, not assumed.
 
-It estimates the structural residue that survives representation change using robust statistics over transformed Ω values.
-
 
 ---
 
 5. SEI — Saturation / Exhaustion Index
 
-Measures marginal structural yield:
-
 SEI = ΔΩ / ΔC
 
-SEI → 0 indicates structural saturation: further processing yields no new admissible structure.
+SEI → 0 indicates structural saturation.
 
 
 ---
 
 6. IRI — Irreversibility / Hysteresis Index
 
-Measures irrecoverable structural loss in cycles:
+Measures irrecoverable structural loss:
 
 A → B → A′
-
-IRI detects collapse even when surface similarity appears intact.
-
-IRI ≥ 0 by construction.
 
 
 ---
 
 7. Pre-Limit Inference States — INFERENCE
-
-Inference is treated as a structural trajectory, not a decision.
-
-States:
 
 S1 — RIGID_INVARIANCE
 S2 — ELASTIC_INVARIANCE
@@ -258,139 +262,84 @@ S3 — META_STABLE
 S4 — COHERENT_DRIFT
 S5 — PRE_LIMIT_FRAGMENTATION
 
-Implementation:
-
-omnia/inference/
-
 
 ---
 
 8. OMNIA-LIMIT — Epistemic Boundary
 
-Declares a STOP condition when:
+STOP when:
 
 SEI → 0
 IRI > 0
-Ω̂ is stable
-
-OMNIA-LIMIT does not retry, optimize, or escalate.
-
-It marks the end of admissible structural extraction.
+Ω̂ stable
 
 
 ---
 
 9. Structural Time (τ)
 
-τ is a non-human time coordinate.
-
-It advances only when structure changes.
-
-τ is not wall-clock time and not duration.
+Advances only when structure changes.
 
 
 ---
 
 10. Structural Compatibility — SCI
 
-Measures whether measured structures can coexist without contradiction or loss.
-
-SCI operates on OMNIA outputs, not on raw data.
+Measures coexistence without contradiction.
 
 
 ---
 
 11. Compatibility Guard — CG
 
-Converts SCI into a strict runtime STOP / CONTINUE signal.
+Strict STOP / CONTINUE layer.
 
-CG introduces:
-
-no policy
-
-no semantics
-
-no optimization
-
-
-It enforces structural admissibility only.
+No policy. No semantics.
 
 
 ---
 
 12. Observer Perturbation Index — OPI
 
-Measures the structural cost of introducing an observer or privileged basis:
-
 OPI = Ω_ap − Ω_obs
 
-OPI quantifies structural damage caused by enforced perspective, not intent or consciousness.
+Measures structural cost of observation.
 
 
 ---
 
 13. Perturbation Vector — PV
 
-Formalizes how structure is destroyed, not why.
-
-PV captures direction, composition, and intensity of structural loss.
+Captures direction and intensity of structural loss.
 
 
 ---
 
 14. Structural Indistinguishability — SI
 
-Principle:
-
-> If all observable structural relations are invariant, internal codifications are undecidable.
-
-
-
-SI measures whether two systems may differ internally while remaining structurally indistinguishable under all admissible relations.
-
-Implementation:
-
-omnia/meta/structural_indistinguishability.py
+If all structural relations are invariant → systems are undecidable.
 
 
 ---
 
-15. SELF-MODEL ERROR — Epistemic Divergence Layer (NEW)
+15. SELF-MODEL ERROR — Epistemic Divergence Layer
 
-OMNIA extends measurement from representation to self-representation.
+Measures divergence between:
 
-Define:
+real state
 
-S(t) = real state
-M(t) = internal model
+internal model
 
-Errors:
+predicted evolution
 
-E(t) = self-model error
-E_p(t) = predictive error
-C(t) = internal coherence
 
-This introduces:
+Detects:
+
+internal misrepresentation
+
+predictive failure
 
 epistemic drift
-
-model divergence
-
-internal misalignment
-
-
-Key distinction:
-
-Lyapunov divergence → sensitivity to initial conditions
-Self-model divergence → sensitivity to internal representation
-
-This layer allows OMNIA to detect:
-
-systems that function but misrepresent themselves
-
-systems that predict incorrectly despite structural stability
-
-systems that remain internally coherent but externally false
 
 
 
@@ -398,62 +347,20 @@ systems that remain internally coherent but externally false
 
 16. OMNIA-GOV — Trajectory Certification Layer
 
-Hallucinations are local failures.
-The next failure class is global: irreversible trajectory collapse.
-
-OMNIA-GOV is a deterministic governance layer that consumes OMNIA measurements and certifies whether an action or plan is structurally admissible.
-
-OMNIA-GOV introduces no semantics and no learning.
-
-It provides:
-
-CVI — Constraint Violation Index
-IRI_act — Irreversibility in action-space
-HCI — Hypercoherence Collapse Index
-SNRC-ACT — Boundary certificate for action-space
-
-Output:
+Outputs:
 
 ALLOW
 BOUNDARY_ONLY
 REFUSE
 
-Implementation:
-
-omnia/gov/
-policy.py
-metrics.py
-invariants.py
-types.py
+No semantics. No learning.
 
 
 ---
 
 17. Experimental Module — Prime Regime Sensor
 
-OMNIA can be applied to prime number sequences as a non-semantic structural regime sensor.
-
-Deterministic state:
-
-PrimeState = (Φ, S, T, τ)
-
-Where:
-
-Φ: modular residue vector (multi-base structure)
-S: gap-distribution stability
-T: structural drift
-τ: structural time
-
-This is not a prime oracle.
-
-Implementation:
-
-omnia/lenses/prime_regime.py
-omnia/lenses/prime_gap_knn.py
-
-Demo:
-
-examples/prime_gap_knn_demo.py
+Non-semantic structural sensor on primes.
 
 
 ---
@@ -461,44 +368,19 @@ examples/prime_gap_knn_demo.py
 18. Repository Structure
 
 omnia/
-inference/
-lenses/
-meta/
-runtime/
-gov/
-omega_set.py
-sei.py
-iri.py
-
 examples/
 tests/
 docs/
-
-All modules are:
-
-deterministic
-standalone
-import-safe
+experiments/
 
 
 ---
 
 19. What OMNIA Is Not
 
-OMNIA is not:
-
-a model
-
-an evaluator
-
-a policy
-
-a decision system
-
-a truth oracle
-
-a narrative framework
-
+Not a model.
+Not a policy.
+Not a decision system.
 
 OMNIA is a measurement instrument.
 
