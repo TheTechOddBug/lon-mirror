@@ -1,5 +1,9 @@
 # Determinism as Diagnostic Structure and Self-Model Error
 
+**ID:** MB-X.01  
+**Type:** Formalism  
+**Status:** Active
+
 ## Abstract
 
 Determinism is often misunderstood as a tool for prediction.  
