@@ -217,3 +217,9 @@ It is information.
 The fundamental failure of a system is not incorrect action.
 
 It is incorrect self-representation.
+
+## Related
+
+- OMNIA
+- Dual-Echo
+- OMNIAMIND
