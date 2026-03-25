@@ -1,0 +1,30 @@
+name: Self Model Run
+
+on:
+  push:
+    paths:
+      - "experiments/**"
+      - ".github/workflows/self_model_run.yml"
+  workflow_dispatch:
+
+jobs:
+  run-self-model:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install numpy
+
+      - name: Run toy experiment
+        run: python experiments/self_model_toy.py
+
+      - name: Run stress experiment
+        run: python experiments/self_model_stress.py
