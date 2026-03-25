@@ -30,9 +30,19 @@ https://github.com/Tuttotorna/lon-mirror/blob/main/ECOSYSTEM.md
 
 **OMNIA** is a **post-hoc structural measurement engine**.
 
-It measures **structural coherence, instability, compatibility, limits, perturbations,
-inference regimes, structural indistinguishability, and self-model divergence** of representations under
-**independent, non-semantic transformations**.
+It measures:
+
+- structural coherence  
+- instability  
+- compatibility  
+- irreversibility  
+- saturation limits  
+- perturbation cost  
+- inference regimes  
+- structural indistinguishability  
+- self-model divergence  
+
+under **independent, non-semantic transformations**.
 
 OMNIA:
 
@@ -47,8 +57,8 @@ OMNIA measures:
 - what remains invariant when representation changes  
 - where continuation becomes structurally impossible  
 - how structure degrades under perturbation  
-- which inferential regime is active before collapse  
-- when different internal codifications are structurally undecidable  
+- which inferential regime precedes collapse  
+- when representations become undecidable  
 - when a system diverges from its own internal model  
 
 **The output is measurement, never narrative.**
@@ -61,38 +71,70 @@ OMNIA measures:
 
 ---
 
+## Deterministic Diagnostic Principle
+
+OMNIA does not assume that reality is deterministic.
+
+It uses deterministic structure as a diagnostic tool.
+
+Given a system:
+
+x(t+1) = F(x(t))
+
+Then:
+
+Same state + same law ⇒ same trajectory
+
+If trajectories differ:
+
+⇒ the observed description is incomplete  
+⇒ or the system includes unmodeled inputs  
+⇒ or the dynamics are non-deterministic  
+
+OMNIA does not resolve which case is true.
+
+It detects divergence as **unresolved structure**.
+
+---
+
 ## Extended Principle — Self-Model Divergence
 
-Determinism is not prediction.
+Real systems do not act directly on reality.
 
-It is diagnosis of difference.
+They act on internal representations.
 
-A system evolves:
+Define:
 
-S(t+1) = F(S(t))
+S(t) = real state  
+M(t) = internal model  
 
-But real systems act on internal models:
+Dynamics:
 
 S(t+1) = F(S(t), A(M(t)))  
 M(t+1) = G(M(t), O(S(t)))
 
-Divergence does not require randomness.
-
-It can emerge from:
+Divergence emerges from:
 
 - incomplete observation  
-- internal model mismatch  
+- model mismatch  
+- internal inconsistency  
 
 Define:
 
-E(t) = d( φ(S(t)), M(t) )  
-E_p(t+1) = d( φ(S(t+1)), P(M(t)) )  
-C(t) = d( M(t+1), G̃(M(t)) )
+E(t)   = d( S(t), M(t) )  
+E_p(t) = d( S(t+1), P(M(t)) )  
+C(t)   = d( M(t+1), G̃(M(t)) )
+
+Where:
+
+- E(t)   = self-model error  
+- E_p(t) = predictive error  
+- C(t)   = internal coherence  
 
 This introduces a second axis of instability:
 
-- dynamic instability (Lyapunov)  
-- epistemic instability (self-model error)  
+- dynamic instability (sensitivity to initial conditions)  
+- epistemic instability (model divergence)  
 
 **Difference is not noise.  
 It is unresolved structure.**
@@ -113,34 +155,30 @@ python examples/prime_gap_knn_demo.py
 
 ---
 
-Toy Self-Model Experiment (NEW)
+Toy Self-Model Experiment
 
-Minimal operational system implementing:
+Minimal executable system implementing:
 
 real state S(t)
 
 internal model M(t)
 
-partial observation O(S(t))
+partial observation
 
-self-model error E(t)
-
-predictive error E_p(t)
-
-internal coherence C(t)
+measurable divergence
 
 
 Run:
 
 python experiments/self_model_toy.py
 
-This produces:
+Outputs:
 
 real trajectory
 
 model trajectory
 
-divergence metrics
+E(t), E_p(t), C(t)
 
 
 Purpose:
@@ -155,16 +193,17 @@ isolate model-driven divergence
 
 ---
 
-Stress Framework (Iriguchi Integration)
+Stress Framework
 
 OMNIA includes a formal stress methodology.
 
-Stress is not “more tests”.
+Stress is not repetition.
+
 Stress is controlled exposure of structural limits.
 
-Failures are preserved as frozen boundary artifacts.
+Failures are preserved as boundary artifacts.
 
-Official taxonomy:
+Reference:
 
 docs/STRESS_TAXONOMY.md
 
@@ -178,164 +217,164 @@ OMNIA
 → Ω under transformations
 → Ω̂ (Omega-set)
 → ΔΩ / ΔC
-→ SEI (Saturation)
-→ A → B → A′
-→ IRI (Irreversibility)
-→ Inference State (S1–S5)
-→ OMNIA-LIMIT (STOP)
-→ SCI (Structural Compatibility)
-→ CG (Runtime STOP / CONTINUE)
-→ OPI (Observer Perturbation Index)
-→ PV (Perturbation Vector)
-→ SI (Structural Indistinguishability)
+→ SEI
+→ trajectory cycles
+→ IRI
+→ INFERENCE states
+→ OMNIA-LIMIT
+→ SCI
+→ CG
+→ OPI
+→ PV
+→ SI
 → SELF-MODEL ERROR (E, E_p, C)
-→ OMNIA-GOV (Trajectory Certification)
+→ OMNIA-GOV
 
 Each step is measured, never inferred.
 
 
 ---
 
-1. Ω — Structural Coherence Score
+1. Ω — Structural Coherence
 
-Ω is the aggregated structural score produced by OMNIA lenses.
+Aggregated structural consistency.
 
-It reflects internal structural consistency, not correctness, usefulness, or semantic truth.
-
-Ω is model-agnostic and semantics-free.
+Semantics-free.
 
 
 ---
 
 2. Structural Lenses
 
-OMNIA operates through independent, composable lenses:
-
 BASE — Omniabase
 TIME — Omniatempo
 CAUSA — Omniacausa
 TOKEN
-LCR — Logical Coherence Reduction
+LCR
 
-All lenses are deterministic, composable, and non-semantic.
+All lenses are:
 
+deterministic
 
----
+composable
 
-3. APERSPECTIVE — Aperspective Invariance
+non-semantic
 
-Measures invariants that persist under transformations without a privileged observer.
-
-
----
-
-4. Ω̂ — Omega-set (Residual Invariance)
-
-Ω̂ is deduced by subtraction, not assumed.
 
 
 ---
 
-5. SEI — Saturation / Exhaustion Index
+3. APERSPECTIVE
+
+Invariance without privileged observer.
+
+
+---
+
+4. Ω̂ — Residual Invariance
+
+Computed by subtraction.
+
+
+---
+
+5. SEI — Saturation
 
 SEI = ΔΩ / ΔC
 
-SEI → 0 indicates structural saturation.
+SEI → 0 ⇒ structural exhaustion
 
 
 ---
 
-6. IRI — Irreversibility / Hysteresis Index
+6. IRI — Irreversibility
 
-Measures irrecoverable structural loss:
-
-A → B → A′
+Measures loss across cycles.
 
 
 ---
 
-7. Pre-Limit Inference States — INFERENCE
+7. INFERENCE States
 
-S1 — RIGID_INVARIANCE
-S2 — ELASTIC_INVARIANCE
-S3 — META_STABLE
-S4 — COHERENT_DRIFT
-S5 — PRE_LIMIT_FRAGMENTATION
+S1 → rigid
+S2 → elastic
+S3 → meta-stable
+S4 → drift
+S5 → fragmentation
 
 
 ---
 
-8. OMNIA-LIMIT — Epistemic Boundary
+8. OMNIA-LIMIT
 
-STOP when:
+STOP condition:
 
 SEI → 0
+
 IRI > 0
+
 Ω̂ stable
+
 
 
 ---
 
 9. Structural Time (τ)
 
-Advances only when structure changes.
+Advances only with structural change.
 
 
 ---
 
-10. Structural Compatibility — SCI
+10. SCI — Compatibility
 
-Measures coexistence without contradiction.
-
-
----
-
-11. Compatibility Guard — CG
-
-Strict STOP / CONTINUE layer.
-
-No policy. No semantics.
+Coexistence without contradiction.
 
 
 ---
 
-12. Observer Perturbation Index — OPI
+11. CG — Guard
+
+Binary STOP / CONTINUE.
+
+
+---
+
+12. OPI — Observer Cost
 
 OPI = Ω_ap − Ω_obs
 
-Measures structural cost of observation.
+
+---
+
+13. PV — Perturbation
+
+Direction + intensity of loss.
 
 
 ---
 
-13. Perturbation Vector — PV
+14. SI — Indistinguishability
 
-Captures direction and intensity of structural loss.
-
-
----
-
-14. Structural Indistinguishability — SI
-
-If all structural relations are invariant → systems are undecidable.
+No structural distinction possible.
 
 
 ---
 
-15. SELF-MODEL ERROR — Epistemic Divergence Layer
+15. SELF-MODEL ERROR
 
 Measures divergence between:
 
 real state
 
-internal model
+internal representation
 
 predicted evolution
 
 
 Detects:
 
-internal misrepresentation
+misrepresentation
 
 predictive failure
 
@@ -345,27 +384,21 @@ epistemic drift
 
 ---
 
-16. OMNIA-GOV — Trajectory Certification Layer
+16. OMNIA-GOV
 
-Outputs:
+Trajectory certification:
 
 ALLOW
+
 BOUNDARY_ONLY
+
 REFUSE
 
-No semantics. No learning.
 
 
 ---
 
-17. Experimental Module — Prime Regime Sensor
-
-Non-semantic structural sensor on primes.
-
-
----
-
-18. Repository Structure
+17. Repository Structure
 
 omnia/
 examples/
@@ -376,26 +409,30 @@ experiments/
 
 ---
 
-19. What OMNIA Is Not
+18. What OMNIA Is Not
 
-Not a model.
-Not a policy.
-Not a decision system.
+Not a model
+
+Not a decision system
+
+Not a learning system
+
 
 OMNIA is a measurement instrument.
 
 
 ---
 
-20. License
+19. License
 
-MIT License.
+MIT License
 
 
 ---
 
-21. Citation
+20. Citation
 
 Brighindi, M.
 OMNIA — Unified Structural Measurement Engine (MB-X.01)
 https://github.com/Tuttotorna/lon-mirror
+
