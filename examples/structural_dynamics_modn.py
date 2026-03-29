@@ -106,4 +106,4 @@ if __name__ == "__main__":
     # Core examples
     analyze(9, 2)
     analyze(9, 3)
-    analyze(9,
+    nalyze(9,
