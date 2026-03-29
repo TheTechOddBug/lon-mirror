@@ -131,11 +131,6 @@ Where:
 - E_p(t) = predictive error  
 - C(t)   = internal coherence  
 
-This introduces a second axis of instability:
-
-- dynamic instability (sensitivity to initial conditions)  
-- epistemic instability (model divergence)  
-
 **Difference is not noise.  
 It is unresolved structure.**
 
@@ -155,18 +150,63 @@ python examples/prime_gap_knn_demo.py
 
 ---
 
+Minimal Structural Example (NEW)
+
+File:
+
+examples/structural_dynamics_mod9.py
+
+This is the first minimal executable system demonstrating:
+
+structure vs representation
+
+invariance under transformation
+
+finite-state structural dynamics
+
+
+System:
+
+space: residues mod 9
+
+operator: ( x \rightarrow kx ) (via digital root encoding)
+
+output: orbit cycles
+
+
+What it shows:
+
+existence of stable cycles
+
+separation between invertible and collapsing dynamics
+
+independence from base-10 representation
+
+
+Key structural result:
+
+if gcd(k, 9) = 1 → permutation cycles
+
+if gcd(k, 9) ≠ 1 → collapse toward fixed point (9)
+
+
+This file is:
+
+deterministic
+
+reproducible
+
+representation-independent (structure preserved)
+
+
+It is a minimal bridge between:
+
+theory → executable system
+
+
+---
+
 Toy Self-Model Experiment
-
-Minimal executable system implementing:
-
-real state S(t)
-
-internal model M(t)
-
-partial observation
-
-measurable divergence
-
 
 Run:
 
@@ -183,11 +223,11 @@ E(t), E_p(t), C(t)
 
 Purpose:
 
-convert theory → measurement
-
 expose epistemic instability
 
-isolate model-driven divergence
+measure divergence
+
+convert theory → measurement
 
 
 
@@ -195,17 +235,13 @@ isolate model-driven divergence
 
 Stress Framework
 
-OMNIA includes a formal stress methodology.
-
-Stress is not repetition.
-
-Stress is controlled exposure of structural limits.
-
-Failures are preserved as boundary artifacts.
-
 Reference:
 
 docs/STRESS_TAXONOMY.md
+
+Stress = controlled exposure of structural limits.
+
+Failures are preserved as boundary artifacts.
 
 
 ---
@@ -215,7 +251,7 @@ The OMNIA Measurement Chain
 OMNIA
 → Ω
 → Ω under transformations
-→ Ω̂ (Omega-set)
+→ Ω̂
 → ΔΩ / ΔC
 → SEI
 → trajectory cycles
@@ -227,7 +263,7 @@ OMNIA
 → OPI
 → PV
 → SI
-→ SELF-MODEL ERROR (E, E_p, C)
+→ SELF-MODEL ERROR
 → OMNIA-GOV
 
 Each step is measured, never inferred.
@@ -235,22 +271,18 @@ Each step is measured, never inferred.
 
 ---
 
-1. Ω — Structural Coherence
-
-Aggregated structural consistency.
-
-Semantics-free.
-
-
----
-
-2. Structural Lenses
+Structural Lenses
 
 BASE — Omniabase
+
 TIME — Omniatempo
+
 CAUSA — Omniacausa
+
 TOKEN
+
 LCR
+
 
 All lenses are:
 
@@ -264,144 +296,47 @@ non-semantic
 
 ---
 
-3. APERSPECTIVE
+Key Metrics
 
-Invariance without privileged observer.
+Ω — structural coherence
 
+Ω̂ — residual invariance
 
----
+SEI — saturation (ΔΩ / ΔC)
 
-4. Ω̂ — Residual Invariance
+IRI — irreversibility
 
-Computed by subtraction.
+SCI — compatibility
 
+SI — indistinguishability
 
----
+SELF-MODEL ERROR — divergence
 
-5. SEI — Saturation
-
-SEI = ΔΩ / ΔC
-
-SEI → 0 ⇒ structural exhaustion
 
 
 ---
 
-6. IRI — Irreversibility
+OMNIA-LIMIT
 
-Measures loss across cycles.
-
-
----
-
-7. INFERENCE States
-
-S1 → rigid
-S2 → elastic
-S3 → meta-stable
-S4 → drift
-S5 → fragmentation
-
-
----
-
-8. OMNIA-LIMIT
-
-STOP condition:
+STOP condition when:
 
 SEI → 0
 
 IRI > 0
 
-Ω̂ stable
+Ω̂ stabilizes
 
 
-
----
-
-9. Structural Time (τ)
-
-Advances only with structural change.
+No continuation beyond structural exhaustion.
 
 
 ---
 
-10. SCI — Compatibility
-
-Coexistence without contradiction.
-
-
----
-
-11. CG — Guard
-
-Binary STOP / CONTINUE.
-
-
----
-
-12. OPI — Observer Cost
-
-OPI = Ω_ap − Ω_obs
-
-
----
-
-13. PV — Perturbation
-
-Direction + intensity of loss.
-
-
----
-
-14. SI — Indistinguishability
-
-No structural distinction possible.
-
-
----
-
-15. SELF-MODEL ERROR
-
-Measures divergence between:
-
-real state
-
-internal representation
-
-predicted evolution
-
-
-Detects:
-
-misrepresentation
-
-predictive failure
-
-epistemic drift
-
-
-
----
-
-16. OMNIA-GOV
-
-Trajectory certification:
-
-ALLOW
-
-BOUNDARY_ONLY
-
-REFUSE
-
-
-
----
-
-17. Repository Structure
+Repository Structure
 
 omnia/
 examples/
+  └── structural_dynamics_mod9.py
 tests/
 docs/
 experiments/
@@ -409,7 +344,7 @@ experiments/
 
 ---
 
-18. What OMNIA Is Not
+What OMNIA Is Not
 
 Not a model
 
@@ -423,14 +358,14 @@ OMNIA is a measurement instrument.
 
 ---
 
-19. License
+License
 
 MIT License
 
 
 ---
 
-20. Citation
+Citation
 
 Brighindi, M.
 OMNIA — Unified Structural Measurement Engine (MB-X.01)
