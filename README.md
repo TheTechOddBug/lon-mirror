@@ -73,11 +73,11 @@ OMNIA measures:
 
 ## Deterministic Diagnostic Principle
 
-OMNIA does not assume that reality is deterministic.
+OMNIA does not assume determinism.
 
 It uses deterministic structure as a diagnostic tool.
 
-Given a system:
+Given:
 
 x(t+1) = F(x(t))
 
@@ -87,21 +87,17 @@ Same state + same law ⇒ same trajectory
 
 If trajectories differ:
 
-⇒ the observed description is incomplete  
-⇒ or the system includes unmodeled inputs  
-⇒ or the dynamics are non-deterministic  
+⇒ incomplete description  
+⇒ hidden inputs  
+⇒ non-deterministic dynamics  
 
-OMNIA does not resolve which case is true.
+OMNIA does not resolve which.
 
 It detects divergence as **unresolved structure**.
 
 ---
 
 ## Extended Principle — Self-Model Divergence
-
-Real systems do not act directly on reality.
-
-They act on internal representations.
 
 Define:
 
@@ -113,261 +109,272 @@ Dynamics:
 S(t+1) = F(S(t), A(M(t)))  
 M(t+1) = G(M(t), O(S(t)))
 
-Divergence emerges from:
+Metrics:
 
-- incomplete observation  
-- model mismatch  
-- internal inconsistency  
+- E(t)   = d(S(t), M(t))  
+- E_p(t) = d(S(t+1), P(M(t)))  
+- C(t)   = d(M(t+1), G̃(M(t)))  
 
-Define:
+This introduces:
 
-E(t)   = d( S(t), M(t) )  
-E_p(t) = d( S(t+1), P(M(t)) )  
-C(t)   = d( M(t+1), G̃(M(t)) )
+- dynamic instability  
+- epistemic instability  
 
-Where:
-
-- E(t)   = self-model error  
-- E_p(t) = predictive error  
-- C(t)   = internal coherence  
-
-**Difference is not noise.  
-It is unresolved structure.**
+**Difference is unresolved structure.**
 
 ---
 
-## Quickstart
+## Minimal Executable Systems (NEW)
 
-Run the full test suite:
+OMNIA now includes **minimal deterministic systems** that convert:
 
-```bash
-pytest tests/ -v
-
-Run the prime regime demo:
-
-python examples/prime_gap_knn_demo.py
-
+theory → executable → measurable
 
 ---
 
-Minimal Structural Example (NEW)
+### 1. Finite Structural Dynamics (mod 9)
 
 File:
 
 examples/structural_dynamics_mod9.py
 
-This is the first minimal executable system demonstrating:
+System:
 
-structure vs representation
+- space: residues mod 9  
+- operator: x → kx (via digital root encoding)  
+- output: orbit cycles  
 
-invariance under transformation
+Results:
 
-finite-state structural dynamics
+- stable cycles exist  
+- collapse vs permutation separation  
+- independence from base representation  
 
+Key law:
+
+- gcd(k, 9) = 1 → permutation cycles  
+- gcd(k, 9) ≠ 1 → structural collapse  
+
+---
+
+### 2. Generalized Dynamics (mod n)
+
+File:
+
+examples/structural_dynamics_modn.py
+
+Extends system to:
+
+- any n  
+- any k  
+
+Adds:
+
+- orbit detection  
+- regime classification  
+- Ω (local coherence)
+
+---
+
+### 3. Global Structural Coherence
+
+File:
+
+examples/structural_dynamics_modn_global.py
+
+Adds:
+
+- Ω_global (system-level coherence)
+
+Distinguishes:
+
+- fully cyclic systems  
+- partially collapsing systems  
+- strongly dissipative systems  
+
+---
+
+### 4. Non-Numeric Domain (Strings)
+
+File:
+
+examples/structural_dynamics_strings.py
 
 System:
 
-space: residues mod 9
+- transformations on strings  
+- structural lenses  
+- Ω measurement  
 
-operator: ( x \rightarrow kx ) (via digital root encoding)
+Demonstrates:
 
-output: orbit cycles
-
-
-What it shows:
-
-existence of stable cycles
-
-separation between invertible and collapsing dynamics
-
-independence from base-10 representation
-
-
-Key structural result:
-
-if gcd(k, 9) = 1 → permutation cycles
-
-if gcd(k, 9) ≠ 1 → collapse toward fixed point (9)
-
-
-This file is:
-
-deterministic
-
-reproducible
-
-representation-independent (structure preserved)
-
-
-It is a minimal bridge between:
-
-theory → executable system
-
+- transfer of structure beyond mathematics  
+- independence from numeric domain  
 
 ---
 
-Toy Self-Model Experiment
+### 5. Multi-Lens Measurement (SCI)
 
-Run:
+File:
 
-python experiments/self_model_toy.py
+examples/omnia_sci_engine.py
 
-Outputs:
+Adds:
 
-real trajectory
+- multiple structural lenses  
+- centroid comparison  
+- SCI (Structural Compatibility Index)
 
-model trajectory
+SCI measures:
 
-E(t), E_p(t), C(t)
-
-
-Purpose:
-
-expose epistemic instability
-
-measure divergence
-
-convert theory → measurement
-
-
+- agreement between independent structural views  
 
 ---
 
-Stress Framework
+### 6. Validation Demo
 
-Reference:
+File:
 
-docs/STRESS_TAXONOMY.md
+examples/omnia_validation_demo.py
 
-Stress = controlled exposure of structural limits.
+Provides:
 
-Failures are preserved as boundary artifacts.
+- deterministic classification  
+- Ω + SCI combined interpretation  
 
+Categories:
 
----
-
-The OMNIA Measurement Chain
-
-OMNIA
-→ Ω
-→ Ω under transformations
-→ Ω̂
-→ ΔΩ / ΔC
-→ SEI
-→ trajectory cycles
-→ IRI
-→ INFERENCE states
-→ OMNIA-LIMIT
-→ SCI
-→ CG
-→ OPI
-→ PV
-→ SI
-→ SELF-MODEL ERROR
-→ OMNIA-GOV
-
-Each step is measured, never inferred.
-
+- stable_structure  
+- false_coherence  
+- instability  
+- mixed  
 
 ---
 
-Structural Lenses
+### 7. Minimal OMNIA Engine
 
-BASE — Omniabase
+File:
 
-TIME — Omniatempo
+examples/omnia_minimal_engine.py
 
-CAUSA — Omniacausa
+Unified interface:
 
-TOKEN
+omnia_measure(x)
 
-LCR
+Supports:
 
+- mod-n systems  
+- strings  
 
-All lenses are:
-
-deterministic
-
-composable
-
-non-semantic
-
-
+This is the first **domain-agnostic measurement interface**.
 
 ---
 
-Key Metrics
+## Emergent Structural Results
 
-Ω — structural coherence
+From the executable systems:
 
-Ω̂ — residual invariance
-
-SEI — saturation (ΔΩ / ΔC)
-
-IRI — irreversibility
-
-SCI — compatibility
-
-SI — indistinguishability
-
-SELF-MODEL ERROR — divergence
-
-
+1. Structure ≠ representation  
+2. Dynamics split into:
+   - conservative (invertible)  
+   - dissipative (collapsing)  
+3. Existence of attractors  
+4. Ω quantifies structural stability  
+5. SCI quantifies inter-lens agreement  
+6. High Ω does not imply agreement (false coherence)
 
 ---
 
-OMNIA-LIMIT
+## The OMNIA Measurement Chain
 
-STOP condition when:
+OMNIA  
+→ Ω  
+→ Ω under transformations  
+→ Ω̂  
+→ ΔΩ / ΔC  
+→ SEI  
+→ cycles  
+→ IRI  
+→ INFERENCE states  
+→ OMNIA-LIMIT  
+→ SCI  
+→ CG  
+→ OPI  
+→ PV  
+→ SI  
+→ SELF-MODEL ERROR  
+→ OMNIA-GOV  
 
-SEI → 0
+---
 
-IRI > 0
+## Structural Lenses
 
-Ω̂ stabilizes
+- BASE — Omniabase  
+- TIME — Omniatempo  
+- CAUSA — Omniacausa  
+- TOKEN  
+- LCR  
 
+All lenses:
+
+- deterministic  
+- composable  
+- non-semantic  
+
+---
+
+## Key Metrics
+
+- Ω — structural coherence  
+- Ω̂ — residual invariance  
+- SEI — saturation  
+- IRI — irreversibility  
+- SCI — compatibility  
+- SI — indistinguishability  
+- SELF-MODEL ERROR — divergence  
+
+---
+
+## OMNIA-LIMIT
+
+STOP when:
+
+- SEI → 0  
+- IRI > 0  
+- Ω̂ stabilizes  
 
 No continuation beyond structural exhaustion.
 
+---
+
+## Repository Structure
+
+omnia/ examples/ structural_dynamics_mod9.py structural_dynamics_modn.py structural_dynamics_modn_global.py structural_dynamics_strings.py omnia_sci_engine.py omnia_minimal_engine.py omnia_validation_demo.py tests/ docs/ experiments/
 
 ---
 
-Repository Structure
+## What OMNIA Is Not
 
-omnia/
-examples/
-  └── structural_dynamics_mod9.py
-tests/
-docs/
-experiments/
+- Not a model  
+- Not a decision system  
+- Not a learning system  
 
+OMNIA is a **measurement instrument**.
 
 ---
 
-What OMNIA Is Not
-
-Not a model
-
-Not a decision system
-
-Not a learning system
-
-
-OMNIA is a measurement instrument.
-
-
----
-
-License
+## License
 
 MIT License
 
-
 ---
 
-Citation
+## Citation
 
-Brighindi, M.
-OMNIA — Unified Structural Measurement Engine (MB-X.01)
+Brighindi, M.  
+OMNIA — Unified Structural Measurement Engine (MB-X.01)  
 https://github.com/Tuttotorna/lon-mirror
+
+
+
 
