@@ -1,7 +1,7 @@
 ## Canonical Index
 
-- Ecosystem map: `ECOSYSTEM.md`
-- Machine index: `repos.json`
+- Ecosystem map: [ECOSYSTEM.md](ECOSYSTEM.md)
+- Machine index: [repos.json](repos.json)
 
 # OMNIA — Unified Structural Measurement Engine
 
@@ -22,7 +22,7 @@ https://lon-reflect.emergent.host/
 This repository is part of the **MB-X.01 / OMNIA** ecosystem.
 
 Canonical architecture and full ecosystem map:  
-https://github.com/Tuttotorna/lon-mirror/blob/main/ECOSYSTEM.md
+[ECOSYSTEM.md](ECOSYSTEM.md)
 
 ---
 
@@ -101,13 +101,13 @@ A new visitor should be able to verify the repository through one compact exampl
 Suggested entry points:
 
 ### Minimal generic interface
-- `examples/omnia_minimal_engine.py`
+- [examples/omnia_minimal_engine.py](examples/omnia_minimal_engine.py)
 
 ### Deterministic structural validation
-- `examples/omnia_validation_demo.py`
+- [examples/omnia_validation_demo.py](examples/omnia_validation_demo.py)
 
 ### Multi-lens compatibility
-- `examples/omnia_sci_engine.py`
+- [examples/omnia_sci_engine.py](examples/omnia_sci_engine.py)
 
 Typical command pattern:
 
@@ -235,7 +235,8 @@ theory -> executable process -> measurable structure
 
 These systems are intentionally simple.
 
-Their function is not scale, but clarity: they make the framework testable in compact, controlled settings.
+Their function is not scale, but clarity:
+they make the framework testable in compact, controlled settings.
 
 
 ---
