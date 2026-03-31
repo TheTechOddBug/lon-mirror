@@ -21,21 +21,21 @@ OMNIA is a **post-hoc structural measurement engine**.
 
 It measures:
 
-- invariance
-- instability
-- compatibility
-- saturation
-- irreversibility
+- invariance  
+- instability  
+- compatibility  
+- saturation  
+- irreversibility  
 
 under **independent, non-semantic transformations**.
 
 OMNIA detects:
 
-- what remains invariant when representation changes
-- where structure degrades
-- where continuation becomes unjustified
-- when systems become irreversibly altered
-- when representations become indistinguishable
+- what remains invariant when representation changes  
+- where structure degrades  
+- where continuation becomes unjustified  
+- when systems become irreversibly altered  
+- when representations become indistinguishable  
 
 OMNIA does NOT:
 
@@ -143,9 +143,93 @@ demonstration of structural divergence
 
 ---
 
+Benchmark — Divergence Across Systems
+
+python examples/divergence_benchmark.py
+
+What it does:
+
+compares multiple system types:
+
+logistic (various regimes)
+
+linear contraction / expansion
+
+random sequences
+
+
+computes:
+
+T_unstable
+
+T_collapse
+
+
+produces a comparative table
+
+
+Interpretation:
+
+stable systems resist divergence
+
+unstable systems diverge gradually
+
+chaotic/random systems collapse quickly
+
+
+This benchmark measures:
+
+loss of equivalence between trajectories, not chaos itself
+
+
+---
+
+Benchmark — Structural Resilience (R)
+
+python examples/resilience_benchmark.py
+
+What it does:
+
+compares:
+
+stable systems
+
+chaotic systems
+
+adaptive systems
+
+
+measures:
+
+T_unstable
+
+T_collapse
+
+T_recovery
+
+R (resilience score)
+
+
+
+Interpretation:
+
+high R → system preserves or restores equivalence
+
+low R → divergence becomes persistent
+
+adaptive systems may delay or reduce collapse
+
+
+This introduces:
+
+resilience as the ability to maintain or recover structural equivalence under perturbation
+
+
+---
+
 Minimal Executable Systems
 
-Examples:
+Core examples:
 
 examples/omnia_validation_demo.py
 
@@ -154,6 +238,10 @@ examples/omnia_minimal_engine.py
 examples/omnia_sci_engine.py
 
 examples/divergence_time_demo_standalone.py
+
+examples/divergence_benchmark.py
+
+examples/resilience_benchmark.py
 
 
 Additional structural demos:
@@ -190,6 +278,12 @@ Non-recoverable loss
 
 OMNIA-LIMIT
 Formal stop condition
+
+TΔ — Divergence Time
+Time until structural equivalence breaks
+
+R — Resilience Score
+Capacity to preserve or recover equivalence
 
 
 ---
