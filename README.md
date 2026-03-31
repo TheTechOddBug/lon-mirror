@@ -5,7 +5,7 @@
 
 # OMNIA — Unified Structural Measurement Engine
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19318573.svg)](https://doi.org/10.5281/zenodo.19318573)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19356116.svg)](https://doi.org/10.5281/zenodo.19356116)
 
 **DEMO**  
 https://lon-reflect.emergent.host/
