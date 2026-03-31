@@ -17,90 +17,146 @@ https://lon-reflect.emergent.host/
 
 ## Overview
 
-**OMNIA** is a **post-hoc structural measurement engine**.
+OMNIA is a **post-hoc structural measurement engine**.
 
-It measures **invariance, instability, compatibility, and limit conditions** under **independent, non-semantic transformations**.
+It measures:
 
-OMNIA is designed to detect:
+- invariance
+- instability
+- compatibility
+- saturation
+- irreversibility
+
+under **independent, non-semantic transformations**.
+
+OMNIA detects:
 
 - what remains invariant when representation changes
-- where structure becomes unstable
-- where continuation becomes structurally unjustified
-- when systems become irreversibly degraded
-- when representations become structurally indistinguishable
+- where structure degrades
+- where continuation becomes unjustified
+- when systems become irreversibly altered
+- when representations become indistinguishable
 
-OMNIA does **not**:
+OMNIA does NOT:
 
-- interpret meaning
-- decide
-- optimize
-- learn
-- explain
+- interpret meaning  
+- decide  
+- optimize  
+- learn  
+- explain  
 
-**The output is measurement, never narrative.**
+**Output = measurement only**
 
 ---
 
 ## Core Principle
 
-> **Structural truth is what survives the removal of representation.**
+**Truth = invariance under transformation**
 
-OMNIA treats truth as **measured invariance under transformation**, not as semantics, authority, or interpretation.
+Not:
+
+- semantics  
+- authority  
+- interpretation  
 
 ---
 
 ## Architectural Boundary
 
-This repository exists to formalize a strict distinction:
+Strict constraint:
 
 **measurement ≠ cognition ≠ decision**
 
-OMNIA occupies the **measurement layer only**.
+OMNIA:
 
-It is not a model, not a reasoning agent, and not a policy layer.
+- does not generate outputs  
+- does not modify models  
+- does not choose actions  
+
+It measures structure only.
 
 ---
 
 ## Quick Verification
 
-Suggested entry points:
-
-- [examples/omnia_validation_demo.py](examples/omnia_validation_demo.py)
-- [examples/omnia_minimal_engine.py](examples/omnia_minimal_engine.py)
-- [examples/omnia_sci_engine.py](examples/omnia_sci_engine.py)
-
-Typical command:
+Run:
 
 ```bash
 python examples/omnia_validation_demo.py
 
 Expected behavior:
 
-stable structures retain higher Ω
+stable inputs → higher Ω
 
-unstable structures show faster Ω decay
+unstable inputs → faster Ω decay
 
-cross-lens disagreement reduces SCI
+disagreement → lower SCI
 
-exhausted regimes push SEI toward zero
+saturation → SEI → 0
 
-irreversible degradation yields positive IRI
+irreversibility → IRI > 0
 
 
-This is the key point:
 
-OMNIA measures structural behavior under transformation rather than interpreting content.
+---
+
+Quick Experiment — Structural Divergence (TΔ)
+
+Standalone demo:
+
+python examples/divergence_time_demo_standalone.py
+
+What it does:
+
+generates two nearby trajectories
+
+computes Δ(t)
+
+measures structural degradation over time
+
+detects divergence point
+
+
+Output:
+
+TΔ unstable
+
+TΔ collapse
+
+
+Note:
+
+no dependencies
+
+not OMNIA
+
+implementation-sensitive
+
+
+Purpose:
+
+minimal reproducibility
+
+demonstration of structural divergence
+
 
 
 ---
 
 Minimal Executable Systems
 
-OMNIA includes compact executable systems that convert:
+Examples:
 
-theory -> executable process -> measurable structure
+examples/omnia_validation_demo.py
 
-Core examples:
+examples/omnia_minimal_engine.py
+
+examples/omnia_sci_engine.py
+
+examples/divergence_time_demo_standalone.py
+
+
+Additional structural demos:
 
 examples/structural_dynamics_mod9.py
 
@@ -110,15 +166,10 @@ examples/structural_dynamics_modn_global.py
 
 examples/structural_dynamics_strings.py
 
-examples/omnia_sci_engine.py
 
-examples/omnia_minimal_engine.py
+These convert:
 
-examples/omnia_validation_demo.py
-
-
-These examples show that OMNIA is not only conceptual.
-It is executable and measurable.
+theory → execution → measurable structure
 
 
 ---
@@ -126,44 +177,39 @@ It is executable and measurable.
 Key Metrics
 
 Ω — Structural Coherence
+Persistence under transformation
 
-Measures persistence of structure under transformation.
+SCI — Structural Compatibility
+Agreement across lenses
 
-SCI — Structural Compatibility Index
-
-Measures agreement across independent structural lenses.
-
-SEI — Saturation / Structural Exhaustion Index
-
-Measures whether further transformation still yields structural gain.
+SEI — Saturation Index
+Remaining structural gain
 
 IRI — Irreversibility Index
-
-Measures non-recoverable structural loss after transformation cycles.
+Non-recoverable loss
 
 OMNIA-LIMIT
-
-Defines when continuation is no longer structurally justified.
+Formal stop condition
 
 
 ---
 
 Structural Lenses
 
-Canonical lenses include:
+Canonical lenses:
 
-BASE — Omniabase
+BASE (Omniabase)
 
-TIME — Omniatempo
+TIME (Omniatempo)
 
-CAUSA — Omniacausa
+CAUSA (Omniacausa)
 
 TOKEN
 
 LCR
 
 
-All lenses are:
+Properties:
 
 deterministic
 
@@ -172,76 +218,77 @@ composable
 non-semantic
 
 
-Agreement across lenses is measured, not assumed.
+Agreement is measured, not assumed.
 
 
 ---
 
 OMNIA-LIMIT
 
-OMNIA-LIMIT is the boundary condition of the framework.
+Stop conditions:
 
-Canonical stop conditions:
-
-SEI -> 0
+SEI → 0
 
 IRI > 0
 
-Ω̂ stabilizes
+Ω̂ stable
 
 
-At that point, continuation is treated as structural exhaustion, not as deeper insight.
+Interpretation:
+
+no further structural extraction possible
+
+continuation = non-informative
+
 
 
 ---
 
 Positioning
 
-OMNIA differs from standard evaluation or interpretability layers because it:
+OMNIA is not:
 
-operates post hoc
+a model
 
-does not depend on semantics
+an evaluator
 
-does not require retraining
-
-does not decide
-
-does not optimize
-
-measures structural persistence across transformations
-
-can detect saturation and irreversibility conditions
+an interpreter
 
 
-This repository should be read as a structural measurement framework, not as a model claim.
+OMNIA is:
+
+post-hoc
+
+model-agnostic
+
+semantics-free
+
+transformation-based
+
+
+It measures:
+
+structural persistence
+
+structural collapse
+
+structural limits
+
 
 
 ---
 
 Repository Structure
 
-Main repository areas:
+omnia/ → measurement core
 
-omnia/
+examples/ → executable demos
 
-examples/
+tests/ → verification
 
-tests/
+docs/ → formal definitions
 
-docs/
-
-experiments/
-
-
-Canonical ecosystem map:
-
-ECOSYSTEM.md
-
-
-Machine-readable index:
-
-repos.json
+experiments/ → exploratory modules
 
 
 
@@ -259,4 +306,3 @@ Citation
 Brighindi, M.
 OMNIA — Unified Structural Measurement Engine (MB-X.01)
 https://github.com/Tuttotorna/lon-mirror
-
