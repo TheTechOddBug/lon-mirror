@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OMNIA MIRROR LAB v3</title>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --panel: #121922;
+      --panel2: #0f151d;
+      --text: #e8eef5;
+      --muted: #9aa7b5;
+      --line: #223041;
+      --accent: #7cc4ff;
+      --good: #57d38c;
+      --warn: #ffd166;
+      --bad: #ff6b6b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #0b0f14 0%, #0e131a 100%);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .wrap { width: min(1320px, 96vw); margin: 24px auto 60px; }
+    .title { font-size: 30px; font-weight: 800; letter-spacing: 0.04em; margin-bottom: 6px; }
+    .subtitle { color: var(--muted); margin-bottom: 20px; line-height: 1.45; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .panel {
+      background: linear-gradient(180deg, var(--panel) 0%, var(--panel2) 100%);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+    .panel h2 { margin: 0 0 12px; font-size: 16px; letter-spacing: 0.04em; color: var(--accent); }
+    textarea {
+      width: 100%; min-height: 180px; resize: vertical; border-radius: 14px;
+      border: 1px solid var(--line); background: #0a1017; color: var(--text);
+      padding: 14px; font-size: 14px; line-height: 1.4; outline: none;
+    }
+    .row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; align-items: center; }
+    button, input[type="range"] {
+      border-radius: 12px; border: 1px solid var(--line); background: #0d141c; color: var(--text);
+    }
+    button { padding: 10px 14px; cursor: pointer; font-weight: 700; }
+    button:hover { border-color: #35506b; }
+    .small { color: var(--muted); font-size: 12px; }
+    .metric {
+      background: #0b1219; border: 1px solid var(--line); border-radius: 14px; padding: 12px;
+    }
+    .metric .name { font-size: 12px; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .metric .value { font-size: 26px; font-weight: 800; }
+    .bars { display: grid; gap: 12px; }
+    .bar-block { background: #0b1219; border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; }
+    .bar-head { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }
+    .bar-track {
+      width: 100%; height: 12px; background: #0a0f15; border: 1px solid var(--line); border-radius: 999px; overflow: hidden;
+    }
+    .bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--bad), var(--warn), var(--good)); }
+    .mono {
+      font-family: Consolas, Menlo, monospace; white-space: pre-wrap; word-break: break-word;
+      font-size: 12px; line-height: 1.4; background: #0a1017; border: 1px solid var(--line);
+      border-radius: 14px; padding: 12px; min-height: 130px;
+    }
+    canvas {
+      width: 100%; height: 260px; background: #091018; border: 1px solid var(--line);
+      border-radius: 14px; display: block;
+    }
+    .verdict {
+      font-size: 18px; font-weight: 800; padding: 14px 16px; border-radius: 14px;
+      border: 1px solid var(--line); background: #0b1219;
+    }
+    .good { color: var(--good); }
+    .warn { color: var(--warn); }
+    .bad { color: var(--bad); }
+    .footer-note { margin-top: 14px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    @media (max-width: 950px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="title">OMNIA MIRROR LAB v3</div>
+    <div class="subtitle">Compare two inputs. Stress both under the same transformations. Observe which structure remains more invariant.</div><div class="grid-2">
+  <div class="panel">
+    <h2>INPUT A</h2>
+    <textarea id="inputA">SATORAREPOTENETOPERAROTAS</textarea>
+    <div class="row">
+      <button id="presetA1">Sator</button>
+      <button id="presetA2">Primes</button>
+      <button id="presetA3">Mixed</button>
+    </div>
+  </div>
+  <div class="panel">
+    <h2>INPUT B</h2>
+    <textarea id="inputB">asdjklqweoiu1239123zxcmn</textarea>
+    <div class="row">
+      <button id="presetB1">Random</button>
+      <button id="presetB2">Numbers</button>
+      <button id="presetB3">Sentence</button>
+    </div>
+  </div>
+</div>
+
+<div style="height:16px"></div>
+
+<div class="panel">
+  <h2>RUN</h2>
+  <div class="row">
+    <button id="runBtn">RUN COMPARISON</button>
+    <label class="small">Noise level</label>
+    <input id="noiseSlider" type="range" min="1" max="80" value="20" />
+    <span id="noiseValue" class="small">20%</span>
+    <label class="small">Collapse threshold</label>
+    <input id="thresholdSlider" type="range" min="10" max="95" value="55" />
+    <span id="thresholdValue" class="small">0.55</span>
+  </div>
+  <div class="footer-note">Winner rule: higher average Omega, higher TDelta, lower irreversibility. No semantics, only structural behavior.</div>
+</div>
+
+<div style="height:16px"></div>
+
+<div class="panel">
+  <h2>VERDICT</h2>
+  <div id="verdict" class="verdict">Run comparison.</div>
+</div>
+
+<div style="height:16px"></div>
+
+<div class="grid-2">
+  <div class="panel">
+    <h2>INPUT A METRICS</h2>
+    <div class="grid-3">
+      <div class="metric"><div class="name">Entropy</div><div class="value" id="aEntropy">0.000</div></div>
+      <div class="metric"><div class="name">Compression</div><div class="value" id="aCompression">0.000</div></div>
+      <div class="metric"><div class="name">TDelta</div><div class="value" id="aTDelta">0</div></div>
+    </div>
+    <div style="height:12px"></div>
+    <div class="grid-3">
+      <div class="metric"><div class="name">IRI rev</div><div class="value" id="aIriRev">0.000</div></div>
+      <div class="metric"><div class="name">IRI perm</div><div class="value" id="aIriPerm">0.000</div></div>
+      <div class="metric"><div class="name">IRI noise</div><div class="value" id="aIriNoise">0.000</div></div>
+    </div>
+    <div style="height:12px"></div>
+    <div class="bars">
+      <div class="bar-block"><div class="bar-head"><span>Omega reverse</span><span id="aOmegaRevLabel">0.000</span></div><div class="bar-track"><div id="aOmegaRevBar" class="bar-fill"></div></div></div>
+      <div class="bar-block"><div class="bar-head"><span>Omega permute</span><span id="aOmegaPermLabel">0.000</span></div><div class="bar-track"><div id="aOmegaPermBar" class="bar-fill"></div></div></div>
+      <div class="bar-block"><div class="bar-head"><span>Omega noise</span><span id="aOmegaNoiseLabel">0.000</span></div><div class="bar-track"><div id="aOmegaNoiseBar" class="bar-fill"></div></div></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>INPUT B METRICS</h2>
+    <div class="grid-3">
+      <div class="metric"><div class="name">Entropy</div><div class="value" id="bEntropy">0.000</div></div>
+      <div class="metric"><div class="name">Compression</div><div class="value" id="bCompression">0.000</div></div>
+      <div class="metric"><div class="name">TDelta</div><div class="value" id="bTDelta">0</div></div>
+    </div>
+    <div style="height:12px"></div>
+    <div class="grid-3">
+      <div class="metric"><div class="name">IRI rev</div><div class="value" id="bIriRev">0.000</div></div>
+      <div class="metric"><div class="name">IRI perm</div><div class="value" id="bIriPerm">0.000</div></div>
+      <div class="metric"><div class="name">IRI noise</div><div class="value" id="bIriNoise">0.000</div></div>
+    </div>
+    <div style="height:12px"></div>
+    <div class="bars">
+      <div class="bar-block"><div class="bar-head"><span>Omega reverse</span><span id="bOmegaRevLabel">0.000</span></div><div class="bar-track"><div id="bOmegaRevBar" class="bar-fill"></div></div></div>
+      <div class="bar-block"><div class="bar-head"><span>Omega permute</span><span id="bOmegaPermLabel">0.000</span></div><div class="bar-track"><div id="bOmegaPermBar" class="bar-fill"></div></div></div>
+      <div class="bar-block"><div class="bar-head"><span>Omega noise</span><span id="bOmegaNoiseLabel">0.000</span></div><div class="bar-track"><div id="bOmegaNoiseBar" class="bar-fill"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<div style="height:16px"></div>
+
+<div class="grid-2">
+  <div class="panel">
+    <h2>COLLAPSE CURVE A</h2>
+    <canvas id="curveA" width="560" height="260"></canvas>
+  </div>
+  <div class="panel">
+    <h2>COLLAPSE CURVE B</h2>
+    <canvas id="curveB" width="560" height="260"></canvas>
+  </div>
+</div>
+
+<div style="height:16px"></div>
+
+<div class="grid-2">
+  <div class="panel">
+    <h2>TRANSFORMATIONS A</h2>
+    <div id="dumpA" class="mono"></div>
+  </div>
+  <div class="panel">
+    <h2>TRANSFORMATIONS B</h2>
+    <div id="dumpB" class="mono"></div>
+  </div>
+</div>
+
+  </div>  <script>
+    const ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    function safeText(s){ return [...s].filter(ch => ch.charCodeAt(0)>=32 && ch.charCodeAt(0)<=126).join(""); }
+    function clamp(x, lo=0, hi=1){ return Math.max(lo, Math.min(hi, x)); }
+    function makeRng(seed){ let state = seed >>> 0; return function(){ state = (1664525 * state + 1013904223) >>> 0; return state / 4294967296; }; }
+    function reverseText(text){ return [...text].reverse().join(""); }
+    function shuffleDeterministic(text, seed=42){ const rng = makeRng(seed); const arr = [...text]; for(let i=arr.length-1;i>0;i--){ const j=Math.floor(rng()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } return arr.join(""); }
+    function noiseText(text, level=0.2, seed=42){ if(!text.length) return text; const rng = makeRng(seed); const arr=[...text]; const count=Math.max(1,Math.floor(arr.length*level)); const used=new Set(); while(used.size<Math.min(count,arr.length)){ used.add(Math.floor(rng()*arr.length)); } for(const idx of used){ arr[idx]=String.fromCharCode(32+Math.floor(rng()*95)); } return arr.join(""); }
+    function progressiveNoiseText(text, step, totalSteps, seed=42){ return noiseText(text, step/Math.max(1,totalSteps), seed+step); }
+    function counterNorm(items){ const map=new Map(); for(const x of items) map.set(x,(map.get(x)||0)+1); let total=0; for(const v of map.values()) total+=v; if(total<=0) return new Map(); for(const [k,v] of map.entries()) map.set(k,v/total); return map; }
+    function charDist(text){ return counterNorm([...text]); }
+    function bigramDist(text){ if(text.length<2) return new Map(); const arr=[]; for(let i=0;i<text.length-1;i++) arr.push(text.slice(i,i+2)); return counterNorm(arr); }
+    function l1Distance(m1,m2){ const keys=new Set([...m1.keys(),...m2.keys()]); let s=0; for(const k of keys) s+=Math.abs((m1.get(k)||0)-(m2.get(k)||0)); return s; }
+    function entropyBits(text){ if(!text.length) return 0; const dist=charDist(text); let h=0; for(const p of dist.values()) if(p>0) h-=p*Math.log2(p); return h; }
+    function compressionRatio(text){ if(!text.length) return 1; const raw=new TextEncoder().encode(text); const unique=new Set(raw).size; const ent=entropyBits(text); return clamp(0.35+(unique/256)*0.25+(ent/8)*0.40,0,1.5); }
+    function omegaText(original, transformed){ if(!original.length && !transformed.length) return 1; if(!original.length || !transformed.length) return 0; const c1=charDist(original), c2=charDist(transformed), b1=bigramDist(original), b2=bigramDist(transformed); const charScore=1-0.5*l1Distance(c1,c2); const bigramScore=1-0.5*l1Distance(b1,b2); const cr1=compressionRatio(original), cr2=compressionRatio(transformed); const crScore=1-Math.min(1, Math.abs(cr1-cr2)/Math.max(cr1,cr2,1e-9)); const e1=entropyBits(original), e2=entropyBits(transformed); const eScore=1-Math.min(1, Math.abs(e1-e2)/Math.max(e1,e2,1,1e-9)); return clamp(0.30*charScore+0.35*bigramScore+0.20*crScore+0.15*eScore); }
+    function parseIntsFromText(text){ const matches=text.match(/-?\d+/g); return matches ? matches.map(x=>parseInt(x,10)).filter(x=>!Number.isNaN(x)) : []; }
+    function toBase(n, base){ if(n===0) return "0"; const sign=n<0?"-":""; n=Math.abs(n); let out=""; while(n>0){ const r=n%base; out=ALPHABET[r]+out; n=Math.floor(n/base); } return sign+out; }
+    function numericMultibaseRepr(text, bases=[2,3,5,7,10,16]){ const nums=parseIntsFromText(text); if(!nums.length) return null; const out={}; for(const b of bases) out[b]=nums.map(n=>toBase(n,b)).join("|"); return out; }
+    function omegaMultibase(original, transformed, bases=[2,3,5,7,10,16]){ const r1=numericMultibaseRepr(original,bases), r2=numericMultibaseRepr(transformed,bases); if(!r1||!r2) return null; const vals=[]; for(const b of bases){ const d1=charDist(r1[b]), d2=charDist(r2[b]); const bg1=bigramDist(r1[b]), bg2=bigramDist(r2[b]); vals.push(0.5*(1-0.5*l1Distance(d1,d2))+0.5*(1-0.5*l1Distance(bg1,bg2))); } return vals.reduce((a,b)=>a+b,0)/vals.length; }
+    function omegaTotal(original, transformed){ const ot=omegaText(original, transformed); const ob=omegaMultibase(original, transformed); if(ob===null) return ot; return clamp(0.7*ot+0.3*ob); }
+    function tDelta(original, threshold=0.55, steps=20){ let prev=original; for(let step=1;step<=steps;step++){ const curr=progressiveNoiseText(original,step,steps); const om=omegaTotal(prev,curr); if(om<threshold) return step; prev=curr; } return steps+1; }
+    function irreversibilityIndex(original, transformFn, inverseFn=null){ const forward=transformFn(original); const recovered=inverseFn ? inverseFn(forward) : transformFn(forward); return clamp(1-omegaTotal(original,recovered)); }
+    function drawCurve(canvasId, values, threshold){ const canvas=document.getElementById(canvasId); const ctx=canvas.getContext('2d'); const w=canvas.width,h=canvas.height; ctx.clearRect(0,0,w,h); ctx.fillStyle='#091018'; ctx.fillRect(0,0,w,h); ctx.strokeStyle='#223041'; ctx.lineWidth=1; for(let i=0;i<=5;i++){ const y=20+(h-40)*(i/5); ctx.beginPath(); ctx.moveTo(40,y); ctx.lineTo(w-20,y); ctx.stroke(); } for(let i=0;i<=10;i++){ const x=40+(w-60)*(i/10); ctx.beginPath(); ctx.moveTo(x,20); ctx.lineTo(x,h-20); ctx.stroke(); } const ty=20+(h-40)*(1-threshold); ctx.strokeStyle='#ffd166'; ctx.beginPath(); ctx.moveTo(40,ty); ctx.lineTo(w-20,ty); ctx.stroke(); ctx.fillStyle='#ffd166'; ctx.font='12px Arial'; ctx.fillText('threshold',45,ty-6); ctx.strokeStyle='#7cc4ff'; ctx.lineWidth=2; ctx.beginPath(); values.forEach((v,i)=>{ const x=40+(w-60)*(i/Math.max(1,values.length-1)); const y=20+(h-40)*(1-v); if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); }); ctx.stroke(); ctx.fillStyle='#57d38c'; values.forEach((v,i)=>{ const x=40+(w-60)*(i/Math.max(1,values.length-1)); const y=20+(h-40)*(1-v); ctx.beginPath(); ctx.arc(x,y,3,0,Math.PI*2); ctx.fill(); }); }
+    function setBar(id,labelId,value){ const v=(typeof value==='number')?clamp(value):0; document.getElementById(id).style.width=(v*100).toFixed(2)+'%'; document.getElementById(labelId).textContent=(typeof value==='number')?value.toFixed(3):'n/a'; }
+    function analyze(text, noiseLevel, threshold){ const original=safeText(text); const rev=reverseText(original); const perm=shuffleDeterministic(original,42); const noisy=noiseText(original,noiseLevel,42); const omegaReverse=omegaTotal(original,rev); const omegaPermute=omegaTotal(original,perm); const omegaNoise=omegaTotal(original,noisy); const avgOmega=(omegaReverse+omegaPermute+omegaNoise)/3; const entropy=entropyBits(original); const compression=compressionRatio(original); const td=tDelta(original,threshold,20); const iriRev=irreversibilityIndex(original, reverseText, reverseText); const iriPerm=irreversibilityIndex(original, x=>shuffleDeterministic(x,42)); const iriNoise=irreversibilityIndex(original, x=>noiseText(x,noiseLevel,42)); const avgIri=(iriRev+iriPerm+iriNoise)/3; const curve=[]; for(let step=0;step<=20;step++){ const curr=step===0?original:progressiveNoiseText(original,step,20,42); curve.push(omegaTotal(original,curr)); } return { original, rev, perm, noisy, omegaReverse, omegaPermute, omegaNoise, avgOmega, entropy, compression, td, iriRev, iriPerm, iriNoise, avgIri, curve }; }
+    function renderSide(prefix, data){ document.getElementById(prefix+'Entropy').textContent=data.entropy.toFixed(3); document.getElementById(prefix+'Compression').textContent=data.compression.toFixed(3); document.getElementById(prefix+'TDelta').textContent=String(data.td); document.getElementById(prefix+'IriRev').textContent=data.iriRev.toFixed(3); document.getElementById(prefix+'IriPerm').textContent=data.iriPerm.toFixed(3); document.getElementById(prefix+'IriNoise').textContent=data.iriNoise.toFixed(3); setBar(prefix+'OmegaRevBar', prefix+'OmegaRevLabel', data.omegaReverse); setBar(prefix+'OmegaPermBar', prefix+'OmegaPermLabel', data.omegaPermute); setBar(prefix+'OmegaNoiseBar', prefix+'OmegaNoiseLabel', data.omegaNoise); document.getElementById('dump'+prefix.toUpperCase()[0]).textContent = 'reverse:\n'+data.rev+'\n\npermute:\n'+data.perm+'\n\nnoise:\n'+data.noisy; }
+    function run(){ const noiseLevel=Number(document.getElementById('noiseSlider').value)/100; const threshold=Number(document.getElementById('thresholdSlider').value)/100; const A=analyze(document.getElementById('inputA').value, noiseLevel, threshold); const B=analyze(document.getElementById('inputB').value, noiseLevel, threshold); renderSide('a', A); renderSide('b', B); drawCurve('curveA', A.curve, threshold); drawCurve('curveB', B.curve, threshold); const scoreA = (0.55*A.avgOmega) + (0.25*(A.td/21)) + (0.20*(1-A.avgIri)); const scoreB = (0.55*B.avgOmega) + (0.25*(B.td/21)) + (0.20*(1-B.avgIri)); const delta = Math.abs(scoreA-scoreB); const verdict=document.getElementById('verdict'); if(delta < 0.03){ verdict.innerHTML = '<span class="warn">Near tie.</span> Structural stability is comparable.'; } else if(scoreA > scoreB){ verdict.innerHTML = '<span class="good">Input A wins.</span> Higher invariance and/or slower collapse.'; } else { verdict.innerHTML = '<span class="good">Input B wins.</span> Higher invariance and/or slower collapse.'; } }
+    document.getElementById('runBtn').addEventListener('click', run);
+    document.getElementById('noiseSlider').addEventListener('input', e=>document.getElementById('noiseValue').textContent=e.target.value+'%');
+    document.getElementById('thresholdSlider').addEventListener('input', e=>document.getElementById('thresholdValue').textContent=(Number(e.target.value)/100).toFixed(2));
+    document.getElementById('presetA1').addEventListener('click', ()=>{ document.getElementById('inputA').value='SATORAREPOTENETOPERAROTAS'; run(); });
+    document.getElementById('presetA2').addEventListener('click', ()=>{ document.getElementById('inputA').value='235711131719232931374143'; run(); });
+    document.getElementById('presetA3').addEventListener('click', ()=>{ document.getElementById('inputA').value='Truth remains invariant under transformation 123456789'; run(); });
+    document.getElementById('presetB1').addEventListener('click', ()=>{ document.getElementById('inputB').value='asdjklqweoiu1239123zxcmn'; run(); });
+    document.getElementById('presetB2').addEventListener('click', ()=>{ document.getElementById('inputB').value='9384756102938475610293847561'; run(); });
+    document.getElementById('presetB3').addEventListener('click', ()=>{ document.getElementById('inputB').value='The quick brown fox jumps over the lazy dog 123456789'; run(); });
+    run();
+  </script></body>
+</html>
