@@ -77,6 +77,20 @@ It measures structure only.
 
 ---
 
+## Structural Dynamics
+
+Minimal formalism:
+
+- TΔ — Structural Divergence Time  
+- IRI — Irreversibility Index  
+- Ω(t) — Local Structural Coherence  
+
+See:
+
+docs/TDELTA_IRI_FORMALISM_MINIMAL.md
+
+---
+
 ## Quick Verification
 
 Run:
@@ -149,37 +163,53 @@ python examples/divergence_benchmark.py
 
 What it does:
 
-compares multiple system types:
+compares multiple system types
 
-logistic (various regimes)
+computes TΔ
 
-linear contraction / expansion
+computes IRI
+
+classifies structural regime
+
+
+Systems:
+
+logistic (stable / transitional / chaotic)
+
+linear contraction
 
 random sequences
 
 
-computes:
+Example output:
 
-T_unstable
+System: logistic_r3.9
+TΔ: 18
+IRI: 0.92
+Regime: COLLAPSE
 
-T_collapse
+System: linear_0.8
+TΔ: None
+IRI: 0.00
+Regime: STABLE
 
-
-produces a comparative table
-
+System: random
+TΔ: 0
+IRI: 1.00
+Regime: IMMEDIATE COLLAPSE
 
 Interpretation:
 
 stable systems resist divergence
 
-unstable systems diverge gradually
+chaotic systems collapse quickly
 
-chaotic/random systems collapse quickly
+random systems have no structural continuity
 
 
 This benchmark measures:
 
-loss of equivalence between trajectories, not chaos itself
+loss of structural equivalence — not chaos itself
 
 
 ---
@@ -190,16 +220,12 @@ python examples/resilience_benchmark.py
 
 What it does:
 
-compares:
+compares stable, chaotic, and adaptive systems
 
-stable systems
-
-chaotic systems
-
-adaptive systems
+measures divergence and recovery
 
 
-measures:
+Metrics:
 
 T_unstable
 
@@ -210,19 +236,18 @@ T_recovery
 R (resilience score)
 
 
-
 Interpretation:
 
-high R → system preserves or restores equivalence
+high R → structure preserved or restored
 
 low R → divergence becomes persistent
 
-adaptive systems may delay or reduce collapse
+adaptive systems may delay collapse
 
 
 This introduces:
 
-resilience as the ability to maintain or recover structural equivalence under perturbation
+resilience as structural recovery capacity
 
 
 ---
@@ -276,14 +301,14 @@ Remaining structural gain
 IRI — Irreversibility Index
 Non-recoverable loss
 
-OMNIA-LIMIT
-Formal stop condition
-
-TΔ — Divergence Time
-Time until structural equivalence breaks
+TΔ — Structural Divergence Time
+Time until equivalence breaks
 
 R — Resilience Score
-Capacity to preserve or recover equivalence
+Capacity to preserve or recover structure
+
+OMNIA-LIMIT
+Formal stop condition
 
 
 ---
@@ -333,7 +358,6 @@ Interpretation:
 no further structural extraction possible
 
 continuation = non-informative
-
 
 
 ---
@@ -400,3 +424,4 @@ Citation
 Brighindi, M.
 OMNIA — Unified Structural Measurement Engine (MB-X.01)
 https://github.com/Tuttotorna/lon-mirror
+
