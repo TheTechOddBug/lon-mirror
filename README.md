@@ -1,8 +1,3 @@
-## Canonical Index
-
-- Ecosystem map: [ECOSYSTEM.md](ECOSYSTEM.md)
-- Machine index: [repos.json](repos.json)
-
 # OMNIA — Unified Structural Measurement Engine
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19356116.svg)](https://doi.org/10.5281/zenodo.19356116)
@@ -15,51 +10,43 @@ https://lon-reflect.emergent.host/
 
 ---
 
-## Overview
+## Canonical Index
+
+- Ecosystem map: [ECOSYSTEM.md](ECOSYSTEM.md)
+- Machine index: [repos.json](repos.json)
+
+---
+
+## Definition
 
 OMNIA is a **post-hoc structural measurement engine**.
 
-It measures:
+It operates on outputs and measures:
 
 - invariance  
-- instability  
 - compatibility  
+- divergence  
 - saturation  
 - irreversibility  
-- divergence over structural time  
+- resilience  
 
 under **independent, non-semantic transformations**.
-
-OMNIA detects:
-
-- what remains invariant when representation changes  
-- where structure degrades  
-- where continuation becomes unjustified  
-- when systems become irreversibly altered  
-- when representations become indistinguishable  
-- when structural trajectories diverge  
-
-OMNIA does NOT:
-
-- interpret meaning  
-- decide  
-- optimize  
-- learn  
-- explain  
-
-**Output = measurement only**
 
 ---
 
 ## Core Principle
 
-**Truth = invariance under transformation**
+\[
+\text{Truth} = \text{invariance under transformation}
+\]
 
-Not:
+Truth is not:
 
-- semantics  
-- authority  
-- interpretation  
+- semantic  
+- interpretative  
+- authority-based  
+
+Truth is what **remains stable across transformations**.
 
 ---
 
@@ -67,47 +54,163 @@ Not:
 
 Strict constraint:
 
-**measurement ≠ cognition ≠ decision**
+\[
+\text{measurement} \neq \text{cognition} \neq \text{decision}
+\]
 
 OMNIA:
 
-- does not generate outputs  
-- does not modify models  
-- does not choose actions  
+- does not generate  
+- does not optimize  
+- does not learn  
+- does not interpret  
+- does not decide  
 
-It measures structure only.
+**Output = measurement only**
+
+---
+
+## Structural Time
+
+OMNIA does not use physical time.
+
+It defines:
+
+\[
+T = \sum \Delta_t
+\]
+
+where:
+
+\[
+\Delta_t = \text{structural change between states}
+\]
+
+Time is **divergence**, not clock progression.
+
+---
+
+## Core Metrics
+
+### Ω — Structural Coherence
+Persistence under transformation
+
+### SCI — Structural Compatibility
+Agreement across independent lenses
+
+### SEI — Saturation Index
+Remaining structural extractability
+
+### IRI — Irreversibility Index
+Non-recoverable structural loss
+
+### TΔ — Divergence Time
+Point where structural equivalence breaks
+
+### R — Resilience
+Capacity to recover structure
 
 ---
 
 ## Structural Dynamics
 
-Minimal formalism:
+OMNIA detects:
 
-- Ω(t) — Local Structural Coherence  
-- TΔ — Structural Divergence Time  
-- IRI — Irreversibility Index  
-- R — Structural Resilience  
+- divergence onset  
+- collapse thresholds  
+- recovery regimes  
+- structural instability  
+- indistinguishability  
+- trajectory bifurcation  
 
-Extended dynamics:
-
-- divergence detection  
-- collapse detection  
-- recovery detection  
-
-See:
+Formal reference:
 
 docs/TDELTA_IRI_FORMALISM_MINIMAL.md
 
 ---
 
-## Quick Verification
+## Structural Lenses
+
+Canonical lenses:
+
+- BASE (Omniabase)  
+- TIME (Omniatempo)  
+- CAUSA (Omniacausa)  
+- TOKEN  
+- LCR  
+
+Properties:
+
+- deterministic  
+- composable  
+- independent  
+- non-semantic  
+
+Agreement is **measured**, not assumed.
+
+---
+
+## OMNIA-LIMIT
+
+Stop condition:
+
+\[
+SEI \rightarrow 0,\quad IRI > 0,\quad \hat{\Omega} \text{ stable}
+\]
+
+Interpretation:
+
+- no further structure extractable  
+- continuation becomes non-informative  
+- system reached structural boundary  
+
+OMNIA does not proceed beyond this point.
+
+---
+
+## Proper-Time Minimum Principle (k)
+
+\[
+\Delta \tau \ge k
+\]
+
+k is defined as:
+
+> minimum distinguishable proper-time increment for timelike physical processes
+
+Properties:
+
+- invariant (proper time)  
+- not coordinate time  
+- not a clock unit  
+- not applied to null trajectories  
+
+Implications:
+
+\[
+f_{\max} \sim \frac{1}{k}, \quad E_{\max} \sim \frac{\hbar}{k}
+\]
+
+Interpretation:
+
+- physical evolution may not be infinitely distinguishable  
+- k is a constraint on **state resolution**, not time itself  
+
+Status:
+
+- structurally consistent  
+- not experimentally validated  
+
+---
+
+## Minimal Execution
 
 Run:
 
 ```bash
 python examples/omnia_validation_demo.py
 
-Expected behavior:
+Expected:
 
 stable inputs → higher Ω
 
@@ -123,163 +226,57 @@ irreversibility → IRI > 0
 
 ---
 
-Temporal Kernel (Δ Structural Time)
+Structural Time Experiments
 
-Core addition:
-
-Temporal Kernel introduces time as structural divergence, not physical time.
-
-Definition:
-
-T = Σ Δ_t
-
-Δ_t = structural change between states
-
-
-Capabilities:
-
-detects divergence onset
-
-identifies collapse thresholds
-
-measures trajectory instability
-
-distinguishes stable vs chaotic regimes
-
-
-Implementation:
-
-docs/TEMPORAL_KERNEL.md
-examples/divergence_time_demo_standalone.py
-examples/divergence_benchmark.py
-examples/resilience_benchmark.py
-
-
----
-
-Quick Experiment — Structural Divergence (TΔ)
+Divergence Detection
 
 python examples/divergence_time_demo_standalone.py
 
-What it does:
+Detects:
 
-generates two nearby trajectories
+divergence onset
 
-computes Δ(t)
-
-detects structural divergence
-
-
-Output:
-
-TΔ unstable
-
-TΔ collapse
-
-
-Properties:
-
-deterministic
-
-minimal
-
-no dependencies
-
-
-Purpose:
-
-isolate structural divergence independently from OMNIA
+collapse threshold
 
 
 
 ---
 
-Benchmark — Divergence Across Systems
+System Benchmark
 
 python examples/divergence_benchmark.py
 
-What it does:
+Classifies:
 
-compares multiple systems
+stable systems
 
-computes TΔ
+chaotic systems
 
-computes IRI
-
-classifies regimes
-
-
-Systems:
-
-logistic (stable / transitional / chaotic)
-
-linear contraction
-
-random sequences
-
-
-Example:
-
-System: logistic_r3.9
-TΔ: 18
-IRI: 0.92
-Regime: COLLAPSE
-
-System: linear_0.8
-TΔ: None
-IRI: 0.00
-Regime: STABLE
-
-System: random
-TΔ: 0
-IRI: 1.00
-Regime: IMMEDIATE COLLAPSE
-
-Interpretation:
-
-stable systems resist divergence
-
-chaotic systems collapse rapidly
-
-random systems have no continuity
+random systems
 
 
 
 ---
 
-Benchmark — Structural Resilience (R)
+Resilience Measurement
 
 python examples/resilience_benchmark.py
 
-What it does:
+Measures:
 
-measures divergence and recovery
+instability
 
+collapse
 
-Metrics:
+recovery
 
-T_unstable
-
-T_collapse
-
-T_recovery
-
-R
-
-
-Interpretation:
-
-high R → structure preserved or restored
-
-low R → persistent divergence
-
-adaptive systems delay collapse
+resilience score (R)
 
 
 
 ---
 
-Minimal Executable Systems
+Minimal Systems
 
 Core:
 
@@ -301,104 +298,15 @@ examples/resilience_benchmark.py
 
 Additional:
 
-examples/structural_dynamics_mod9.py
+structural_dynamics_mod*.py
 
-examples/structural_dynamics_modn.py
-
-examples/structural_dynamics_modn_global.py
-
-examples/structural_dynamics_strings.py
-
-
-
----
-
-Key Metrics
-
-Ω — Structural Coherence
-Persistence under transformation
-
-SCI — Structural Compatibility
-Agreement across lenses
-
-SEI — Saturation Index
-Remaining structural gain
-
-IRI — Irreversibility Index
-Non-recoverable loss
-
-TΔ — Structural Divergence Time
-Time until equivalence breaks
-
-R — Resilience Score
-Recovery capacity
-
-OMNIA-LIMIT
-Formal stop condition
-
-
----
-
-Structural Lenses
-
-Canonical lenses:
-
-BASE (Omniabase)
-
-TIME (Omniatempo)
-
-CAUSA (Omniacausa)
-
-TOKEN
-
-LCR
-
-
-Properties:
-
-deterministic
-
-composable
-
-non-semantic
-
-
-Agreement is measured, not assumed.
-
-
----
-
-OMNIA-LIMIT
-
-Stop conditions:
-
-SEI → 0
-
-IRI > 0
-
-Ω̂ stable
-
-
-Interpretation:
-
-no further structure extractable
-
-continuation becomes non-informative
+structural_dynamics_strings.py
 
 
 
 ---
 
 Positioning
-
-OMNIA is not:
-
-a model
-
-an evaluator
-
-an interpreter
-
 
 OMNIA is:
 
@@ -408,18 +316,31 @@ model-agnostic
 
 semantics-free
 
-transformation-based
+deterministic
+
+bounded
 
 
-It measures:
+OMNIA measures:
 
-structural persistence
+structure
 
-structural collapse
+breakdown
 
-structural limits
+limits
 
-temporal divergence
+divergence
+
+
+OMNIA does not:
+
+predict
+
+interpret
+
+explain
+
+decide
 
 
 
