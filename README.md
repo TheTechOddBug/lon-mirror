@@ -26,6 +26,7 @@ It measures:
 - compatibility  
 - saturation  
 - irreversibility  
+- divergence over structural time  
 
 under **independent, non-semantic transformations**.
 
@@ -36,6 +37,7 @@ OMNIA detects:
 - where continuation becomes unjustified  
 - when systems become irreversibly altered  
 - when representations become indistinguishable  
+- when structural trajectories diverge  
 
 OMNIA does NOT:
 
@@ -81,9 +83,16 @@ It measures structure only.
 
 Minimal formalism:
 
+- Ω(t) — Local Structural Coherence  
 - TΔ — Structural Divergence Time  
 - IRI — Irreversibility Index  
-- Ω(t) — Local Structural Coherence  
+- R — Structural Resilience  
+
+Extended dynamics:
+
+- divergence detection  
+- collapse detection  
+- recovery detection  
 
 See:
 
@@ -114,9 +123,41 @@ irreversibility → IRI > 0
 
 ---
 
-Quick Experiment — Structural Divergence (TΔ)
+Temporal Kernel (Δ Structural Time)
 
-Standalone demo:
+Core addition:
+
+Temporal Kernel introduces time as structural divergence, not physical time.
+
+Definition:
+
+T = Σ Δ_t
+
+Δ_t = structural change between states
+
+
+Capabilities:
+
+detects divergence onset
+
+identifies collapse thresholds
+
+measures trajectory instability
+
+distinguishes stable vs chaotic regimes
+
+
+Implementation:
+
+docs/TEMPORAL_KERNEL.md
+examples/divergence_time_demo_standalone.py
+examples/divergence_benchmark.py
+examples/resilience_benchmark.py
+
+
+---
+
+Quick Experiment — Structural Divergence (TΔ)
 
 python examples/divergence_time_demo_standalone.py
 
@@ -126,9 +167,7 @@ generates two nearby trajectories
 
 computes Δ(t)
 
-measures structural degradation over time
-
-detects divergence point
+detects structural divergence
 
 
 Output:
@@ -138,20 +177,18 @@ TΔ unstable
 TΔ collapse
 
 
-Note:
+Properties:
+
+deterministic
+
+minimal
 
 no dependencies
-
-not OMNIA
-
-implementation-sensitive
 
 
 Purpose:
 
-minimal reproducibility
-
-demonstration of structural divergence
+isolate structural divergence independently from OMNIA
 
 
 
@@ -163,13 +200,13 @@ python examples/divergence_benchmark.py
 
 What it does:
 
-compares multiple system types
+compares multiple systems
 
 computes TΔ
 
 computes IRI
 
-classifies structural regime
+classifies regimes
 
 
 Systems:
@@ -181,7 +218,7 @@ linear contraction
 random sequences
 
 
-Example output:
+Example:
 
 System: logistic_r3.9
 TΔ: 18
@@ -202,14 +239,10 @@ Interpretation:
 
 stable systems resist divergence
 
-chaotic systems collapse quickly
+chaotic systems collapse rapidly
 
-random systems have no structural continuity
+random systems have no continuity
 
-
-This benchmark measures:
-
-loss of structural equivalence — not chaos itself
 
 
 ---
@@ -219,8 +252,6 @@ Benchmark — Structural Resilience (R)
 python examples/resilience_benchmark.py
 
 What it does:
-
-compares stable, chaotic, and adaptive systems
 
 measures divergence and recovery
 
@@ -233,34 +264,33 @@ T_collapse
 
 T_recovery
 
-R (resilience score)
+R
 
 
 Interpretation:
 
 high R → structure preserved or restored
 
-low R → divergence becomes persistent
+low R → persistent divergence
 
-adaptive systems may delay collapse
+adaptive systems delay collapse
 
-
-This introduces:
-
-resilience as structural recovery capacity
 
 
 ---
 
 Minimal Executable Systems
 
-Core examples:
+Core:
 
 examples/omnia_validation_demo.py
 
 examples/omnia_minimal_engine.py
 
 examples/omnia_sci_engine.py
+
+
+Temporal:
 
 examples/divergence_time_demo_standalone.py
 
@@ -269,7 +299,7 @@ examples/divergence_benchmark.py
 examples/resilience_benchmark.py
 
 
-Additional structural demos:
+Additional:
 
 examples/structural_dynamics_mod9.py
 
@@ -279,10 +309,6 @@ examples/structural_dynamics_modn_global.py
 
 examples/structural_dynamics_strings.py
 
-
-These convert:
-
-theory → execution → measurable structure
 
 
 ---
@@ -305,7 +331,7 @@ TΔ — Structural Divergence Time
 Time until equivalence breaks
 
 R — Resilience Score
-Capacity to preserve or recover structure
+Recovery capacity
 
 OMNIA-LIMIT
 Formal stop condition
@@ -355,9 +381,10 @@ IRI > 0
 
 Interpretation:
 
-no further structural extraction possible
+no further structure extractable
 
-continuation = non-informative
+continuation becomes non-informative
+
 
 
 ---
@@ -392,15 +419,17 @@ structural collapse
 
 structural limits
 
+temporal divergence
+
 
 
 ---
 
 Repository Structure
 
-omnia/ → measurement core
+omnia/ → core engine
 
-examples/ → executable demos
+examples/ → executable systems
 
 tests/ → verification
 
@@ -424,4 +453,3 @@ Citation
 Brighindi, M.
 OMNIA — Unified Structural Measurement Engine (MB-X.01)
 https://github.com/Tuttotorna/lon-mirror
-
