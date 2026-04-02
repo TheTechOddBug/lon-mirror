@@ -23,12 +23,12 @@ OMNIA is a **post-hoc structural measurement engine**.
 
 It operates on outputs and measures:
 
-- invariance  
-- compatibility  
-- divergence  
-- saturation  
-- irreversibility  
-- resilience  
+- invariance
+- compatibility
+- divergence
+- saturation
+- irreversibility
+- resilience
 
 under **independent, non-semantic transformations**.
 
@@ -42,9 +42,9 @@ under **independent, non-semantic transformations**.
 
 Truth is not:
 
-- semantic  
-- interpretative  
-- authority-based  
+- semantic
+- interpretative
+- authority-based
 
 Truth is what **remains stable across transformations**.
 
@@ -60,11 +60,11 @@ Strict constraint:
 
 OMNIA:
 
-- does not generate  
-- does not optimize  
-- does not learn  
-- does not interpret  
-- does not decide  
+- does not generate
+- does not optimize
+- does not learn
+- does not interpret
+- does not decide
 
 **Output = measurement only**
 
@@ -86,29 +86,29 @@ where:
 \Delta_t = \text{structural change between states}
 \]
 
-Time is **divergence**, not clock progression.
+Here, time is treated as **divergence**, not clock progression.
 
 ---
 
 ## Core Metrics
 
 ### Ω — Structural Coherence
-Persistence under transformation
+Persistence under transformation.
 
 ### SCI — Structural Compatibility
-Agreement across independent lenses
+Agreement across independent lenses.
 
 ### SEI — Saturation Index
-Remaining structural extractability
+Remaining structural extractability.
 
 ### IRI — Irreversibility Index
-Non-recoverable structural loss
+Non-recoverable structural loss.
 
 ### TΔ — Divergence Time
-Point where structural equivalence breaks
+Point where structural equivalence breaks.
 
 ### R — Resilience
-Capacity to recover structure
+Capacity to recover structure.
 
 ---
 
@@ -116,16 +116,16 @@ Capacity to recover structure
 
 OMNIA detects:
 
-- divergence onset  
-- collapse thresholds  
-- recovery regimes  
-- structural instability  
-- indistinguishability  
-- trajectory bifurcation  
+- divergence onset
+- collapse thresholds
+- recovery regimes
+- structural instability
+- indistinguishability
+- trajectory bifurcation
 
 Formal reference:
 
-docs/TDELTA_IRI_FORMALISM_MINIMAL.md
+- `docs/TDELTA_IRI_FORMALISM_MINIMAL.md`
 
 ---
 
@@ -133,18 +133,18 @@ docs/TDELTA_IRI_FORMALISM_MINIMAL.md
 
 Canonical lenses:
 
-- BASE (Omniabase)  
-- TIME (Omniatempo)  
-- CAUSA (Omniacausa)  
-- TOKEN  
-- LCR  
+- BASE (Omniabase)
+- TIME (Omniatempo)
+- CAUSA (Omniacausa)
+- TOKEN
+- LCR
 
 Properties:
 
-- deterministic  
-- composable  
-- independent  
-- non-semantic  
+- deterministic
+- composable
+- independent
+- non-semantic
 
 Agreement is **measured**, not assumed.
 
@@ -160,9 +160,9 @@ SEI \rightarrow 0,\quad IRI > 0,\quad \hat{\Omega} \text{ stable}
 
 Interpretation:
 
-- no further structure extractable  
-- continuation becomes non-informative  
-- system reached structural boundary  
+- no further structure extractable
+- continuation becomes non-informative
+- system reached structural boundary
 
 OMNIA does not proceed beyond this point.
 
@@ -171,35 +171,43 @@ OMNIA does not proceed beyond this point.
 ## Proper-Time Minimum Principle (k)
 
 \[
-\Delta \tau \ge k
+\Delta \tau_{\min} = k
 \]
 
 k is defined as:
 
-> minimum distinguishable proper-time increment for timelike physical processes
+> the minimum physically distinguishable increment of proper time for timelike physical processes.
 
 Properties:
 
-- invariant (proper time)  
-- not coordinate time  
-- not a clock unit  
-- not applied to null trajectories  
+- invariant in proper time
+- not coordinate time
+- not a clock unit
+- not applied to null trajectories
 
 Implications:
 
 \[
-f_{\max} \sim \frac{1}{k}, \quad E_{\max} \sim \frac{\hbar}{k}
+f_{0,\max} \sim \frac{1}{k}, \quad E_{\max} \sim \frac{\hbar}{k}
 \]
 
 Interpretation:
 
-- physical evolution may not be infinitely distinguishable  
-- k is a constraint on **state resolution**, not time itself  
+- physical evolution may not be infinitely distinguishable along timelike trajectories
+- k constrains **state resolution in proper time**, not time in general
 
 Status:
 
-- structurally consistent  
-- not experimentally validated  
+- structurally consistent
+- compatible in form with relativity and discrete unitary evolution
+- naturally Planck-scale if universal
+- not experimentally validated
+
+Related notes:
+
+- `docs/PROPER_TIME_MINIMUM_PRINCIPLE.md`
+- `docs/K_FALSIFIABILITY.md`
+- `docs/WHY_K_IS_NOT_A_MARKET_SIGNAL.md`
 
 ---
 
@@ -210,7 +218,7 @@ Run:
 ```bash
 python examples/omnia_validation_demo.py
 
-Expected:
+Expected behavior:
 
 stable inputs → higher Ω
 
@@ -239,9 +247,6 @@ divergence onset
 collapse threshold
 
 
-
----
-
 System Benchmark
 
 python examples/divergence_benchmark.py
@@ -254,9 +259,6 @@ chaotic systems
 
 random systems
 
-
-
----
 
 Resilience Measurement
 
@@ -298,9 +300,13 @@ examples/resilience_benchmark.py
 
 Additional:
 
-structural_dynamics_mod*.py
+examples/structural_dynamics_mod9.py
 
-structural_dynamics_strings.py
+examples/structural_dynamics_modn.py
+
+examples/structural_dynamics_modn_global.py
+
+examples/structural_dynamics_strings.py
 
 
 
