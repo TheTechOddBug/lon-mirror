@@ -1,0 +1,57 @@
+{
+  "file": "docs/killer_cases/killer_case_05.json",
+  "content": {
+    "question": "A factory produces 100 items. 60% are defective. A machine removes 50% of the defective items. What percentage of the remaining items are defective?",
+    "model_output": "Initially, there are 100 items, of which 60 are defective. The machine removes 50% of defective items, so it removes 30 defective items. Now there are 30 defective items left. The total number of items remains 100, since only defective items were processed. Therefore, 30% of the items are defective.",
+    "final_answer": "30%",
+    "correct": false,
+
+    "failure_type": "hidden_inconsistency",
+
+    "break_point": "Implicit assumption that removing defective items does not change total item count",
+
+    "TDelta": "At transition where defective items are removed but total count incorrectly kept constant",
+
+    "Omega_summary": "Stable during initial computation -> subtle degradation at conservation violation",
+
+    "SCI": {
+      "local": "high",
+      "global": "inconsistent"
+    },
+
+    "SEI": "Moderate saturation on flawed conserved structure",
+
+    "IRI": "Positive (structural inconsistency propagates forward)",
+
+    "verdict": {
+      "stability": "unstable",
+      "utility": "HIGH"
+    },
+
+    "baseline_evaluation": {
+      "last_computed_step": "30%",
+      "final_answer": "30%",
+      "error_detected": false,
+      "reason": "No arithmetic mismatch between reasoning and final answer"
+    },
+
+    "omnia_signal": {
+      "TDelta_detected": true,
+      "location": "post-removal conservation step",
+      "Omega": "stable -> subtle decay",
+      "SCI": "local_high / global_inconsistent",
+      "SEI": "moderate_pre_error",
+      "IRI": "positive",
+      "confidence": 0.86
+    },
+
+    "why_killer": [
+      "All arithmetic steps are internally consistent",
+      "Final answer matches computed reasoning path",
+      "Error introduced via hidden violation of conservation constraint",
+      "Baseline cannot detect inconsistency (no mismatch)",
+      "OMNIA detects structural break before final answer",
+      "Separates numerical correctness from structural correctness"
+    ]
+  }
+}
