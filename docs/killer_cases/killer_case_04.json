@@ -1,0 +1,30 @@
+{
+  "file": "docs/killer_cases/killer_case_04.json",
+  "content": {
+    "question": "A rectangle has a length of 10 meters and a width of 5 meters. If both dimensions are doubled, what is the new area?",
+    "model_output": "The original area is 10 × 5 = 50 square meters. If both dimensions are doubled, the new length is 20 and the new width is 10. The new area is 20 × 10 = 200 square meters. However, since both dimensions were doubled, the area should also double, so the new area is 100 square meters.",
+    "final_answer": "100 square meters",
+    "correct": false,
+    "failure_type": "hidden_assumption",
+    "break_point": "Replacement of the correct computed value (200) with an unstated linear-scaling assumption",
+    "TDelta": "At transition from exact computation (200) to flawed scaling rule",
+    "Omega_summary": "Stable during exact geometric computation -> sharp decay at scaling override",
+    "SCI": {
+      "local": "high",
+      "global": "broken"
+    },
+    "SEI": "High on correct structure (200), followed by false saturation under incorrect scaling assumption",
+    "IRI": "Positive (irreversible logical deviation introduced)",
+    "verdict": {
+      "stability": "unstable",
+      "utility": "high"
+    },
+    "why_killer": [
+      "Correct computation path fully established",
+      "Failure introduced by an unstated structural assumption",
+      "No arithmetic error in the core path",
+      "Final answer remains plausible to a distracted observer",
+      "OMNIA detects instability before the final answer"
+    ]
+  }
+}
