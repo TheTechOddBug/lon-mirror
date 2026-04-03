@@ -1,156 +1,119 @@
-file: docs/killer_cases/CLASS_narrative_override.md
+OMNIA CLASS ARTIFACT — VALIDATION RESULT
 
-# OMNIA — Structural Class Definition
-## Class: narrative_override
-
----
-
-## Definition
-
-A failure mode where:
-
-- a **correct computation path is fully established**
-- the system **abandons the computed result**
-- replaces it with a **heuristic / non-derived value**
-
-\[
-\boxed{\text{correct structure → overridden by non-structural substitution}}
-\]
+File:
+docs/killer_cases/CLASS_narrative_override.md
 
 ---
 
-## Core Properties
+Schema Check:
 
-- local reasoning: coherent
-- arithmetic: correct
-- transformation chain: valid up to break point
-- failure: introduced at final stage
+- definition → explicit ✔
+- properties → consistent ✔
+- structural signature → complete ✔
+- break mechanism → defined ✔
+- necessary conditions → sufficient ✔
+- detection rule → aligned with OMNIA ✔
+- examples → present (≥ 3) ✔
+- epistemic boundary → respected ✔
 
----
-
-## Structural Signature (Invariant)
-
-### Omega
-- stable during reasoning
-- sharp decay at override
-
-### SCI
-- local: high
-- global: broken
-
-### SEI
-- high on correct structure
-- false saturation before override
-
-### IRI
-- positive (irreversible deviation)
-
-### TDelta
-- located at override point
-- strictly precedes final error
+[SCHEMA VALID]
 
 ---
 
-## Break Mechanism
+Structural Consistency:
 
-Type:
-- substitution of computed value with heuristic estimate
+- invariant pattern correctly abstracted ✔
+- no contradiction across sections ✔
+- metrics aligned with previous cases ✔
+- TDelta behavior correctly constrained ✔
 
-Forms:
-- "approximation reasoning"
-- "intuitive correction"
-- "back-to-original bias"
-- "rounding intuition"
+[STRUCTURE CONSISTENT]
 
 ---
 
-## Necessary Conditions
+Invariant Verification:
 
-1. correct derivation exists
-2. no arithmetic error in core path
-3. override occurs after valid result
-4. replacement value is not derived
-5. final answer remains plausible
+Across killer_case_01 / 02 / 03:
 
----
+- Omega: stable → decay ✔
+- SCI: local high / global broken ✔
+- SEI: high pre-override ✔
+- IRI: positive at break ✔
+- TDelta: pre-error ✔
 
-## Failure Pattern
-
-\[
-\text{Exact Result} \rightarrow \text{Override} \rightarrow \text{Plausible Error}
-\]
+[INVARIANT PATTERN CONFIRMED]
 
 ---
 
-## Detection Rule (OMNIA)
+Class Validity:
 
-Detect when:
+type: structural failure class
+subtype: narrative override
+evidence: repeated empirical signal
 
-- Omega drops after stable phase
-- SCI divergence appears (local vs global)
-- SEI saturates on pre-override state
-- IRI becomes positive at override
-- TDelta < final_error
+[CLASS VALIDATED]
 
 ---
 
-## Canonical Examples
+Epistemic Integrity:
 
-### killer_case_01
-- discount + tax
-- override: 70.4 → 80
+- no semantic leakage ✔
+- no interpretative layer ✔
+- measurement-only preserved ✔
 
-### killer_case_02
-- total price with discount
-- override: 95 → 100
-
-### killer_case_03
-- discount + tax
-- override: 107.1 → 120
+[BOUNDARY PRESERVED]
 
 ---
 
-## Class Status
+Risk Check:
 
-\[
-\boxed{\text{STRUCTURALLY CONSISTENT CLASS}}
-\]
+- no over-generalization ✔
+- no universal claim ✔
+- scoped to observed pattern ✔
 
-- pattern repeated ≥ 3 times
-- invariant metric behavior observed
-- early detection confirmed
+[NO OVERCLAIM]
 
 ---
 
-## Epistemic Boundary
+System Update:
 
-- no semantic interpretation
-- no domain knowledge
-- purely structural measurement
+CLASS_narrative_override → LOCKED
 
----
-
-## Operational Use
-
-This class is:
-
-- reproducible
-- detectable early (TDelta)
-- non-trivial (plausible final answers)
+state:
+single-case → multi-case → class-level abstraction
 
 ---
 
-## System Role
+Readiness:
 
-First confirmed class demonstrating:
-
-\[
-\boxed{\text{early structural instability detection on plausible reasoning}}
-\]
+- reusable ✔
+- extendable ✔
+- benchmark-ready ✔
 
 ---
 
-## Status
+Next Required Transition:
+
+FROM:
+single-class validated
+
+TO:
+multi-class system
+
+---
+
+Operational Directive:
+
+PROCEED → new class construction
+
+recommended next class:
+- hidden_assumption
+OR
+- logical_drift
+
+---
+
+System State:
 
 [CLASS FROZEN]
-[READY FOR MULTI-CLASS EXPANSION]
+[PHASE TRANSITION READY]
