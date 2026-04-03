@@ -303,6 +303,126 @@ experiments/ → extensions
 
 ---
 
+Empirical Evidence (Micro-Benchmark v1)
+
+A minimal benchmark has been introduced to evaluate OMNIA against a rule-based baseline.
+
+Baseline
+
+Rule:
+
+flag error if final_answer != last_computed_step
+
+
+Limitation:
+
+detects only explicit mismatches
+
+cannot detect hidden structural inconsistencies
+
+
+
+---
+
+OMNIA Detection
+
+OMNIA detects structural instability using:
+
+TDelta (break point)
+
+Omega decay
+
+SCI divergence
+
+SEI pre-saturation
+
+IRI positive
+
+
+Detection occurs before the final observable error.
+
+
+---
+
+Benchmark Summary
+
+case	class	baseline	OMNIA	decisive
+
+case_01	narrative_override	true	true	no
+case_02	narrative_override	true	true	no
+case_03	narrative_override	true	true	no
+case_04	hidden_inconsistency	true	true	no
+case_05	hidden_inconsistency	false	true	yes
+
+
+
+---
+
+Note:
+
+baseline detects only explicit mismatch
+
+OMNIA detects structural break even when no mismatch is present (case_05)
+
+
+
+---
+
+Decisive Case
+
+Case_05 demonstrates:
+
+no arithmetic error
+
+no mismatch between reasoning and final answer
+
+baseline does not detect any issue
+
+
+But:
+
+a structural constraint is violated
+
+OMNIA detects the break (TDelta < final_answer)
+
+
+\boxed{
+\text{baseline = false, OMNIA = true}
+}
+
+
+---
+
+Status
+
+\boxed{
+\text{true\_early\_detection = PROVEN\_AT\_LOCAL\_SCALE}
+}
+
+
+---
+
+Epistemic Scope
+
+This benchmark establishes:
+
+first minimal comparative evidence
+
+local proof-of-function
+
+
+This does NOT establish:
+
+generalization
+
+robustness
+
+superiority over stronger baselines
+
+
+
+---
+
 Positioning
 
 OMNIA is:
