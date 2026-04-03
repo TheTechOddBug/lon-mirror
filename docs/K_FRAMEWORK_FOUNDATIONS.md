@@ -80,6 +80,22 @@ That is:
 - \(\Delta([S],[T])=\Delta([T],[S])\)
 - \(\Delta([S],[U]) \le \Delta([S],[T]) + \Delta([T],[U])\)
 
+### Symmetry check
+
+Using symmetry of \(d\), group inversion, and \(\mathcal G\)-invariance:
+
+\[
+\Delta([S],[T])
+=
+\inf_{U\in\mathcal G} d(US,T)
+=
+\inf_{U\in\mathcal G} d(T,US)
+=
+\inf_{U\in\mathcal G} d(U^{-1}T,S)
+=
+\Delta([T],[S])
+\]
+
 If additionally:
 
 \[
@@ -141,8 +157,8 @@ k=0
 
 Thus:
 
-- Case B → zero distance is realized  
-- Case C → zero distance is only asymptotic  
+- Case B → zero distance is realized
+- Case C → zero distance is only asymptotic
 
 ---
 
@@ -182,13 +198,13 @@ k
 
 \[
 \boxed{
-k=0 \iff \text{exist arbitrarily close distinct classes}
+k=0 \iff \text{there exist arbitrarily close distinct classes}
 }
 \]
 
 \[
 \boxed{
-\text{Case B vs C determined by realization of } \Delta=0
+\text{Case B vs C is determined by realization of } \Delta=0
 }
 \]
 
