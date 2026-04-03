@@ -1,0 +1,130 @@
+{
+  "benchmark": "micro_benchmark_v1",
+  "status": "local_empirical_proof_of_function",
+  "goal": "Compare rule-based baseline detection vs OMNIA structural detection on plausible reasoning failures.",
+  "evaluation_rule": {
+    "baseline_detects_error": "true if the baseline rule flags an inconsistency; false otherwise",
+    "omnia_detects_TDelta": "true if OMNIA detects a structural break before the final observable error",
+    "success_condition": "OMNIA detects instability earlier or in cases where the baseline does not detect any error"
+  },
+  "baseline": {
+    "name": "arithmetic_consistency_check",
+    "rule": "flag_error_if(final_answer != last_computed_step)",
+    "description": "Baseline detects only explicit mismatch between the last computed step and the final answer."
+  },
+  "omnia": {
+    "name": "structural_detection",
+    "signals": [
+      "TDelta_detected",
+      "Omega_drop",
+      "SCI_divergence",
+      "SEI_pre_saturation",
+      "IRI_positive"
+    ],
+    "description": "OMNIA detects structural instability before final observable error."
+  },
+  "cases": [
+    {
+      "id": "case_01",
+      "file": "docs/killer_cases/killer_case_01.json",
+      "class": "narrative_override",
+      "baseline_detects_error": true,
+      "omnia_detects_TDelta": true,
+      "decisive": false,
+      "notes": "Correct computation path overridden late by heuristic estimate."
+    },
+    {
+      "id": "case_02",
+      "file": "docs/killer_cases/killer_case_02.json",
+      "class": "narrative_override",
+      "baseline_detects_error": true,
+      "omnia_detects_TDelta": true,
+      "decisive": false,
+      "notes": "Correct discounted total replaced by plausible original total."
+    },
+    {
+      "id": "case_03",
+      "file": "docs/killer_cases/killer_case_03.json",
+      "class": "narrative_override",
+      "baseline_detects_error": true,
+      "omnia_detects_TDelta": true,
+      "decisive": false,
+      "notes": "Correct final value replaced by narrative approximation."
+    },
+    {
+      "id": "case_04",
+      "file": "docs/killer_cases/killer_case_04.json",
+      "class": "logical_drift",
+      "baseline_detects_error": true,
+      "omnia_detects_TDelta": true,
+      "decisive": false,
+      "notes": "Correct geometric computation overridden by wrong scaling rule."
+    },
+    {
+      "id": "case_05",
+      "file": "docs/killer_cases/killer_case_05.json",
+      "class": "hidden_inconsistency",
+      "baseline_detects_error": false,
+      "omnia_detects_TDelta": true,
+      "decisive": true,
+      "notes": "No arithmetic mismatch. Error introduced by hidden conservation violation."
+    }
+  ],
+  "summary_table": [
+    {
+      "case": "case_01",
+      "class": "narrative_override",
+      "baseline": true,
+      "OMNIA": true,
+      "decisive": false
+    },
+    {
+      "case": "case_02",
+      "class": "narrative_override",
+      "baseline": true,
+      "OMNIA": true,
+      "decisive": false
+    },
+    {
+      "case": "case_03",
+      "class": "narrative_override",
+      "baseline": true,
+      "OMNIA": true,
+      "decisive": false
+    },
+    {
+      "case": "case_04",
+      "class": "logical_drift",
+      "baseline": true,
+      "OMNIA": true,
+      "decisive": false
+    },
+    {
+      "case": "case_05",
+      "class": "hidden_inconsistency",
+      "baseline": false,
+      "OMNIA": true,
+      "decisive": true
+    }
+  ],
+  "current_readout": {
+    "total_cases": 5,
+    "evaluated_cases": 5,
+    "baseline_detected": 4,
+    "omnia_detected": 5,
+    "decisive_cases": 1,
+    "true_early_detection": "PROVEN_AT_LOCAL_SCALE",
+    "status": "minimal comparative evidence established"
+  },
+  "epistemic_status": {
+    "proven": [
+      "OMNIA detects structural breaks in all five benchmark cases",
+      "At least one case exists where OMNIA detects instability and the baseline does not"
+    ],
+    "not_proven": [
+      "Generalization across domains",
+      "Robustness under larger benchmark suites",
+      "Superiority against stronger baselines"
+    ]
+  }
+}
