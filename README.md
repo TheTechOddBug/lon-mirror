@@ -13,7 +13,7 @@ https://lon-reflect.emergent.host/
 ## Canonical Index
 
 - Ecosystem map: [ECOSYSTEM.md](ECOSYSTEM.md)  
-- Machine index: [repos.json](repos.json)  
+- Machine index: [repos.json](repos.json)
 
 ---
 
@@ -174,9 +174,9 @@ k=\inf_{[S]\neq[T]} \Delta([S],[T])
 }
 \]
 
-- Case A: \(k > 0\)  
-- Case B: \(k = 0\), zero realized  
-- Case C: \(k = 0\), zero not realized  
+- **Case A**: \(k > 0\) (uniform separation)  
+- **Case B**: \(k = 0\), zero realized  
+- **Case C**: \(k = 0\), zero not realized  
 
 \[
 \boxed{
@@ -188,19 +188,34 @@ k=\inf_{[S]\neq[T]} \Delta([S],[T])
 
 ## Physical Results
 
-### QHO (full projective space)
+### Quantum Harmonic Oscillator (full projective space)
 
 \[
 \boxed{\text{Case C}}
 \]
 
-### Spectral representation
+- compact orbits  
+- minimum attained  
+- no collapse  
+
+---
+
+### Spectral Representation
 
 \[
-\boxed{\text{Case A}}, \quad \Delta = d_{\mathrm{spec}}
+\boxed{\text{Case A}}
 \]
 
-### Free particle
+\[
+\boxed{
+\Delta = d_{\mathrm{spec}} \quad
+\text{(since the group action does not identify distinct eigenstates)}
+}
+\]
+
+---
+
+### Free Particle
 
 \[
 \boxed{\text{Case C (under non-collapse assumption)}}
@@ -211,11 +226,15 @@ k=\inf_{[S]\neq[T]} \Delta([S],[T])
 ## Structural Consequence
 
 \[
-\boxed{\text{Full quantum state spaces } \rightarrow \text{Case C}}
+\boxed{
+\text{Full quantum state spaces } \rightarrow \text{Case C}
+}
 \]
 
 \[
-\boxed{\text{Discreteness emerges from structural reduction}}
+\boxed{
+\text{Discreteness emerges from structural reduction}
+}
 \]
 
 ---
@@ -230,12 +249,31 @@ k=\inf_{[S]\neq[T]} \Delta([S],[T])
 - not coordinate time  
 - not experimentally validated  
 
+References:
+
+- `docs/PROPER_TIME_MINIMUM_PRINCIPLE.md`  
+- `docs/K_FALSIFIABILITY.md`  
+- `docs/WHY_K_IS_NOT_A_MARKET_SIGNAL.md`  
+
 ---
 
 ## Minimal Execution
 
 ```bash
 python examples/omnia_validation_demo.py
+
+Expected:
+
+stable → high Ω
+
+unstable → Ω decay
+
+disagreement → low SCI
+
+saturation → SEI → 0
+
+irreversibility → IRI > 0
+
 
 
 ---
@@ -280,7 +318,25 @@ deterministic
 bounded
 
 
-OMNIA measures structure and limits.
+OMNIA measures:
+
+structure
+
+limits
+
+breakdown
+
+
+OMNIA does not:
+
+predict
+
+interpret
+
+explain
+
+decide
+
 
 
 ---
