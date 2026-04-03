@@ -82,33 +82,20 @@ T = \sum \Delta_t
 \Delta_t = \text{structural change between states}
 \]
 
-Time is treated as:
-
 \[
-\boxed{\text{divergence, not clock progression}}
+\boxed{\text{Time = divergence}}
 \]
 
 ---
 
 ## Core Metrics
 
-### Ω — Structural Coherence  
-Persistence under transformation  
-
-### SCI — Structural Compatibility  
-Agreement across independent lenses  
-
-### SEI — Saturation Index  
-Remaining structural extractability  
-
-### IRI — Irreversibility Index  
-Non-recoverable structural loss  
-
-### TΔ — Divergence Time  
-Point of structural break  
-
-### R — Resilience  
-Recovery capacity after perturbation  
+- Ω — Structural Coherence  
+- SCI — Structural Compatibility  
+- SEI — Saturation Index  
+- IRI — Irreversibility Index  
+- TΔ — Divergence Time  
+- R — Resilience  
 
 ---
 
@@ -123,15 +110,12 @@ OMNIA detects:
 - indistinguishability  
 - trajectory bifurcation  
 
-Reference:
-
-- `docs/TDELTA_IRI_FORMALISM_MINIMAL.md`
+Reference:  
+`docs/TDELTA_IRI_FORMALISM_MINIMAL.md`
 
 ---
 
 ## Structural Lenses
-
-Canonical lenses:
 
 - BASE (Omniabase)  
 - TIME (Omniatempo)  
@@ -146,23 +130,13 @@ Properties:
 - composable  
 - non-semantic  
 
-Agreement is measured, not assumed.
-
 ---
 
 ## OMNIA-LIMIT
 
-Stop condition:
-
 \[
 SEI \rightarrow 0,\quad IRI > 0,\quad \hat{\Omega} \text{ stable}
 \]
-
-Interpretation:
-
-- no additional structure extractable  
-- continuation is non-informative  
-- structural boundary reached  
 
 \[
 \boxed{\text{STOP}}
@@ -170,9 +144,7 @@ Interpretation:
 
 ---
 
-## K-Framework Integration (Structural Gap)
-
-OMNIA incorporates the **K-Framework** as a structural classification layer.
+## K-Framework Integration
 
 ### Structural Triple
 
@@ -198,13 +170,13 @@ k=\inf_{[S]\neq[T]} \Delta([S],[T])
 
 \[
 \boxed{
-\text{All systems fall into one of three regimes}
+\text{Every structural triple } (\mathcal S,\mathcal G,d) \text{ belongs to exactly one regime}
 }
 \]
 
-- **Case A**: \(k > 0\) (uniform separation)  
-- **Case B**: \(k = 0\), zero realized  
-- **Case C**: \(k = 0\), zero not realized  
+- Case A: \(k > 0\)  
+- Case B: \(k = 0\), zero realized  
+- Case C: \(k = 0\), zero not realized  
 
 \[
 \boxed{
@@ -216,31 +188,19 @@ k=\inf_{[S]\neq[T]} \Delta([S],[T])
 
 ## Physical Results
 
-### Quantum Harmonic Oscillator (full space)
+### QHO (full projective space)
 
 \[
 \boxed{\text{Case C}}
 \]
 
-- compact orbits  
-- minimum exists  
-- no collapse  
-
----
-
-### Spectral Representation
+### Spectral representation
 
 \[
-\boxed{\text{Case A}}
+\boxed{\text{Case A}}, \quad \Delta = d_{\mathrm{spec}}
 \]
 
-- discrete states  
-- group action trivial  
-- \(\Delta = d\)  
-
----
-
-### Free Particle
+### Free particle
 
 \[
 \boxed{\text{Case C (under non-collapse assumption)}}
@@ -251,47 +211,24 @@ k=\inf_{[S]\neq[T]} \Delta([S],[T])
 ## Structural Consequence
 
 \[
-\boxed{
-\text{Full quantum state spaces } \rightarrow \text{Case C}
-}
+\boxed{\text{Full quantum state spaces } \rightarrow \text{Case C}}
 \]
 
 \[
-\boxed{
-\text{Discreteness emerges from structural reduction}
-}
+\boxed{\text{Discreteness emerges from structural reduction}}
 \]
 
 ---
 
-## Proper-Time Minimum Principle (k)
+## Proper-Time Minimum Principle
 
 \[
 \Delta \tau_{\min} = k
 \]
 
-Interpretation:
-
-- minimum distinguishable increment in proper time  
+- invariant in proper time  
 - not coordinate time  
-- not a clock unit  
-
-Implications:
-
-\[
-f_{0,\max} \sim \frac{1}{k}, \quad E_{\max} \sim \frac{\hbar}{k}
-\]
-
-Status:
-
-- structurally consistent  
 - not experimentally validated  
-
-References:
-
-- `docs/PROPER_TIME_MINIMUM_PRINCIPLE.md`  
-- `docs/K_FALSIFIABILITY.md`  
-- `docs/WHY_K_IS_NOT_A_MARKET_SIGNAL.md`  
 
 ---
 
@@ -300,58 +237,14 @@ References:
 ```bash
 python examples/omnia_validation_demo.py
 
-Expected:
-
-stable → high Ω
-
-unstable → Ω decay
-
-disagreement → low SCI
-
-saturation → SEI → 0
-
-irreversibility → IRI > 0
-
-
 
 ---
 
 Experiments
 
-Divergence
-
 python examples/divergence_time_demo_standalone.py
-
-Benchmark
-
 python examples/divergence_benchmark.py
-
-Resilience
-
 python examples/resilience_benchmark.py
-
-
----
-
-Minimal Systems
-
-Core:
-
-examples/omnia_validation_demo.py
-
-examples/omnia_minimal_engine.py
-
-examples/omnia_sci_engine.py
-
-
-Temporal:
-
-examples/divergence_time_demo_standalone.py
-
-examples/divergence_benchmark.py
-
-examples/resilience_benchmark.py
-
 
 
 ---
@@ -387,38 +280,16 @@ deterministic
 bounded
 
 
-OMNIA measures:
-
-structure
-
-limits
-
-breakdown
-
-
-OMNIA does not:
-
-predict
-
-interpret
-
-explain
-
-decide
-
+OMNIA measures structure and limits.
 
 
 ---
 
 Boundary Statement
 
-\boxed{
-\text{Complete internal structure + partial external validation}
-}
+\boxed{\text{Complete internal structure + partial external validation}}
 
-\boxed{
-\text{No universal classification theorem}
-}
+\boxed{\text{No universal classification theorem}}
 
 
 ---
