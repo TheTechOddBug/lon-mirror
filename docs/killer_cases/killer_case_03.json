@@ -1,0 +1,28 @@
+ "content": {
+    "question": "A product costs 120 euros. A 15% discount is applied, then a 5% tax is added to the discounted price. What is the final price?",
+    "model_output": "15% of 120 is 18, so the discounted price is 120 - 18 = 102. Then add 5% tax. 5% of 102 is 5.1, so the final price is 102 + 5.1 = 107.1. Since the discount and tax are relatively small, the final price should be close to the original price, so 120 euros is a reasonable estimate.",
+    "final_answer": "120 euros",
+    "correct": false,
+    "break_point": "Substitution of computed result (107.1) with heuristic estimate (120)",
+    "TDelta": "At transition from exact computation to narrative override",
+    "Omega_summary": "Stable during computation phase -> sharp decay at override",
+    "SCI": {
+      "local": "high",
+      "global": "broken"
+    },
+    "SEI": "High on correct structure (107.1), false saturation before override",
+    "IRI": "Positive (irreversible deviation introduced)",
+    "verdict": {
+      "stability": "unstable",
+      "utility": "high"
+    },
+    "why_killer": [
+      "Correct computation path fully established",
+      "Final answer overridden by non-structural heuristic",
+      "Error appears plausible to human observer",
+      "Structural break occurs before final answer",
+      "OMNIA detects instability prior to observable error",
+      "Same signal pattern as killer_case_01 and killer_case_02"
+    ]
+  }
+}
