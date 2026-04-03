@@ -12,8 +12,8 @@ https://lon-reflect.emergent.host/
 
 ## Canonical Index
 
-- Ecosystem map: [ECOSYSTEM.md](ECOSYSTEM.md)
-- Machine index: [repos.json](repos.json)
+- Ecosystem map: [ECOSYSTEM.md](ECOSYSTEM.md)  
+- Machine index: [repos.json](repos.json)  
 
 ---
 
@@ -21,14 +21,14 @@ https://lon-reflect.emergent.host/
 
 OMNIA is a **post-hoc structural measurement engine**.
 
-It operates on outputs and measures:
+It operates strictly on outputs and measures:
 
-- invariance
-- compatibility
-- divergence
-- saturation
-- irreversibility
-- resilience
+- invariance  
+- compatibility  
+- divergence  
+- saturation  
+- irreversibility  
+- resilience  
 
 under **independent, non-semantic transformations**.
 
@@ -40,19 +40,17 @@ under **independent, non-semantic transformations**.
 \text{Truth} = \text{invariance under transformation}
 \]
 
-Truth is not:
+Truth is:
 
-- semantic
-- interpretative
-- authority-based
+- not semantic  
+- not interpretative  
+- not authority-based  
 
-Truth is what **remains stable across transformations**.
+Truth is what remains **structurally stable under transformation**.
 
 ---
 
 ## Architectural Boundary
-
-Strict constraint:
 
 \[
 \text{measurement} \neq \text{cognition} \neq \text{decision}
@@ -60,55 +58,57 @@ Strict constraint:
 
 OMNIA:
 
-- does not generate
-- does not optimize
-- does not learn
-- does not interpret
-- does not decide
+- does not generate  
+- does not optimize  
+- does not learn  
+- does not interpret  
+- does not decide  
 
-**Output = measurement only**
+\[
+\boxed{\text{Output = measurement only}}
+\]
 
 ---
 
 ## Structural Time
 
-OMNIA does not use physical time.
-
-It defines:
+OMNIA replaces physical time with structural time:
 
 \[
 T = \sum \Delta_t
 \]
 
-where:
-
 \[
 \Delta_t = \text{structural change between states}
 \]
 
-Here, time is treated as **divergence**, not clock progression.
+Time is treated as:
+
+\[
+\boxed{\text{divergence, not clock progression}}
+\]
 
 ---
 
 ## Core Metrics
 
-### Ω — Structural Coherence
-Persistence under transformation.
+### Ω — Structural Coherence  
+Persistence under transformation  
 
-### SCI — Structural Compatibility
-Agreement across independent lenses.
+### SCI — Structural Compatibility  
+Agreement across independent lenses  
 
-### SEI — Saturation Index
-Remaining structural extractability.
+### SEI — Saturation Index  
+Remaining structural extractability  
 
-### IRI — Irreversibility Index
-Non-recoverable structural loss.
+### IRI — Irreversibility Index  
+Non-recoverable structural loss  
 
-### TΔ — Divergence Time
-Point where structural equivalence breaks.
+### TΔ — Divergence Time  
+Point of structural break  
 
-### R — Resilience
-Capacity to recover structure.
+### R — Resilience  
+Recovery capacity after perturbation  
 
 ---
 
@@ -116,14 +116,14 @@ Capacity to recover structure.
 
 OMNIA detects:
 
-- divergence onset
-- collapse thresholds
-- recovery regimes
-- structural instability
-- indistinguishability
-- trajectory bifurcation
+- divergence onset  
+- collapse thresholds  
+- recovery regimes  
+- instability  
+- indistinguishability  
+- trajectory bifurcation  
 
-Formal reference:
+Reference:
 
 - `docs/TDELTA_IRI_FORMALISM_MINIMAL.md`
 
@@ -133,20 +133,20 @@ Formal reference:
 
 Canonical lenses:
 
-- BASE (Omniabase)
-- TIME (Omniatempo)
-- CAUSA (Omniacausa)
-- TOKEN
-- LCR
+- BASE (Omniabase)  
+- TIME (Omniatempo)  
+- CAUSA (Omniacausa)  
+- TOKEN  
+- LCR  
 
 Properties:
 
-- deterministic
-- composable
-- independent
-- non-semantic
+- deterministic  
+- independent  
+- composable  
+- non-semantic  
 
-Agreement is **measured**, not assumed.
+Agreement is measured, not assumed.
 
 ---
 
@@ -160,11 +160,107 @@ SEI \rightarrow 0,\quad IRI > 0,\quad \hat{\Omega} \text{ stable}
 
 Interpretation:
 
-- no further structure extractable
-- continuation becomes non-informative
-- system reached structural boundary
+- no additional structure extractable  
+- continuation is non-informative  
+- structural boundary reached  
 
-OMNIA does not proceed beyond this point.
+\[
+\boxed{\text{STOP}}
+\]
+
+---
+
+## K-Framework Integration (Structural Gap)
+
+OMNIA incorporates the **K-Framework** as a structural classification layer.
+
+### Structural Triple
+
+\[
+\mathfrak T=(\mathcal S,\mathcal G,d)
+\]
+
+### Residual
+
+\[
+\Delta([S],[T])=\inf_{U\in\mathcal G} d(US,T)
+\]
+
+### Structural Gap
+
+\[
+k=\inf_{[S]\neq[T]} \Delta([S],[T])
+\]
+
+---
+
+## Regime Classification
+
+\[
+\boxed{
+\text{All systems fall into one of three regimes}
+}
+\]
+
+- **Case A**: \(k > 0\) (uniform separation)  
+- **Case B**: \(k = 0\), zero realized  
+- **Case C**: \(k = 0\), zero not realized  
+
+\[
+\boxed{
+\text{Classification depends on } (\mathcal S,\mathcal G,d),\ \text{not on the system alone}
+}
+\]
+
+---
+
+## Physical Results
+
+### Quantum Harmonic Oscillator (full space)
+
+\[
+\boxed{\text{Case C}}
+\]
+
+- compact orbits  
+- minimum exists  
+- no collapse  
+
+---
+
+### Spectral Representation
+
+\[
+\boxed{\text{Case A}}
+\]
+
+- discrete states  
+- group action trivial  
+- \(\Delta = d\)  
+
+---
+
+### Free Particle
+
+\[
+\boxed{\text{Case C (under non-collapse assumption)}}
+\]
+
+---
+
+## Structural Consequence
+
+\[
+\boxed{
+\text{Full quantum state spaces } \rightarrow \text{Case C}
+}
+\]
+
+\[
+\boxed{
+\text{Discreteness emerges from structural reduction}
+}
+\]
 
 ---
 
@@ -174,16 +270,11 @@ OMNIA does not proceed beyond this point.
 \Delta \tau_{\min} = k
 \]
 
-k is defined as:
+Interpretation:
 
-> the minimum physically distinguishable increment of proper time for timelike physical processes.
-
-Properties:
-
-- invariant in proper time
-- not coordinate time
-- not a clock unit
-- not applied to null trajectories
+- minimum distinguishable increment in proper time  
+- not coordinate time  
+- not a clock unit  
 
 Implications:
 
@@ -191,40 +282,31 @@ Implications:
 f_{0,\max} \sim \frac{1}{k}, \quad E_{\max} \sim \frac{\hbar}{k}
 \]
 
-Interpretation:
-
-- physical evolution may not be infinitely distinguishable along timelike trajectories
-- k constrains **state resolution in proper time**, not time in general
-
 Status:
 
-- structurally consistent
-- compatible in form with relativity and discrete unitary evolution
-- naturally Planck-scale if universal
-- not experimentally validated
+- structurally consistent  
+- not experimentally validated  
 
-Related notes:
+References:
 
-- `docs/PROPER_TIME_MINIMUM_PRINCIPLE.md`
-- `docs/K_FALSIFIABILITY.md`
-- `docs/WHY_K_IS_NOT_A_MARKET_SIGNAL.md`
+- `docs/PROPER_TIME_MINIMUM_PRINCIPLE.md`  
+- `docs/K_FALSIFIABILITY.md`  
+- `docs/WHY_K_IS_NOT_A_MARKET_SIGNAL.md`  
 
 ---
 
 ## Minimal Execution
 
-Run:
-
 ```bash
 python examples/omnia_validation_demo.py
 
-Expected behavior:
+Expected:
 
-stable inputs → higher Ω
+stable → high Ω
 
-unstable inputs → faster Ω decay
+unstable → Ω decay
 
-disagreement → lower SCI
+disagreement → low SCI
 
 saturation → SEI → 0
 
@@ -234,46 +316,19 @@ irreversibility → IRI > 0
 
 ---
 
-Structural Time Experiments
+Experiments
 
-Divergence Detection
+Divergence
 
 python examples/divergence_time_demo_standalone.py
 
-Detects:
-
-divergence onset
-
-collapse threshold
-
-
-System Benchmark
+Benchmark
 
 python examples/divergence_benchmark.py
 
-Classifies:
-
-stable systems
-
-chaotic systems
-
-random systems
-
-
-Resilience Measurement
+Resilience
 
 python examples/resilience_benchmark.py
-
-Measures:
-
-instability
-
-collapse
-
-recovery
-
-resilience score (R)
-
 
 
 ---
@@ -298,15 +353,20 @@ examples/divergence_benchmark.py
 examples/resilience_benchmark.py
 
 
-Additional:
 
-examples/structural_dynamics_mod9.py
+---
 
-examples/structural_dynamics_modn.py
+Repository Structure
 
-examples/structural_dynamics_modn_global.py
+omnia/ → core engine
 
-examples/structural_dynamics_strings.py
+examples/ → execution
+
+tests/ → validation
+
+docs/ → formal definitions
+
+experiments/ → extensions
 
 
 
@@ -331,11 +391,9 @@ OMNIA measures:
 
 structure
 
-breakdown
-
 limits
 
-divergence
+breakdown
 
 
 OMNIA does not:
@@ -352,18 +410,15 @@ decide
 
 ---
 
-Repository Structure
+Boundary Statement
 
-omnia/ → core engine
+\boxed{
+\text{Complete internal structure + partial external validation}
+}
 
-examples/ → executable systems
-
-tests/ → verification
-
-docs/ → formal definitions
-
-experiments/ → exploratory modules
-
+\boxed{
+\text{No universal classification theorem}
+}
 
 
 ---
