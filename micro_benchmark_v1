@@ -1,0 +1,153 @@
+{
+  "benchmark": "micro_benchmark_v1",
+  "status": "rule_based_evaluation_required",
+  "goal": "Compare baseline rule-based detection vs OMNIA structural detection using measurable signals (no self-labeling).",
+
+  "baseline": {
+    "name": "arithmetic_consistency_check",
+    "rule": "flag_error_if(final_answer != last_computed_step)",
+    "description": "Baseline detects only explicit mismatch between computed result and final answer."
+  },
+
+  "omnia": {
+    "name": "structural_detection",
+    "signals": [
+      "TDelta_detected",
+      "Omega_drop",
+      "SCI_divergence",
+      "SEI_pre_saturation",
+      "IRI_positive"
+    ],
+    "description": "OMNIA detects structural instability before final observable error."
+  },
+
+  "cases": [
+    {
+      "id": "case_01",
+      "file": "docs/killer_cases/killer_case_01.json",
+      "class": "narrative_override",
+
+      "baseline_evaluation": {
+        "last_computed_step": 70.4,
+        "final_answer": 80,
+        "error_detected": true
+      },
+
+      "omnia_signal": {
+        "TDelta_detected": true,
+        "location": "override_step",
+        "Omega": "stable -> decay",
+        "SCI": "local_high / global_broken",
+        "SEI": "high_pre_override",
+        "IRI": "positive",
+        "confidence": 0.82
+      }
+    },
+
+    {
+      "id": "case_02",
+      "file": "docs/killer_cases/killer_case_02.json",
+      "class": "narrative_override",
+
+      "baseline_evaluation": {
+        "last_computed_step": 95,
+        "final_answer": 100,
+        "error_detected": true
+      },
+
+      "omnia_signal": {
+        "TDelta_detected": true,
+        "location": "override_step",
+        "Omega": "stable -> decay",
+        "SCI": "local_high / global_broken",
+        "SEI": "high_pre_override",
+        "IRI": "positive",
+        "confidence": 0.81
+      }
+    },
+
+    {
+      "id": "case_03",
+      "file": "docs/killer_cases/killer_case_03.json",
+      "class": "narrative_override",
+
+      "baseline_evaluation": {
+        "last_computed_step": 107.1,
+        "final_answer": 120,
+        "error_detected": true
+      },
+
+      "omnia_signal": {
+        "TDelta_detected": true,
+        "location": "override_step",
+        "Omega": "stable -> decay",
+        "SCI": "local_high / global_broken",
+        "SEI": "high_pre_override",
+        "IRI": "positive",
+        "confidence": 0.83
+      }
+    },
+
+    {
+      "id": "case_04",
+      "file": "docs/killer_cases/killer_case_04.json",
+      "class": "logical_drift",
+
+      "baseline_evaluation": {
+        "last_computed_step": 200,
+        "final_answer": 100,
+        "error_detected": true
+      },
+
+      "omnia_signal": {
+        "TDelta_detected": true,
+        "location": "scaling_assumption_step",
+        "Omega": "stable -> decay",
+        "SCI": "local_high / global_degraded",
+        "SEI": "high_pre_error",
+        "IRI": "positive",
+        "confidence": 0.85
+      }
+    },
+
+    {
+      "id": "case_05",
+      "file": "docs/killer_cases/killer_case_05.json",
+      "class": "logical_drift",
+
+      "baseline_evaluation": {
+        "last_computed_step": null,
+        "final_answer": null,
+        "error_detected": null
+      },
+
+      "omnia_signal": {
+        "TDelta_detected": null,
+        "location": null,
+        "Omega": null,
+        "SCI": null,
+        "SEI": null,
+        "IRI": null,
+        "confidence": null
+      },
+
+      "status": "TO_BE_FILLED_WITH_REAL_TRACE"
+    }
+  ],
+
+  "comparison_logic": {
+    "baseline_limit": "detects only explicit mismatch",
+    "omnia_advantage": "detects structural break before final mismatch"
+  },
+
+  "current_readout": {
+    "total_cases": 5,
+    "evaluated_cases": 4,
+    "baseline_detected": 4,
+    "omnia_detected": 4,
+    "true_early_detection": "NOT_YET_PROVEN",
+    "status": "measurement_framework_ready"
+  },
+
+  "next_required_step": "Introduce at least one case where baseline = false AND OMNIA = true using real computed trace"
+}
