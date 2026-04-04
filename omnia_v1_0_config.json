@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "engine": "RFS",
+  "n_trials": 60,
+  "swaps_per_trial": 3,
+  "volatility_scale": 5.0,
+  "normalization": "relative_base_size",
+  "metric": "symmetric_difference"
+}
