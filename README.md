@@ -1,6 +1,6 @@
 # OMNIA v1.0 — Relational Fatigue Spectrometry (RFS)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19401583.svg)](https://doi.org/10.5281/zenodo.19401583)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19420935.svg)](https://doi.org/10.5281/zenodo.19420935)
 
 **Author:** Massimiliano Brighindi  
 **Project:** MB-X.01  
