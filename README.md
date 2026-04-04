@@ -7,160 +7,255 @@
 
 ---
 
-## Definition
+## Overview
 
-OMNIA is a **dynamic structural measurement engine**.
+OMNIA is a **post-hoc structural measurement engine**.
 
-It does not analyze content.  
+It does not analyze meaning or content.  
 It measures how a system **responds to controlled perturbations**.
+
+Structure is treated as an observable property of **response stability**, not as a semantic feature.
 
 ---
 
 ## Core Principle
 
 > Structure is not what is present.  
-> Structure is what resists.
+> Structure is what remains coherent under perturbation.
 
 ---
 
-## Method (RFS Core)
+## Method: Relational Fatigue Spectrometry (RFS)
 
-OMNIA applies repeated micro-perturbations (multi-swap stress) to a sequence and observes the response.
+A sequence is modeled as a graph of local adjacencies:
 
-Each sequence is treated as a graph of local adjacencies.
+\[
+A(S) = \{(t_i, t_{i+1})\}
+\]
+
+OMNIA applies repeated local perturbations:
+
+- adjacent swaps  
+- multi-point stress per trial  
+- multiple trials (response sampling)
 
 For each perturbation:
 
-- adjacency structure is altered  
-- the **symmetric difference** between original and perturbed graph is computed  
+\[
+D = |A(S) \triangle A(S')|
+\]
+
+\[
+I = \frac{D}{|A(S)|}
+\]
 
 ---
 
-### Signals Extracted
+## Signals Extracted
 
-- **Impact** → mean structural disruption  
-- **Volatility** → variance of disruption across trials  
+- **Impact (I)** → mean structural disruption  
+- **Volatility (σ)** → variation across trials  
+
+Volatility score:
+
+\[
+V = \frac{1}{1 + \alpha \cdot \sigma}
+\]
 
 ---
 
 ## Omega Score
 
-Omega = 0.7 × Volatility Score + 0.3 × Impact
+\[
+\Omega = 0.7 \cdot V + 0.3 \cdot I
+\]
 
 Where:
 
-- Volatility Score = inverse of response variance  
-- Impact = normalized graph disruption  
+- \(V\) → stability of response  
+- \(I\) → magnitude of disruption  
 
 ---
 
 ## Interpretation
 
-OMNIA treats information as a material under stress:
+OMNIA treats information as a system under stress:
 
-| System Type | Response |
+| System Type | Behavior |
 |------------|---------|
-| Structured | stable |
+| Structured | stable response |
 | Perturbed  | partially unstable |
-| Random     | volatile |
-
----
-
-## Properties
-
-- Token-agnostic  
-- Non-semantic  
-- Fully dynamic  
-- Differential (response-based)  
-- Deterministic (given seed)  
+| Random     | highly volatile |
 
 OMNIA does not read meaning.  
-It measures relational coherence.
+It measures **relational coherence**.
 
 ---
 
-## Validation
+## Semantic Decoupling (v10.0)
 
-OMNIA v1.0 has been validated across three regimes:
+Natural language introduces statistical coherence unrelated to structure.
 
-| Dataset | Regime | Result |
-|--------|--------|-------|
-| B | Cyclic redundancy | ✔ |
-| C | Aperiodic linear sequences | ✔ |
-| D | Semantic noise | ✔ |
+To isolate structural signal, OMNIA introduces an internal baseline.
 
-### Key Result
+### Shuffle Baseline
 
-Structural integrity remains detectable even under semantic interference.
+\[
+S_{shuffle}
+\]
 
----
+Preserves:
+- token identity  
+- distribution  
 
-## What OMNIA Measures
-
-- relational coherence  
-- structural stability  
-- breakdown under stress  
-- consistency of response  
+Destroys:
+- sequential structure  
 
 ---
 
-## What OMNIA Does NOT Do
+### Structural Differential
+
+\[
+\Delta_{struct} = \Omega_{raw} - \Omega_{shuffle}
+\]
+
+This yields:
+
+```text
+structural coherence − statistical coherence
+
+
+---
+
+Validation
+
+OMNIA v1.0 + v10.0 has been validated across three regimes:
+
+Dataset	Regime	Purpose	Result
+
+B	Redundant	pattern sensitivity	✔
+C	A-periodic	topology detection	✔
+D	Semantic noise	robustness to language	✔
+
+
+
+---
+
+Key Result
+
+Across all regimes:
+
+\Delta_{structured} > \Delta_{perturbed} > \Delta_{random}
+
+This ordering remains stable under stress.
+
+
+---
+
+Stress Scaling
+
+Increasing perturbation intensity:
+
+amplifies signal
+
+compresses ratios
+
+preserves ordering
+
+
+Conclusion:
+
+signal is scalable, not fragile
+
+
+---
+
+What OMNIA Measures
+
+relational coherence
+
+structural stability
+
+consistency of response
+
+resistance to perturbation
+
+
+
+---
+
+What OMNIA Does NOT Do
 
 OMNIA:
 
-- does not interpret  
-- does not predict  
-- does not classify semantics  
-- does not optimize  
-- does not learn
+does not interpret
 
-Output = measurement only
+does not predict
 
----
+does not classify semantics
 
-## Use Cases
+does not optimize
 
-- logical coherence analysis  
-- code structure validation  
-- pipeline integrity verification  
-- detection of hidden inconsistencies  
+does not learn
+
+
+\boxed{\text{Output = measurement only}}
+
 
 ---
 
-## Limitations
+Properties
 
-OMNIA v1.0 measures **total structural response**, including:
+non-semantic
 
-- topological structure  
-- statistical-linguistic patterns  
+token-agnostic
 
-It does not separate these layers.
+deterministic (given seed)
 
----
+perturbation-based
 
-## Roadmap
+differential (relative measurement)
 
-Next step:
+model-independent
 
-v10.x → Semantic Decoupling Layer
 
-Goal:
-
-- isolate topological structure  
-- remove linguistic interference  
 
 ---
 
-## Minimal Execution
+Use Cases
 
-```bash
-python examples/omnia_validation_demo.py
+logical consistency analysis
 
-Expected behavior:
+code structure validation
 
-stable systems → high Omega
+pipeline integrity verification
 
-unstable systems → Omega decay
+detection of hidden inconsistencies
+
+
+
+---
+
+Limitations
+
+OMNIA measures response behavior, not intrinsic structure.
+
+Known limitations:
+
+residual semantic influence
+
+dependence on tokenization
+
+reduced sensitivity in short sequences
+
+
+OMNIA is:
+
+operational
+
+bounded
+
+not universal
 
 
 
@@ -171,8 +266,25 @@ Repository Structure
 omnia/        → core engine  
 examples/     → demos  
 tests/        → validation  
-docs/         → formal notes  
+docs/         → formal definitions  
+docs/paper/   → scientific draft  
 experiments/  → research extensions
+
+
+---
+
+Minimal Execution
+
+python examples/omnia_validation_demo.py
+
+Expected:
+
+structured → high Ω
+
+perturbed → medium Ω
+
+random → low Ω
+
 
 
 ---
@@ -187,13 +299,12 @@ model-agnostic
 
 non-semantic
 
-bounded
-
 structural
 
+measurement-oriented
 
-OMNIA is NOT a pattern detector.
 
+OMNIA is not a pattern detector.
 It is a structural integrity sensor.
 
 
@@ -203,7 +314,7 @@ Statement
 
 > OMNIA v1.0
 Structure is not what you see.
-It is what resists.
+It is what remains coherent under stress.
 
 
 
