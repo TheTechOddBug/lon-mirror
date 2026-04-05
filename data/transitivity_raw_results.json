@@ -2,25 +2,25 @@
   {
     "depth": 1,
     "class": "structured",
-    "omega_raw": 0.812,
-    "omega_shuffle": 0.421,
-    "delta_struct": 0.391,
+    "omega_raw": 0.81,
+    "omega_shuffle": 0.42,
+    "delta_struct": 0.39,
     "correct": true
   },
   {
     "depth": 1,
     "class": "perturbed",
-    "omega_raw": 0.672,
-    "omega_shuffle": 0.403,
-    "delta_struct": 0.269,
+    "omega_raw": 0.67,
+    "omega_shuffle": 0.40,
+    "delta_struct": 0.27,
     "correct": true
   },
   {
     "depth": 1,
     "class": "random",
-    "omega_raw": 0.501,
-    "omega_shuffle": 0.472,
-    "delta_struct": 0.029,
+    "omega_raw": 0.50,
+    "omega_shuffle": 0.47,
+    "delta_struct": 0.03,
     "correct": false
   }
 ]
