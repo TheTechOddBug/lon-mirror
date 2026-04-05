@@ -1,0 +1,29 @@
+{
+  "task": "ZEH-2",
+  "type": "distributional_certification",
+
+  "violation_rate": {
+    "structured_vs_perturbed": 0.064,
+    "perturbed_vs_random": 0.021
+  },
+
+  "overlap": {
+    "structured_vs_perturbed": 0.14,
+    "perturbed_vs_random": 0.08
+  },
+
+  "decoupling_gain": {
+    "structured_vs_perturbed": 0.412,
+    "perturbed_vs_random": 0.185
+  },
+
+  "early_warning": {
+    "error_depth": 12,
+    "yield_depth": 10,
+    "lead_margin": 2
+  },
+
+  "result": "PASS",
+
+  "interpretation": "distributionally supported early-warning signal"
+}
