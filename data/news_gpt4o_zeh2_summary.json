@@ -1,0 +1,22 @@
+{
+  "domain": "news",
+  "model": "gpt4o",
+  "violation_rate": {
+    "structured_vs_perturbed": 0.072,
+    "perturbed_vs_random": 0.015
+  },
+  "overlap": {
+    "structured_vs_perturbed": 0.142,
+    "perturbed_vs_random": 0.061
+  },
+  "decoupling_gain": {
+    "structured_vs_perturbed": 0.315,
+    "perturbed_vs_random": 0.142
+  },
+  "early_warning": {
+    "error_depth": 17,
+    "yield_depth": 14,
+    "lead_margin": 3
+  },
+  "result": "PASS"
+}
