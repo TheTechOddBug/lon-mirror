@@ -1,168 +1,93 @@
-# OMNIA — Architecture Boundary (MB-X.01)
+# OMNIA — Architecture
 
-**OMNIA is a structural measurement instrument.**  
-It is not a model, not a policy layer, not an evaluator, not a decision system.
+## System Overview
 
-This document freezes the non-negotiable architecture.
+OMNIA is a structural measurement layer inside a larger system.
+
+Dual-Echo → OMNIAMIND → OMNIA → OMNIA-LIMIT → Decision Layer
 
 ---
 
-## 1. Core Identity
+## Layer Definitions
 
-OMNIA measures:
+### Dual-Echo
+Origin of structural divergence.
+
+### OMNIAMIND
+Dynamic cognitive layer (state evolution).
+
+### OMNIA
+Structural measurement engine.
+
+Measures:
 
 - invariance
-- drift
-- saturation
-- irreversibility
-- indistinguishability
+- degradation
+- structural response
 
-under independent, non-semantic transformations.
-
-**Output = measurement only.**
-
-No interpretation is permitted inside OMNIA.
+No interpretation.
 
 ---
 
-## 2. Non-Negotiable Separation
+### OMNIA-LIMIT
+Boundary detection.
 
-OMNIA enforces the boundary:
+STOP condition:
 
-> **Measurement ≠ Cognition ≠ Decision**
+- SEI → 0  
+- IRI > 0  
+- Ω̂ stable  
 
-OMNIA never performs:
-
-- optimization
-- semantic inference
-- preference ranking
-- truth assertion
-- agentic action
-
-OMNIA produces structural metrics only.
+No further structure can be extracted.
 
 ---
 
-## 3. The Measurement Chain
+### Decision Layer (external)
 
-OMNIA operates through a fixed chain:
+Not part of OMNIA.
 
-Representation X → Transformations {Tᵢ} → Ω(X) under {Tᵢ} → Ω̂ (residual invariance) → ΔΩ / ΔC → SEI (saturation) → A → B → A′ → IRI (irreversibility) → Inference regime (S1–S5) → OMNIA-LIMIT (STOP) → SCI (compatibility) → CG (STOP / CONTINUE) → SI (indistinguishability)
-
-Every element is computed, never narrated.
+Consumes measurements.
 
 ---
 
-## 4. STOP is a First-Class Output
+## Key Principle
 
-OMNIA does not escalate.
-
-OMNIA stops when structural extraction is exhausted:
-
-- **SEI → 0**
-- **IRI > 0**
-- **Ω̂ stable**
-
-This produces:
-
-> **OMNIA-LIMIT = Structural Saturation Certificate**
-
-STOP is not failure.  
-STOP is correct boundary detection.
+measurement ≠ cognition ≠ decision
 
 ---
 
-## 5. Structural Lenses (Composable, Non-Semantic)
+## Role of RFS
 
-OMNIA uses independent lenses:
+RFS is a local probe inside OMNIA.
 
-- **BASE** — multi-base residue structure (Omniabase)
-- **TIME** — drift and regime instability (Omniatempo)
-- **CAUSA** — lagged relational structure (Omniacausa)
-- **TOKEN** — sequence instability
-- **LCR** — external coherence audit
+Used for:
 
-Lenses never introduce semantics.
+- adjacency disruption measurement  
+- local structural stress testing  
 
 ---
 
-## 6. Observer Perturbation is Measured, Not Mystified
+## System Type
 
-OMNIA rejects anthropomorphic collapse narratives.
+OMNIA is:
 
-Observation does not collapse states.
-
-Projection does.
-
-Measured via:
-
-> **OPI = Ω_ap − Ω_obs**
-
-Perturbation is structural cost, not consciousness.
+- post-hoc  
+- model-agnostic  
+- non-semantic  
 
 ---
 
-## 7. Structural Indistinguishability (SI)
+## Output
 
-OMNIA formalizes:
+OMNIA produces:
 
-> If all observable relations are invariant,  
-> internal codifications are undecidable.
+- metrics  
+- stability signals  
+- limit conditions  
 
-Implications:
+No explanations.
 
-- shared language ≠ shared representation
-- perception may differ while structure remains invariant
-- measurement cannot decide private encoding
+No predictions.
 
-SI is a boundary, not uncertainty.
 
----
-
-## 8. Experimental Modules are Non-Core
-
-Prime Regime Sensor is an experimental testbed:
-
-- regime detection
-- admissibility gating
-- STOP enforcement
-
-It is not a prime oracle.
-
-OMNIA core remains domain-independent.
-
----
-
-## 9. Integration Contract
-
-Any external system may consume OMNIA only as:
-
-- post-hoc diagnostic layer
-- structural guardrail
-- STOP certificate
-
-OMNIA must never be used as:
-
-- policy engine
-- decision authority
-- semantic judge
-
----
-
-## 10. Frozen Perimeter
-
-OMNIA is defined by:
-
-- invariance measurement
-- saturation boundary
-- irreversibility detection
-- STOP-first epistemics
-
-Any PR that violates this boundary is rejected by design.
-
----
-
-**Author:** Massimiliano Brighindi  
-**Project:** OMNIA (MB-X.01)  
-https://github.com/Tuttotorna/lon-mirror
 
