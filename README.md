@@ -7,235 +7,237 @@
 
 ---
 
-## Overview
+## What this does
 
-OMNIA is a post-hoc structural measurement engine.
+AI systems fail suddenly.  
+OMNIA detects structural collapse **before it becomes visible as an error**.
 
-It does not analyze meaning, correctness, or intent.  
-It measures how structure behaves under controlled transformations.
+It does not interpret meaning.  
+It does not evaluate correctness.  
 
-Output = measurement only.
-
----
-
-## Core Principle
-
-Structural truth is defined as invariance under transformation.
-
-What remains stable across perturbations is structure.  
-What collapses is representation.
-
----
-
-## Architecture
-
-OMNIA is a multi-layer system:
+It measures **structural stability under controlled transformations**.
 
 ```text
+output = measurement only
+
+
+---
+
+Run it (10 seconds)
+
+git clone https://github.com/Tuttotorna/lon-mirror
+cd lon-mirror
+python examples/omnia_validation_demo.py
+
+Expected behavior
+
+structured   → high Ω
+perturbed    → Ω drop
+random       → Δ_struct ≈ 0
+
+If this separation appears, the system is working.
+
+
+---
+
+What you get
+
+early signal of structural instability
+
+model-independent diagnostics
+
+sequence-level robustness measurement
+
+
+Works on:
+
+text
+
+code
+
+numeric sequences
+
+any ordered representation
+
+
+
+---
+
+Why this is different
+
+System	Behavior
+
+Guardrails	block output
+Eval tools	measure after failure
+Observability	track metrics
+OMNIA	detects collapse before it
+
+
+
+---
+
+Core principle
+
+Structural truth = invariance under transformation
+
+If a structure survives perturbations → it is real
+If it collapses → it was representation
+
+
+---
+
+Architecture
+
 Dual-Echo → OMNIAMIND → OMNIA → OMNIA-LIMIT → Decision Layer (external)
-```
 
-Strict boundary:
+Boundary condition:
 
-```text
 measurement ≠ cognition ≠ decision
-```
 
-OMNIA operates only at the measurement layer.
+OMNIA does not decide.
+It measures.
 
----
-
-## Structural Lenses
-
-OMNIA applies independent transformations through multiple lenses:
-
-- BASE → multi-representation / multi-base invariance  
-- TIME → structural drift and temporal instability  
-- CAUSA → relational / lagged dependencies  
-- TOKEN → sequence-level perturbations  
-- LCR → logical coherence reduction  
-
-Each lens produces independent structural measurements.
 
 ---
 
-## Core Metrics
+Structural lenses
 
-### Ω (Omega)
+Independent transformation families:
 
-Local structural coherence under perturbation.
+BASE   → multi-representation invariance
 
----
+TIME   → drift / instability over time
 
-### Ω̂ (Omega-set)
+CAUSA  → relational dependencies
 
-Residual structural invariance across transformations.
+TOKEN  → sequence perturbation
 
-Represents what cannot be removed.
+LCR    → logical coherence reduction
 
----
 
-### SEI (Structural Extractability Index)
+Each lens produces an independent signal.
 
-Measures remaining extractable structure.
-
-```text
-SEI → 0 ⇒ no additional structure can be extracted
-```
 
 ---
 
-### IRI (Irreversibility Index)
+Core metrics
 
-Measures structural loss that cannot be recovered.
+Ω (Omega)
+Structural coherence under perturbation
 
-```text
-IRI > 0 ⇒ irreversible transformation occurred
-```
+Ω̂ (Omega-set)
+Residual invariance across transformations
+
+SEI
+Remaining extractable structure
+→ SEI → 0 = saturation
+
+IRI
+Irreversible structural loss
+→ IRI > 0 = non-recoverable
+
+TΔ
+Divergence point
+
+R
+Recovery capacity after perturbation
+
 
 ---
 
-### TΔ (Divergence Time)
+Local probe (RFS)
 
-Point where structural equivalence breaks.
-
----
-
-### R (Resilience)
-
-Ability of a structure to recover after perturbation.
-
----
-
-## Local Method — RFS (Relational Fatigue Spectrometry)
-
-RFS is a local probe inside OMNIA.
-
-Sequence representation:
+Relational Fatigue Spectrometry measures sequence degradation:
 
 A(S) = {(t_i, t_{i+1})}
-
-Perturbation impact:
-
-D = |A(S) Δ A(S')|  
-I = D / |A(S)|  
-
-Volatility:
-
-σ = std(I across trials)
-
-Stability:
-
+D = |A(S) Δ A(S')|
+I = D / |A(S)|
+σ = std(I)
 V = 1 / (1 + α·σ)
-
-Structural score:
 
 Ω = 0.7·V + 0.3·I
 
+
 ---
 
-## Structural Isolation
+Structural isolation
 
 Δ_struct = Ω_raw − Ω_shuffle
 
-Removes statistical artifacts.  
-Retains structural signal.
+Removes statistical artifacts.
+Keeps only structure.
+
 
 ---
 
-## OMNIA-LIMIT (STOP Condition)
+STOP condition (OMNIA-LIMIT)
 
-A system reaches structural saturation when:
-
-```text
-SEI → 0  
-IRI > 0  
+SEI → 0
+IRI > 0
 Ω̂ stable
-```
 
-At this point:
+Result:
 
-```text
-no further structure can be extracted
-```
+no additional structure can be extracted
 
-Continuation becomes non-informative.
+Continuation is non-informative.
+
 
 ---
 
-## Key Result
+Minimal validation
+
+Observed invariant:
 
 Δ_struct(structured) > Δ_struct(perturbed) > Δ_struct(random)
 
----
+If violated → system failure or bad data.
 
-## Empirical Evidence
-
-Datasets:
-
-- B → stable separation  
-- C → stable separation  
-- D → stable separation  
-
-Case studies:
-
-- ZEH-1.1 → early-warning signal  
-- ZEH-2 → distributional robustness  
 
 ---
 
-## Minimal Run
+Repository
 
-Requires: Python 3.10+
+omnia/ → engine
 
-```bash
-python examples/omnia_validation_demo.py
-```
+examples/ → runnable demos
 
----
+tests/ → validation
 
-## Expected Output
+docs/ → formalization
 
-Running the demo should produce:
+data/ → datasets
 
-- higher Ω for structured sequences  
-- lower Ω for perturbed sequences  
-- near-zero Δ_struct for random data  
 
-This demonstrates structural separation.
 
 ---
 
-## Repository Structure
+Position
 
-- omnia/ → core engine  
-- examples/ → runnable demos  
-- tests/ → validation  
-- docs/ → formal notes  
-- data/ → datasets  
+OMNIA is not:
 
----
+a model
 
-## Position
+a predictor
 
-OMNIA is a structural measurement system.
+a semantic analyzer
 
-- Not semantic  
-- Not predictive  
-- Not generative  
-- Not a model  
 
-It is a diagnostic layer.
+It is:
+
+a structural diagnostic layer
+
 
 ---
 
-## License
+License
 
 MIT
 
+
 ---
 
-## Citation
+Citation
 
-Brighindi, M.  
+Brighindi, M.
 https://github.com/Tuttotorna/lon-mirror
