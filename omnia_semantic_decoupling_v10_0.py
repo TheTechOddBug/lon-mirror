@@ -1,5 +1,6 @@
 import random
-from typing import List, Dict
+from typing import Dict, List
+
 from omnia_rfs_core_v1_0 import omnia_rfs_v1
 
 
@@ -39,6 +40,9 @@ def semantic_decoupling_score(text: str, seed: int = 42) -> Dict[str, float]:
 
 
 if __name__ == "__main__":
-    sample = "start_node step_1 step_2 step_3 step_4 end_node"
+    sample = (
+        "start_node step_1 step_2 step_3 step_4 "
+        "step_5 step_6 step_7 step_8 end_node"
+    )
     out = semantic_decoupling_score(sample)
     print(out)
