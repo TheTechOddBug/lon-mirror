@@ -9,110 +9,52 @@
 
 ## Overview
 
-OMNIA is a **post-hoc structural measurement engine**.
+OMNIA is a post-hoc structural measurement engine.
 
-It does not analyze meaning or content.  
-It measures how a system **responds to controlled perturbations**.
+It does not analyze meaning or correctness.  
+It measures how structure degrades under controlled perturbations.
 
-Structure is treated as an observable property of **response stability**, not as a semantic feature.
+Output = measurement only.
 
 ---
 
 ## Core Principle
 
-> Structure is not what is present.  
-> Structure is what remains coherent under perturbation.
+Structure is what remains coherent under perturbation.
 
 ---
 
-## Method: Relational Fatigue Spectrometry (RFS)
+## Formalization
 
-A sequence is modeled as a graph of local adjacencies:
+Sequence representation:
 
 A(S) = {(t_i, t_{i+1})}
 
-OMNIA applies repeated local perturbations:
-
-- adjacent swaps  
-- multi-point stress per trial  
-- multiple trials (response sampling)
-
-For each perturbation:
+Perturbation impact:
 
 D = |A(S) Δ A(S')|  
-I = D / |A(S)|
+I = D / |A(S)|  
+
+Volatility:
+
+σ = std(I across trials)
+
+Stability:
+
+V = 1 / (1 + α·σ)
+
+Structural score:
+
+Ω = 0.7·V + 0.3·I
 
 ---
 
-## Signals Extracted
-
-- Impact (I) → mean structural disruption  
-- Volatility (σ) → variation across trials  
-
-V = 1 / (1 + α · σ)
-
----
-
-## Omega Score
-
-Ω = 0.7 · V + 0.3 · I
-
-Where:
-
-- V → stability of response  
-- I → magnitude of disruption  
-
----
-
-## Interpretation
-
-| System Type | Behavior |
-|------------|---------|
-| Structured | stable response |
-| Perturbed  | partially unstable |
-| Random     | highly volatile |
-
-OMNIA does not read meaning.  
-It measures **relational coherence**.
-
----
-
-## Semantic Decoupling (v10.0)
-
-Natural language introduces statistical coherence unrelated to structure.
-
-To isolate structural signal, OMNIA introduces an internal baseline.
-
-### Shuffle Baseline
-
-S_shuffle
-
-Preserves:
-- token identity  
-- distribution  
-
-Destroys:
-- sequential structure  
-
----
-
-### Structural Differential
+## Structural Isolation
 
 Δ_struct = Ω_raw − Ω_shuffle
 
-structural coherence − statistical coherence
-
----
-
-## Validation
-
-OMNIA v1.0 + v10.0 has been validated across multiple regimes:
-
-| Dataset | Regime         | Purpose                    | Result |
-|--------|----------------|----------------------------|--------|
-| B      | Redundant      | pattern sensitivity        | ✔      |
-| C      | A-periodic     | topology detection         | ✔      |
-| D      | Semantic noise | robustness to language     | ✔      |
+Removes statistical artifacts.  
+Retains structural signal.
 
 ---
 
@@ -120,178 +62,60 @@ OMNIA v1.0 + v10.0 has been validated across multiple regimes:
 
 Δ_struct(structured) > Δ_struct(perturbed) > Δ_struct(random)
 
-This ordering remains stable under stress.
+---
+
+## Empirical Evidence
+
+Datasets:
+
+- B → stable separation  
+- C → stable separation  
+- D → stable separation  
+
+Case studies:
+
+- ZEH-1.1 → early warning signal  
+- ZEH-2 → distributional robustness  
 
 ---
 
-## Stress Scaling
+## Minimal Run
 
-Increasing perturbation intensity:
-
-- amplifies signal  
-- compresses ratios  
-- preserves ordering  
-
-Conclusion: signal is scalable, not fragile.
-
----
-
-## What OMNIA Measures
-
-- relational coherence  
-- structural stability  
-- consistency of response  
-- resistance to perturbation  
-
----
-
-## What OMNIA Does NOT Do
-
-OMNIA:
-
-- does not interpret  
-- does not predict  
-- does not classify semantics  
-- does not optimize  
-- does not learn  
-
-Output = measurement only
-
----
-
-## Properties
-
-- non-semantic  
-- token-agnostic  
-- deterministic (given seed)  
-- perturbation-based  
-- differential (relative measurement)  
-- model-independent  
-
----
-
-## Use Cases
-
-- logical consistency analysis  
-- code structure validation  
-- pipeline integrity verification  
-- detection of hidden inconsistencies  
-
----
-
-## Limitations
-
-OMNIA measures response behavior, not intrinsic structure.
-
-Known limitations:
-
-- residual semantic influence  
-- dependence on tokenization  
-- reduced sensitivity in short sequences  
-
-OMNIA is:
-
-- operational  
-- bounded  
-- not universal  
-
----
-
-## Empirical Case Studies
-
-### ZEH-1.1
-
-- Model: Llama-3-8B-Instruct (4-bit)  
-- Task: Parentheses Balance  
-- Result: structural degradation detected before first model error  
-
----
-
-### ZEH-2 (Cross-Task Replication)
-
-- Model: same  
-- Task: logical transitivity / relational consistency  
-- Result: early structural degradation detected before failure  
-
----
-
-## Empirical Status
-
-multi-task single-model empirical support
-
-Observed:
-
-- early-warning signal replicated across two structurally different tasks  
-- consistent ordering and degradation pattern  
-- distributional support confirmed on ZEH-2  
-
-Not established:
-
-- multi-model validation  
-- domain generalization  
-
-See:
-
-- docs/ZEH_1_CASE_STUDY.md  
-- docs/ZEH_2_CASE_STUDY.md  
+```bash
+python examples/omnia_validation_demo.py
+```
 
 ---
 
 ## Repository Structure
 
-omnia/        → core engine
-examples/     → demos
-tests/        → validation
-docs/         → formal definitions
-docs/paper/   → scientific draft
-experiments/  → research extensions
-data/         → empirical results
+- omnia/ → core engine  
+- examples/ → runnable demos  
+- tests/ → validation  
+- docs/ → formal notes  
+- data/ → datasets  
 
 ---
 
-## Minimal Execution
+## Position
 
-python examples/omnia_validation_demo.py
+OMNIA is a structural measurement system.
 
-Expected:
+- Not semantic  
+- Not predictive  
+- Not generative  
 
-structured → high Ω
-perturbed → medium Ω
-random → low Ω
-
----
-
-## Positioning
-
-OMNIA is:
-
-- post-hoc  
-- model-agnostic  
-- non-semantic  
-- structural  
-- measurement-oriented  
-
-OMNIA is not a pattern detector.  
-It is a structural integrity sensor.
-
----
-
-## Statement
-
-OMNIA v1.0  
-Structure is not what you see.  
-It is what remains coherent under stress.
+It measures structural stability only.
 
 ---
 
 ## License
 
-MIT License
+MIT
 
 ---
 
 ## Citation
 
 Brighindi, M.  
-OMNIA v1.0 — Relational Fatigue Spectrometry Core  
 https://github.com/Tuttotorna/lon-mirror
