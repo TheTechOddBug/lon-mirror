@@ -1,35 +1,51 @@
-from omnia_sci_engine import omnia_multi_lens
+import os
+import sys
+from statistics import mean
+
+# Ensure repo root is importable when running:
+# python examples/omnia_validation_demo.py
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
+
+from omnia_semantic_decoupling_v10_0 import semantic_decoupling_score
 
 
-def classify(o, sci):
-    if o > 0.8 and sci > 0.8:
-        return "stable_structure"
-
-    if o > 0.8 and sci < 0.5:
-        return "false_coherence"
-
-    if o < 0.5:
-        return "instability"
-
-    return "mixed"
-
-
-def run_demo():
+def run_demo() -> None:
     print("=== OMNIA VALIDATION DEMO ===\n")
 
-    test_cases = {
-        "uniform": "aaaaaa",
-        "repetitive": "abcabcabc",
-        "natural": "hello world",
-        "random": "xqzptlrm",
-        "mixed": "aaabbbcccxyz",
+    samples = {
+        "structured": [
+            "alpha beta gamma alpha beta gamma alpha beta gamma alpha beta gamma",
+            "node_1 connects_to node_2 node_2 connects_to node_3 node_3 connects_to node_4",
+            "A B C A B C A B C A B C"
+        ],
+        "perturbed": [
+            "alpha beta gamma alpha gamma beta alpha beta gamma alpha beta gamma",
+            "node_1 connects_to node_2 node_3 connects_to node_2 node_3 connects_to node_4",
+            "A B C A C B A B C A B C"
+        ],
+        "random": [
+            "xqz rlm ptk vns qwe zmx trp ldk qnv wpt",
+            "jfa qmr ztp lvn xkd pwo qzt mnr ttv bcx",
+            "uio pql xmv znc rty bnm qaz wsx edc vfr"
+        ],
     }
 
-    for name, s in test_cases.items():
-        o, sci = omnia_multi_lens(s)
-        label = classify(o, sci)
+    for label, texts in samples.items():
+        scores = [semantic_decoupling_score(t, seed=42) for t in texts]
 
-        print(f"{name:12} -> Ω={o:.3f}, SCI={sci:.3f} -> {label}")
+        omega_raw = mean(s["omega_raw"] for s in scores)
+        omega_shuffle = mean(s["omega_shuffle"] for s in scores)
+        delta_struct = mean(s["delta_struct"] for s in scores)
+
+        print(f"{label:10} -> "
+              f"Ω_raw={omega_raw:.3f} | "
+              f"Ω_shuffle={omega_shuffle:.3f} | "
+              f"Δ_struct={delta_struct:.3f}")
+
+    print("\nExpected ordering:")
+    print("structured > perturbed > random (on Δ_struct)")
 
 
 if __name__ == "__main__":
