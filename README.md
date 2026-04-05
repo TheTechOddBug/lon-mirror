@@ -261,6 +261,33 @@ not universal
 
 ---
 
+Empirical Case Study (ZEH-1.1)
+
+Empirical early-warning support has been observed in a controlled experiment.
+
+Model: Llama-3-8B-Instruct (4-bit)
+
+Task: Parentheses Balance (dual-sequence protocol)
+
+Result: structural degradation detected before first model error
+
+
+See:
+
+docs/ZEH_1_CASE_STUDY.md
+
+Important:
+
+single-model
+
+single-task
+
+not a general proof
+
+
+
+---
+
 Repository Structure
 
 omnia/        → core engine  
@@ -268,7 +295,8 @@ examples/     → demos
 tests/        → validation  
 docs/         → formal definitions  
 docs/paper/   → scientific draft  
-experiments/  → research extensions
+experiments/  → research extensions  
+data/         → empirical results
 
 
 ---
@@ -280,11 +308,8 @@ python examples/omnia_validation_demo.py
 Expected:
 
 structured → high Ω
-
 perturbed → medium Ω
-
 random → low Ω
-
 
 
 ---
