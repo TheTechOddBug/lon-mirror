@@ -1,3 +1,9 @@
+
+
+sezioni fuse
+
+
+
 # OMNIA v1.0 — Relational Fatigue Spectrometry (RFS)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19420935.svg)](https://doi.org/10.5281/zenodo.19420935)
@@ -55,8 +61,6 @@ I = \frac{D}{|A(S)|}
 
 - **Impact (I)** → mean structural disruption  
 - **Volatility (σ)** → variation across trials  
-
-Volatility score:
 
 \[
 V = \frac{1}{1 + \alpha \cdot \sigma}
@@ -119,8 +123,6 @@ Destroys:
 \Delta_{struct} = \Omega_{raw} - \Omega_{shuffle}
 \]
 
-This yields:
-
 ```text
 structural coherence − statistical coherence
 
@@ -143,8 +145,6 @@ D	Semantic noise	robustness to language	✔
 
 Key Result
 
-Across all regimes:
-
 \Delta_{structured} > \Delta_{perturbed} > \Delta_{random}
 
 This ordering remains stable under stress.
@@ -163,9 +163,7 @@ compresses ratios
 preserves ordering
 
 
-Conclusion:
-
-signal is scalable, not fragile
+Conclusion: signal is scalable, not fragile.
 
 
 ---
@@ -279,7 +277,7 @@ ZEH-2 (Cross-Task Replication)
 
 Model: same
 
-Task: transitivity / relational consistency
+Task: logical transitivity / relational consistency
 
 Result: early structural degradation detected before failure
 
@@ -296,6 +294,8 @@ Observed:
 early-warning signal replicated across two structurally different tasks
 
 consistent ordering and degradation pattern
+
+distributional support confirmed on ZEH-2
 
 
 Not established:
