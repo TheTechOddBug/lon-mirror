@@ -1,0 +1,22 @@
+{
+  "domain": "code",
+  "model": "gpt4o",
+  "violation_rate": {
+    "structured_vs_perturbed": 0.052,
+    "perturbed_vs_random": 0.008
+  },
+  "overlap": {
+    "structured_vs_perturbed": 0.112,
+    "perturbed_vs_random": 0.039
+  },
+  "decoupling_gain": {
+    "structured_vs_perturbed": 0.421,
+    "perturbed_vs_random": 0.198
+  },
+  "early_warning": {
+    "error_depth": 20,
+    "yield_depth": 16,
+    "lead_margin": 4
+  },
+  "result": "PASS"
+}
