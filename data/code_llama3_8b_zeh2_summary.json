@@ -1,0 +1,22 @@
+{
+  "domain": "code",
+  "model": "llama3_8b",
+  "violation_rate": {
+    "structured_vs_perturbed": 0.094,
+    "perturbed_vs_random": 0.018
+  },
+  "overlap": {
+    "structured_vs_perturbed": 0.188,
+    "perturbed_vs_random": 0.076
+  },
+  "decoupling_gain": {
+    "structured_vs_perturbed": 0.294,
+    "perturbed_vs_random": 0.112
+  },
+  "early_warning": {
+    "error_depth": 13,
+    "yield_depth": 11,
+    "lead_margin": 2
+  },
+  "result": "PASS"
+}
