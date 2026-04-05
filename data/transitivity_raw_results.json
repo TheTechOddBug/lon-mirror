@@ -1,0 +1,26 @@
+[
+  {
+    "depth": 1,
+    "class": "structured",
+    "omega_raw": 0.812,
+    "omega_shuffle": 0.421,
+    "delta_struct": 0.391,
+    "correct": true
+  },
+  {
+    "depth": 1,
+    "class": "perturbed",
+    "omega_raw": 0.672,
+    "omega_shuffle": 0.403,
+    "delta_struct": 0.269,
+    "correct": true
+  },
+  {
+    "depth": 1,
+    "class": "random",
+    "omega_raw": 0.501,
+    "omega_shuffle": 0.472,
+    "delta_struct": 0.029,
+    "correct": false
+  }
+]
