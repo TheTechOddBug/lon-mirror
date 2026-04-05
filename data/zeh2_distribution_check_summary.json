@@ -24,6 +24,5 @@
   },
 
   "result": "PASS",
-
-  "interpretation": "distributionally supported early-warning signal"
+  "status": "distributionally_supported"
 }
