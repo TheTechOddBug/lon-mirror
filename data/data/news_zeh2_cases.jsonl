@@ -1,0 +1,3 @@
+{"type":"structured","input":"The central bank raised rates by 25 basis points citing persistent inflation.","valid":true}
+{"type":"perturbed","input":"The central bank lowered rates by 25 basis points citing persistent inflation.","valid":false}
+{"type":"random","input":"bank points inflation raised citing by persistent central 25 the rates.","valid":false}
