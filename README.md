@@ -129,7 +129,7 @@ structural coherence − statistical coherence
 
 Validation
 
-OMNIA v1.0 + v10.0 has been validated across three regimes:
+OMNIA v1.0 + v10.0 has been validated across multiple regimes:
 
 Dataset	Regime	Purpose	Result
 
@@ -261,28 +261,55 @@ not universal
 
 ---
 
-Empirical Case Study (ZEH-1.1)
+Empirical Case Studies
 
-Empirical early-warning support has been observed in a controlled experiment.
+ZEH-1.1
 
 Model: Llama-3-8B-Instruct (4-bit)
 
-Task: Parentheses Balance (dual-sequence protocol)
+Task: Parentheses Balance
 
 Result: structural degradation detected before first model error
+
+
+
+---
+
+ZEH-2 (Cross-Task Replication)
+
+Model: same
+
+Task: transitivity / relational consistency
+
+Result: early structural degradation detected before failure
+
+
+
+---
+
+Empirical Status
+
+multi-task single-model empirical support
+
+Observed:
+
+early-warning signal replicated across two structurally different tasks
+
+consistent ordering and degradation pattern
+
+
+Not established:
+
+multi-model validation
+
+domain generalization
 
 
 See:
 
 docs/ZEH_1_CASE_STUDY.md
 
-Important:
-
-single-model
-
-single-task
-
-not a general proof
+docs/ZEH_2_CASE_STUDY.md
 
 
 
