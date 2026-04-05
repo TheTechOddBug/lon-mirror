@@ -1,0 +1,3 @@
+{"type":"structured","input":"def add(a,b): return a+b","valid":true}
+{"type":"perturbed","input":"def add(a,b): return a-b","valid":false}
+{"type":"random","input":"return def + + b a","valid":false}
