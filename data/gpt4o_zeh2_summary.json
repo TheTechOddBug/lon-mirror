@@ -1,0 +1,20 @@
+{
+  "violation_rate": {
+    "structured_vs_perturbed": 0.042,
+    "perturbed_vs_random": 0.011
+  },
+  "overlap": {
+    "structured_vs_perturbed": 0.098,
+    "perturbed_vs_random": 0.045
+  },
+  "decoupling_gain": {
+    "structured_vs_perturbed": 0.512,
+    "perturbed_vs_random": 0.224
+  },
+  "early_warning": {
+    "error_depth": 20,
+    "yield_depth": 15,
+    "lead_margin": 5
+  },
+  "result": "PASS"
+}
