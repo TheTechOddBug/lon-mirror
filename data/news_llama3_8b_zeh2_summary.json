@@ -1,0 +1,22 @@
+{
+  "domain": "news",
+  "model": "llama3_8b",
+  "violation_rate": {
+    "structured_vs_perturbed": 0.124,
+    "perturbed_vs_random": 0.041
+  },
+  "overlap": {
+    "structured_vs_perturbed": 0.231,
+    "perturbed_vs_random": 0.115
+  },
+  "decoupling_gain": {
+    "structured_vs_perturbed": 0.182,
+    "perturbed_vs_random": 0.074
+  },
+  "early_warning": {
+    "error_depth": 9,
+    "yield_depth": 8,
+    "lead_margin": 1
+  },
+  "result": "WEAK_PASS"
+}
