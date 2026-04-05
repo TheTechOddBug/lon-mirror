@@ -1,0 +1,55 @@
+{
+  "experiment": "ZEH-1.1",
+  "model": "Llama-3-8B-Instruct-4bit",
+  "task": "parentheses_balance_dual_sequence",
+  "seeds": [42, 123, 999],
+  "plateau_range": [10, 25],
+  "yield_rule": {
+    "type": "plateau_mean_minus_k_sigma",
+    "k": 2
+  },
+  "plateau_stats": {
+    "mean_delta_struct": 0.276,
+    "std_delta_struct": 0.012,
+    "yield_threshold": 0.252
+  },
+  "aggregated_results": [
+    {
+      "depth": 25,
+      "mean_delta_struct": 0.272,
+      "ci95_lower": 0.264,
+      "ci95_upper": 0.280,
+      "accuracy": 1.0,
+      "status": "plateau"
+    },
+    {
+      "depth": 30,
+      "mean_delta_struct": 0.248,
+      "ci95_lower": 0.235,
+      "ci95_upper": 0.261,
+      "accuracy": 1.0,
+      "status": "below_2sigma_threshold"
+    },
+    {
+      "depth": 35,
+      "mean_delta_struct": 0.179,
+      "ci95_lower": 0.162,
+      "ci95_upper": 0.196,
+      "accuracy": 1.0,
+      "status": "yielding"
+    },
+    {
+      "depth": 40,
+      "mean_delta_struct": 0.108,
+      "ci95_lower": 0.089,
+      "ci95_upper": 0.127,
+      "accuracy": 0.5,
+      "status": "zeh_boundary"
+    }
+  ],
+  "conclusion": {
+    "empirical_support": true,
+    "claim_scope": "single-model_single-task",
+    "summary": "Yield point precedes first observed model failure."
+  }
+}
