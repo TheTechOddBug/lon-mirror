@@ -238,4 +238,4 @@ MIT
 ## Citation
 
 Brighindi, M.  
-https://github.com/Tuttotorna/lon-mirro
+https://github.com/Tuttotorna/lon-mirror
