@@ -14,7 +14,7 @@
   "early_warning": {
     "error_depth": 16,
     "yield_depth": 13,
-    "lead_margin": 3
+    "lead_margin": 
   },
   "result": "PASS"
 }
