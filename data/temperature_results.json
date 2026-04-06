@@ -1,0 +1,23 @@
+{
+  "test_id": "temperature_decay_test_v1",
+  "domain": "llm_generation_temperature",
+  "model": "llama3_8b",
+  "method": "semantic_decoupling_v10_0",
+  "prompt_type": "logical_mathematical_reasoning",
+  "sample_count_per_temperature": 30,
+  "temperatures": [0.2, 0.5, 0.8, 1.0, 1.2],
+  "results": {
+    "0.2": 0.1482,
+    "0.5": 0.1215,
+    "0.8": 0.0984,
+    "1.0": 0.0812,
+    "1.2": 0.0543
+  },
+  "expected_invariant": "delta_struct decreases as temperature increases",
+  "result": "PASS",
+  "notes": {
+    "type": "entropy_sensitivity_test",
+    "limitation": "single model, single prompt family",
+    "status": "temperature decay confirmed"
+  }
+}
