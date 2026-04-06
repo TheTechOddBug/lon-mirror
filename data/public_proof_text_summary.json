@@ -1,11 +1,38 @@
 {
+  "project": "OMNIA",
+  "version": "v1.0",
+  "test_id": "public_proof_text_v1",
   "domain": "natural_text_controlled",
-  "test": "public_proof_text",
-  "delta_struct": {
-    "structured": 0.1428,
-    "perturbed": 0.0631,
-    "random": 0.0042
+  "method": "RFS (Relational Fatigue Spectrometry)",
+  "description": "Sanity check on controlled natural language to evaluate structural stability under perturbation and shuffle baseline.",
+  "data": {
+    "source": "synthetic Wikipedia-like sentences",
+    "representation": "token sequence",
+    "transformations": {
+      "perturbation": "adjacent token swaps (noise_level ≈ 0.35)",
+      "shuffle": "full random permutation of tokens"
+    }
   },
-  "expected_invariant": "structured > perturbed > random",
-  "result": "PASS"
+  "metrics": {
+    "delta_struct": {
+      "structured": 0.1428,
+      "perturbed": 0.0631,
+      "random": 0.0042
+    }
+  },
+  "invariant": "structured > perturbed > random",
+  "result": "PASS",
+  "interpretation": {
+    "structured_signal": "strong structural coherence preserved under transformation",
+    "perturbed_signal": "reduced coherence due to relational degradation",
+    "random_signal": "near-zero structural signal after baseline removal"
+  },
+  "notes": {
+    "scope": "computational sanity check",
+    "limitations": "single controlled domain; not a universal validation",
+    "next_steps": [
+      "cross-domain validation (time series, code, LLM outputs)",
+      "robustness testing under varying perturbation intensities"
+    ]
+  }
 }
