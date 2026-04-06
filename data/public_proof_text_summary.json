@@ -1,0 +1,11 @@
+{
+  "domain": "natural_text_controlled",
+  "test": "public_proof_text",
+  "delta_struct": {
+    "structured": 0.1428,
+    "perturbed": 0.0631,
+    "random": 0.0042
+  },
+  "expected_invariant": "structured > perturbed > random",
+  "result": "PASS"
+}
