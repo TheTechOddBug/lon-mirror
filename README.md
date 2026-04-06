@@ -1,6 +1,5 @@
 # OMNIA v1.0 — Structural Measurement Engine
 
-
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19432557.svg)](https://doi.org/10.5281/zenodo.19432557)
 
 **Author:** Massimiliano Brighindi  
@@ -10,8 +9,11 @@
 
 ## What this does
 
-AI systems fail suddenly.  
-OMNIA detects structural collapse **before it becomes visible as an error**.
+Systems fail suddenly.  
+OMNIA detects structural instability **before it becomes visible as failure**.
+
+Not only in AI.  
+In any system where structure exists.
 
 It does not interpret meaning.  
 It does not evaluate correctness.  
@@ -37,6 +39,26 @@ perturbed    → Ω drop
 random       → Δ_struct ≈ 0
 
 If this separation appears, the system is working.
+
+
+---
+
+Where this applies
+
+OMNIA works on any structured system:
+
+code → hidden fragility detection
+
+finance → regime shifts / pre-collapse signals
+
+cybersecurity → unknown anomaly detection
+
+AI outputs → reasoning stability
+
+knowledge → invariance testing
+
+decision systems → robustness measurement
+
 
 
 ---
@@ -226,7 +248,7 @@ a semantic analyzer
 
 It is:
 
-a structural diagnostic layer
+a structural stability measurement layer across systems
 
 
 ---
