@@ -145,32 +145,25 @@ Each lens produces an independent signal.
 
 Core metrics
 
-Ω (Omega)
-Structural coherence under perturbation
+Ω (Omega) → structural coherence under perturbation
 
-Ω̂ (Omega-set)
-Residual invariance across transformations
+Ω̂ (Omega-set) → residual invariance across transformations
 
-SEI
-Remaining extractable structure
-→ SEI → 0 = saturation
+SEI → remaining extractable structure (→ 0 = saturation)
 
-IRI
-Irreversible structural loss
-→ IRI > 0 = non-recoverable
+IRI → irreversible structural loss (> 0 = non-recoverable)
 
-TΔ
-Divergence point
+TΔ → divergence point
 
-R
-Recovery capacity after perturbation
+R → recovery capacity
+
 
 
 ---
 
 Local probe (RFS)
 
-Relational Fatigue Spectrometry measures sequence degradation:
+Relational Fatigue Spectrometry:
 
 A(S) = {(t_i, t_{i+1})}
 D = |A(S) Δ A(S')|
@@ -209,8 +202,6 @@ Continuation is non-informative.
 ---
 
 Minimal validation
-
-Observed invariant:
 
 Δ_struct(structured) > Δ_struct(perturbed) > Δ_struct(random)
 
@@ -264,3 +255,4 @@ Citation
 
 Brighindi, M.
 https://github.com/Tuttotorna/lon-mirror
+
