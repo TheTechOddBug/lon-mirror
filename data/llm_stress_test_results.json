@@ -1,0 +1,17 @@
+{
+  "test_id": "llm_stress_test_v1",
+  "domain": "llm_like_outputs_manual",
+  "method": "semantic_decoupling_v10_0",
+  "results": {
+    "logic_strong": 0.1654,
+    "hallucination_fluent": 0.0821,
+    "degenerated_loop": 0.0114
+  },
+  "invariant": "logic_strong > hallucination_fluent > degenerated_loop",
+  "result": "PASS",
+  "notes": {
+    "type": "manual controlled set",
+    "limitation": "not real LLM outputs",
+    "status": "stress test preliminary"
+  }
+}
