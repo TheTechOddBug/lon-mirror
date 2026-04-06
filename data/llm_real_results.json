@@ -1,0 +1,21 @@
+{
+  "test_id": "llm_real_test_v1",
+  "domain": "llm_real_outputs_truthfulqa",
+  "dataset": "TruthfulQA",
+  "method": "semantic_decoupling_v10_0",
+  "sample_count": {
+    "correct": 100,
+    "incorrect": 100
+  },
+  "results": {
+    "correct": 0.1284,
+    "incorrect": 0.0912
+  },
+  "expected_invariant": "correct > incorrect",
+  "result": "PASS",
+  "notes": {
+    "type": "real_llm_outputs",
+    "limitation": "mean separation only; no full distribution reported here",
+    "status": "non-controlled output test"
+  }
+}
