@@ -1,6 +1,6 @@
 # OMNIA v1.0 — Structural Measurement Engine
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19435698.svg)](https://doi.org/10.5281/zenodo.19435698)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19436307.svg)](https://doi.org/10.5281/zenodo.19436307)
 
 **Author:** Massimiliano Brighindi  
 **Project:** MB-X.01  
