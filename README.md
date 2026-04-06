@@ -18,10 +18,12 @@ In any system where structure exists.
 It does not interpret meaning.  
 It does not evaluate correctness.  
 
-It measures **structural stability under controlled transformations**.
+It measures:
 
 ```text
 output = measurement only
+
+Structural stability under controlled transformations.
 
 
 ---
@@ -31,6 +33,9 @@ Run it (10 seconds)
 git clone https://github.com/Tuttotorna/lon-mirror
 cd lon-mirror
 python examples/omnia_validation_demo.py
+
+
+---
 
 Expected behavior
 
@@ -93,7 +98,7 @@ System	Behavior
 Guardrails	block output
 Eval tools	measure after failure
 Observability	track metrics
-OMNIA	detects collapse before it
+OMNIA	detect collapse before it
 
 
 
@@ -186,21 +191,6 @@ Keeps only structure.
 
 ---
 
-STOP condition (OMNIA-LIMIT)
-
-SEI → 0
-IRI > 0
-Ω̂ stable
-
-Result:
-
-no additional structure can be extracted
-
-Continuation is non-informative.
-
-
----
-
 Minimal validation
 
 Δ_struct(structured) > Δ_struct(perturbed) > Δ_struct(random)
@@ -210,18 +200,70 @@ If violated → system failure or bad data.
 
 ---
 
+Experimental evidence (current)
+
+Natural text (controlled)
+
+invariant verified
+
+see: docs/PUBLIC_PROOF.md
+
+
+
+---
+
+LLM stress test (manual, controlled)
+
+logic_strong         = 0.1654
+hallucination_fluent = 0.0821
+degenerated_loop     = 0.0114
+
+Invariant:
+
+logic > hallucination > loop
+
+Interpretation:
+
+fluency ≠ structure
+
+hallucination loses relational stability
+
+loops collapse structural diversity
+
+
+Status:
+
+pre-validation (manual dataset)
+
+See:
+
+docs/LLM_STRESS_TEST.md
+data/llm_stress_test_results.json
+
+
+---
+
+Limits
+
+controlled datasets
+
+small samples
+
+no real LLM production outputs yet
+
+
+No claim of generalization.
+
+
+---
+
 Repository
 
-omnia/ → engine
-
-examples/ → runnable demos
-
-tests/ → validation
-
-docs/ → formalization
-
-data/ → datasets
-
+omnia/     → engine
+examples/  → runnable demos
+tests/     → validation
+docs/      → formalization
+data/      → datasets
 
 
 ---
@@ -237,9 +279,9 @@ a predictor
 a semantic analyzer
 
 
-It is:
+OMNIA is:
 
-a structural stability measurement layer across systems
+a structural stability measurement layer
 
 
 ---
@@ -255,4 +297,3 @@ Citation
 
 Brighindi, M.
 https://github.com/Tuttotorna/lon-mirror
-
