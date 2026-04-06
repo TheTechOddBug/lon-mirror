@@ -243,16 +243,83 @@ data/llm_stress_test_results.json
 
 ---
 
+Real LLM test (TruthfulQA)
+
+Δ_struct(correct)   = 0.1284
+Δ_struct(incorrect) = 0.0912
+
+Invariant:
+
+correct > incorrect
+
+Status:
+
+PASS (non-controlled outputs)
+
+See:
+
+docs/LLM_REAL_TEST.md
+data/llm_real_results.json
+
+
+---
+
+Temperature decay test
+
+T=0.2 → 0.1482
+T=0.5 → 0.1215
+T=0.8 → 0.0984
+T=1.0 → 0.0812
+T=1.2 → 0.0543
+
+Invariant:
+
+Δ_struct decreases as temperature increases
+
+Status:
+
+PASS
+
+See:
+
+docs/TEMPERATURE_TEST.md
+data/temperature_results.json
+
+
+---
+
+Context length test
+
+short   → 0.1524
+medium  → 0.1310
+long    → 0.0942
+v_long  → 0.0618
+
+Invariant:
+
+Δ_struct decreases as context length increases
+
+Status:
+
+PASS
+
+See:
+
+docs/CONTEXT_LENGTH_TEST.md
+
+
+---
+
 Limits
 
-controlled datasets
+controlled + semi-controlled datasets
 
-small samples
+mean-based evaluation (no full distributions here)
 
-no real LLM production outputs yet
+single-model experiments (partial)
 
 
-No claim of generalization.
+No claim of universality.
 
 
 ---
