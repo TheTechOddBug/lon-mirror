@@ -2,6 +2,8 @@ import json
 from pathlib import Path
 from typing import Any, Dict, List
 
+import numpy as np
+
 
 MODEL_OUTPUTS_PATH = Path("examples/gsm_symbolic_v0_model_outputs.jsonl")
 OMNIA_SCORES_PATH = Path("examples/gsm_symbolic_v0_omnia_scores.jsonl")
@@ -45,19 +47,26 @@ def validate_variant_set(template_records: List[Dict[str, Any]]) -> None:
 
 
 def compute_omnia_score(record: Dict[str, Any], template_records: List[Dict[str, Any]]) -> float:
-    from omnia.engine import run_omnia_totale
+    from omnia.api import omnia_totale
 
     tokens = record["model_raw_output"].split()
     token_numbers = [len(t) for t in tokens]
 
-    result = run_omnia_totale(
+    n = len(tokens) if tokens else None
+    series = np.asarray(token_numbers, dtype=float) if token_numbers else None
+    series_dict = {"token_numbers": token_numbers} if token_numbers else None
+
+    result = omnia_totale(
+        n=n,
+        series=series,
+        series_dict=series_dict,
         extra={
             "tokens": tokens,
             "token_numbers": token_numbers,
-        }
+        },
     )
 
-    return float(result.omega_total)
+    return float(result["omega"])
 
 
 def assign_fragility_ranks(scored_records: List[Dict[str, Any]]) -> None:
