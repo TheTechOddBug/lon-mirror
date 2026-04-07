@@ -1,0 +1,57 @@
+{
+  "model": "Gemini 3 Flash (Free Tier)",
+  "temperature": 0,
+  "test": "logic_transitivity_stability",
+  "outputs": [
+    {
+      "prompt_id": 1,
+      "prompt": "If all bloops are razzies and all razzies are lazzies, are all bloops lazzies?",
+      "output": "Yes, all bloops are lazzies. This is an example of a hypothetical syllogism or the transitive property of inclusion: if A is a subset of B, and B is a subset of C, then A is a subset of C."
+    },
+    {
+      "prompt_id": 2,
+      "prompt": "All bloops are razzies. All razzies are lazzies. Are bloops lazzies?",
+      "output": "Yes, bloops are lazzies."
+    },
+    {
+      "prompt_id": 3,
+      "prompt": "Given: bloops ⊆ razzies, razzies ⊆ lazzies. Is bloops ⊆ lazzies?",
+      "output": "Yes. By the transitive property of subset inclusion, if $A \\subseteq B$ and $B \\subseteq C$, then $A \\subseteq C$."
+    },
+    {
+      "prompt_id": 4,
+      "prompt": "If A implies B and B implies C, does A imply C?",
+      "output": "Yes. This is a fundamental rule in logic known as **hypothetical syllogism** or the **transitivity of implication**. \n\nIn formal terms: $((A \\to B) \\land (B \\to C)) \\to (A \\to C)$."
+    },
+    {
+      "prompt_id": 5,
+      "prompt": "All A are B. All B are C. Are all A C?",
+      "output": "Yes, all A are C. This is a classic categorical syllogism (specifically, a \"Barbara\" syllogism)."
+    },
+    {
+      "prompt_id": 6,
+      "prompt": "Suppose every bloop is a razzy and every razzy is a lazzy. Are bloops lazzy?",
+      "output": "Yes, every bloop is a lazzy."
+    },
+    {
+      "prompt_id": 7,
+      "prompt": "Logical chain: A → B, B → C. Conclusion: A → C?",
+      "output": "Yes. This is the principle of **hypothetical syllogism** (or the transitive property of implication). If the premises $A \\to B$ and $B \\to C$ are true, then the conclusion $A \\to C$ is logically valid."
+    },
+    {
+      "prompt_id": 8,
+      "prompt": "If x ∈ A ⊆ B ⊆ C, is x ∈ C?",
+      "output": "Yes. By the definition of a subset, if $x \\in A$ and $A \\subseteq B$, then $x \\in B$. Since $B \\subseteq C$ and $x \\in B$, then $x \\in C$. Therefore, $x \\in C$."
+    },
+    {
+      "prompt_id": 9,
+      "prompt": "Transitivity: if A is contained in B and B in C, is A in C?",
+      "output": "Yes. In set theory, the subset relation is transitive: if $A \\subseteq B$ and $B \\subseteq C$, then $A \\subseteq C$."
+    },
+    {
+      "prompt_id": 10,
+      "prompt": "All objects of type A are type B, and all B are type C. Are A also C?",
+      "output": "Yes, objects of type A are also type C."
+    }
+  ]
+}
