@@ -45,37 +45,22 @@ def validate_variant_set(template_records: List[Dict[str, Any]]) -> None:
 
 
 def compute_omnia_score(record: Dict[str, Any], template_records: List[Dict[str, Any]]) -> float:
-    """
-    Adapter point to the real OMNIA method.
+    from omnia.engine import run_omnia_totale
 
-    Replace the body of this function with the actual call into the repo's OMNIA code.
-    This runner is intentionally complete except for this single integration point.
+    tokens = record["model_raw_output"].split()
+    token_numbers = [len(t) for t in tokens]
 
-    Required contract:
-    - input: one record + the 3-record template context
-    - output: one numeric stability score (higher = more stable)
-
-    Example target shape:
-        return some_omnia_function(
-            text=record["model_raw_output"],
-            context=[r["model_raw_output"] for r in template_records],
-        )
-    """
-    raise NotImplementedError(
-        "Connect this function to the real OMNIA scoring method already present in the repo."
+    result = run_omnia_totale(
+        extra={
+            "tokens": tokens,
+            "token_numbers": token_numbers,
+        }
     )
+
+    return float(result.omega_total)
 
 
 def assign_fragility_ranks(scored_records: List[Dict[str, Any]]) -> None:
-    """
-    Rank convention:
-    - rank 1 = least fragile = highest stability
-    - rank 2 = intermediate
-    - rank 3 = most fragile = lowest stability
-
-    If any exact tie exists, all records in the template get fragility_rank = None.
-    This matches the v0 protocol tie rule: the template becomes non-conforming.
-    """
     scores = [r["omnia_score"] for r in scored_records]
 
     if len(set(scores)) != len(scores):
