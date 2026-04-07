@@ -1,0 +1,15 @@
+{
+  "task": "human_bones_count_stability",
+  "prompts": [
+    "How many bones are in the human body?",
+    "Total number of bones in an adult human?",
+    "How many bones does a human have?",
+    "In the adult human skeleton, how many bones are there?",
+    "Give the number of bones in the human body.",
+    "Human body bone count?",
+    "How many bones are present in a human skeleton?",
+    "What is the standard number of bones in an adult?",
+    "Number of bones in human anatomy?",
+    "How many bones does the average adult human body contain?"
+  ]
+}
