@@ -1,0 +1,57 @@
+{
+  "model": "Gemini 3 Flash (Free Tier)",
+  "temperature": 0,
+  "test": "human_bones_count_stability",
+  "outputs": [
+    {
+      "prompt_id": 1,
+      "prompt": "How many bones are in the human body?",
+      "output": "The adult human body has 206 bones."
+    },
+    {
+      "prompt_id": 2,
+      "prompt": "Total number of bones in an adult human?",
+      "output": "An adult human typically has 206 bones."
+    },
+    {
+      "prompt_id": 3,
+      "prompt": "How many bones does a human have?",
+      "output": "An adult human has 206 bones, though infants are born with around 270."
+    },
+    {
+      "prompt_id": 4,
+      "prompt": "In the adult human skeleton, how many bones are there?",
+      "output": "There are 206 bones in the adult human skeleton."
+    },
+    {
+      "prompt_id": 5,
+      "prompt": "Give the number of bones in the human body.",
+      "output": "206"
+    },
+    {
+      "prompt_id": 6,
+      "prompt": "Human body bone count?",
+      "output": "206"
+    },
+    {
+      "prompt_id": 7,
+      "prompt": "How many bones are present in a human skeleton?",
+      "output": "The adult human skeleton is made up of 206 bones."
+    },
+    {
+      "prompt_id": 8,
+      "prompt": "What is the standard number of bones in an adult?",
+      "output": "The standard number of bones in an adult is 206."
+    },
+    {
+      "prompt_id": 9,
+      "prompt": "Number of bones in human anatomy?",
+      "output": "The human skeleton typically consists of 206 bones."
+    },
+    {
+      "prompt_id": 10,
+      "prompt": "How many bones does the average adult human body contain?",
+      "output": "The average adult human body contains 206 bones."
+    }
+  ]
+}
