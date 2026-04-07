@@ -1,0 +1,57 @@
+{
+  "model": "Gemini 3 Flash (Free Tier)",
+  "temperature": 0,
+  "test": "2_plus_2_stability",
+  "outputs": [
+    {
+      "prompt_id": 1,
+      "prompt": "2+2=?",
+      "output": "4"
+    },
+    {
+      "prompt_id": 2,
+      "prompt": "What is 2 plus 2?",
+      "output": "4"
+    },
+    {
+      "prompt_id": 3,
+      "prompt": "Calculate the sum of two and two.",
+      "output": "The sum of two and two is 4."
+    },
+    {
+      "prompt_id": 4,
+      "prompt": "If I add 2 and 2, what do I get?",
+      "output": "If you add 2 and 2, you get 4."
+    },
+    {
+      "prompt_id": 5,
+      "prompt": "In standard arithmetic, what is 2+2?",
+      "output": "In standard arithmetic, 2 + 2 = 4."
+    },
+    {
+      "prompt_id": 6,
+      "prompt": "Consider basic addition: 2 and 2 equals?",
+      "output": "2 and 2 equals 4."
+    },
+    {
+      "prompt_id": 7,
+      "prompt": "Give only the result of 2+2.",
+      "output": "4"
+    },
+    {
+      "prompt_id": 8,
+      "prompt": "Solve: 2 + 2.",
+      "output": "4"
+    },
+    {
+      "prompt_id": 9,
+      "prompt": "Under normal math rules, what is 2 plus 2?",
+      "output": "Under normal math rules, 2 plus 2 is 4."
+    },
+    {
+      "prompt_id": 10,
+      "prompt": "Two plus two equals?",
+      "output": "Two plus two equals 4."
+    }
+  ]
+}
