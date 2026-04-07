@@ -1,0 +1,15 @@
+{
+  "task": "2_plus_2_stability",
+  "prompts": [
+    "2+2=?",
+    "What is 2 plus 2?",
+    "Calculate the sum of two and two.",
+    "If I add 2 and 2, what do I get?",
+    "In standard arithmetic, what is 2+2?",
+    "Consider basic addition: 2 and 2 equals?",
+    "Give only the result of 2+2.",
+    "Solve: 2 + 2.",
+    "Under normal math rules, what is 2 plus 2?",
+    "Two plus two equals?"
+  ]
+}
