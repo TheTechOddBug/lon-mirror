@@ -28,6 +28,69 @@ Structural stability under controlled transformations.
 
 ---
 
+Empirical Behavior Snapshot
+
+Same meaning. Three levels.
+
+Simple
+
+2+2=?
+
+→ 4
+→ The answer is 4
+→ 4
+
+Unstable form
+
+
+---
+
+Factual
+
+How many bones in the human body?
+
+→ 206
+→ 206 bones in the human body
+→ 206 bones, infants have around 270
+
+Unstable behavior
+
+
+---
+
+Logical
+
+A → B → C ?
+
+→ Yes
+→ Yes
+→ Yes
+
+Stable logic
+
+
+---
+
+Observation
+
+LLMs are not uniformly reliable.
+They are conditionally stable.
+
+
+---
+
+Reproducibility
+
+examples/model_outputs_gemini_2plus2.json
+
+examples/model_outputs_gemini_bones.json
+
+examples/model_outputs_gemini_logic.json
+
+
+
+---
+
 Run it (10 seconds)
 
 git clone https://github.com/Tuttotorna/lon-mirror
@@ -53,17 +116,11 @@ Where this applies
 OMNIA works on any structured system:
 
 code → hidden fragility detection
-
 finance → regime shifts / pre-collapse signals
-
 cybersecurity → unknown anomaly detection
-
 AI outputs → reasoning stability
-
 knowledge → invariance testing
-
 decision systems → robustness measurement
-
 
 
 ---
@@ -71,22 +128,15 @@ decision systems → robustness measurement
 What you get
 
 early signal of structural instability
-
 model-independent diagnostics
-
 sequence-level robustness measurement
-
 
 Works on:
 
 text
-
 code
-
 numeric sequences
-
 any ordered representation
-
 
 
 ---
@@ -133,15 +183,10 @@ Structural lenses
 Independent transformation families:
 
 BASE   → multi-representation invariance
-
 TIME   → drift / instability over time
-
 CAUSA  → relational dependencies
-
 TOKEN  → sequence perturbation
-
 LCR    → logical coherence reduction
-
 
 Each lens produces an independent signal.
 
@@ -151,17 +196,11 @@ Each lens produces an independent signal.
 Core metrics
 
 Ω (Omega) → structural coherence under perturbation
-
 Ω̂ (Omega-set) → residual invariance across transformations
-
 SEI → remaining extractable structure (→ 0 = saturation)
-
 IRI → irreversible structural loss (> 0 = non-recoverable)
-
 TΔ → divergence point
-
 R → recovery capacity
-
 
 
 ---
@@ -209,7 +248,6 @@ invariant verified
 see: docs/PUBLIC_PROOF.md
 
 
-
 ---
 
 LLM stress test (manual, controlled)
@@ -225,11 +263,8 @@ logic > hallucination > loop
 Interpretation:
 
 fluency ≠ structure
-
 hallucination loses relational stability
-
 loops collapse structural diversity
-
 
 Status:
 
@@ -313,11 +348,8 @@ docs/CONTEXT_LENGTH_TEST.md
 Limits
 
 controlled + semi-controlled datasets
-
 mean-based evaluation (no full distributions here)
-
 single-model experiments (partial)
-
 
 No claim of universality.
 
@@ -340,11 +372,8 @@ Position
 OMNIA is not:
 
 a model
-
 a predictor
-
 a semantic analyzer
-
 
 OMNIA is:
 
