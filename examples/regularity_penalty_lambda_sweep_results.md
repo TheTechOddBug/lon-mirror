@@ -300,5 +300,3 @@ Current best reading:
 the correction works
 
 but it must still be treated as a tested refinement, not yet as a frozen law
-
-
