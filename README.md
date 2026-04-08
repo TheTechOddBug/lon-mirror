@@ -160,15 +160,15 @@ natural prime density: 35.8333%
 
 OMNIA cutoff behavior:
 
-top 5%  -> density 58.33%  | lift 1.6280x
+top 5%  -> density 58.33% | lift 1.6280x
 
-top 10% -> density 58.33%  | lift 1.6280x
+top 10% -> density 58.33% | lift 1.6280x
 
-top 20% -> density 50.00%  | lift 1.3953x
+top 20% -> density 50.00% | lift 1.3953x
 
-top 25% -> density 48.33%  | lift 1.3488x
+top 25% -> density 48.33% | lift 1.3488x
 
-top 50% -> density 42.50%  | lift 1.1860x
+top 50% -> density 42.50% | lift 1.1860x
 
 
 This supports a second narrow claim:
@@ -372,6 +372,61 @@ examples/sbc_shadow_mode_report_results.md
 
 ---
 
+Fragility Display — public-facing result
+
+OMNIA was also tested on a minimal public-facing reasoning display based on three near-equivalent math variants.
+
+The purpose was different from numeric ranking.
+
+The goal here was to show that:
+
+surface correctness can remain unchanged while structural stability collapses.
+
+Triplet used:
+
+A_base
+
+B_symbolic_pressure
+
+C_distractor_added
+
+
+All three variants were answered correctly by the model.
+
+OMNIA ranking:
+
+A_base -> 0.924150
+
+B_symbolic_pressure -> 0.881230
+
+C_distractor_added -> 0.741200
+
+
+Public interpretation:
+
+A is correct and structurally solid
+
+B is correct but already stressed
+
+C is still correct on the surface, but structurally fragile
+
+
+This supports a public and readable claim:
+
+OMNIA detects fragility before visible failure, even when correctness still looks intact.
+
+See:
+
+docs/OMNIA_FRAGILITY_DISPLAY_v1.md
+
+examples/fragility_display_triplets_v1_scores.jsonl
+
+examples/sbc_fragility_monitor_results.md
+
+
+
+---
+
 GSM-style mini validation
 
 OMNIA was also tested on a small GSM-style reasoning set with controlled variants:
@@ -409,15 +464,15 @@ Structural lenses
 
 Independent transformation families:
 
-BASE   -> multi-representation invariance
+BASE  -> multi-representation invariance
 
-TIME   -> drift / instability over time
+TIME  -> drift / instability over time
 
-CAUSA  -> relational dependencies
+CAUSA -> relational dependencies
 
-TOKEN  -> sequence perturbation
+TOKEN -> sequence perturbation
 
-LCR    -> logical coherence reduction
+LCR   -> logical coherence reduction
 
 
 Each lens produces an independent signal.
@@ -427,17 +482,17 @@ Each lens produces an independent signal.
 
 Core metrics
 
-Ω   (Omega)      -> structural coherence under perturbation
+Ω  (Omega)     -> structural coherence under perturbation
 
-Ω̂  (Omega-set)  -> residual invariance across transformations
+Ω̂ (Omega-set) -> residual invariance across transformations
 
-SEI              -> remaining extractable structure (-> 0 = saturation)
+SEI            -> remaining extractable structure (-> 0 = saturation)
 
-IRI              -> irreversible structural loss (> 0 = non-recoverable)
+IRI            -> irreversible structural loss (> 0 = non-recoverable)
 
-TΔ               -> divergence point
+TΔ             -> divergence point
 
-R                -> recovery capacity
+R              -> recovery capacity
 
 
 SBC-specific fields now available in engine-level integration:
@@ -508,6 +563,7 @@ Status:
 
 pre-validation (manual dataset)
 
+
 See:
 
 docs/LLM_STRESS_TEST.md
@@ -527,6 +583,7 @@ correct > incorrect
 Status:
 
 PASS (non-controlled outputs)
+
 
 See:
 
@@ -551,6 +608,7 @@ Status:
 
 PASS
 
+
 See:
 
 docs/TEMPERATURE_TEST.md
@@ -572,6 +630,7 @@ Invariant:
 Status:
 
 PASS
+
 
 See:
 
@@ -621,6 +680,8 @@ practical filtering signal for candidate reduction
 
 monitored structural bias correction for numeric ranking
 
+public-facing fragility display for reasoning outputs
+
 
 Works on:
 
@@ -651,6 +712,8 @@ OMNIA now also supports:
 explicit separation between raw and adjusted structural score
 
 monitored bias correction instead of blind score replacement
+
+a readable fragility display where correctness and stability diverge
 
 
 
@@ -731,4 +794,3 @@ Citation
 
 Brighindi, M.
 https://github.com/Tuttotorna/lon-mirror
-
