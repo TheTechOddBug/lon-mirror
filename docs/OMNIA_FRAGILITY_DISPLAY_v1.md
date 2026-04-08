@@ -15,11 +15,34 @@ This demo shows a simple but public result:
 
 ---
 
+## Why this matters
+
+Most evaluation systems ask only one question:
+
+- is the final answer correct?
+
+OMNIA asks a different question:
+
+- how stable is the reasoning path that produced the answer?
+
+That difference matters because a model can still be correct while already operating on a fragile structure.
+
+A fragile answer is not yet a visible failure.  
+It is a hidden failure waiting for a slightly harder variant.
+
+---
+
 ## The Display
 
-We use three near-equivalent variants of the same math-word-problem family.
+We use three near-equivalent variants from the same math-word-problem family.
 
-### A — Stable baseline
+The point is not to prove that the model cannot solve them.
+
+The point is to show that **surface correctness does not imply structural reliability**.
+
+---
+
+## A — Stable baseline
 
 **Problem**  
 Benny saw a 10-foot shark with 2 6-inch remoras attached to it. What percentage of the shark's body length is the combined length of the remoras?
@@ -45,7 +68,7 @@ Reasoning chain is short, direct, and structurally coherent.
 
 ---
 
-### B — Same family, symbolic pressure increased
+## B — Same family, symbolic pressure increased
 
 **Problem**  
 Rania saw a 210-foot whale with 7 72-inch remoras attached to it. What percentage of the whale's body length is the combined length of the remoras?
@@ -71,7 +94,7 @@ But the instance carries larger numbers and a heavier symbolic load.
 
 ---
 
-### C — Same family, distractor added
+## C — Same family, distractor added
 
 **Problem**  
 Sanjay saw a 60-foot dolphin with 16 12-inch remoras attached to it. But a quarter of the remoras go away. What percentage of the dolphin's body length is the combined length of the remaining remoras?
@@ -94,6 +117,16 @@ But the reasoning chain now includes an extra distractor operation.
 
 **Verdict**  
 `Structurally fragile`
+
+---
+
+## Fragility Matrix
+
+| Variant | Surface Correctness | OMNIA Structural Stability | Collapse Risk | Public Reading |
+|---|---|---|---|---|
+| **A — Base** | ✅ Correct | 🟦 **HIGH** | Low | The answer is correct and the reasoning path is structurally solid. |
+| **B — Symbolic Pressure** | ✅ Correct | 🟨 **MEDIUM** | Moderate | The answer is still correct, but the structure is already under symbolic stress. |
+| **C — Distractor Added** | ✅ Correct | 🟥 **LOW** | High | The answer is correct on the surface, but the reasoning structure is fragile and close to collapse. |
 
 ---
 
@@ -121,6 +154,24 @@ The point is to detect **how close a reasoning path is to collapse**, even when 
 
 ---
 
+## Reading Rule
+
+This matrix is not a truth table.
+
+It is a structural warning system.
+
+A normal evaluator asks:
+
+- Is the answer correct?
+
+OMNIA asks:
+
+- How stable is the reasoning path that produced it?
+
+That is the difference between surface success and structural reliability.
+
+---
+
 ## Public meaning
 
 This is the practical message:
@@ -140,3 +191,13 @@ This demo does not claim that OMNIA solves math.
 It claims something smaller and stronger:
 
 **OMNIA detects structural fragility across near-equivalent math problems, even when surface correctness is unchanged.**
+
+---
+
+## Final Public Message
+
+Three answers can all be correct.
+
+But they are not equally trustworthy.
+
+OMNIA is designed to show that hidden difference before the visible failure happens.
