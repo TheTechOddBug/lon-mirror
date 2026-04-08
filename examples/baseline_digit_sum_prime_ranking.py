@@ -56,10 +56,7 @@ def build_digit_sum_records(records: List[Dict[str, Any]]) -> List[Dict[str, Any
 
 
 def assign_rank_desc_with_tiebreak(records: List[Dict[str, Any]], score_key: str, rank_key: str) -> None:
-    ranked = sorted(
-        records,
-        key=lambda r: (-r[score_key], r["n"])
-    )
+    ranked = sorted(records, key=lambda r: (-r[score_key], r["n"]))
     for idx, record in enumerate(ranked, start=1):
         record[rank_key] = idx
 
@@ -95,6 +92,8 @@ def main() -> None:
     assign_rank_desc_with_tiebreak(records, score_key="digit_sum_score", rank_key="digit_sum_rank")
     summary = summarize(records)
 
+    ranked = sorted(records, key=lambda r: r["digit_sum_rank"])
+
     print("=== DIGIT SUM BASELINE ===")
     print(f"Total candidates: {summary['total']}")
     print(f"Total primes: {summary['total_primes']}")
@@ -104,9 +103,22 @@ def main() -> None:
     print(f"Top 20 primes: {summary['top20_primes']}")
     print(f"Mean prime rank: {summary['mean_prime_rank']:.6f}")
     print(f"Mean non-prime rank: {summary['mean_nonprime_rank']:.6f}")
-    print()
-    print("Top 15 by digit sum score:")
-    ranked = sorted(records, key=lambda r: r["digit_sum_rank"])
+
+    print(f"\nDEBUG: Actual top10 length: {len(ranked[:10])}")
+    print(f"DEBUG: Actual top20 length: {len(ranked[:20])}")
+
+    print("\nDEBUG top 15 raw tuples:")
+    for record in ranked[:15]:
+        print(
+            (
+                record["digit_sum_rank"],
+                record["n"],
+                record["digit_sum_score"],
+                record["is_prime"],
+            )
+        )
+
+    print("\nTop 15 by digit sum score:")
     for record in ranked[:15]:
         print(
             f"rank={record['digit_sum_rank']:>2} | "
