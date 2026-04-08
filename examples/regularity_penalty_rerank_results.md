@@ -1,4 +1,3 @@
-
 # Regularity Penalty Re-Rank — Results
 
 Status: first causal correction test  
