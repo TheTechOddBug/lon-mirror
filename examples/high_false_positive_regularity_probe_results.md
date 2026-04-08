@@ -187,13 +187,6 @@ It only isolates one real mechanism strongly enough to justify targeted re-ranki
 
 The current OMNIA numeric setup appears to reward:
 
-where the penalty is applied to numbers with unusually strong regularity signatures.
-Final Compression
-Current conclusion:
-OMNIA is not merely confusing composites with primes at random.
-At least some of its strongest numeric false positives are being pulled upward by an identifiable structural bias:
-excessive symbolic regularity across bases.
-This is the first causal defect isolated in the prime-ranking configuration.
 - symbolic compactness
 - repeated-character dominance
 - quasi-palindromic stability
@@ -206,3 +199,19 @@ This suggests a next-step correction of the form:
 ```text
 Ω_adjusted = Ω_raw - λ * regularity_penalty
 
+where the penalty is applied to numbers with unusually strong regularity signatures.
+
+
+---
+
+Final Compression
+
+Current conclusion:
+
+OMNIA is not merely confusing composites with primes at random.
+
+At least some of its strongest numeric false positives are being pulled upward by an identifiable structural bias:
+
+excessive symbolic regularity across bases.
+
+This is the first causal defect isolated in the prime-ranking configuration.
