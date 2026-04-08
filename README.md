@@ -3,34 +3,32 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19436307.svg)](https://doi.org/10.5281/zenodo.19436307)
 
 **Author:** Massimiliano Brighindi  
-**Project:** MB-X.01  
+**Project:** MB-X.01
 
 ---
 
 ## What this does
 
-Systems fail suddenly.  
-OMNIA detects structural instability **before it becomes visible as failure**.
+Systems often look stable until they fail.
 
-Not only in AI.  
-In any system where structure exists.
+OMNIA is a structural measurement layer designed to detect instability signals before they become obvious at the surface level.
 
 It does not interpret meaning.  
 It does not evaluate correctness.  
+It does not decide.
 
-It measures:
+It measures only:
 
 ```text
 output = measurement only
-
-Structural stability under controlled transformations.
+structural stability under controlled transformations
 
 
 ---
 
-Empirical Behavior Snapshot
+Empirical behavior snapshot
 
-Same meaning. Three levels.
+Same apparent meaning. Different structural behavior.
 
 Simple
 
@@ -40,10 +38,7 @@ Simple
 → The answer is 4
 → 4
 
-Unstable form
-
-
----
+Stable surface equivalence.
 
 Factual
 
@@ -53,10 +48,7 @@ How many bones in the human body?
 → 206 bones in the human body
 → 206 bones, infants have around 270
 
-Unstable behavior
-
-
----
+Surface fluency increases, but structural alignment can drift.
 
 Logical
 
@@ -66,10 +58,7 @@ A → B → C ?
 → Yes
 → Yes
 
-Stable logic
-
-
----
+Stable logical form.
 
 Observation
 
@@ -81,17 +70,16 @@ They are conditionally stable.
 
 Reproducibility
 
+Example files:
+
 examples/model_outputs_gemini_2plus2.json
-
 examples/model_outputs_gemini_bones.json
-
 examples/model_outputs_gemini_logic.json
-
 
 
 ---
 
-Run it (10 seconds)
+Run it
 
 git clone https://github.com/Tuttotorna/lon-mirror
 cd lon-mirror
@@ -106,21 +94,55 @@ structured   → high Ω
 perturbed    → Ω drop
 random       → Δ_struct ≈ 0
 
-If this separation appears, the system is working.
+If this separation appears, the system is working as intended.
+
+
+---
+
+GSM-style mini-set v0
+
+OMNIA was tested on a 10-template GSM-style mini-set with controlled base, num_perturbed, and clause_augmented variants.
+
+Result:
+
+clause_augmented was the least stable variant in 10 out of 10 templates
+
+base > num_perturbed >= clause_augmented was respected in 5 out of 10 templates
+
+only gsmsym_003 contained incorrect answers; all other templates were fully correct
+
+
+This supports a narrow but robust claim:
+
+OMNIA detects a consistent structural fragility signal when an extra clause is introduced into the reasoning chain.
+
+See:
+
+docs/gsm_symbolic_v0_summary.md
+docs/gsm_symbolic_v0_public_demo.md
+examples/gsm_symbolic_v0_omnia_scores.jsonl
 
 
 ---
 
 Where this applies
 
-OMNIA works on any structured system:
+OMNIA can be used on any structured system where ordered representation matters.
+
+Examples:
 
 code → hidden fragility detection
+
 finance → regime shifts / pre-collapse signals
-cybersecurity → unknown anomaly detection
-AI outputs → reasoning stability
-knowledge → invariance testing
-decision systems → robustness measurement
+
+cybersecurity → anomaly pattern detection
+
+AI outputs → reasoning stability measurement
+
+knowledge systems → invariance testing
+
+decision pipelines → robustness measurement
+
 
 
 ---
@@ -128,15 +150,22 @@ decision systems → robustness measurement
 What you get
 
 early signal of structural instability
+
 model-independent diagnostics
+
 sequence-level robustness measurement
+
 
 Works on:
 
 text
+
 code
+
 numeric sequences
+
 any ordered representation
+
 
 
 ---
@@ -148,7 +177,7 @@ System	Behavior
 Guardrails	block output
 Eval tools	measure after failure
 Observability	track metrics
-OMNIA	detect collapse before it
+OMNIA	measure structural fragility before visible collapse
 
 
 
@@ -158,8 +187,8 @@ Core principle
 
 Structural truth = invariance under transformation
 
-If a structure survives perturbations → it is real
-If it collapses → it was representation
+If a structure survives perturbation, it carries stable signal.
+If it collapses under mild transformation, it was representation-dependent.
 
 
 ---
@@ -195,12 +224,12 @@ Each lens produces an independent signal.
 
 Core metrics
 
-Ω (Omega) → structural coherence under perturbation
-Ω̂ (Omega-set) → residual invariance across transformations
-SEI → remaining extractable structure (→ 0 = saturation)
-IRI → irreversible structural loss (> 0 = non-recoverable)
-TΔ → divergence point
-R → recovery capacity
+Ω   (Omega)      → structural coherence under perturbation
+Ω̂  (Omega-set)  → residual invariance across transformations
+SEI              → remaining extractable structure (→ 0 = saturation)
+IRI              → irreversible structural loss (> 0 = non-recoverable)
+TΔ               → divergence point
+R                → recovery capacity
 
 
 ---
@@ -224,8 +253,7 @@ Structural isolation
 
 Δ_struct = Ω_raw − Ω_shuffle
 
-Removes statistical artifacts.
-Keeps only structure.
+This removes statistical artifacts and preserves only structure-dependent signal.
 
 
 ---
@@ -234,7 +262,7 @@ Minimal validation
 
 Δ_struct(structured) > Δ_struct(perturbed) > Δ_struct(random)
 
-If violated → system failure or bad data.
+If this ordering fails, either the system is misconfigured or the input does not contain meaningful structure.
 
 
 ---
@@ -243,12 +271,11 @@ Experimental evidence (current)
 
 Natural text (controlled)
 
-invariant verified
+Invariant verified.
 
-see: docs/PUBLIC_PROOF.md
+See:
 
-
----
+docs/PUBLIC_PROOF.md
 
 LLM stress test (manual, controlled)
 
@@ -262,9 +289,12 @@ logic > hallucination > loop
 
 Interpretation:
 
-fluency ≠ structure
+fluency is not structure
+
 hallucination loses relational stability
+
 loops collapse structural diversity
+
 
 Status:
 
@@ -274,9 +304,6 @@ See:
 
 docs/LLM_STRESS_TEST.md
 data/llm_stress_test_results.json
-
-
----
 
 Real LLM test (TruthfulQA)
 
@@ -295,9 +322,6 @@ See:
 
 docs/LLM_REAL_TEST.md
 data/llm_real_results.json
-
-
----
 
 Temperature decay test
 
@@ -319,9 +343,6 @@ See:
 
 docs/TEMPERATURE_TEST.md
 data/temperature_results.json
-
-
----
 
 Context length test
 
@@ -348,15 +369,20 @@ docs/CONTEXT_LENGTH_TEST.md
 Limits
 
 controlled + semi-controlled datasets
-mean-based evaluation (no full distributions here)
-single-model experiments (partial)
 
-No claim of universality.
+mean-based evaluation
+
+limited distributional analysis
+
+mostly single-model experiments
+
+no universality claim
+
 
 
 ---
 
-Repository
+Repository layout
 
 omnia/     → engine
 examples/  → runnable demos
@@ -372,12 +398,16 @@ Position
 OMNIA is not:
 
 a model
+
 a predictor
+
 a semantic analyzer
+
 
 OMNIA is:
 
 a structural stability measurement layer
+
 
 
 ---
