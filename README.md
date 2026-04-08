@@ -26,53 +26,26 @@ structural stability under controlled transformations
 
 ---
 
-Empirical behavior snapshot
+Core principle
 
-Same apparent meaning. Different structural behavior.
+Structural truth = invariance under transformation
 
-Simple
-
-2 + 2 = ?
-
-4
-
-The answer is 4
-
-4
+If a structure survives perturbation, it carries stable signal.
+If it collapses under mild transformation, it was representation-dependent.
 
 
-Stable surface equivalence.
+---
 
-Factual
+Architectural boundary
 
-How many bones are in the human body?
+measurement ≠ cognition ≠ decision
 
-206
+OMNIA does not decide.
+It measures.
 
-206 bones in the human body
+Canonical chain:
 
-206 bones, infants have around 270
-
-
-Surface fluency increases, but structural alignment can drift.
-
-Logical
-
-A -> B -> C ?
-
-Yes
-
-Yes
-
-Yes
-
-
-Stable logical form.
-
-Observation
-
-LLMs are not uniformly reliable.
-They are conditionally stable.
+Dual-Echo -> OMNIAMIND -> OMNIA -> OMNIA-LIMIT -> Decision Layer (external)
 
 
 ---
@@ -88,16 +61,13 @@ examples/model_outputs_gemini_bones.json
 examples/model_outputs_gemini_logic.json
 
 
-Run a quick demo:
+Quick demo:
 
 git clone https://github.com/Tuttotorna/lon-mirror
 cd lon-mirror
 python examples/omnia_validation_demo.py
 
-
----
-
-Expected behavior
+Expected behavior:
 
 structured   -> high Ω
 perturbed    -> Ω drop
@@ -108,7 +78,7 @@ If this separation appears, the system is working as intended.
 
 ---
 
-Prime candidate ranking — current external result
+Prime candidate ranking — validated result
 
 OMNIA was tested on real integer candidate sets, not only on text or LLM outputs.
 
@@ -173,7 +143,7 @@ examples/prime_candidate_runs_summary_final.md
 
 examples/prime_candidate_random_baseline_comparison.md
 
-examples/prime_candidate_baselines_comparison_final.md
+examples/prime_candidate_validation_block_final.md
 
 
 
@@ -201,8 +171,6 @@ top 25% -> density 48.33%  | lift 1.3488x
 top 50% -> density 42.50%  | lift 1.1860x
 
 
-This means OMNIA can be used not only as a ranking layer, but also as a practical filtering mechanism: smaller top-cut subsets contain a meaningfully higher density of primes than the raw candidate pool.
-
 This supports a second narrow claim:
 
 OMNIA enables non-trivial search-space reduction on tested prime candidate sets.
@@ -210,6 +178,195 @@ OMNIA enables non-trivial search-space reduction on tested prime candidate sets.
 See:
 
 examples/prime_candidate_cutoff_analysis_results.md
+
+
+
+---
+
+Structural Bias Correction (SBC) — current state
+
+During numeric validation, a recurring failure mode was isolated:
+
+some composite numbers were ranked too highly because they were too symbolically regular across bases.
+
+Examples:
+
+1007
+
+2047
+
+30031
+
+1000001
+
+
+This led to the design of a correction layer:
+
+Ω_adjusted = Ω_raw - λ * regularity_penalty_norm
+
+Current validated variant:
+
+Structural Bias Correction
+
+internal tag: SBC-Regularity v1
+
+
+The correction uses a regularity penalty based on:
+
+inverse mean entropy
+
+dominant-character ratio
+
+max run ratio
+
+palindrome closeness
+
+
+Current best balanced value from the lambda sweep:
+
+λ = 0.03
+
+
+Important:
+
+Ω_raw is preserved
+
+Ω_adjusted is exposed
+
+legacy default behavior is still preserved in engine
+
+
+See:
+
+docs/OMNIA_STRUCTURAL_BIAS_CORRECTION.md
+
+examples/high_false_positive_regularity_probe_results.md
+
+examples/regularity_penalty_rerank_results.md
+
+examples/regularity_penalty_lambda_sweep_results.md
+
+
+
+---
+
+Million-range validation — correction generalization
+
+SBC was then tested on the interval:
+
+1,000,000–1,002,000
+
+
+Results:
+
+total candidates: 800
+
+total primes: 145
+
+natural prime density: 18.125%
+
+
+Raw OMNIA:
+
+top 10 primes: 3
+
+top 20 primes: 7
+
+
+Adjusted OMNIA (λ = 0.03):
+
+top 10 primes: 8
+
+top 20 primes: 15
+
+
+Tracked critical case:
+
+1,000,001
+
+raw rank: 2
+
+adjusted rank: 112
+
+penalty norm: 1.0000
+
+
+This supports a stronger claim:
+
+The regularity correction generalizes successfully to a substantially harder regime with much lower prime density.
+
+See:
+
+examples/prime_candidates_1m_1m002_results.md
+
+
+
+---
+
+Shadow Mode — current release policy
+
+SBC is now integrated into the engine in shadow mode.
+
+This means:
+
+omega_total still preserves legacy behavior
+
+omega_raw is exposed explicitly
+
+omega_adjusted is computed when numeric context exists
+
+structural_bias_meta is exposed for inspection
+
+the corrected score is monitored before any default switch
+
+
+This is a deliberate release policy, not a partial integration.
+
+Reason:
+
+a validated correction should be observed under live-like conditions before replacing the public default score.
+
+See:
+
+examples/structural_bias_correction_smoke_test_results.md
+
+examples/engine_structural_bias_adapter_test_results.md
+
+
+
+---
+
+Shadow Mode monitoring
+
+The correction is not only measured by ranking gains, but also by explicit cost accounting.
+
+Current monitor tracks:
+
+Positive Gain: high-confidence composites declassified by SBC
+
+Negative Impact: real primes losing more than a configured rank threshold
+
+Sacrifice Ratio: declassified traps divided by materially harmed primes
+
+Spread Widening: increase in prime vs composite separation after correction
+
+
+Million-range monitoring result:
+
+Positive Gain count: 18
+
+Negative Impact count: 2
+
+Sacrifice Ratio: 9.000000
+
+Spread widening: 37.521258
+
+
+This means that, in the monitored batch, SBC removed nine dangerous composite traps for each materially harmed prime.
+
+See:
+
+examples/sbc_shadow_mode_report_results.md
 
 
 
@@ -244,96 +401,6 @@ examples/gsm_symbolic_v0_model_outputs.jsonl
 
 examples/gsm_symbolic_v0_omnia_scores.jsonl
 
-
-
----
-
-Where this applies
-
-OMNIA can be used on any structured system where ordered representation matters.
-
-Examples:
-
-code -> hidden fragility detection
-
-finance -> regime shifts / pre-collapse signals
-
-cybersecurity -> anomaly pattern detection
-
-AI outputs -> reasoning stability measurement
-
-knowledge systems -> invariance testing
-
-decision pipelines -> robustness measurement
-
-numeric sequences -> structural ranking and instability screening
-
-
-
----
-
-What you get
-
-early signal of structural instability
-
-model-independent diagnostics
-
-sequence-level robustness measurement
-
-ranking signal on structured candidates
-
-structural comparison across transformations
-
-practical filtering signal for candidate reduction
-
-
-Works on:
-
-text
-
-code
-
-numeric sequences
-
-any ordered representation
-
-
-
----
-
-Why this is different
-
-System	Behavior
-
-Guardrails	block output
-Eval tools	measure after failure
-Observability	track metrics
-OMNIA	measure structural fragility before visible collapse
-
-
-
----
-
-Core principle
-
-Structural truth = invariance under transformation
-
-If a structure survives perturbation, it carries stable signal.
-If it collapses under mild transformation, it was representation-dependent.
-
-
----
-
-Architecture
-
-Dual-Echo -> OMNIAMIND -> OMNIA -> OMNIA-LIMIT -> Decision Layer (external)
-
-Boundary condition:
-
-measurement ≠ cognition ≠ decision
-
-OMNIA does not decide.
-It measures.
 
 
 ---
@@ -373,20 +440,18 @@ TΔ               -> divergence point
 R                -> recovery capacity
 
 
+SBC-specific fields now available in engine-level integration:
 
----
+omega_raw
 
-Local probe (RFS)
+omega_adjusted
 
-Relational Fatigue Spectrometry:
+structural_bias_meta.bias_penalty_raw
 
-A(S) = {(t_i, t_{i+1})}
-D = |A(S) Δ A(S')|
-I = D / |A(S)|
-σ = std(I)
-V = 1 / (1 + α·σ)
+structural_bias_meta.bias_penalty_norm
 
-Ω = 0.7·V + 0.3·I
+structural_bias_meta.lambda_value
+
 
 
 ---
@@ -516,6 +581,81 @@ docs/CONTEXT_LENGTH_TEST.md
 
 ---
 
+Where this applies
+
+OMNIA can be used on any structured system where ordered representation matters.
+
+Examples:
+
+code -> hidden fragility detection
+
+finance -> regime shifts / pre-collapse signals
+
+cybersecurity -> anomaly pattern detection
+
+AI outputs -> reasoning stability measurement
+
+knowledge systems -> invariance testing
+
+decision pipelines -> robustness measurement
+
+numeric sequences -> structural ranking and instability screening
+
+
+
+---
+
+What you get
+
+early signal of structural instability
+
+model-independent diagnostics
+
+sequence-level robustness measurement
+
+ranking signal on structured candidates
+
+structural comparison across transformations
+
+practical filtering signal for candidate reduction
+
+monitored structural bias correction for numeric ranking
+
+
+Works on:
+
+text
+
+code
+
+numeric sequences
+
+any ordered representation
+
+
+
+---
+
+Why this is different
+
+System	Behavior
+
+Guardrails	block output
+Eval tools	measure after failure
+Observability	track metrics
+OMNIA	measure structural fragility before visible collapse
+
+
+OMNIA now also supports:
+
+explicit separation between raw and adjusted structural score
+
+monitored bias correction instead of blind score replacement
+
+
+
+---
+
 Limits
 
 controlled + semi-controlled datasets
@@ -532,7 +672,9 @@ ranking correlation is not equivalent to proof
 
 false positives remain part of the observed behavior
 
-current prime results are ranking/filtering results, not theorem-level results
+SBC is validated and integrated, but still shadow-monitored
+
+omega_adjusted is not yet the public default score
 
 
 
@@ -571,6 +713,8 @@ a ranking mechanism over structured representations
 a detector of fragility and invariance
 
 a filtering aid for candidate prioritization
+
+a shadow-monitored bias-correctable measurement engine
 
 
 
