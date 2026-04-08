@@ -58,7 +58,7 @@ Surface fluency increases, but structural alignment can drift.
 
 Logical
 
-A → B → C ?
+A -> B -> C ?
 
 Yes
 
@@ -173,6 +173,44 @@ examples/prime_candidate_runs_summary_final.md
 
 examples/prime_candidate_random_baseline_comparison.md
 
+examples/prime_candidate_baselines_comparison_final.md
+
+
+
+---
+
+Prime candidate cutoff analysis — practical filtering result
+
+The prime-ranking result was also evaluated as a search-space reduction tool.
+
+Using the merged 240-candidate set:
+
+natural prime density: 35.8333%
+
+
+OMNIA cutoff behavior:
+
+top 5%  -> density 58.33%  | lift 1.6280x
+
+top 10% -> density 58.33%  | lift 1.6280x
+
+top 20% -> density 50.00%  | lift 1.3953x
+
+top 25% -> density 48.33%  | lift 1.3488x
+
+top 50% -> density 42.50%  | lift 1.1860x
+
+
+This means OMNIA can be used not only as a ranking layer, but also as a practical filtering mechanism: smaller top-cut subsets contain a meaningfully higher density of primes than the raw candidate pool.
+
+This supports a second narrow claim:
+
+OMNIA enables non-trivial search-space reduction on tested prime candidate sets.
+
+See:
+
+examples/prime_candidate_cutoff_analysis_results.md
+
 
 
 ---
@@ -245,6 +283,8 @@ sequence-level robustness measurement
 ranking signal on structured candidates
 
 structural comparison across transformations
+
+practical filtering signal for candidate reduction
 
 
 Works on:
@@ -492,6 +532,8 @@ ranking correlation is not equivalent to proof
 
 false positives remain part of the observed behavior
 
+current prime results are ranking/filtering results, not theorem-level results
+
 
 
 ---
@@ -527,6 +569,8 @@ a structural stability measurement layer
 a ranking mechanism over structured representations
 
 a detector of fragility and invariance
+
+a filtering aid for candidate prioritization
 
 
 
