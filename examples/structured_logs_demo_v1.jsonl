@@ -1,0 +1,8 @@
+{"stream_id":"auth-srv","t":"2026-04-09T12:00:00","v":"{status:200, lat:45ms, msg:ok}","note":"Baseline"}
+{"stream_id":"db-node","t":"2026-04-09T12:00:01","v":"{conn:12, cpu:5%, state:idle}","note":"Baseline DB"}
+{"stream_id":"auth-srv","t":"2026-04-09T12:00:05","v":"{status:200, lat:48ms, msg:ok}","note":"Stable auth"}
+{"stream_id":"db-node","t":"2026-04-09T12:00:06","v":"{conn:14, cpu:7%, state:idle}","note":"Stable DB"}
+{"stream_id":"auth-srv","t":"2026-04-09T12:00:10","v":"{status:200, lat:120ms, msg:slow_resp}","note":"Drift strutturale/numerico"}
+{"stream_id":"auth-srv","t":"2026-04-09T12:00:15","v":"{status:500, error:timeout, trace_id:AX-99}","note":"SHOCK: Cambio schema log"}
+{"stream_id":"db-node","t":"2026-04-09T12:00:16","v":"{conn:13, cpu:6%, state:idle}","note":"DB rimane isolato e stabile"}
+{"stream_id":"auth-srv","t":"2026-04-09T12:00:20","v":"{status:500, error:timeout, trace_id:AX-101}","note":"Nuovo regime strutturale"}
