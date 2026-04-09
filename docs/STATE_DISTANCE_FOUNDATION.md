@@ -28,7 +28,7 @@ This quantity is called:
 
 Delta_Omega(S1, S2)
 
-and its unit is operationally named:
+and its operational unit is named:
 
 dO = delta-Omnia
 
@@ -70,7 +70,7 @@ sigma(S) =
 where:
 
 - omega: structural coherence
-- omega_variance: local stability
+- omega_variance: local stability or coherence dispersion
 - sei: saturation index
 - drift: accumulated deviation
 - drift_vector: directional deviation
@@ -87,6 +87,7 @@ Let G be the set of admissible transformations.
 
 Typical examples:
 
+- identity
 - base change
 - encoding change
 - permutation class
@@ -95,6 +96,28 @@ Typical examples:
 - representation-preserving rewrite
 
 Only transformations consistent with the measurement protocol are allowed.
+
+The default canonical transformation set for v0.1 is:
+
+G_v0.1 = {
+  identity,
+  permutation,
+  controlled_perturbation,
+  compression,
+  representation_preserving_rewrite
+}
+
+### 4.1 Transformation constraints
+
+A transformation g belongs to G only if it satisfies all of the following:
+
+1. reproducibility
+2. explicit declaration in the protocol
+3. bounded intensity or parameterization
+4. no hidden semantic re-interpretation layer
+5. compatibility with the OMNIA architectural boundary
+
+If these conditions are not met, the transformation is invalid for Delta_Omega evaluation.
 
 ---
 
@@ -118,6 +141,50 @@ subject to:
 - each component normalized to [0,1]
 
 D_vec is a normalized vector distance.
+
+---
+
+## 5bis. Canonical weights v0.1
+
+The default canonical weights for the primitive signature distance are:
+
+- w1 = 0.30 for omega
+- w2 = 0.15 for omega_variance
+- w3 = 0.20 for sei
+- w4 = 0.15 for drift
+- w5 = 0.10 for drift_vector
+- w6 = 0.10 for order_sensitivity
+
+These weights satisfy:
+
+- wi >= 0
+- sum_i wi = 1
+
+Rationale:
+
+- omega is primary because it captures global structural coherence
+- sei is secondary because it captures residual structural capacity
+- omega_variance and drift capture stability and deviation
+- drift_vector and order_sensitivity are informative but more domain-dependent
+
+These weights are not final.
+They are the canonical operational default for v0.1.
+
+---
+
+## 5ter. Normalization constraint
+
+Before computing d_sigma, all signature components must be normalized to [0,1].
+
+Default rule:
+
+x_norm = (x - x_min) / (x_max - x_min)
+
+with clipping to [0,1].
+
+If empirical bounds are unavailable, explicit protocol bounds must be declared.
+
+Distance values are invalid if normalization is omitted.
 
 ---
 
@@ -158,17 +225,21 @@ It is an internal normalized structural unit.
 ## 8. Derived diagnostics
 
 The scalar Delta_Omega is primary.
-The following are derived diagnostics:
+
+The following are derived diagnostics.
 
 ### 8.1 Alignment
+
 kappa(S1, S2) = 1 - Delta_Omega(S1, S2)
 
 High kappa means strong structural compatibility.
 
 ### 8.2 Drift
+
 epsilon(S1 -> S2) measures persistent directional deviation across ordered transitions.
 
 ### 8.3 Break / Drift decomposition
+
 For trajectories x(t), y(t), define:
 
 K(t) = (k_break(t), k_drift(t))
@@ -179,12 +250,15 @@ where:
 - k_drift detects slow persistent deviation
 
 ### 8.4 First divergence time
+
 T_Delta = inf { t : Delta_Omega(S_ref(t), S_obs(t)) > epsilon_crit }
 
 ### 8.5 Irreversibility
+
 IRI measures non-recoverable residual divergence after threshold crossing.
 
 ### 8.6 Resilience
+
 R measures capacity to return below threshold after perturbation.
 
 ---
