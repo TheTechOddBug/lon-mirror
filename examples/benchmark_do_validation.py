@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-OMNIA - Multi-Stream Temporal Series Engine v1
+OMNIA - Multi-Stream Structured Logs Engine v1
 
-Operates on multiple interleaved numeric streams and preserves strict
-trajectory-memory isolation per stream_id.
+Operates on multiple interleaved streams and preserves strict trajectory-memory
+isolation per stream_id.
 
-Reads:
-    examples/multi_stream_demo_v1.jsonl
+Current input:
+    examples/structured_logs_demo_v1.jsonl
 
 Computes:
     - pre-canonicalized structural signature sigma_v0.2.1(S)
@@ -17,7 +17,7 @@ Computes:
     - strict per-stream trajectory isolation
 
 Writes:
-    examples/do_mini_validation_results_v1.jsonl
+    examples/do_structured_logs_results_v1.jsonl
 """
 
 from __future__ import annotations
@@ -35,8 +35,8 @@ from typing import Dict, List, Tuple
 # ---------------------------------------------------------------------
 
 ROOT = Path(__file__).resolve().parent
-INPUT_PATH = ROOT / "multi_stream_demo_v1.jsonl"
-OUTPUT_PATH = ROOT / "do_mini_validation_results_v1.jsonl"
+INPUT_PATH = ROOT / "structured_logs_demo_v1.jsonl"
+OUTPUT_PATH = ROOT / "do_structured_logs_results_v1.jsonl"
 
 
 # ---------------------------------------------------------------------
@@ -393,41 +393,93 @@ def canonical_symbolic_string(s: str) -> str:
 
 def structural_signature_v2(state: str) -> StructuralSignatureV2:
     s = precanonicalize_state(normalize_text_basic(state))
-    nums = parse_numeric_sequence_if_possible(s)
 
-    if nums:
+    nums = parse_numeric_sequence_if_possible(s)
+    alpha = alpha_tokens(s)
+    alnum = alnum_char_tokens(s)
+
+    has_numeric = len(nums) > 0
+    has_symbolic = len(alpha) > 0 or len(alnum) > 0
+
+    if has_numeric and has_symbolic:
+        numeric_tokens = [scalar_repr(x) for x in nums]
+        symbolic_tokens = [tok.lower() for tok in alpha] if alpha else alnum
+
+        ent_num = shannon_entropy(numeric_tokens)
+        uniq_num = unique_ratio(numeric_tokens)
+        rep_num = 1.0 - uniq_num
+
+        ent_sym = shannon_entropy(symbolic_tokens)
+        uniq_sym = unique_ratio(symbolic_tokens)
+        rep_sym = 1.0 - uniq_sym
+
+        omega_num = clamp01(0.55 * rep_num + 0.45 * (1.0 - ent_num))
+        omega_sym = clamp01(0.55 * rep_sym + 0.45 * (1.0 - ent_sym))
+        omega = clamp01(0.5 * omega_num + 0.5 * omega_sym)
+
+        ov_num = clamp01(adjacent_change_ratio(numeric_tokens))
+        ov_sym = clamp01(adjacent_change_ratio(symbolic_tokens))
+        omega_variance = clamp01(0.5 * ov_num + 0.5 * ov_sym)
+
+        sei_num = clamp01(1.0 - abs(ent_num - 0.5) * 2.0)
+        sei_sym = clamp01(1.0 - abs(ent_sym - 0.5) * 2.0)
+        sei = clamp01(0.5 * sei_num + 0.5 * sei_sym)
+
+        drift_num = clamp01(adjacent_change_ratio(numeric_tokens))
+        drift_sym = clamp01(adjacent_change_ratio(symbolic_tokens))
+        drift = clamp01(0.5 * drift_num + 0.5 * drift_sym)
+
+        dv_num = numeric_drift_vector(nums)
+        dv_sym = symbolic_drift_vector(symbolic_tokens)
+        drift_vector = clamp01(0.5 * dv_num + 0.5 * dv_sym)
+
+        os_num = clamp01(sequence_order_sensitivity(numeric_tokens))
+        os_sym = clamp01(sequence_order_sensitivity(symbolic_tokens))
+        order_sensitivity = clamp01(0.5 * os_num + 0.5 * os_sym)
+
+        tf_num = transition_frequency(numeric_tokens)
+        tf_sym = transition_frequency(symbolic_tokens)
+        transition_freq = clamp01(0.5 * tf_num + 0.5 * tf_sym)
+
+        rli_num = run_length_irregularity(numeric_tokens)
+        rli_sym = run_length_irregularity(symbolic_tokens)
+        run_length_irr = clamp01(0.5 * rli_num + 0.5 * rli_sym)
+
+        ldp_num = local_delta_pattern_numeric(nums)
+        ldp_sym = local_delta_pattern_symbolic(symbolic_tokens)
+        local_delta = clamp01(0.5 * ldp_num + 0.5 * ldp_sym)
+
+    elif has_numeric:
         tokens = [scalar_repr(x) for x in nums]
         entropy = shannon_entropy(tokens)
         uniq = unique_ratio(tokens)
         rep = 1.0 - uniq
+
         omega = clamp01(0.55 * rep + 0.45 * (1.0 - entropy))
         omega_variance = clamp01(adjacent_change_ratio(tokens))
         sei = clamp01(1.0 - abs(entropy - 0.5) * 2.0)
         drift = clamp01(adjacent_change_ratio(tokens))
         drift_vector = numeric_drift_vector(nums)
         order_sensitivity = clamp01(sequence_order_sensitivity(tokens))
-        tf = transition_frequency(tokens)
-        rli = run_length_irregularity(tokens)
-        ldp = local_delta_pattern_numeric(nums)
-    else:
-        alpha = alpha_tokens(s)
-        if alpha:
-            tokens = [tok.lower() for tok in alpha]
-        else:
-            tokens = alnum_char_tokens(s)
+        transition_freq = transition_frequency(tokens)
+        run_length_irr = run_length_irregularity(tokens)
+        local_delta = local_delta_pattern_numeric(nums)
 
+    else:
+        tokens = [tok.lower() for tok in alpha] if alpha else alnum
         entropy = shannon_entropy(tokens)
         uniq = unique_ratio(tokens)
         rep = 1.0 - uniq
+
         omega = clamp01(0.55 * rep + 0.45 * (1.0 - entropy))
         omega_variance = clamp01(adjacent_change_ratio(tokens))
         sei = clamp01(1.0 - abs(entropy - 0.5) * 2.0)
         drift = clamp01(adjacent_change_ratio(tokens))
         drift_vector = symbolic_drift_vector(tokens)
         order_sensitivity = clamp01(sequence_order_sensitivity(tokens))
-        tf = transition_frequency(tokens)
-        rli = run_length_irregularity(tokens)
-        ldp = local_delta_pattern_symbolic(tokens)
+        transition_freq = transition_frequency(tokens)
+        run_length_irr = run_length_irregularity(tokens)
+        local_delta = local_delta_pattern_symbolic(tokens)
 
     return StructuralSignatureV2(
         omega=omega,
@@ -436,9 +488,9 @@ def structural_signature_v2(state: str) -> StructuralSignatureV2:
         drift=drift,
         drift_vector=drift_vector,
         order_sensitivity=order_sensitivity,
-        transition_frequency=tf,
-        run_length_irregularity=rli,
-        local_delta_pattern=ldp,
+        transition_frequency=transition_freq,
+        run_length_irregularity=run_length_irr,
+        local_delta_pattern=local_delta,
     )
 
 
@@ -603,7 +655,7 @@ class TrajectoryTracker:
             self.regime_status = "DRIFTING"
             self.trajectory_alert_flag = self.consecutive_mild_count > 5
 
-        else:  # structural_break
+        else:
             self.consecutive_break_count += 1
             self.consecutive_mild_count = 0
             self.regime_status = "SUSPENDED"
@@ -687,7 +739,6 @@ def main() -> None:
 
     manager = MultiTrajectoryManager()
     records: List[OutputRecord] = []
-
     per_stream_scores: Dict[str, List[float]] = {}
 
     for row in rows:
@@ -730,7 +781,7 @@ def main() -> None:
             metric_version=METRIC_VERSION,
             protocol_version=PROTOCOL_VERSION,
             signal_schema_version=SIGNAL_SCHEMA_VERSION,
-            family="multi_stream_time_series",
+            family="multi_stream_structured_logs",
             expected_zone="N/A",
             predicted_zone=assigned_zone,
             pass_fail="N/A",
@@ -754,7 +805,7 @@ def main() -> None:
 
     write_jsonl(OUTPUT_PATH, [asdict(r) for r in records])
 
-    print("OMNIA Multi-Stream Temporal Series Engine v1")
+    print("OMNIA Multi-Stream Structured Logs Engine v1")
     print(f"Input : {INPUT_PATH}")
     print(f"Output: {OUTPUT_PATH}")
     print()
