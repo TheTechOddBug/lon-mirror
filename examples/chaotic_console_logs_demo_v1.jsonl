@@ -1,0 +1,8 @@
+{"stream_id":"auth-srv","t":"2026-04-09T12:00:00","v":"[12:00:00] [thread=41] INFO auth ok user=77 latency=45ms trace=0xA1","note":"Baseline"}
+{"stream_id":"db-node","t":"2026-04-09T12:00:01","v":"[12:00:01] [pid=900] db idle conn=12 cpu=5% buf=0x11","note":"Baseline DB"}
+{"stream_id":"auth-srv","t":"2026-04-09T12:00:05","v":"[12:00:05] [thread=41] INFO auth ok user=77 latency=48ms trace=0xA2","note":"Stable auth"}
+{"stream_id":"db-node","t":"2026-04-09T12:00:06","v":"[12:00:06] [pid=900] db idle conn=14 cpu=7% buf=0x12","note":"Stable DB"}
+{"stream_id":"auth-srv","t":"2026-04-09T12:00:10","v":"[12:00:10] [thread=41] WARN auth slow user=77 latency=120ms retry=0 trace=0xA9","note":"Drift"}
+{"stream_id":"auth-srv","t":"2026-04-09T12:00:15","v":"[12:00:15] [thread=52] ERROR auth timeout session-build failed code=500 trace=0xFF9","note":"SHOCK"}
+{"stream_id":"db-node","t":"2026-04-09T12:00:16","v":"[12:00:16] [pid=900] db idle conn=13 cpu=6% buf=0x13","note":"DB stable"}
+{"stream_id":"auth-srv","t":"2026-04-09T12:00:20","v":"[12:00:20] [thread=52] ERROR auth timeout request aborted code=500 trace=0xFFA","note":"New regime"}
