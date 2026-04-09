@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-OMNIA - Transition Engine Benchmark v1
+OMNIA - Transition Engine with Trajectory Memory v1
 
 Reads:
     examples/do_mini_validation_pairs_v1.jsonl
@@ -9,18 +9,16 @@ Computes:
     - pre-canonicalized structural signature sigma_v0.2.1(S)
     - dO = Delta_Omega_v0.2.1(S1, S2)
     - kappa = 1 - dO
-    - operational zone assignment
-    - protocol label
-    - continuity status
-    - transition signal fields
+    - TransitionSignalV1
+    - TrajectoryStatusV1
 
 Writes:
     examples/do_mini_validation_results_v1.jsonl
 
 Important:
-This is a bootstrap transition engine for synthetic validation.
-It is not a universal validator.
-It is an operational signal emitter built on the current dO baseline.
+This is a bootstrap transition engine with stateful trajectory memory.
+It is not a proof of universality.
+It is an operational signal + memory emitter built on the current dO baseline.
 """
 
 from __future__ import annotations
@@ -101,6 +99,7 @@ TRANSFORM_COSTS: Dict[str, float] = {
 METRIC_VERSION = "v0.2.1"
 PROTOCOL_VERSION = "v1"
 SIGNAL_SCHEMA_VERSION = "v1"
+MEMORY_VERSION = "v1"
 
 
 # ---------------------------------------------------------------------
@@ -122,6 +121,7 @@ class StructuralSignatureV2:
 
 @dataclass
 class TransitionSignalV1:
+    signal_id: str
     reference_state_id: str
     observed_state_id: str
     dO: float
@@ -146,6 +146,28 @@ class TransitionSignalV1:
     state_1: str
     state_2: str
     notes: str
+
+
+@dataclass
+class TrajectoryStatusV1:
+    trajectory_id: str
+    transition_index: int
+    active_regime_id: str
+    last_stable_regime_id: str
+    regime_status: str
+    cumulative_drift: float
+    consecutive_mild_count: int
+    consecutive_break_count: int
+    trajectory_alert_flag: bool
+    last_signal_id: str
+    protocol_version: str
+    memory_version: str
+
+
+@dataclass
+class OutputRecord:
+    transition_signal: Dict
+    trajectory_status: Dict
 
 
 # ---------------------------------------------------------------------
@@ -173,10 +195,6 @@ def safe_div(n: float, d: float) -> float:
 
 def normalize_text_basic(s: str) -> str:
     return s.strip()
-
-
-def tokenize_chars(s: str) -> List[str]:
-    return [c for c in s if not c.isspace()]
 
 
 def alpha_tokens(s: str) -> List[str]:
@@ -280,9 +298,7 @@ def transition_frequency(tokens: List[str]) -> float:
 
 def run_length_irregularity(tokens: List[str]) -> float:
     runs = run_lengths(tokens)
-    if not runs:
-        return 0.0
-    if len(runs) == 1:
+    if not runs or len(runs) == 1:
         return 0.0
     v = variance([float(r) for r in runs])
     n = max(sum(runs), 1)
@@ -371,7 +387,7 @@ def canonical_symbolic_string(s: str) -> str:
 
 
 # ---------------------------------------------------------------------
-# Signature extraction v0.2.1
+# Signature extraction
 # ---------------------------------------------------------------------
 
 def structural_signature_v2(state: str) -> StructuralSignatureV2:
@@ -426,7 +442,7 @@ def structural_signature_v2(state: str) -> StructuralSignatureV2:
 
 
 # ---------------------------------------------------------------------
-# Admissible transforms G_v0.2
+# Admissible transforms
 # ---------------------------------------------------------------------
 
 def transform_identity(s: str) -> str:
@@ -499,33 +515,28 @@ def d_sigma_v2(sig1: StructuralSignatureV2, sig2: StructuralSignatureV2) -> floa
 def delta_omega_v2(
     state_1: str,
     state_2: str,
-) -> Tuple[float, float, str, StructuralSignatureV2, StructuralSignatureV2]:
+) -> Tuple[float, float, str]:
     sig2 = structural_signature_v2(state_2)
 
     best_total = float("inf")
     best_sig_distance = float("inf")
     best_transform_name = "identity"
-    best_sig1 = structural_signature_v2(state_1)
 
     for name, fn in TRANSFORMS.items():
         transformed = fn(state_1)
         sig1_candidate = structural_signature_v2(transformed)
         sig_dist = d_sigma_v2(sig1_candidate, sig2)
-        total_dist = sig_dist + LAMBDA_TRANSFORM * TRANSFORM_COSTS[name]
-        total_dist = clamp01(total_dist)
+        total_dist = clamp01(sig_dist + LAMBDA_TRANSFORM * TRANSFORM_COSTS[name])
 
         if total_dist < best_total:
             best_total = total_dist
             best_sig_distance = sig_dist
             best_transform_name = name
-            best_sig1 = sig1_candidate
 
     return (
         clamp01(best_total),
         clamp01(best_sig_distance),
         best_transform_name,
-        best_sig1,
-        sig2,
     )
 
 
@@ -543,25 +554,85 @@ def assign_zone(delta: float) -> str:
 
 def protocol_fields_for_zone(zone: str) -> Tuple[str, str, bool, bool]:
     if zone == "equivalence":
-        return (
-            "EQUIVALENT_CONTINUITY",
-            "continuous",
-            False,
-            False,
-        )
+        return ("EQUIVALENT_CONTINUITY", "continuous", False, False)
     if zone == "mild_variation":
-        return (
-            "TRACKED_DRIFT",
-            "continuous_with_drift",
-            True,
-            False,
+        return ("TRACKED_DRIFT", "continuous_with_drift", True, False)
+    return ("REGIME_SHIFT_CANDIDATE", "continuity_suspended", False, True)
+
+
+# ---------------------------------------------------------------------
+# Trajectory memory
+# ---------------------------------------------------------------------
+
+class TrajectoryTracker:
+    def __init__(self, trajectory_id: str = "T_001", initial_regime_id: str = "REG_ALPHA") -> None:
+        self.trajectory_id = trajectory_id
+        self.active_regime_id = initial_regime_id
+        self.last_stable_regime_id = initial_regime_id
+        self.regime_status = "STABLE"
+        self.transition_index = 0
+        self.previous_signal_id = ""
+        self.cumulative_drift = 0.0
+        self.consecutive_mild_count = 0
+        self.consecutive_break_count = 0
+        self.trajectory_alert_flag = False
+        self._candidate_regime_counter = 0
+
+    def _new_regime_id(self) -> str:
+        self._candidate_regime_counter += 1
+        return f"REG_CAND_{self._candidate_regime_counter:03d}"
+
+    def update(self, signal: TransitionSignalV1) -> TrajectoryStatusV1:
+        self.transition_index += 1
+        self.previous_signal_id = signal.signal_id
+
+        zone = signal.assigned_zone
+
+        if zone == "equivalence":
+            if self.regime_status == "SUSPENDED":
+                self.active_regime_id = self.last_stable_regime_id
+                self.regime_status = "STABLE"
+                self.cumulative_drift = 0.0
+            elif self.regime_status == "MIGRATING":
+                self.active_regime_id = self._new_regime_id()
+                self.last_stable_regime_id = self.active_regime_id
+                self.regime_status = "STABLE"
+                self.cumulative_drift = 0.0
+
+            self.consecutive_mild_count = 0
+            self.consecutive_break_count = 0
+            self.trajectory_alert_flag = False
+
+        elif zone == "mild_variation":
+            self.cumulative_drift += signal.dO
+            self.consecutive_mild_count += 1
+            self.consecutive_break_count = 0
+            self.regime_status = "DRIFTING"
+            self.trajectory_alert_flag = self.consecutive_mild_count > 5
+
+        elif zone == "structural_break":
+            self.consecutive_break_count += 1
+            self.consecutive_mild_count = 0
+            self.regime_status = "SUSPENDED"
+            self.trajectory_alert_flag = True
+
+            if self.consecutive_break_count >= 3:
+                self.regime_status = "MIGRATING"
+
+        return TrajectoryStatusV1(
+            trajectory_id=self.trajectory_id,
+            transition_index=self.transition_index,
+            active_regime_id=self.active_regime_id,
+            last_stable_regime_id=self.last_stable_regime_id,
+            regime_status=self.regime_status,
+            cumulative_drift=round(self.cumulative_drift, 6),
+            consecutive_mild_count=self.consecutive_mild_count,
+            consecutive_break_count=self.consecutive_break_count,
+            trajectory_alert_flag=self.trajectory_alert_flag,
+            last_signal_id=self.previous_signal_id,
+            protocol_version=PROTOCOL_VERSION,
+            memory_version=MEMORY_VERSION,
         )
-    return (
-        "REGIME_SHIFT_CANDIDATE",
-        "continuity_suspended",
-        False,
-        True,
-    )
 
 
 # ---------------------------------------------------------------------
@@ -575,10 +646,7 @@ def load_jsonl(path: Path) -> List[dict]:
             line = line.strip()
             if not line:
                 continue
-            try:
-                rows.append(json.loads(line))
-            except json.JSONDecodeError as exc:
-                raise ValueError(f"Invalid JSON on line {line_no}: {exc}") from exc
+            rows.append(json.loads(line))
     return rows
 
 
@@ -597,7 +665,8 @@ def main() -> None:
         raise FileNotFoundError(f"Input file not found: {INPUT_PATH}")
 
     rows = load_jsonl(INPUT_PATH)
-    results: List[TransitionSignalV1] = []
+    records: List[OutputRecord] = []
+    tracker = TrajectoryTracker()
 
     family_to_scores: Dict[str, List[float]] = {
         "equivalent": [],
@@ -605,7 +674,7 @@ def main() -> None:
         "structural_break": [],
     }
 
-    for idx, row in enumerate(rows, start=1):
+    for row in rows:
         pair_id = row["pair_id"]
         family = row["family"]
         state_1 = row["state_1"]
@@ -613,16 +682,15 @@ def main() -> None:
         expected_zone = row["expected_zone"]
         notes = row.get("notes", "")
 
-        delta, sig_distance, best_transform, _sig1_best, _sig2 = delta_omega_v2(state_1, state_2)
+        delta, sig_distance, best_transform = delta_omega_v2(state_1, state_2)
         kappa = clamp01(1.0 - delta)
         assigned_zone = assign_zone(delta)
         protocol_label, continuity_status, drift_tracking_flag, regime_alert_flag = protocol_fields_for_zone(assigned_zone)
         predicted_zone = assigned_zone
         pass_fail = "PASS" if predicted_zone == expected_zone else "FAIL"
 
-        family_to_scores.setdefault(family, []).append(delta)
-
         signal = TransitionSignalV1(
+            signal_id=f"SIG_{pair_id}",
             reference_state_id=f"{pair_id}_ref",
             observed_state_id=f"{pair_id}_obs",
             dO=round(delta, 6),
@@ -648,19 +716,29 @@ def main() -> None:
             state_2=state_2,
             notes=notes,
         )
-        results.append(signal)
 
-    write_jsonl(OUTPUT_PATH, [asdict(r) for r in results])
+        trajectory_status = tracker.update(signal)
 
-    print("OMNIA Transition Engine v1")
+        records.append(
+            OutputRecord(
+                transition_signal=asdict(signal),
+                trajectory_status=asdict(trajectory_status),
+            )
+        )
+
+        family_to_scores.setdefault(family, []).append(delta)
+
+    write_jsonl(OUTPUT_PATH, [asdict(r) for r in records])
+
+    print("OMNIA Transition Engine with Trajectory Memory v1")
     print(f"Input : {INPUT_PATH}")
     print(f"Output: {OUTPUT_PATH}")
     print()
 
-    total_pass = sum(1 for r in results if r.pass_fail == "PASS")
-    print(f"Pairs tested : {len(results)}")
+    total_pass = sum(1 for r in records if r.transition_signal["pass_fail"] == "PASS")
+    print(f"Pairs tested : {len(records)}")
     print(f"Pass count   : {total_pass}")
-    print(f"Fail count   : {len(results) - total_pass}")
+    print(f"Fail count   : {len(records) - total_pass}")
     print()
 
     for fam in ("equivalent", "mild_variation", "structural_break"):
@@ -672,14 +750,14 @@ def main() -> None:
             )
 
     print()
-    print("Detailed transition signals:")
-    for r in results:
+    print("Detailed records:")
+    for r in records:
+        ts = r.transition_signal
+        mem = r.trajectory_status
         print(
-            f"{r.reference_state_id}->{r.observed_state_id} "
-            f"| dO={r.dO:.6f} | zone={r.assigned_zone} "
-            f"| label={r.protocol_label} | continuity={r.continuity_status} "
-            f"| drift={r.drift_tracking_flag} | alert={r.regime_alert_flag} "
-            f"| {r.pass_fail}"
+            f"{ts['signal_id']} | dO={ts['dO']:.6f} | zone={ts['assigned_zone']} "
+            f"| status={mem['regime_status']} | drift_sum={mem['cumulative_drift']:.6f} "
+            f"| mild_n={mem['consecutive_mild_count']} | break_n={mem['consecutive_break_count']}"
         )
 
 
