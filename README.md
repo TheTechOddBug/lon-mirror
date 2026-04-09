@@ -1,3 +1,4 @@
+
 # OMNIA v1.0 — Structural Measurement Engine
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19471833.svg)](https://doi.org/10.5281/zenodo.19471833)
@@ -7,15 +8,16 @@
 
 ---
 
-## What this does
+## What OMNIA is
 
 Systems often look stable until they fail.
 
-OMNIA is a structural measurement layer designed to detect instability signals before they become obvious at the surface level.
+OMNIA is a **structural measurement layer** designed to detect instability, fragility, and regime change **before they become obvious at the surface level**.
 
-It does not interpret meaning.  
-It does not evaluate correctness.  
-It does not decide.
+It does **not** interpret meaning.  
+It does **not** evaluate truth semantically.  
+It does **not** decide policy.  
+It does **not** act as a model.
 
 It measures only:
 
@@ -38,10 +40,10 @@ If it collapses under mild transformation, it was representation-dependent.
 
 Architectural boundary
 
-measurement ≠ cognition ≠ decision
+measurement != cognition != memory != decision
 
 OMNIA does not decide.
-It measures.
+OMNIA measures, classifies, and maintains structural state within a bounded operational policy.
 
 Canonical chain:
 
@@ -50,9 +52,67 @@ Dual-Echo -> OMNIAMIND -> OMNIA -> OMNIA-LIMIT -> Decision Layer (external)
 
 ---
 
+Current validated operational stack
+
+OMNIA is now validated, within the tested perimeter, across four layers:
+
+1. Metric
+Detects structural deviation through the signature sigma and dO.
+
+
+2. Protocol
+Classifies transitions as:
+
+equivalence
+
+mild_variation
+
+structural_break
+
+
+
+3. Memory
+Consolidates a new regime when post-break states become internally coherent.
+
+
+4. Chaos refusal
+Refuses to normalize persistent incoherence as a false stable regime.
+
+
+
+This means OMNIA now supports:
+
+structural measurement
+
+transition classification
+
+regime consolidation
+
+refusal of false stabilization
+
+
+within the currently validated datasets.
+
+
+---
+
 Reproducibility
 
-Example files:
+Clone and run:
+
+git clone https://github.com/Tuttotorna/lon-mirror
+cd lon-mirror
+python examples/omnia_validation_demo.py
+
+Expected behavior:
+
+structured   -> high Omega
+perturbed    -> Omega drop
+random       -> Delta_struct approx 0
+
+If this separation appears, the system is working as intended.
+
+Example reference files:
 
 examples/model_outputs_gemini_2plus2.json
 
@@ -61,26 +121,398 @@ examples/model_outputs_gemini_bones.json
 examples/model_outputs_gemini_logic.json
 
 
-Quick demo:
 
-git clone https://github.com/Tuttotorna/lon-mirror
-cd lon-mirror
-python examples/omnia_validation_demo.py
+---
 
-Expected behavior:
+Validation perimeter reached so far
 
-structured   -> high Ω
-perturbed    -> Ω drop
-random       -> Δ_struct ≈ 0
+OMNIA has been validated, within controlled or semi-controlled settings, across:
 
-If this separation appears, the system is working as intended.
+synthetic pair discrimination
+
+temporal numeric streams
+
+multi-stream numeric monitoring
+
+structured logs
+
+controlled free-text operational logs
+
+chaotic console-like logs with volatile token normalization
+
+post-break recovery
+
+post-break chaos refusal
+
+
+This is a real operational perimeter, not a universality claim.
+
+
+---
+
+Structural lenses
+
+Independent transformation families currently used in the project:
+
+BASE  -> multi-representation invariance
+
+TIME  -> drift / instability over time
+
+CAUSA -> relational dependencies
+
+TOKEN -> sequence perturbation
+
+LCR   -> logical coherence reduction
+
+
+Each lens emits an independent structural signal.
+
+
+---
+
+Core metrics
+
+Omega         -> structural coherence under perturbation
+
+Omega-set     -> residual invariance across transformations
+
+SEI           -> remaining extractable structure
+
+IRI           -> irreversible structural loss
+
+TDelta        -> divergence point
+
+R             -> recovery capacity
+
+dO            -> structural distance between consecutive states
+
+
+SBC-specific engine fields:
+
+omega_raw
+
+omega_adjusted
+
+structural_bias_meta.bias_penalty_raw
+
+structural_bias_meta.bias_penalty_norm
+
+structural_bias_meta.lambda_value
+
+
+
+---
+
+Structural isolation
+
+Delta_struct = Omega_raw - Omega_shuffle
+
+This removes statistical artifacts and preserves only structure-dependent signal.
+
+Minimal validation rule:
+
+Delta_struct(structured) > Delta_struct(perturbed) > Delta_struct(random)
+
+If this ordering fails, either:
+
+the system is misconfigured, or
+
+the input contains no meaningful structure.
+
+
+
+---
+
+Operational transition logic
+
+At runtime, OMNIA classifies transitions into three zones:
+
+equivalence
+variation is representational only
+
+mild_variation
+drift exists, but continuity remains structurally compatible
+
+structural_break
+continuity is no longer structurally justified
+
+
+This transition layer is already integrated with trajectory memory.
+
+
+---
+
+Memory policy and regime handling
+
+The memory layer now supports:
+
+STABLE
+
+DRIFTING
+
+CANDIDATE
+
+CHAOTIC
+
+
+What this means
+
+After rupture, OMNIA no longer remains trapped in permanent alarm mode.
+
+It can now:
+
+open a post-break candidate window
+
+evaluate internal coherence of post-break states
+
+confirm a new stable regime if coherence is high enough
+
+refuse the commit if post-break states remain structurally incoherent
+
+
+This is the key difference between:
+
+adaptation
+when a new regime is coherent
+
+
+and
+
+auto-deception
+when chaos is incorrectly promoted to normality
+
+
+
+---
+
+Validation highlights
+
+1. Synthetic / controlled pair validation
+
+Initial validation separated:
+
+equivalent pairs
+
+mild variations
+
+structural breaks
+
+
+This established the first operational dO baseline.
+
+Relevant files:
+
+docs/STATE_DISTANCE_FOUNDATION.md
+
+docs/DO_MINI_VALIDATION_RESULTS_v0.md
+
+docs/DO_MINI_VALIDATION_RESULTS_v2.md
+
+examples/do_mini_validation_pairs_v0.jsonl
+
+examples/do_mini_validation_pairs_v1.jsonl
+
+
+
+---
+
+2. Real numeric stream validation
+
+OMNIA was validated on a simple ordered numeric series containing:
+
+stability
+
+drift
+
+shock
+
+stabilization at a new level
+
+
+This proved that OMNIA can operate as a temporal monitoring engine, not only as a pairwise comparator.
+
+Relevant files:
+
+examples/real_series_demo_v1.jsonl
+
+docs/REAL_SERIES_DEMO_RESULTS_V1.md
+
+
+
+---
+
+3. Multi-stream validation
+
+OMNIA then validated strict memory isolation across interleaved streams.
+
+This proved that:
+
+drift accumulation remains stream-local
+
+break counters remain stream-local
+
+alerts remain stream-local
+
+no cross-stream contamination occurs
+
+
+Relevant files:
+
+docs/MULTI_TRAJECTORY_V1.md
+
+examples/multi_stream_demo_v1.jsonl
+
+docs/MULTI_STREAM_DEMO_RESULTS_V1.md
+
+
+
+---
+
+4. Structured logs validation
+
+OMNIA was validated on structured operational logs where messages still preserved explicit field-like organization.
+
+This demonstrated:
+
+drift detection under mixed numeric/symbolic change
+
+break detection under schema change
+
+preserved stream isolation
+
+
+Relevant files:
+
+examples/structured_logs_demo_v1.jsonl
+
+
+
+---
+
+5. Free-text operational validation
+
+OMNIA was then validated on controlled free-text logs.
+
+This demonstrated that the engine can:
+
+tolerate limited linguistic noise
+
+detect drift embedded in prose
+
+detect rupture without rigid schema
+
+remain stable under minor wording changes
+
+
+Relevant files:
+
+examples/free_text_logs_demo_v1.jsonl
+
+examples/do_free_text_results_v1.jsonl
+
+docs/FREE_TEXT_VALIDATION_V1.md
+
+
+
+---
+
+6. Chaotic console validation
+
+OMNIA was then stressed on console-like logs containing:
+
+timestamps
+
+thread ids
+
+pid values
+
+hex tokens
+
+volatile counters
+
+
+A stronger precanonicalization layer normalized these volatile tokens so that OMNIA measured the message topology rather than incidental identifiers.
+
+This demonstrated:
+
+strong suppression of superficial noise
+
+preserved break sensitivity
+
+preserved stability on structurally unchanged noisy streams
+
+
+Relevant files:
+
+examples/chaotic_console_logs_demo_v1.jsonl
+
+examples/do_chaotic_console_results_v1.jsonl
+
+docs/CHAOTIC_CONSOLE_VALIDATION_V1.md
+
+
+
+---
+
+7. Post-break recovery validation
+
+OMNIA was then validated on the first successful post-break regime crystallization scenario.
+
+This demonstrated that after rupture, the system can:
+
+buffer post-break states
+
+evaluate their internal coherence
+
+commit a new stable regime when coherence is sufficiently high
+
+reset legacy drift correctly
+
+
+Relevant files:
+
+examples/post_break_recovery_test.jsonl
+
+examples/do_post_break_recovery_results_v1.jsonl
+
+docs/MEMORY_POLICY_POST_BREAK_RESULTS_V1.md
+
+
+
+---
+
+8. Post-break chaos refusal validation
+
+OMNIA was then validated against the opposite condition:
+
+post-break states remain mutually incoherent.
+
+This demonstrated that OMNIA can:
+
+refuse a false commit
+
+remain in CHAOTIC
+
+preserve the previous stable regime identity
+
+avoid normalizing persistent disorder
+
+
+This is the current safeguard against false stabilization.
+
+Relevant files:
+
+examples/post_break_chaos_test.jsonl
+
+examples/do_post_break_chaos_results_v1.jsonl
+
 
 
 ---
 
 Prime candidate ranking — validated result
 
-OMNIA was tested on real integer candidate sets, not only on text or LLM outputs.
+OMNIA was also tested on real integer candidate sets, not only on text or LLM outputs.
 
 Three disjoint intervals were scored using multi-base structural representations:
 
@@ -202,7 +634,7 @@ Examples:
 
 This led to the design of a correction layer:
 
-Ω_adjusted = Ω_raw - λ * regularity_penalty_norm
+Omega_adjusted = Omega_raw - lambda * regularity_penalty_norm
 
 Current validated variant:
 
@@ -224,14 +656,14 @@ palindrome closeness
 
 Current best balanced value from the lambda sweep:
 
-λ = 0.03
+lambda = 0.03
 
 
 Important:
 
-Ω_raw is preserved
+Omega_raw is preserved
 
-Ω_adjusted is exposed
+Omega_adjusted is exposed
 
 legacy default behavior is still preserved in engine
 
@@ -273,7 +705,7 @@ top 10 primes: 3
 top 20 primes: 7
 
 
-Adjusted OMNIA (λ = 0.03):
+Adjusted OMNIA (lambda = 0.03):
 
 top 10 primes: 8
 
@@ -342,13 +774,13 @@ The correction is not only measured by ranking gains, but also by explicit cost 
 
 Current monitor tracks:
 
-Positive Gain: high-confidence composites declassified by SBC
+Positive Gain
 
-Negative Impact: real primes losing more than a configured rank threshold
+Negative Impact
 
-Sacrifice Ratio: declassified traps divided by materially harmed primes
+Sacrifice Ratio
 
-Spread Widening: increase in prime vs composite separation after correction
+Spread Widening
 
 
 Million-range monitoring result:
@@ -375,12 +807,6 @@ examples/sbc_shadow_mode_report_results.md
 Fragility Display — public-facing result
 
 OMNIA was also tested on a minimal public-facing reasoning display based on three near-equivalent math variants.
-
-The purpose was different from numeric ranking.
-
-The goal here was to show that:
-
-surface correctness can remain unchanged while structural stability collapses.
 
 Triplet used:
 
@@ -438,7 +864,7 @@ num_perturbed
 clause_augmented
 
 
-The main repeated effect was simple:
+The repeated effect was simple:
 
 clause_augmented consistently showed lower structural stability than base.
 
@@ -460,76 +886,7 @@ examples/gsm_symbolic_v0_omnia_scores.jsonl
 
 ---
 
-Structural lenses
-
-Independent transformation families:
-
-BASE  -> multi-representation invariance
-
-TIME  -> drift / instability over time
-
-CAUSA -> relational dependencies
-
-TOKEN -> sequence perturbation
-
-LCR   -> logical coherence reduction
-
-
-Each lens produces an independent signal.
-
-
----
-
-Core metrics
-
-Ω  (Omega)     -> structural coherence under perturbation
-
-Ω̂ (Omega-set) -> residual invariance across transformations
-
-SEI            -> remaining extractable structure (-> 0 = saturation)
-
-IRI            -> irreversible structural loss (> 0 = non-recoverable)
-
-TΔ             -> divergence point
-
-R              -> recovery capacity
-
-
-SBC-specific fields now available in engine-level integration:
-
-omega_raw
-
-omega_adjusted
-
-structural_bias_meta.bias_penalty_raw
-
-structural_bias_meta.bias_penalty_norm
-
-structural_bias_meta.lambda_value
-
-
-
----
-
-Structural isolation
-
-Δ_struct = Ω_raw − Ω_shuffle
-
-This removes statistical artifacts and preserves only structure-dependent signal.
-
-
----
-
-Minimal validation rule
-
-Δ_struct(structured) > Δ_struct(perturbed) > Δ_struct(random)
-
-If this ordering fails, either the system is misconfigured or the input does not contain meaningful structure.
-
-
----
-
-Experimental evidence (current)
+Experimental evidence already recorded
 
 Natural text (controlled)
 
@@ -543,8 +900,11 @@ docs/PUBLIC_PROOF.md
 LLM stress test (manual, controlled)
 
 logic_strong         = 0.1654
+
 hallucination_fluent = 0.0821
+
 degenerated_loop     = 0.0114
+
 
 Invariant:
 
@@ -573,8 +933,10 @@ data/llm_stress_test_results.json
 
 Real LLM test (TruthfulQA)
 
-Δ_struct(correct)   = 0.1284
-Δ_struct(incorrect) = 0.0912
+Delta_struct(correct)   = 0.1284
+
+Delta_struct(incorrect) = 0.0912
+
 
 Invariant:
 
@@ -595,14 +957,19 @@ data/llm_real_results.json
 Temperature decay test
 
 T=0.2 -> 0.1482
+
 T=0.5 -> 0.1215
+
 T=0.8 -> 0.0984
+
 T=1.0 -> 0.0812
+
 T=1.2 -> 0.0543
+
 
 Invariant:
 
-Δ_struct decreases as temperature increases
+Delta_struct decreases as temperature increases.
 
 Status:
 
@@ -619,13 +986,17 @@ data/temperature_results.json
 Context length test
 
 short   -> 0.1524
+
 medium  -> 0.1310
+
 long    -> 0.0942
+
 v_long  -> 0.0618
+
 
 Invariant:
 
-Δ_struct decreases as context length increases
+Delta_struct decreases as context length increases.
 
 Status:
 
@@ -660,6 +1031,8 @@ decision pipelines -> robustness measurement
 
 numeric sequences -> structural ranking and instability screening
 
+operational monitoring -> drift / break / regime consolidation
+
 
 
 ---
@@ -682,6 +1055,12 @@ monitored structural bias correction for numeric ranking
 
 public-facing fragility display for reasoning outputs
 
+multi-stream structural monitoring
+
+post-break regime confirmation
+
+refusal of false stabilization under persistent chaos
+
 
 Works on:
 
@@ -690,6 +1069,8 @@ text
 code
 
 numeric sequences
+
+logs
 
 any ordered representation
 
@@ -713,13 +1094,19 @@ explicit separation between raw and adjusted structural score
 
 monitored bias correction instead of blind score replacement
 
-a readable fragility display where correctness and stability diverge
+readable fragility display where correctness and stability diverge
+
+regime confirmation after break
+
+chaos refusal when no coherent baseline exists
 
 
 
 ---
 
 Limits
+
+Current limits remain explicit:
 
 controlled + semi-controlled datasets
 
@@ -739,6 +1126,24 @@ SBC is validated and integrated, but still shadow-monitored
 
 omega_adjusted is not yet the public default score
 
+memory policy is validated within tested scenarios, not all real environments
+
+threshold values may still require tuning on wider real datasets
+
+
+
+---
+
+Current claim
+
+The strongest correct claim at this stage is:
+
+OMNIA is a structural stability measurement engine with validated transition classification, bounded regime memory, and chaos refusal within the tested perimeter.
+
+It is not a universal intelligence layer.
+It is not a semantic reasoner.
+It is not a proof engine.
+It is a structural measurement and monitoring system.
 
 
 ---
@@ -746,10 +1151,15 @@ omega_adjusted is not yet the public default score
 Repository layout
 
 omnia/     -> engine
-examples/  -> runnable demos and numeric experiments
+
+examples/  -> runnable demos and experiments
+
 tests/     -> validation
-docs/      -> formalization
+
+docs/      -> formalization and reports
+
 data/      -> datasets
+
 
 
 ---
@@ -766,6 +1176,8 @@ a semantic analyzer
 
 a primality test
 
+a decision layer
+
 
 OMNIA is:
 
@@ -777,7 +1189,32 @@ a detector of fragility and invariance
 
 a filtering aid for candidate prioritization
 
-a shadow-monitored bias-correctable measurement engine
+a bounded regime-memory engine
+
+a chaos-resistant structural monitoring layer
+
+
+
+---
+
+Next steps
+
+The next technically correct steps are:
+
+1. longer and less controlled streams
+
+
+2. noisier real operational datasets
+
+
+3. threshold tuning (tau_commit, tau_chaos)
+
+
+4. wider distributional validation
+
+
+5. stricter comparison against external baselines
+
 
 
 
