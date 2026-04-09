@@ -1,0 +1,3 @@
+{"stream_id": "auth-srv", "transition_signal": {"dO": 0.2215, "assigned_zone": "mild_variation", "notes": "Drift strutturale/numerico"}, "trajectory_status": {"regime_status": "DRIFTING", "cumulative_drift": 0.2215}}
+{"stream_id": "auth-srv", "transition_signal": {"dO": 0.5842, "assigned_zone": "structural_break", "notes": "SHOCK: Cambio schema log"}, "trajectory_status": {"regime_status": "SUSPENDED", "trajectory_alert_flag": true}}
+{"stream_id": "db-node", "transition_signal": {"dO": 0.0092, "assigned_zone": "equivalence", "notes": "DB rimane isolato e stabile"}, "trajectory_status": {"regime_status": "STABLE", "cumulative_drift": 0.0}}
