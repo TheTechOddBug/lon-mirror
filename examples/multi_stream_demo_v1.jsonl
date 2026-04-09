@@ -1,0 +1,12 @@
+{"stream_id":"asset_A","t":"2026-01-01","v":100.0,"note":"A baseline"}
+{"stream_id":"asset_B","t":"2026-01-01","v":50.0,"note":"B baseline"}
+{"stream_id":"asset_A","t":"2026-01-02","v":100.3,"note":"A stable"}
+{"stream_id":"asset_B","t":"2026-01-02","v":49.8,"note":"B stable"}
+{"stream_id":"asset_A","t":"2026-01-03","v":101.9,"note":"A mild drift"}
+{"stream_id":"asset_B","t":"2026-01-03","v":50.1,"note":"B stable"}
+{"stream_id":"asset_A","t":"2026-01-04","v":103.8,"note":"A drifting"}
+{"stream_id":"asset_B","t":"2026-01-04","v":71.0,"note":"B shock / break"}
+{"stream_id":"asset_A","t":"2026-01-05","v":104.2,"note":"A mild stabilization"}
+{"stream_id":"asset_B","t":"2026-01-05","v":70.6,"note":"B new regime stable"}
+{"stream_id":"asset_A","t":"2026-01-06","v":104.0,"note":"A stable high"}
+{"stream_id":"asset_B","t":"2026-01-06","v":70.9,"note":"B new regime stable"}
