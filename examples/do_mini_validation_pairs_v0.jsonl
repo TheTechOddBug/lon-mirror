@@ -1,0 +1,11 @@
+{"pair_id":"eq_001","family":"equivalent","state_1":"2 + 2 = 4","state_2":"2+2=4","expected_zone":"equivalence","notes":"spacing-only variation"}
+{"pair_id":"eq_002","family":"equivalent","state_1":"ABCABC","state_2":"abcabc","expected_zone":"equivalence","notes":"case-normalizable representation change"}
+{"pair_id":"eq_003","family":"equivalent","state_1":"1,2,3,4","state_2":"[1|2|3|4]","expected_zone":"equivalence","notes":"delimiter-only representation change"}
+
+{"pair_id":"mv_001","family":"mild_variation","state_1":"2 + 2 = 4","state_2":"2 + 2 = 5","expected_zone":"mild_variation","notes":"single local symbolic change"}
+{"pair_id":"mv_002","family":"mild_variation","state_1":"ABCABC","state_2":"ABCABD","expected_zone":"mild_variation","notes":"single terminal substitution"}
+{"pair_id":"mv_003","family":"mild_variation","state_1":"1,2,3,4","state_2":"1,2,4,4","expected_zone":"mild_variation","notes":"single bounded numeric modification"}
+
+{"pair_id":"br_001","family":"structural_break","state_1":"AABBCC","state_2":"ABCABC","expected_zone":"structural_break","notes":"ordering regime changed"}
+{"pair_id":"br_002","family":"structural_break","state_1":"1,2,3,4","state_2":"4,3,2,1","expected_zone":"structural_break","notes":"full order inversion"}
+{"pair_id":"br_003","family":"structural_break","state_1":"AAAAAA","state_2":"ABCDEF","expected_zone":"structural_break","notes":"uniform pattern replaced by heterogeneous pattern"}
