@@ -1,4 +1,3 @@
-
 # OMNIA v1.0 — Structural Measurement Engine
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19484594.svg)](https://doi.org/10.5281/zenodo.19484594)
@@ -12,10 +11,10 @@
 
 Systems often look stable until they fail.
 
-OMNIA is a **structural measurement layer** designed to detect instability, fragility, and regime change **before they become obvious at the surface level**.
+OMNIA is a structural measurement layer designed to detect instability, fragility, and regime change before they become obvious at the surface level.
 
 It does **not** interpret meaning.  
-It does **not** evaluate truth semantically.  
+It does **not** evaluate semantic truth.  
 It does **not** decide policy.  
 It does **not** act as a model.
 
@@ -54,7 +53,7 @@ Dual-Echo -> OMNIAMIND -> OMNIA -> OMNIA-LIMIT -> Decision Layer (external)
 
 Current validated operational stack
 
-OMNIA is now validated, within the tested perimeter, across four layers:
+OMNIA is now validated, within the tested perimeter, across five layers:
 
 1. Metric
 Detects structural deviation through the signature sigma and dO.
@@ -79,6 +78,21 @@ Consolidates a new regime when post-break states become internally coherent.
 Refuses to normalize persistent incoherence as a false stable regime.
 
 
+5. SCU v1
+Emits a first operational structural compatibility unit between states:
+
+U_v1(S1, S2) = (C, I, P)
+
+where:
+
+C = compatibility
+
+I = irreversibility within the observed window
+
+P = purity / internal coherence
+
+
+
 
 This means OMNIA now supports:
 
@@ -89,6 +103,8 @@ transition classification
 regime consolidation
 
 refusal of false stabilization
+
+first bounded structural compatibility output between states
 
 
 within the currently validated datasets.
@@ -144,6 +160,8 @@ post-break recovery
 
 post-break chaos refusal
 
+SCU v1 emission on validated transition scenarios
+
 
 This is a real operational perimeter, not a universality claim.
 
@@ -172,19 +190,19 @@ Each lens emits an independent structural signal.
 
 Core metrics
 
-Omega         -> structural coherence under perturbation
+Omega      -> structural coherence under perturbation
 
-Omega-set     -> residual invariance across transformations
+Omega-set  -> residual invariance across transformations
 
-SEI           -> remaining extractable structure
+SEI        -> remaining extractable structure
 
-IRI           -> irreversible structural loss
+IRI        -> irreversible structural loss
 
-TDelta        -> divergence point
+TDelta     -> divergence point
 
-R             -> recovery capacity
+R          -> recovery capacity
 
-dO            -> structural distance between consecutive states
+dO         -> structural distance between consecutive states
 
 
 SBC-specific engine fields:
@@ -228,23 +246,25 @@ Operational transition logic
 At runtime, OMNIA classifies transitions into three zones:
 
 equivalence
-variation is representational only
+
+Variation is representational only.
 
 mild_variation
-drift exists, but continuity remains structurally compatible
+
+Drift exists, but continuity remains structurally compatible.
 
 structural_break
-continuity is no longer structurally justified
 
+Continuity is no longer structurally justified.
 
-This transition layer is already integrated with trajectory memory.
+This transition layer is integrated with trajectory memory.
 
 
 ---
 
 Memory policy and regime handling
 
-The memory layer now supports:
+The memory layer currently supports:
 
 STABLE
 
@@ -273,13 +293,54 @@ refuse the commit if post-break states remain structurally incoherent
 This is the key difference between:
 
 adaptation
-when a new regime is coherent
 
+when a new regime is coherent
 
 and
 
 auto-deception
+
 when chaos is incorrectly promoted to normality
+
+
+---
+
+Structural Compatibility Unit (SCU v1)
+
+OMNIA now emits a first executable approximation of a structural compatibility unit between states:
+
+U_v1(S1, S2) = (C, I, P)
+
+where:
+
+C = compatibility
+
+I = irreversibility within the observed window
+
+P = purity / internal coherence
+
+
+Interpretation
+
+C asks: how much is the previous regime still alive
+
+I asks: how irreversible is the rupture within the observed window
+
+P asks: how much structural dignity does the emerging pattern have
+
+
+This unit is not yet universal and not yet canonical.
+It is the first operational bundle that compresses a transition into a bounded structural object.
+
+Relevant files:
+
+docs/STRUCTURAL_COMPATIBILITY_UNIT_V0.md
+
+docs/STRUCTURAL_COMPATIBILITY_UNIT_V1_SPEC.md
+
+docs/STRUCTURAL_COMPATIBILITY_UNIT_V1_RESULTS.md
+
+examples/do_structural_compatibility_unit_v1.jsonl
 
 
 
@@ -505,6 +566,44 @@ Relevant files:
 examples/post_break_chaos_test.jsonl
 
 examples/do_post_break_chaos_results_v1.jsonl
+
+
+
+---
+
+9. SCU v1 validation
+
+SCU v1 was then validated as the first bounded structural state-relation bundle.
+
+This demonstrated that OMNIA can compress a transition into:
+
+C -> compatibility
+
+I -> irreversibility within observed window
+
+P -> purity / internal coherence
+
+
+The currently archived perimeter includes:
+
+continuity
+
+first rupture
+
+chaos refusal behavior
+
+alignment with recovery logic already validated by the same pipeline
+
+
+Relevant files:
+
+docs/STRUCTURAL_COMPATIBILITY_UNIT_V0.md
+
+docs/STRUCTURAL_COMPATIBILITY_UNIT_V1_SPEC.md
+
+docs/STRUCTURAL_COMPATIBILITY_UNIT_V1_RESULTS.md
+
+examples/do_structural_compatibility_unit_v1.jsonl
 
 
 
@@ -1061,6 +1160,8 @@ post-break regime confirmation
 
 refusal of false stabilization under persistent chaos
 
+first bounded structural compatibility bundle between states
+
 
 Works on:
 
@@ -1100,6 +1201,8 @@ regime confirmation after break
 
 chaos refusal when no coherent baseline exists
 
+a first operational structural compatibility unit between states
+
 
 
 ---
@@ -1128,6 +1231,8 @@ omega_adjusted is not yet the public default score
 
 memory policy is validated within tested scenarios, not all real environments
 
+SCU v1 is validated within the tested perimeter, not as a universal unit
+
 threshold values may still require tuning on wider real datasets
 
 
@@ -1138,7 +1243,7 @@ Current claim
 
 The strongest correct claim at this stage is:
 
-OMNIA is a structural stability measurement engine with validated transition classification, bounded regime memory, and chaos refusal within the tested perimeter.
+OMNIA is a structural stability measurement engine with validated transition classification, bounded regime memory, chaos refusal, and a first operational structural compatibility unit between states within the tested perimeter.
 
 It is not a universal intelligence layer.
 It is not a semantic reasoner.
@@ -1192,6 +1297,8 @@ a filtering aid for candidate prioritization
 a bounded regime-memory engine
 
 a chaos-resistant structural monitoring layer
+
+a first executable structural compatibility framework between states
 
 
 
