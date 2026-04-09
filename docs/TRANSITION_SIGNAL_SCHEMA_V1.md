@@ -292,3 +292,71 @@ Required output:
   "metric_version": "v0.2.1",
   "protocol_version": "v1"
 }
+
+
+---
+
+8. Validation rules
+
+A TransitionSignalV1 object is valid only if:
+
+1. dO is present and in [0,1]
+
+
+2. kappa is present and in [0,1]
+
+
+3. kappa = 1 - dO within numerical tolerance
+
+
+4. assigned_zone is consistent with thresholds
+
+
+5. protocol_label is consistent with assigned_zone
+
+
+6. continuity_status is consistent with assigned_zone
+
+
+7. drift_tracking_flag and regime_alert_flag are consistent with assigned_zone
+
+
+
+If these constraints fail, the signal is invalid.
+
+
+---
+
+9. Purpose of the schema
+
+This schema exists to ensure that OMNIA outputs are:
+
+machine-consumable
+
+protocol-consistent
+
+auditable
+
+versionable
+
+comparable across runs
+
+
+Without a stable signal schema, the metric remains difficult to integrate into larger systems.
+
+
+---
+
+10. Minimal claim
+
+TransitionSignalV1 is the minimal standardized transition object required to connect:
+
+dO measurement
+
+protocol zone assignment
+
+external control reaction
+
+
+It is not a decision object by itself. It is a structured structural signal.
+
