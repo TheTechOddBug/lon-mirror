@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """
-OMNIA - Transition Engine with Trajectory Memory v1
+OMNIA - Temporal Series Engine v1
+
+Operates on a continuous stream of numeric values to detect structural changes in time.
 
 Reads:
-    examples/do_mini_validation_pairs_v1.jsonl
+    examples/real_series_demo_v1.jsonl
 
 Computes:
     - pre-canonicalized structural signature sigma_v0.2.1(S)
-    - dO = Delta_Omega_v0.2.1(S1, S2)
+    - dO = Delta_Omega_v0.2.1(S_t, S_t+1)
     - kappa = 1 - dO
     - TransitionSignalV1
     - TrajectoryStatusV1
@@ -16,7 +18,7 @@ Writes:
     examples/do_mini_validation_results_v1.jsonl
 
 Important:
-This is a bootstrap transition engine with stateful trajectory memory.
+This is a bootstrap temporal stream engine for real-series proxy data.
 It is not a proof of universality.
 It is an operational signal + memory emitter built on the current dO baseline.
 """
@@ -36,7 +38,7 @@ from typing import Dict, List, Tuple
 # ---------------------------------------------------------------------
 
 ROOT = Path(__file__).resolve().parent
-INPUT_PATH = ROOT / "do_mini_validation_pairs_v1.jsonl"
+INPUT_PATH = ROOT / "real_series_demo_v1.jsonl"
 OUTPUT_PATH = ROOT / "do_mini_validation_results_v1.jsonl"
 
 
@@ -565,7 +567,7 @@ def protocol_fields_for_zone(zone: str) -> Tuple[str, str, bool, bool]:
 # ---------------------------------------------------------------------
 
 class TrajectoryTracker:
-    def __init__(self, trajectory_id: str = "T_001", initial_regime_id: str = "REG_ALPHA") -> None:
+    def __init__(self, trajectory_id: str = "T_REAL_001", initial_regime_id: str = "REG_ALPHA") -> None:
         self.trajectory_id = trajectory_id
         self.active_regime_id = initial_regime_id
         self.last_stable_regime_id = initial_regime_id
@@ -657,7 +659,7 @@ def write_jsonl(path: Path, rows: List[dict]) -> None:
 
 
 # ---------------------------------------------------------------------
-# Main engine
+# Main stream engine
 # ---------------------------------------------------------------------
 
 def main() -> None:
@@ -665,34 +667,33 @@ def main() -> None:
         raise FileNotFoundError(f"Input file not found: {INPUT_PATH}")
 
     rows = load_jsonl(INPUT_PATH)
+    if len(rows) < 2:
+        raise ValueError("The input series must contain at least 2 rows.")
+
     records: List[OutputRecord] = []
     tracker = TrajectoryTracker()
 
-    family_to_scores: Dict[str, List[float]] = {
-        "equivalent": [],
-        "mild_variation": [],
-        "structural_break": [],
-    }
+    scores: List[float] = []
 
-    for row in rows:
-        pair_id = row["pair_id"]
-        family = row["family"]
-        state_1 = row["state_1"]
-        state_2 = row["state_2"]
-        expected_zone = row["expected_zone"]
-        notes = row.get("notes", "")
+    for i in range(len(rows) - 1):
+        row_ref = rows[i]
+        row_obs = rows[i + 1]
 
-        delta, sig_distance, best_transform = delta_omega_v2(state_1, state_2)
+        t1 = str(row_ref["t"])
+        t2 = str(row_obs["t"])
+        s1_raw = str(row_ref["v"])
+        s2_raw = str(row_obs["v"])
+        note = row_obs.get("note", "")
+
+        delta, sig_distance, best_transform = delta_omega_v2(s1_raw, s2_raw)
         kappa = clamp01(1.0 - delta)
         assigned_zone = assign_zone(delta)
         protocol_label, continuity_status, drift_tracking_flag, regime_alert_flag = protocol_fields_for_zone(assigned_zone)
-        predicted_zone = assigned_zone
-        pass_fail = "PASS" if predicted_zone == expected_zone else "FAIL"
 
         signal = TransitionSignalV1(
-            signal_id=f"SIG_{pair_id}",
-            reference_state_id=f"{pair_id}_ref",
-            observed_state_id=f"{pair_id}_obs",
+            signal_id=f"SIG_{t1}_{t2}",
+            reference_state_id=f"S_{t1}",
+            observed_state_id=f"S_{t2}",
             dO=round(delta, 6),
             kappa=round(kappa, 6),
             assigned_zone=assigned_zone,
@@ -708,13 +709,13 @@ def main() -> None:
             metric_version=METRIC_VERSION,
             protocol_version=PROTOCOL_VERSION,
             signal_schema_version=SIGNAL_SCHEMA_VERSION,
-            family=family,
-            expected_zone=expected_zone,
-            predicted_zone=predicted_zone,
-            pass_fail=pass_fail,
-            state_1=state_1,
-            state_2=state_2,
-            notes=notes,
+            family="real_time_series",
+            expected_zone="N/A",
+            predicted_zone=assigned_zone,
+            pass_fail="N/A",
+            state_1=s1_raw,
+            state_2=s2_raw,
+            notes=note,
         )
 
         trajectory_status = tracker.update(signal)
@@ -726,38 +727,32 @@ def main() -> None:
             )
         )
 
-        family_to_scores.setdefault(family, []).append(delta)
+        scores.append(delta)
 
     write_jsonl(OUTPUT_PATH, [asdict(r) for r in records])
 
-    print("OMNIA Transition Engine with Trajectory Memory v1")
+    print("OMNIA Temporal Series Engine v1")
     print(f"Input : {INPUT_PATH}")
     print(f"Output: {OUTPUT_PATH}")
     print()
-
-    total_pass = sum(1 for r in records if r.transition_signal["pass_fail"] == "PASS")
-    print(f"Pairs tested : {len(records)}")
-    print(f"Pass count   : {total_pass}")
-    print(f"Fail count   : {len(records) - total_pass}")
-    print()
-
-    for fam in ("equivalent", "mild_variation", "structural_break"):
-        scores = family_to_scores.get(fam, [])
-        if scores:
-            print(
-                f"{fam:16s} mean_dO={mean(scores):.6f} "
-                f"min={min(scores):.6f} max={max(scores):.6f}"
-            )
-
+    print(f"Transitions analyzed : {len(records)}")
+    if scores:
+        print(
+            f"mean_dO={mean(scores):.6f} min={min(scores):.6f} max={max(scores):.6f}"
+        )
     print()
     print("Detailed records:")
     for r in records:
         ts = r.transition_signal
         mem = r.trajectory_status
         print(
-            f"{ts['signal_id']} | dO={ts['dO']:.6f} | zone={ts['assigned_zone']} "
-            f"| status={mem['regime_status']} | drift_sum={mem['cumulative_drift']:.6f} "
-            f"| mild_n={mem['consecutive_mild_count']} | break_n={mem['consecutive_break_count']}"
+            f"[{ts['observed_state_id']}] dO={ts['dO']:.6f} "
+            f"| zone={ts['assigned_zone']} "
+            f"| status={mem['regime_status']} "
+            f"| drift_sum={mem['cumulative_drift']:.6f} "
+            f"| mild_n={mem['consecutive_mild_count']} "
+            f"| break_n={mem['consecutive_break_count']} "
+            f"| alert={ts['regime_alert_flag']}"
         )
 
 
