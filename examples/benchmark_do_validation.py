@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """
-OMNIA - Post-Break Recovery Engine v1
+OMNIA - Post-Break Chaos Test Engine v1
 
 Purpose:
-Validate the first memory policy able to confirm a new regime after rupture.
+Validate that OMNIA refuses to commit a new regime when post-break states
+are internally incoherent.
 
 Reads:
-    examples/post_break_recovery_test.jsonl
+    examples/post_break_chaos_test.jsonl
 
 Writes:
-    examples/do_post_break_recovery_results_v1.jsonl
+    examples/do_post_break_chaos_results_v1.jsonl
 """
 
 from __future__ import annotations
@@ -27,8 +28,8 @@ from typing import Dict, List, Tuple
 # ---------------------------------------------------------------------
 
 ROOT = Path(__file__).resolve().parent
-INPUT_PATH = ROOT / "post_break_recovery_test.jsonl"
-OUTPUT_PATH = ROOT / "do_post_break_recovery_results_v1.jsonl"
+INPUT_PATH = ROOT / "post_break_chaos_test.jsonl"
+OUTPUT_PATH = ROOT / "do_post_break_chaos_results_v1.jsonl"
 
 
 # ---------------------------------------------------------------------
@@ -617,7 +618,7 @@ class TrajectoryTracker:
         self.trajectory_id = trajectory_id
         self.active_regime_id = initial_regime_id
         self.last_stable_regime_id = initial_regime_id
-        self.regime_status = "STABLE"  # STABLE, DRIFTING, SUSPENDED, CANDIDATE, CHAOTIC
+        self.regime_status = "STABLE"
 
         self.transition_index = 0
         self.previous_signal_id = ""
@@ -668,9 +669,6 @@ class TrajectoryTracker:
         self.previous_signal_id = signal.signal_id
         zone = signal.assigned_zone
 
-        # -------------------------------------------------------------
-        # 1. Break opens a candidate regime buffer
-        # -------------------------------------------------------------
         if zone == "structural_break":
             self.regime_status = "SUSPENDED"
             self.consecutive_break_count += 1
@@ -680,12 +678,8 @@ class TrajectoryTracker:
             self.candidate_buffer = [signal.state_2]
             self.candidate_internal_score = -1.0
             self.regime_status = "CANDIDATE"
-
             return self.get_status()
 
-        # -------------------------------------------------------------
-        # 2. Candidate / chaotic observation of post-break states
-        # -------------------------------------------------------------
         if self.regime_status in ("CANDIDATE", "CHAOTIC"):
             self.candidate_buffer.append(signal.state_2)
 
@@ -707,18 +701,11 @@ class TrajectoryTracker:
 
             return self.get_status()
 
-        # -------------------------------------------------------------
-        # 3. Standard stable/drifting behavior
-        # -------------------------------------------------------------
         if zone == "equivalence":
             self.consecutive_mild_count = 0
             self.consecutive_break_count = 0
             self.trajectory_alert_flag = False
-
-            if self.regime_status == "DRIFTING":
-                self.regime_status = "STABLE"
-            else:
-                self.regime_status = "STABLE"
+            self.regime_status = "STABLE"
 
         elif zone == "mild_variation":
             self.regime_status = "DRIFTING"
@@ -848,7 +835,7 @@ def main() -> None:
             metric_version=METRIC_VERSION,
             protocol_version=PROTOCOL_VERSION,
             signal_schema_version=SIGNAL_SCHEMA_VERSION,
-            family="post_break_recovery_test",
+            family="post_break_chaos_test",
             expected_zone="N/A",
             predicted_zone=assigned_zone,
             pass_fail="N/A",
@@ -872,7 +859,7 @@ def main() -> None:
 
     write_jsonl(OUTPUT_PATH, [asdict(r) for r in records])
 
-    print("OMNIA Post-Break Recovery Engine v1")
+    print("OMNIA Post-Break Chaos Test Engine v1")
     print(f"Input : {INPUT_PATH}")
     print(f"Output: {OUTPUT_PATH}")
     print()
