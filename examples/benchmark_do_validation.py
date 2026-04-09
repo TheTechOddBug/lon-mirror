@@ -1,25 +1,26 @@
 #!/usr/bin/env python3
 """
-OMNIA - dO Validation Benchmark v0.2.1
+OMNIA - Transition Engine Benchmark v1
 
 Reads:
     examples/do_mini_validation_pairs_v1.jsonl
 
 Computes:
-    - pre-canonicalized structural signature sigma_v0.2(S)
-    - primitive signature distance d_sigma_v0.2
-    - transformation-cost-aware Delta_Omega_v0.2(S1, S2)
-    - kappa = 1 - Delta_Omega
-    - predicted zone
-    - pass/fail against expected zone
+    - pre-canonicalized structural signature sigma_v0.2.1(S)
+    - dO = Delta_Omega_v0.2.1(S1, S2)
+    - kappa = 1 - dO
+    - operational zone assignment
+    - protocol label
+    - continuity status
+    - transition signal fields
 
 Writes:
     examples/do_mini_validation_results_v1.jsonl
 
 Important:
-This is still a bootstrap validation runner.
-It is not a proof of universality.
-It is an operational falsifiable check for v0.2.1.
+This is a bootstrap transition engine for synthetic validation.
+It is not a universal validator.
+It is an operational signal emitter built on the current dO baseline.
 """
 
 from __future__ import annotations
@@ -94,6 +95,15 @@ TRANSFORM_COSTS: Dict[str, float] = {
 
 
 # ---------------------------------------------------------------------
+# Versions
+# ---------------------------------------------------------------------
+
+METRIC_VERSION = "v0.2.1"
+PROTOCOL_VERSION = "v1"
+SIGNAL_SCHEMA_VERSION = "v1"
+
+
+# ---------------------------------------------------------------------
 # Data structures
 # ---------------------------------------------------------------------
 
@@ -111,21 +121,30 @@ class StructuralSignatureV2:
 
 
 @dataclass
-class ValidationResult:
-    pair_id: str
+class TransitionSignalV1:
+    reference_state_id: str
+    observed_state_id: str
+    dO: float
+    kappa: float
+    assigned_zone: str
+    protocol_label: str
+    continuity_status: str
+    drift_tracking_flag: bool
+    regime_alert_flag: bool
+    signature_distance: float
+    best_transform: str
+    transform_cost: float
+    threshold_equivalence: float
+    threshold_break: float
+    metric_version: str
+    protocol_version: str
+    signal_schema_version: str
     family: str
-    state_1: str
-    state_2: str
     expected_zone: str
     predicted_zone: str
     pass_fail: str
-    delta_omega: float
-    kappa: float
-    best_transform: str
-    transform_cost: float
-    signature_distance: float
-    sigma_1_best: Dict[str, float]
-    sigma_2: Dict[str, float]
+    state_1: str
+    state_2: str
     notes: str
 
 
@@ -305,46 +324,17 @@ def scalar_repr(x: float) -> str:
 # ---------------------------------------------------------------------
 
 def precanonicalize_state(state: str) -> str:
-    """
-    v0.2.1 pre-ingestion cleanup.
-
-    Goal:
-    normalize superficial formatting noise before structural signature extraction,
-    while preserving order, adjacency, and local structure.
-
-    This function must NOT:
-    - reorder tokens
-    - sort
-    - permute
-    - perform semantic substitution
-    - rescale values
-    """
-
     s = state.strip()
-
-    # Normalize linebreak-equivalent spacing
     s = s.replace("\n", " ")
     s = re.sub(r"\s+", " ", s)
-
-    # Remove common neutral wrappers only at the outer surface
-    # Keep interior order unchanged
     s = re.sub(r"^[\{\[\(]+", "", s)
     s = re.sub(r"[\}\]\)]+$", "", s)
-
-    # Normalize common superficial separators
     s = s.replace(";", ",")
     s = s.replace("|", ",")
-
-    # Normalize connector variants when not structurally relevant
     s = s.replace("_", "-")
-
-    # Remove common leading currency symbols attached to numbers
     s = re.sub(r"(?<!\S)[$€£¥]\s*", "", s)
-
-    # Lowercase for case-insensitive structural comparison
     s = s.lower()
 
-    # Normalize numeric surface forms token by token
     def normalize_numeric_token(match: re.Match) -> str:
         token = match.group(0)
         try:
@@ -356,10 +346,7 @@ def precanonicalize_state(state: str) -> str:
             return token
 
     s = re.sub(r"-?\d+(?:\.\d+)?", normalize_numeric_token, s)
-
-    # Final spacing cleanup
     s = re.sub(r"\s+", " ", s).strip()
-
     return s
 
 
@@ -368,14 +355,14 @@ def precanonicalize_state(state: str) -> str:
 # ---------------------------------------------------------------------
 
 def canonical_numeric_string(s: str) -> str:
-    nums = parse_numeric_sequence_if_possible(s)
+    nums = parse_numeric_sequence_if_possible(precanonicalize_state(s))
     if not nums:
-        return s
+        return precanonicalize_state(s)
     return ",".join(scalar_repr(x) for x in nums)
 
 
 def canonical_symbolic_string(s: str) -> str:
-    x = s.lower().strip()
+    x = precanonicalize_state(s)
     x = x.replace("_", "-")
     x = x.replace(";", ",")
     x = re.sub(r"[\{\}\[\]\(\)\$]", "", x)
@@ -461,23 +448,19 @@ def transform_compression(s: str) -> str:
 
 
 def transform_representation_preserving_rewrite(s: str) -> str:
-    nums = parse_numeric_sequence_if_possible(s)
+    nums = parse_numeric_sequence_if_possible(precanonicalize_state(s))
     if nums:
         return canonical_numeric_string(s)
     return canonical_symbolic_string(s)
 
 
 def transform_permutation(s: str) -> str:
-    """
-    Kept only as a high-cost transform.
-    It is intentionally deterministic but not free.
-    """
-    nums = parse_numeric_sequence_if_possible(s)
+    nums = parse_numeric_sequence_if_possible(precanonicalize_state(s))
     if nums:
         nums_sorted = sorted(nums)
         return ",".join(scalar_repr(x) for x in nums_sorted)
 
-    chars = [c.lower() for c in s if c.isalnum()]
+    chars = [c.lower() for c in precanonicalize_state(s) if c.isalnum()]
     return "".join(sorted(chars))
 
 
@@ -517,10 +500,6 @@ def delta_omega_v2(
     state_1: str,
     state_2: str,
 ) -> Tuple[float, float, str, StructuralSignatureV2, StructuralSignatureV2]:
-    """
-    Delta_Omega_v0.2(S1,S2) =
-      inf_{g in G} [ d_sigma_v2( sigma_v2(g(S1)), sigma_v2(S2) ) + lambda * C_transform(g) ]
-    """
     sig2 = structural_signature_v2(state_2)
 
     best_total = float("inf")
@@ -551,15 +530,38 @@ def delta_omega_v2(
 
 
 # ---------------------------------------------------------------------
-# Zone prediction
+# Protocol logic
 # ---------------------------------------------------------------------
 
-def predict_zone(delta: float) -> str:
+def assign_zone(delta: float) -> str:
     if delta <= EPSILON_EQ:
         return "equivalence"
     if delta < EPSILON_BREAK:
         return "mild_variation"
     return "structural_break"
+
+
+def protocol_fields_for_zone(zone: str) -> Tuple[str, str, bool, bool]:
+    if zone == "equivalence":
+        return (
+            "EQUIVALENT_CONTINUITY",
+            "continuous",
+            False,
+            False,
+        )
+    if zone == "mild_variation":
+        return (
+            "TRACKED_DRIFT",
+            "continuous_with_drift",
+            True,
+            False,
+        )
+    return (
+        "REGIME_SHIFT_CANDIDATE",
+        "continuity_suspended",
+        False,
+        True,
+    )
 
 
 # ---------------------------------------------------------------------
@@ -587,7 +589,7 @@ def write_jsonl(path: Path, rows: List[dict]) -> None:
 
 
 # ---------------------------------------------------------------------
-# Main benchmark
+# Main engine
 # ---------------------------------------------------------------------
 
 def main() -> None:
@@ -595,7 +597,7 @@ def main() -> None:
         raise FileNotFoundError(f"Input file not found: {INPUT_PATH}")
 
     rows = load_jsonl(INPUT_PATH)
-    results: List[ValidationResult] = []
+    results: List[TransitionSignalV1] = []
 
     family_to_scores: Dict[str, List[float]] = {
         "equivalent": [],
@@ -603,7 +605,7 @@ def main() -> None:
         "structural_break": [],
     }
 
-    for row in rows:
+    for idx, row in enumerate(rows, start=1):
         pair_id = row["pair_id"]
         family = row["family"]
         state_1 = row["state_1"]
@@ -611,36 +613,46 @@ def main() -> None:
         expected_zone = row["expected_zone"]
         notes = row.get("notes", "")
 
-        delta, sig_distance, best_transform, sig1_best, sig2 = delta_omega_v2(state_1, state_2)
+        delta, sig_distance, best_transform, _sig1_best, _sig2 = delta_omega_v2(state_1, state_2)
         kappa = clamp01(1.0 - delta)
-        predicted_zone = predict_zone(delta)
+        assigned_zone = assign_zone(delta)
+        protocol_label, continuity_status, drift_tracking_flag, regime_alert_flag = protocol_fields_for_zone(assigned_zone)
+        predicted_zone = assigned_zone
         pass_fail = "PASS" if predicted_zone == expected_zone else "FAIL"
 
         family_to_scores.setdefault(family, []).append(delta)
 
-        results.append(
-            ValidationResult(
-                pair_id=pair_id,
-                family=family,
-                state_1=state_1,
-                state_2=state_2,
-                expected_zone=expected_zone,
-                predicted_zone=predicted_zone,
-                pass_fail=pass_fail,
-                delta_omega=round(delta, 6),
-                kappa=round(kappa, 6),
-                best_transform=best_transform,
-                transform_cost=round(TRANSFORM_COSTS[best_transform], 6),
-                signature_distance=round(sig_distance, 6),
-                sigma_1_best={k: round(v, 6) for k, v in asdict(sig1_best).items()},
-                sigma_2={k: round(v, 6) for k, v in asdict(sig2).items()},
-                notes=notes,
-            )
+        signal = TransitionSignalV1(
+            reference_state_id=f"{pair_id}_ref",
+            observed_state_id=f"{pair_id}_obs",
+            dO=round(delta, 6),
+            kappa=round(kappa, 6),
+            assigned_zone=assigned_zone,
+            protocol_label=protocol_label,
+            continuity_status=continuity_status,
+            drift_tracking_flag=drift_tracking_flag,
+            regime_alert_flag=regime_alert_flag,
+            signature_distance=round(sig_distance, 6),
+            best_transform=best_transform,
+            transform_cost=round(TRANSFORM_COSTS[best_transform], 6),
+            threshold_equivalence=EPSILON_EQ,
+            threshold_break=EPSILON_BREAK,
+            metric_version=METRIC_VERSION,
+            protocol_version=PROTOCOL_VERSION,
+            signal_schema_version=SIGNAL_SCHEMA_VERSION,
+            family=family,
+            expected_zone=expected_zone,
+            predicted_zone=predicted_zone,
+            pass_fail=pass_fail,
+            state_1=state_1,
+            state_2=state_2,
+            notes=notes,
         )
+        results.append(signal)
 
     write_jsonl(OUTPUT_PATH, [asdict(r) for r in results])
 
-    print("OMNIA dO Validation v0.2.1")
+    print("OMNIA Transition Engine v1")
     print(f"Input : {INPUT_PATH}")
     print(f"Output: {OUTPUT_PATH}")
     print()
@@ -660,12 +672,14 @@ def main() -> None:
             )
 
     print()
-    print("Detailed results:")
+    print("Detailed transition signals:")
     for r in results:
         print(
-            f"{r.pair_id} | family={r.family} | dO={r.delta_omega:.6f} "
-            f"| sig={r.signature_distance:.6f} | g={r.best_transform} "
-            f"| cost={r.transform_cost:.2f} | zone={r.predicted_zone} | {r.pass_fail}"
+            f"{r.reference_state_id}->{r.observed_state_id} "
+            f"| dO={r.dO:.6f} | zone={r.assigned_zone} "
+            f"| label={r.protocol_label} | continuity={r.continuity_status} "
+            f"| drift={r.drift_tracking_flag} | alert={r.regime_alert_flag} "
+            f"| {r.pass_fail}"
         )
 
 
