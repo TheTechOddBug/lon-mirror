@@ -1,23 +1,15 @@
 #!/usr/bin/env python3
 """
-OMNIA - Multi-Stream Chaotic Console Logs Engine v1
+OMNIA - Post-Break Recovery Engine v1
 
-Operates on multiple interleaved streams and preserves strict trajectory-memory
-isolation per stream_id.
+Purpose:
+Validate the first memory policy able to confirm a new regime after rupture.
 
-Current input:
-    examples/chaotic_console_logs_demo_v1.jsonl
-
-Computes:
-    - pre-canonicalized structural signature sigma_v0.2.1(S)
-    - dO = Delta_Omega_v0.2.1(S_t, S_t+1) per stream
-    - kappa = 1 - dO
-    - TransitionSignalV1
-    - TrajectoryStatusV1
-    - strict per-stream trajectory isolation
+Reads:
+    examples/post_break_recovery_test.jsonl
 
 Writes:
-    examples/do_chaotic_console_results_v1.jsonl
+    examples/do_post_break_recovery_results_v1.jsonl
 """
 
 from __future__ import annotations
@@ -35,12 +27,12 @@ from typing import Dict, List, Tuple
 # ---------------------------------------------------------------------
 
 ROOT = Path(__file__).resolve().parent
-INPUT_PATH = ROOT / "chaotic_console_logs_demo_v1.jsonl"
-OUTPUT_PATH = ROOT / "do_chaotic_console_results_v1.jsonl"
+INPUT_PATH = ROOT / "post_break_recovery_test.jsonl"
+OUTPUT_PATH = ROOT / "do_post_break_recovery_results_v1.jsonl"
 
 
 # ---------------------------------------------------------------------
-# Canonical weights v0.2
+# Canonical weights v0.2.1
 # ---------------------------------------------------------------------
 
 W_OMEGA = 0.20
@@ -98,8 +90,7 @@ TRANSFORM_COSTS: Dict[str, float] = {
 METRIC_VERSION = "v0.2.1"
 PROTOCOL_VERSION = "v1"
 SIGNAL_SCHEMA_VERSION = "v1"
-MEMORY_VERSION = "v1"
-MULTI_TRAJECTORY_VERSION = "v1"
+MEMORY_VERSION = "v1_post_break"
 
 
 # ---------------------------------------------------------------------
@@ -162,6 +153,8 @@ class TrajectoryStatusV1:
     last_signal_id: str
     protocol_version: str
     memory_version: str
+    candidate_buffer_size: int
+    candidate_internal_score: float
 
 
 @dataclass
@@ -337,43 +330,30 @@ def scalar_repr(x: float) -> str:
 
 
 # ---------------------------------------------------------------------
-# Pre-canonicalization v0.2.1
+# Pre-canonicalization
 # ---------------------------------------------------------------------
 
 def precanonicalize_state(state: str) -> str:
     s = state.strip().lower()
-
-    # normalize whitespace
     s = s.replace("\n", " ")
     s = re.sub(r"\s+", " ", s)
 
-    # remove common outer wrappers
     s = re.sub(r"^[\{\[\(]+", "", s)
     s = re.sub(r"[\}\]\)]+$", "", s)
 
-    # normalize separators/connectors
     s = s.replace(";", ",")
     s = s.replace("|", ",")
     s = s.replace("_", "-")
 
-    # remove currency symbols if present
     s = re.sub(r"(?<!\S)[$€£¥]\s*", "", s)
 
-    # normalize wall-clock timestamps like 12:00:00
     s = re.sub(r"\b\d{2}:\d{2}:\d{2}\b", "<time>", s)
-
-    # normalize hex-like ids
     s = re.sub(r"\b0x[a-f0-9]+\b", "<hex>", s)
-
-    # normalize volatile thread/pid counters
     s = re.sub(r"\bthread=\d+\b", "thread=<id>", s)
     s = re.sub(r"\bpid=\d+\b", "pid=<id>", s)
-
-    # normalize trace/buffer-like ids
     s = re.sub(r"\btrace=<hex>\b", "trace=<id>", s)
     s = re.sub(r"\bbuf=<hex>\b", "buf=<id>", s)
 
-    # normalize generic integer/float tokens token-by-token
     def normalize_numeric_token(match: re.Match) -> str:
         token = match.group(0)
         try:
@@ -385,8 +365,6 @@ def precanonicalize_state(state: str) -> str:
             return token
 
     s = re.sub(r"-?\d+(?:\.\d+)?", normalize_numeric_token, s)
-
-    # final spacing cleanup
     s = re.sub(r"\s+", " ", s).strip()
     return s
 
@@ -631,7 +609,7 @@ def protocol_fields_for_zone(zone: str) -> Tuple[str, str, bool, bool]:
 
 
 # ---------------------------------------------------------------------
-# Trajectory memory
+# Trajectory memory with post-break policy
 # ---------------------------------------------------------------------
 
 class TrajectoryTracker:
@@ -639,55 +617,118 @@ class TrajectoryTracker:
         self.trajectory_id = trajectory_id
         self.active_regime_id = initial_regime_id
         self.last_stable_regime_id = initial_regime_id
-        self.regime_status = "STABLE"
+        self.regime_status = "STABLE"  # STABLE, DRIFTING, SUSPENDED, CANDIDATE, CHAOTIC
+
         self.transition_index = 0
         self.previous_signal_id = ""
+
         self.cumulative_drift = 0.0
         self.consecutive_mild_count = 0
         self.consecutive_break_count = 0
         self.trajectory_alert_flag = False
-        self._candidate_regime_counter = 0
+
+        self.candidate_buffer: List[str] = []
+        self.post_break_window_size = 3
+        self.tau_commit = 0.20
+        self.tau_chaos = 0.35
+        self.candidate_internal_score = -1.0
+
+        self._regime_counter = 0
 
     def _new_regime_id(self) -> str:
-        self._candidate_regime_counter += 1
-        return f"REG_CAND_{self._candidate_regime_counter:03d}"
+        self._regime_counter += 1
+        return f"REG_{self._regime_counter:03d}"
+
+    def _score_candidate_buffer(self) -> float:
+        if len(self.candidate_buffer) < 2:
+            return -1.0
+
+        internal_distances: List[float] = []
+        for i in range(len(self.candidate_buffer) - 1):
+            d, _, _ = delta_omega_v2(self.candidate_buffer[i], self.candidate_buffer[i + 1])
+            internal_distances.append(d)
+
+        return mean(internal_distances) if internal_distances else -1.0
+
+    def _commit_new_regime(self) -> None:
+        self.last_stable_regime_id = self.active_regime_id
+        self.active_regime_id = self._new_regime_id()
+        self.regime_status = "STABLE"
+
+        self.cumulative_drift = 0.0
+        self.consecutive_break_count = 0
+        self.consecutive_mild_count = 0
+        self.trajectory_alert_flag = False
+
+        self.candidate_buffer = []
+        self.candidate_internal_score = -1.0
 
     def update(self, signal: TransitionSignalV1) -> TrajectoryStatusV1:
         self.transition_index += 1
         self.previous_signal_id = signal.signal_id
         zone = signal.assigned_zone
 
-        if zone == "equivalence":
-            if self.regime_status == "SUSPENDED":
-                self.active_regime_id = self.last_stable_regime_id
-                self.regime_status = "STABLE"
-                self.cumulative_drift = 0.0
-            elif self.regime_status == "MIGRATING":
-                self.active_regime_id = self._new_regime_id()
-                self.last_stable_regime_id = self.active_regime_id
-                self.regime_status = "STABLE"
-                self.cumulative_drift = 0.0
+        # -------------------------------------------------------------
+        # 1. Break opens a candidate regime buffer
+        # -------------------------------------------------------------
+        if zone == "structural_break":
+            self.regime_status = "SUSPENDED"
+            self.consecutive_break_count += 1
+            self.consecutive_mild_count = 0
+            self.trajectory_alert_flag = True
 
+            self.candidate_buffer = [signal.state_2]
+            self.candidate_internal_score = -1.0
+            self.regime_status = "CANDIDATE"
+
+            return self.get_status()
+
+        # -------------------------------------------------------------
+        # 2. Candidate / chaotic observation of post-break states
+        # -------------------------------------------------------------
+        if self.regime_status in ("CANDIDATE", "CHAOTIC"):
+            self.candidate_buffer.append(signal.state_2)
+
+            if len(self.candidate_buffer) >= self.post_break_window_size:
+                self.candidate_internal_score = self._score_candidate_buffer()
+
+                if self.candidate_internal_score >= 0.0 and self.candidate_internal_score <= self.tau_commit:
+                    self._commit_new_regime()
+
+                elif self.candidate_internal_score >= self.tau_chaos:
+                    self.regime_status = "CHAOTIC"
+                    self.trajectory_alert_flag = True
+                    self.candidate_buffer.pop(0)
+
+                else:
+                    self.regime_status = "CANDIDATE"
+                    self.trajectory_alert_flag = True
+                    self.candidate_buffer.pop(0)
+
+            return self.get_status()
+
+        # -------------------------------------------------------------
+        # 3. Standard stable/drifting behavior
+        # -------------------------------------------------------------
+        if zone == "equivalence":
             self.consecutive_mild_count = 0
             self.consecutive_break_count = 0
             self.trajectory_alert_flag = False
 
+            if self.regime_status == "DRIFTING":
+                self.regime_status = "STABLE"
+            else:
+                self.regime_status = "STABLE"
+
         elif zone == "mild_variation":
-            self.cumulative_drift += signal.dO
+            self.regime_status = "DRIFTING"
             self.consecutive_mild_count += 1
             self.consecutive_break_count = 0
-            self.regime_status = "DRIFTING"
-            self.trajectory_alert_flag = self.consecutive_mild_count > 5
+            self.cumulative_drift += signal.dO
 
-        else:
-            self.consecutive_break_count += 1
-            self.consecutive_mild_count = 0
-            self.regime_status = "SUSPENDED"
-            self.trajectory_alert_flag = True
+        return self.get_status()
 
-            if self.consecutive_break_count >= 3:
-                self.regime_status = "MIGRATING"
-
+    def get_status(self) -> TrajectoryStatusV1:
         return TrajectoryStatusV1(
             trajectory_id=self.trajectory_id,
             transition_index=self.transition_index,
@@ -701,6 +742,8 @@ class TrajectoryTracker:
             last_signal_id=self.previous_signal_id,
             protocol_version=PROTOCOL_VERSION,
             memory_version=MEMORY_VERSION,
+            candidate_buffer_size=len(self.candidate_buffer),
+            candidate_internal_score=round(self.candidate_internal_score, 6) if self.candidate_internal_score >= 0 else -1.0,
         )
 
 
@@ -805,7 +848,7 @@ def main() -> None:
             metric_version=METRIC_VERSION,
             protocol_version=PROTOCOL_VERSION,
             signal_schema_version=SIGNAL_SCHEMA_VERSION,
-            family="multi_stream_chaotic_console_logs",
+            family="post_break_recovery_test",
             expected_zone="N/A",
             predicted_zone=assigned_zone,
             pass_fail="N/A",
@@ -829,7 +872,7 @@ def main() -> None:
 
     write_jsonl(OUTPUT_PATH, [asdict(r) for r in records])
 
-    print("OMNIA Multi-Stream Chaotic Console Logs Engine v1")
+    print("OMNIA Post-Break Recovery Engine v1")
     print(f"Input : {INPUT_PATH}")
     print(f"Output: {OUTPUT_PATH}")
     print()
@@ -853,9 +896,9 @@ def main() -> None:
             f"| dO={ts['dO']:.6f} "
             f"| zone={ts['assigned_zone']} "
             f"| status={mem['regime_status']} "
-            f"| drift_sum={mem['cumulative_drift']:.6f} "
-            f"| mild_n={mem['consecutive_mild_count']} "
-            f"| break_n={mem['consecutive_break_count']}"
+            f"| active_regime={mem['active_regime_id']} "
+            f"| cand_n={mem['candidate_buffer_size']} "
+            f"| cand_score={mem['candidate_internal_score']:.6f}"
         )
 
 
