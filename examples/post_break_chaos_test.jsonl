@@ -1,0 +1,7 @@
+{"stream_id":"auth-srv","t":"12:00:01","v":"[thread=41] INFO auth ok latency=45ms","note":"STABLE"}
+{"stream_id":"auth-srv","t":"12:00:05","v":"[thread=41] INFO auth ok latency=48ms","note":"STABLE"}
+{"stream_id":"auth-srv","t":"12:00:10","v":"[thread=52] ERROR auth timeout code=500","note":"BREAK -> CANDIDATE"}
+{"stream_id":"auth-srv","t":"12:00:15","v":"[thread=77] ERROR auth token invalid code=401","note":"CHAOTIC 1"}
+{"stream_id":"auth-srv","t":"12:00:20","v":"[thread=88] WARN auth rate limit exceeded code=429","note":"CHAOTIC 2"}
+{"stream_id":"auth-srv","t":"12:00:25","v":"[thread=93] ERROR auth internal crash code=503","note":"CHAOTIC 3"}
+{"stream_id":"auth-srv","t":"12:00:30","v":"[thread=105] WARN auth malformed request code=400","note":"CHAOTIC 4"}
