@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-OMNIA - Multi-Stream Structured Logs Engine v1
+OMNIA - Multi-Stream Free-Text Logs Engine v1
 
 Operates on multiple interleaved streams and preserves strict trajectory-memory
 isolation per stream_id.
 
 Current input:
-    examples/structured_logs_demo_v1.jsonl
+    examples/free_text_logs_demo_v1.jsonl
 
 Computes:
     - pre-canonicalized structural signature sigma_v0.2.1(S)
@@ -17,7 +17,7 @@ Computes:
     - strict per-stream trajectory isolation
 
 Writes:
-    examples/do_structured_logs_results_v1.jsonl
+    examples/do_free_text_results_v1.jsonl
 """
 
 from __future__ import annotations
@@ -35,8 +35,8 @@ from typing import Dict, List, Tuple
 # ---------------------------------------------------------------------
 
 ROOT = Path(__file__).resolve().parent
-INPUT_PATH = ROOT / "structured_logs_demo_v1.jsonl"
-OUTPUT_PATH = ROOT / "do_structured_logs_results_v1.jsonl"
+INPUT_PATH = ROOT / "free_text_logs_demo_v1.jsonl"
+OUTPUT_PATH = ROOT / "do_free_text_results_v1.jsonl"
 
 
 # ---------------------------------------------------------------------
@@ -781,7 +781,7 @@ def main() -> None:
             metric_version=METRIC_VERSION,
             protocol_version=PROTOCOL_VERSION,
             signal_schema_version=SIGNAL_SCHEMA_VERSION,
-            family="multi_stream_structured_logs",
+            family="multi_stream_free_text_logs",
             expected_zone="N/A",
             predicted_zone=assigned_zone,
             pass_fail="N/A",
@@ -805,7 +805,7 @@ def main() -> None:
 
     write_jsonl(OUTPUT_PATH, [asdict(r) for r in records])
 
-    print("OMNIA Multi-Stream Structured Logs Engine v1")
+    print("OMNIA Multi-Stream Free-Text Logs Engine v1")
     print(f"Input : {INPUT_PATH}")
     print(f"Output: {OUTPUT_PATH}")
     print()
