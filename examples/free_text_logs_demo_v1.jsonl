@@ -1,0 +1,8 @@
+{"stream_id":"auth-srv","t":"2026-04-09T12:00:00","v":"authentication completed successfully in 45 ms","note":"Baseline"}
+{"stream_id":"db-node","t":"2026-04-09T12:00:01","v":"database idle with 12 active connections and 5 percent cpu","note":"Baseline DB"}
+{"stream_id":"auth-srv","t":"2026-04-09T12:00:05","v":"authentication completed successfully in 48 ms","note":"Stable auth"}
+{"stream_id":"db-node","t":"2026-04-09T12:00:06","v":"database idle with 14 active connections and 7 percent cpu","note":"Stable DB"}
+{"stream_id":"auth-srv","t":"2026-04-09T12:00:10","v":"authentication still succeeds but response time increased to 120 ms","note":"Drift"}
+{"stream_id":"auth-srv","t":"2026-04-09T12:00:15","v":"authentication failed with timeout while generating session token","note":"SHOCK"}
+{"stream_id":"db-node","t":"2026-04-09T12:00:16","v":"database remains idle with 13 active connections and 6 percent cpu","note":"DB stable"}
+{"stream_id":"auth-srv","t":"2026-04-09T12:00:20","v":"authentication failed again because the request timed out","note":"New regime"}
