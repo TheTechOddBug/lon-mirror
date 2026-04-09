@@ -1,26 +1,23 @@
 #!/usr/bin/env python3
 """
-OMNIA - Temporal Series Engine v1
+OMNIA - Multi-Stream Temporal Series Engine v1
 
-Operates on a continuous stream of numeric values to detect structural changes in time.
+Operates on multiple interleaved numeric streams and preserves strict
+trajectory-memory isolation per stream_id.
 
 Reads:
-    examples/real_series_demo_v1.jsonl
+    examples/multi_stream_demo_v1.jsonl
 
 Computes:
     - pre-canonicalized structural signature sigma_v0.2.1(S)
-    - dO = Delta_Omega_v0.2.1(S_t, S_t+1)
+    - dO = Delta_Omega_v0.2.1(S_t, S_t+1) per stream
     - kappa = 1 - dO
     - TransitionSignalV1
     - TrajectoryStatusV1
+    - strict per-stream trajectory isolation
 
 Writes:
     examples/do_mini_validation_results_v1.jsonl
-
-Important:
-This is a bootstrap temporal stream engine for real-series proxy data.
-It is not a proof of universality.
-It is an operational signal + memory emitter built on the current dO baseline.
 """
 
 from __future__ import annotations
@@ -38,7 +35,7 @@ from typing import Dict, List, Tuple
 # ---------------------------------------------------------------------
 
 ROOT = Path(__file__).resolve().parent
-INPUT_PATH = ROOT / "real_series_demo_v1.jsonl"
+INPUT_PATH = ROOT / "multi_stream_demo_v1.jsonl"
 OUTPUT_PATH = ROOT / "do_mini_validation_results_v1.jsonl"
 
 
@@ -102,6 +99,7 @@ METRIC_VERSION = "v0.2.1"
 PROTOCOL_VERSION = "v1"
 SIGNAL_SCHEMA_VERSION = "v1"
 MEMORY_VERSION = "v1"
+MULTI_TRAJECTORY_VERSION = "v1"
 
 
 # ---------------------------------------------------------------------
@@ -168,6 +166,7 @@ class TrajectoryStatusV1:
 
 @dataclass
 class OutputRecord:
+    stream_id: str
     transition_signal: Dict
     trajectory_status: Dict
 
@@ -514,10 +513,7 @@ def d_sigma_v2(sig1: StructuralSignatureV2, sig2: StructuralSignatureV2) -> floa
     return clamp01(dist)
 
 
-def delta_omega_v2(
-    state_1: str,
-    state_2: str,
-) -> Tuple[float, float, str]:
+def delta_omega_v2(state_1: str, state_2: str) -> Tuple[float, float, str]:
     sig2 = structural_signature_v2(state_2)
 
     best_total = float("inf")
@@ -535,11 +531,7 @@ def delta_omega_v2(
             best_sig_distance = sig_dist
             best_transform_name = name
 
-    return (
-        clamp01(best_total),
-        clamp01(best_sig_distance),
-        best_transform_name,
-    )
+    return clamp01(best_total), clamp01(best_sig_distance), best_transform_name
 
 
 # ---------------------------------------------------------------------
@@ -567,7 +559,7 @@ def protocol_fields_for_zone(zone: str) -> Tuple[str, str, bool, bool]:
 # ---------------------------------------------------------------------
 
 class TrajectoryTracker:
-    def __init__(self, trajectory_id: str = "T_REAL_001", initial_regime_id: str = "REG_ALPHA") -> None:
+    def __init__(self, trajectory_id: str, initial_regime_id: str = "REG_ALPHA") -> None:
         self.trajectory_id = trajectory_id
         self.active_regime_id = initial_regime_id
         self.last_stable_regime_id = initial_regime_id
@@ -587,7 +579,6 @@ class TrajectoryTracker:
     def update(self, signal: TransitionSignalV1) -> TrajectoryStatusV1:
         self.transition_index += 1
         self.previous_signal_id = signal.signal_id
-
         zone = signal.assigned_zone
 
         if zone == "equivalence":
@@ -612,7 +603,7 @@ class TrajectoryTracker:
             self.regime_status = "DRIFTING"
             self.trajectory_alert_flag = self.consecutive_mild_count > 5
 
-        elif zone == "structural_break":
+        else:  # structural_break
             self.consecutive_break_count += 1
             self.consecutive_mild_count = 0
             self.regime_status = "SUSPENDED"
@@ -638,13 +629,37 @@ class TrajectoryTracker:
 
 
 # ---------------------------------------------------------------------
+# Multi-trajectory manager
+# ---------------------------------------------------------------------
+
+class MultiTrajectoryManager:
+    def __init__(self) -> None:
+        self.trackers: Dict[str, TrajectoryTracker] = {}
+        self.last_rows: Dict[str, dict] = {}
+
+    def get_tracker(self, stream_id: str) -> TrajectoryTracker:
+        if stream_id not in self.trackers:
+            self.trackers[stream_id] = TrajectoryTracker(trajectory_id=f"T_{stream_id}")
+        return self.trackers[stream_id]
+
+    def has_previous(self, stream_id: str) -> bool:
+        return stream_id in self.last_rows
+
+    def previous_row(self, stream_id: str) -> dict:
+        return self.last_rows[stream_id]
+
+    def update_previous(self, stream_id: str, row: dict) -> None:
+        self.last_rows[stream_id] = row
+
+
+# ---------------------------------------------------------------------
 # I/O
 # ---------------------------------------------------------------------
 
 def load_jsonl(path: Path) -> List[dict]:
     rows: List[dict] = []
     with path.open("r", encoding="utf-8") as f:
-        for line_no, line in enumerate(f, start=1):
+        for line in f:
             line = line.strip()
             if not line:
                 continue
@@ -659,7 +674,7 @@ def write_jsonl(path: Path, rows: List[dict]) -> None:
 
 
 # ---------------------------------------------------------------------
-# Main stream engine
+# Main engine
 # ---------------------------------------------------------------------
 
 def main() -> None:
@@ -668,22 +683,28 @@ def main() -> None:
 
     rows = load_jsonl(INPUT_PATH)
     if len(rows) < 2:
-        raise ValueError("The input series must contain at least 2 rows.")
+        raise ValueError("The input stream file must contain at least 2 rows.")
 
+    manager = MultiTrajectoryManager()
     records: List[OutputRecord] = []
-    tracker = TrajectoryTracker()
 
-    scores: List[float] = []
+    per_stream_scores: Dict[str, List[float]] = {}
 
-    for i in range(len(rows) - 1):
-        row_ref = rows[i]
-        row_obs = rows[i + 1]
+    for row in rows:
+        stream_id = str(row["stream_id"])
+        tracker = manager.get_tracker(stream_id)
 
-        t1 = str(row_ref["t"])
-        t2 = str(row_obs["t"])
-        s1_raw = str(row_ref["v"])
-        s2_raw = str(row_obs["v"])
-        note = row_obs.get("note", "")
+        if not manager.has_previous(stream_id):
+            manager.update_previous(stream_id, row)
+            continue
+
+        prev = manager.previous_row(stream_id)
+
+        t1 = str(prev["t"])
+        t2 = str(row["t"])
+        s1_raw = str(prev["v"])
+        s2_raw = str(row["v"])
+        note = row.get("note", "")
 
         delta, sig_distance, best_transform = delta_omega_v2(s1_raw, s2_raw)
         kappa = clamp01(1.0 - delta)
@@ -691,9 +712,9 @@ def main() -> None:
         protocol_label, continuity_status, drift_tracking_flag, regime_alert_flag = protocol_fields_for_zone(assigned_zone)
 
         signal = TransitionSignalV1(
-            signal_id=f"SIG_{t1}_{t2}",
-            reference_state_id=f"S_{t1}",
-            observed_state_id=f"S_{t2}",
+            signal_id=f"SIG_{stream_id}_{t1}_{t2}",
+            reference_state_id=f"{stream_id}_S_{t1}",
+            observed_state_id=f"{stream_id}_S_{t2}",
             dO=round(delta, 6),
             kappa=round(kappa, 6),
             assigned_zone=assigned_zone,
@@ -709,7 +730,7 @@ def main() -> None:
             metric_version=METRIC_VERSION,
             protocol_version=PROTOCOL_VERSION,
             signal_schema_version=SIGNAL_SCHEMA_VERSION,
-            family="real_time_series",
+            family="multi_stream_time_series",
             expected_zone="N/A",
             predicted_zone=assigned_zone,
             pass_fail="N/A",
@@ -722,37 +743,44 @@ def main() -> None:
 
         records.append(
             OutputRecord(
+                stream_id=stream_id,
                 transition_signal=asdict(signal),
                 trajectory_status=asdict(trajectory_status),
             )
         )
 
-        scores.append(delta)
+        per_stream_scores.setdefault(stream_id, []).append(delta)
+        manager.update_previous(stream_id, row)
 
     write_jsonl(OUTPUT_PATH, [asdict(r) for r in records])
 
-    print("OMNIA Temporal Series Engine v1")
+    print("OMNIA Multi-Stream Temporal Series Engine v1")
     print(f"Input : {INPUT_PATH}")
     print(f"Output: {OUTPUT_PATH}")
     print()
     print(f"Transitions analyzed : {len(records)}")
-    if scores:
-        print(
-            f"mean_dO={mean(scores):.6f} min={min(scores):.6f} max={max(scores):.6f}"
-        )
+
+    for stream_id, scores in sorted(per_stream_scores.items()):
+        if scores:
+            print(
+                f"{stream_id:12s} "
+                f"count={len(scores)} mean_dO={mean(scores):.6f} "
+                f"min={min(scores):.6f} max={max(scores):.6f}"
+            )
+
     print()
     print("Detailed records:")
     for r in records:
         ts = r.transition_signal
         mem = r.trajectory_status
         print(
-            f"[{ts['observed_state_id']}] dO={ts['dO']:.6f} "
+            f"[{r.stream_id}] {ts['observed_state_id']} "
+            f"| dO={ts['dO']:.6f} "
             f"| zone={ts['assigned_zone']} "
             f"| status={mem['regime_status']} "
             f"| drift_sum={mem['cumulative_drift']:.6f} "
             f"| mild_n={mem['consecutive_mild_count']} "
-            f"| break_n={mem['consecutive_break_count']} "
-            f"| alert={ts['regime_alert_flag']}"
+            f"| break_n={mem['consecutive_break_count']}"
         )
 
 
