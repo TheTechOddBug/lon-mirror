@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 """
-OMNIA - Post-Break Chaos Test Engine v1
+OMNIA - Structural Compatibility Unit Engine v1
 
 Purpose:
-Validate that OMNIA refuses to commit a new regime when post-break states
-are internally incoherent.
+Emit the first executable structural compatibility bundle:
+
+    U_v1(S1, S2) = (C, I, P)
 
 Reads:
     examples/post_break_chaos_test.jsonl
 
 Writes:
-    examples/do_post_break_chaos_results_v1.jsonl
+    examples/do_structural_compatibility_unit_v1.jsonl
 """
 
 from __future__ import annotations
@@ -29,7 +30,7 @@ from typing import Dict, List, Tuple
 
 ROOT = Path(__file__).resolve().parent
 INPUT_PATH = ROOT / "post_break_chaos_test.jsonl"
-OUTPUT_PATH = ROOT / "do_post_break_chaos_results_v1.jsonl"
+OUTPUT_PATH = ROOT / "do_structural_compatibility_unit_v1.jsonl"
 
 
 # ---------------------------------------------------------------------
@@ -92,6 +93,7 @@ METRIC_VERSION = "v0.2.1"
 PROTOCOL_VERSION = "v1"
 SIGNAL_SCHEMA_VERSION = "v1"
 MEMORY_VERSION = "v1_post_break"
+SCU_VERSION = "v1"
 
 
 # ---------------------------------------------------------------------
@@ -109,6 +111,13 @@ class StructuralSignatureV2:
     transition_frequency: float
     run_length_irregularity: float
     local_delta_pattern: float
+
+
+@dataclass
+class UV1:
+    C: float
+    I: float
+    P: float
 
 
 @dataclass
@@ -163,6 +172,7 @@ class OutputRecord:
     stream_id: str
     transition_signal: Dict
     trajectory_status: Dict
+    U_v1: Dict
 
 
 # ---------------------------------------------------------------------
@@ -643,24 +653,20 @@ class TrajectoryTracker:
     def _score_candidate_buffer(self) -> float:
         if len(self.candidate_buffer) < 2:
             return -1.0
-
         internal_distances: List[float] = []
         for i in range(len(self.candidate_buffer) - 1):
             d, _, _ = delta_omega_v2(self.candidate_buffer[i], self.candidate_buffer[i + 1])
             internal_distances.append(d)
-
         return mean(internal_distances) if internal_distances else -1.0
 
     def _commit_new_regime(self) -> None:
         self.last_stable_regime_id = self.active_regime_id
         self.active_regime_id = self._new_regime_id()
         self.regime_status = "STABLE"
-
         self.cumulative_drift = 0.0
         self.consecutive_break_count = 0
         self.consecutive_mild_count = 0
         self.trajectory_alert_flag = False
-
         self.candidate_buffer = []
         self.candidate_internal_score = -1.0
 
@@ -674,7 +680,6 @@ class TrajectoryTracker:
             self.consecutive_break_count += 1
             self.consecutive_mild_count = 0
             self.trajectory_alert_flag = True
-
             self.candidate_buffer = [signal.state_2]
             self.candidate_internal_score = -1.0
             self.regime_status = "CANDIDATE"
@@ -732,6 +737,50 @@ class TrajectoryTracker:
             candidate_buffer_size=len(self.candidate_buffer),
             candidate_internal_score=round(self.candidate_internal_score, 6) if self.candidate_internal_score >= 0 else -1.0,
         )
+
+
+# ---------------------------------------------------------------------
+# U_v1 bundle
+# ---------------------------------------------------------------------
+
+def compute_C(delta_omega: float) -> float:
+    return clamp01(1.0 - delta_omega)
+
+
+def compute_I(signal: TransitionSignalV1, status: TrajectoryStatusV1) -> float:
+    if signal.assigned_zone != "structural_break" and status.regime_status not in ("CANDIDATE", "CHAOTIC"):
+        return 0.0
+    if status.regime_status == "CHAOTIC":
+        return 1.0
+    if status.regime_status == "CANDIDATE" or signal.assigned_zone == "structural_break":
+        return 0.5
+    return 0.0
+
+
+def linear_purity(score: float, tau_commit: float, tau_chaos: float) -> float:
+    if score <= tau_commit:
+        return 1.0
+    if score >= tau_chaos:
+        return 0.0
+    span = tau_chaos - tau_commit
+    if span <= 0:
+        return 0.5
+    return clamp01(1.0 - ((score - tau_commit) / span))
+
+
+def compute_P(status: TrajectoryStatusV1, tau_commit: float, tau_chaos: float) -> float:
+    if status.regime_status not in ("CANDIDATE", "CHAOTIC"):
+        return 0.5
+    if status.candidate_internal_score < 0:
+        return 0.5
+    return linear_purity(status.candidate_internal_score, tau_commit, tau_chaos)
+
+
+def compute_u_v1(signal: TransitionSignalV1, status: TrajectoryStatusV1) -> UV1:
+    c = compute_C(signal.dO)
+    i = compute_I(signal, status)
+    p = compute_P(status, tau_commit=0.20, tau_chaos=0.35)
+    return UV1(C=round(c, 6), I=round(i, 6), P=round(p, 6))
 
 
 # ---------------------------------------------------------------------
@@ -793,7 +842,6 @@ def main() -> None:
 
     manager = MultiTrajectoryManager()
     records: List[OutputRecord] = []
-    per_stream_scores: Dict[str, List[float]] = {}
 
     for row in rows:
         stream_id = str(row["stream_id"])
@@ -835,7 +883,7 @@ def main() -> None:
             metric_version=METRIC_VERSION,
             protocol_version=PROTOCOL_VERSION,
             signal_schema_version=SIGNAL_SCHEMA_VERSION,
-            family="post_break_chaos_test",
+            family="structural_compatibility_unit_v1",
             expected_zone="N/A",
             predicted_zone=assigned_zone,
             pass_fail="N/A",
@@ -844,48 +892,39 @@ def main() -> None:
             notes=note,
         )
 
-        trajectory_status = tracker.update(signal)
+        status = tracker.update(signal)
+        u_v1 = compute_u_v1(signal, status)
 
         records.append(
             OutputRecord(
                 stream_id=stream_id,
                 transition_signal=asdict(signal),
-                trajectory_status=asdict(trajectory_status),
+                trajectory_status=asdict(status),
+                U_v1=asdict(u_v1),
             )
         )
 
-        per_stream_scores.setdefault(stream_id, []).append(delta)
         manager.update_previous(stream_id, row)
 
     write_jsonl(OUTPUT_PATH, [asdict(r) for r in records])
 
-    print("OMNIA Post-Break Chaos Test Engine v1")
+    print("OMNIA Structural Compatibility Unit Engine v1")
     print(f"Input : {INPUT_PATH}")
     print(f"Output: {OUTPUT_PATH}")
     print()
     print(f"Transitions analyzed : {len(records)}")
-
-    for stream_id, scores in sorted(per_stream_scores.items()):
-        if scores:
-            print(
-                f"{stream_id:12s} "
-                f"count={len(scores)} mean_dO={mean(scores):.6f} "
-                f"min={min(scores):.6f} max={max(scores):.6f}"
-            )
-
     print()
     print("Detailed records:")
     for r in records:
         ts = r.transition_signal
         mem = r.trajectory_status
+        uv1 = r.U_v1
         print(
             f"[{r.stream_id}] {ts['observed_state_id']} "
             f"| dO={ts['dO']:.6f} "
             f"| zone={ts['assigned_zone']} "
             f"| status={mem['regime_status']} "
-            f"| active_regime={mem['active_regime_id']} "
-            f"| cand_n={mem['candidate_buffer_size']} "
-            f"| cand_score={mem['candidate_internal_score']:.6f}"
+            f"| U_v1=(C={uv1['C']:.6f}, I={uv1['I']:.6f}, P={uv1['P']:.6f})"
         )
 
 
