@@ -1,3 +1,10 @@
-{"t":"2026-01-01","value":100.0}
-{"t":"2026-01-02","value":101.2}
-{"t":"2026-01-03","value":101.5}
+{"t":"2026-01-01","v":100.0,"note":"Baseline"}
+{"t":"2026-01-02","v":100.2,"note":"Stable"}
+{"t":"2026-01-03","v":99.8,"note":"Stable"}
+{"t":"2026-01-04","v":102.5,"note":"Start Drift"}
+{"t":"2026-01-05","v":104.8,"note":"Drifting up"}
+{"t":"2026-01-06","v":107.2,"note":"Drifting up"}
+{"t":"2026-01-07","v":110.1,"note":"Drifting up"}
+{"t":"2026-01-08","v":145.0,"note":"SHOCK / Regime Break"}
+{"t":"2026-01-09","v":146.2,"note":"New Regime Stable"}
+{"t":"2026-01-10","v":144.8,"note":"New Regime Stable"}
