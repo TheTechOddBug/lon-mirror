@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-OMNIA - dO Validation Benchmark v0.2
+OMNIA - dO Validation Benchmark v0.2.1
 
 Reads:
     examples/do_mini_validation_pairs_v1.jsonl
 
 Computes:
-    - structural signature sigma_v0.2(S)
+    - pre-canonicalized structural signature sigma_v0.2(S)
     - primitive signature distance d_sigma_v0.2
     - transformation-cost-aware Delta_Omega_v0.2(S1, S2)
     - kappa = 1 - Delta_Omega
@@ -19,7 +19,7 @@ Writes:
 Important:
 This is still a bootstrap validation runner.
 It is not a proof of universality.
-It is an operational falsifiable check for v0.2.
+It is an operational falsifiable check for v0.2.1.
 """
 
 from __future__ import annotations
@@ -265,7 +265,6 @@ def run_length_irregularity(tokens: List[str]) -> float:
         return 0.0
     if len(runs) == 1:
         return 0.0
-    # Normalize variance by squared sequence length
     v = variance([float(r) for r in runs])
     n = max(sum(runs), 1)
     return clamp01(v / (n * n))
@@ -284,7 +283,6 @@ def local_delta_pattern_numeric(nums: List[float]) -> float:
 def local_delta_pattern_symbolic(tokens: List[str]) -> float:
     if len(tokens) < 3:
         return 0.0
-    # Pattern of equality/inequality between neighbors
     rel = [1 if tokens[i + 1] == tokens[i] else 0 for i in range(len(tokens) - 1)]
     if len(rel) < 2:
         return 0.0
@@ -300,6 +298,69 @@ def scalar_repr(x: float) -> str:
     if float(x).is_integer():
         return str(int(x))
     return str(x)
+
+
+# ---------------------------------------------------------------------
+# Pre-canonicalization v0.2.1
+# ---------------------------------------------------------------------
+
+def precanonicalize_state(state: str) -> str:
+    """
+    v0.2.1 pre-ingestion cleanup.
+
+    Goal:
+    normalize superficial formatting noise before structural signature extraction,
+    while preserving order, adjacency, and local structure.
+
+    This function must NOT:
+    - reorder tokens
+    - sort
+    - permute
+    - perform semantic substitution
+    - rescale values
+    """
+
+    s = state.strip()
+
+    # Normalize linebreak-equivalent spacing
+    s = s.replace("\n", " ")
+    s = re.sub(r"\s+", " ", s)
+
+    # Remove common neutral wrappers only at the outer surface
+    # Keep interior order unchanged
+    s = re.sub(r"^[\{\[\(]+", "", s)
+    s = re.sub(r"[\}\]\)]+$", "", s)
+
+    # Normalize common superficial separators
+    s = s.replace(";", ",")
+    s = s.replace("|", ",")
+
+    # Normalize connector variants when not structurally relevant
+    s = s.replace("_", "-")
+
+    # Remove common leading currency symbols attached to numbers
+    s = re.sub(r"(?<!\S)[$€£¥]\s*", "", s)
+
+    # Lowercase for case-insensitive structural comparison
+    s = s.lower()
+
+    # Normalize numeric surface forms token by token
+    def normalize_numeric_token(match: re.Match) -> str:
+        token = match.group(0)
+        try:
+            value = float(token)
+            if value.is_integer():
+                return str(int(value))
+            return format(value, "g")
+        except ValueError:
+            return token
+
+    s = re.sub(r"-?\d+(?:\.\d+)?", normalize_numeric_token, s)
+
+    # Final spacing cleanup
+    s = re.sub(r"\s+", " ", s).strip()
+
+    return s
 
 
 # ---------------------------------------------------------------------
@@ -323,11 +384,11 @@ def canonical_symbolic_string(s: str) -> str:
 
 
 # ---------------------------------------------------------------------
-# Signature extraction v0.2
+# Signature extraction v0.2.1
 # ---------------------------------------------------------------------
 
 def structural_signature_v2(state: str) -> StructuralSignatureV2:
-    s = normalize_text_basic(state)
+    s = precanonicalize_state(normalize_text_basic(state))
     nums = parse_numeric_sequence_if_possible(s)
 
     if nums:
@@ -579,7 +640,7 @@ def main() -> None:
 
     write_jsonl(OUTPUT_PATH, [asdict(r) for r in results])
 
-    print("OMNIA dO Validation v0.2")
+    print("OMNIA dO Validation v0.2.1")
     print(f"Input : {INPUT_PATH}")
     print(f"Output: {OUTPUT_PATH}")
     print()
