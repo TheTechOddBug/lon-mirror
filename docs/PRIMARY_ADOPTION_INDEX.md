@@ -1,105 +1,123 @@
-# OMNIA Primary Adoption Index
-## Canonical adapter and canonical integration
+# Primary Adoption Index
 
-Status: active
-Purpose: define the exact adoption entry points that represent OMNIA publicly
+This file defines the narrow external adoption index for OMNIA v1.0.
 
----
+It exists to keep the integration entry path short, readable, and externally usable.
 
-## 1. Rule
+OMNIA should be adopted as a bounded post-hoc structural measurement layer.
 
-This file identifies the exact adoption entry points that should represent OMNIA publicly.
-
-These are not necessarily the only adoption-related materials in the repo.
-They are the canonical path for external readers and early integrators.
+It should not be read as a reasoning engine, semantic evaluator, or decision system.
 
 ---
 
-## 2. Canonical adapter
+## Primary adoption set
 
-### `adapters/llm_output_adapter.py`
+### 1. Minimal interface
+
+`OMNIA_MINIMAL_INTERFACE.md`
+
+Focus:
+smallest readable integration surface.
 
 Role:
-translate LLM-style outputs into OMNIA-compatible structural inputs.
-
-Why it is canonical:
-it is the clearest bridge between OMNIA and a real post-hoc measurement use case.
-
-Public function:
-show how OMNIA can sit after generation and before final trust or escalation decisions.
-
-Boundary rule:
-the adapter must remain thin.
-It translates format.
-It does not add semantic reasoning or decision logic.
+first entry point for a new external integrator.
 
 ---
 
-## 3. Canonical integration
+### 2. Full interface
 
-### `integrations/caios/`
+`INTERFACE.md`
+
+Focus:
+explicit interaction boundary between OMNIA and a host system.
 
 Role:
-represent the main real integration path currently visible in the repo.
-
-Why it is canonical:
-it is the only explicit integration path presently exposed and therefore the natural adoption anchor.
-
-Public function:
-show that OMNIA can be inserted into an external workflow as a structural measurement layer.
-
-Boundary rule:
-the integration must preserve:
-measurement != inference != decision
-
-OMNIA may measure signals.
-The host system may decide what to do with them.
+main interface reference after the minimal entry point.
 
 ---
 
-## 4. Interface dependency
+### 3. Adapter path
 
-The canonical adoption path depends on these two interface documents:
+`adapters/llm_output_adapter.py`
 
-- `OMNIA_MINIMAL_INTERFACE.md`
-- `INTERFACE.md`
+Focus:
+practical bridge from structured LLM outputs to OMNIA-style measurement flow.
 
-Reading order:
+Role:
+first concrete integration example.
+
+---
+
+### 4. Integration branch
+
+`integrations/caios/`
+
+Focus:
+tested integration-oriented path where OMNIA signals are connected to a broader workflow.
+
+Role:
+strongest currently exposed adoption branch in the repository.
+
+---
+
+## Recommended adoption order
+
+Read in this order:
 
 1. `OMNIA_MINIMAL_INTERFACE.md`
 2. `INTERFACE.md`
 3. `adapters/llm_output_adapter.py`
 4. `integrations/caios/`
 
-This is the shortest valid adoption path for an external reader.
+This order moves from minimal interface, to boundary definition, to practical adapter path, to broader integration.
 
 ---
 
-## 5. Public adoption claim supported by this path
+## How this index should be used
 
-The strongest supported claim is:
+Use this index if the goal is to answer one of these questions quickly:
 
-OMNIA can be connected to external workflows as a post-hoc structural measurement layer through a minimal interface, a thin adapter, and a concrete integration path.
+- Where should an external integrator start?
+- What is the smallest usable OMNIA interface?
+- Where is the first concrete adapter example?
+- Where is the strongest currently exposed integration path?
 
-This path does NOT support claims such as:
-
-- OMNIA replaces the model
-- OMNIA performs semantic reasoning
-- OMNIA is a decision engine
-- OMNIA solves downstream tasks by itself
+This file is an index, not an integration report.
 
 ---
 
-## 6. Replacement rule
+## Adoption boundary
 
-If a stronger adapter or integration becomes more representative in the future, this file must be updated explicitly.
+This adoption path supports a bounded view of OMNIA as:
 
-No adoption path should become canonical by accident.
+- a post-hoc structural measurement layer
+- a runtime-compatible signal provider
+- a bounded component for retry / escalation style workflows
+
+It does not imply:
+
+- semantic comprehension
+- autonomous reasoning
+- full deployment readiness in arbitrary environments
+- replacement of host cognition
+- replacement of a decision layer
+
+The architectural boundary remains:
+
+```text
+measurement != inference != decision
+
 
 ---
 
-## 7. Final rule
+Related files
 
-OMNIA adoption must remain narrow, explicit, and technically readable.
+README.md
 
-One clear adapter and one clear integration are stronger than many scattered possibilities.
+docs/PRIMARY_BENCHMARKS.md
+
+docs/PRIMARY_BENCHMARK_INDEX.md
+
+docs/PRIMARY_ADOPTION_PATH.md
+
+
