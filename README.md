@@ -425,5 +425,3 @@ stronger evidence
 clearer integration
 
 external reproducibility
-
-
