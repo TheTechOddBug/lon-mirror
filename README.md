@@ -1,3 +1,9 @@
+Nome file:
+
+README.md
+
+Contenuto completo:
+
 # OMNIA v1.0 — Structural Measurement Engine
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19488048.svg)](https://doi.org/10.5281/zenodo.19488048)
@@ -73,6 +79,12 @@ post-hoc ranking / filtering on structured candidates
 monitored structural bias correction in numeric ranking
 
 public-facing fragility display where correctness and stability diverge
+
+runtime retry / escalation intervention on structured LLM outputs inside the validated example perimeter
+
+adapter-mediated workflow control with measurable safety dividend in tested runtime scenarios
+
+cross-model runtime portability inside the tested structured-output perimeter
 
 
 This is a real tested perimeter.
@@ -218,6 +230,47 @@ If this separation appears, the system is working as intended.
 
 ---
 
+Current validated status
+
+OMNIA v1.0 has already been validated, within the tested perimeter, across:
+
+controlled structural benchmarks
+
+calibrated silent-failure gate behavior
+
+retry-loop workflow intervention
+
+adapter-path runtime integration
+
+expanded structured-output runtime dataset
+
+real backend execution
+
+cross-model comparison under the same runtime pipeline
+
+
+Inside this perimeter, OMNIA behaves as a post-hoc structural runtime safety layer for structured LLM outputs.
+
+This means it has demonstrated:
+
+positive safety dividend
+
+bounded retry waste
+
+low over-defensive cost
+
+stable preservation of healthy outputs
+
+portability across the tested model pair
+
+auditable intervention behavior under runtime conditions
+
+
+This remains a bounded engineering result, not a universality claim.
+
+
+---
+
 Primary evidence
 
 OMNIA should be read through a narrow benchmark center.
@@ -237,6 +290,58 @@ OMNIA_TOTALE_MULTIMODEL_EVAL_v0.2.py
 These are the main public evidence path.
 
 Additional reports, notes, and side validations may support them, but should not replace them as the public center.
+
+
+---
+
+Runtime external-impact path
+
+The main external-impact example path of OMNIA v1.0 is now:
+
+1. calibrated silent-failure detection
+
+
+2. bounded retry / escalate intervention
+
+
+3. adapter-mediated runtime workflow control
+
+
+4. real backend execution
+
+
+5. cross-model portability under the same pipeline
+
+
+
+The core runtime validation artifacts include:
+
+docs/OMNIA_SILENT_FAILURE_GATE_V0.md
+
+docs/OMNIA_SILENT_FAILURE_GATE_V0_RESULTS.md
+
+docs/OMNIA_SILENT_FAILURE_GATE_V0_2_RESULTS.md
+
+docs/OMNIA_SILENT_FAILURE_RETRY_LOOP_V0_RESULTS.md
+
+docs/OMNIA_RETRY_LOOP_ADAPTER_PATH_V0.md
+
+docs/OMNIA_RETRY_LOOP_ADAPTER_PATH_V0_RESULTS.md
+
+docs/OMNIA_RETRY_LOOP_DATASET_EXPANSION_V0.md
+
+docs/OMNIA_RETRY_LOOP_DATASET_EXPANSION_V0_RESULTS.md
+
+docs/OMNIA_RETRY_LOOP_REAL_BACKEND_V0.md
+
+docs/OMNIA_RETRY_LOOP_REAL_BACKEND_V0_RESULTS.md
+
+docs/OMNIA_RETRY_LOOP_CROSS_MODEL_V0.md
+
+docs/OMNIA_RETRY_LOOP_CROSS_MODEL_V0_RESULTS.md
+
+
+These artifacts define the most advanced validated runtime branch of the project.
 
 
 ---
@@ -294,6 +399,17 @@ candidate ranking / filtering tasks
 
 
 The project is strongest when treated as a post-hoc measurement layer, not as a semantic or decision engine.
+
+The currently strongest demonstrated use case is:
+
+structured JSON-like LLM outputs
+
+silent-failure interception
+
+retry / escalation control
+
+runtime auditability
+
 
 
 ---
@@ -358,6 +474,8 @@ For a new external reader, the recommended order is:
 
 
 
+If the reader wants the strongest runtime branch after that, the next documents should be the Silent Failure Gate, Retry Loop, Adapter Path, Real Backend, and Cross-Model result files listed above.
+
 
 ---
 
@@ -374,6 +492,8 @@ isolate structure-dependent signal from representational noise
 detect instability and regime change
 
 provide external measurement usable by host systems
+
+support bounded retry / escalation intervention in validated runtime workflows
 
 
 The project is built around one hard rule:
@@ -408,6 +528,10 @@ SCU v1 is bounded to the tested perimeter
 
 adoption is still early and selective
 
+real backend validation is still bounded to the tested structured-output runtime setup
+
+cross-model portability is demonstrated only for the tested model pair and pipeline
+
 
 
 ---
@@ -425,3 +549,34 @@ stronger evidence
 clearer integration
 
 external reproducibility
+
+
+
+---
+
+Final v1.0 status
+
+OMNIA v1.0 should now be treated as a completed foundational cycle.
+
+It is not complete because no more ideas exist.
+
+It is complete because the architectural uncertainty required to define the v1.0 perimeter has been exhausted.
+
+What now exists is:
+
+stable
+
+measured
+
+auditable
+
+runtime-tested
+
+real-backend-tested
+
+cross-model-tested
+
+bounded by explicit limits
+
+
+That is the correct end state of OMNIA v1.0.
