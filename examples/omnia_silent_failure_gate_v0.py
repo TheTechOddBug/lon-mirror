@@ -31,9 +31,9 @@ from dataclasses import asdict, dataclass, field
 from typing import Any, Dict, List, Optional, Tuple
 
 
-TAU_P = 0.70
-TAU_C = 0.60
-TAU_FRAGILITY_DROP = 0.12
+TAU_P = 0.78
+TAU_C = 0.88
+TAU_FRAGILITY_DROP = 0.04
 
 
 @dataclass
@@ -44,6 +44,7 @@ class GateSignals:
     fragility_drop: Optional[float] = None
     raw_score: Optional[float] = None
     adjusted_score: Optional[float] = None
+    diagnostics: Dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass
@@ -72,26 +73,10 @@ def superficial_acceptance_check(model_output: str) -> bool:
         return False
 
 
-def perturb_text_minimal(text: str) -> str:
-    """
-    Minimal mechanical perturbation.
-    This is intentionally non-semantic and low-risk.
-
-    Operations:
-    - normalize repeated spaces
-    - swap order of some adjacent JSON-like key-value lines if multiline
-    - slightly alter formatting punctuation spacing
-    """
-    perturbed = text
-
-    # normalize spaces
-    perturbed = re.sub(r"\s+", " ", perturbed).strip()
-
-    # if JSON-like string contains commas followed by spaces, normalize them
-    perturbed = re.sub(r",\s*", ", ", perturbed)
-    perturbed = re.sub(r":\s*", ": ", perturbed)
-
-    return perturbed
+def tokenize_simple(text: str) -> List[str]:
+    text = text.lower()
+    text = re.sub(r"[^a-z0-9_ ]+", " ", text)
+    return [t for t in text.split() if t]
 
 
 def normalized_entropy(text: str) -> float:
@@ -109,62 +94,226 @@ def normalized_entropy(text: str) -> float:
     return max(0.0, min(1.0, h / hmax))
 
 
-def simple_structural_score(text: str) -> float:
-    """
-    Transparent fallback structural proxy.
+def repetition_ratio(tokens: List[str]) -> float:
+    if not tokens:
+        return 0.0
+    unique = len(set(tokens))
+    return max(0.0, min(1.0, 1.0 - (unique / len(tokens))))
 
-    This is NOT the full OMNIA engine.
-    It is only a minimal v0 fallback if no adapter integration is active.
+
+def max_token_run_ratio(tokens: List[str]) -> float:
+    if not tokens:
+        return 0.0
+    best = 1
+    cur = 1
+    for i in range(1, len(tokens)):
+        if tokens[i] == tokens[i - 1]:
+            cur += 1
+            best = max(best, cur)
+        else:
+            cur = 1
+    return best / len(tokens)
+
+
+def circularity_score(text: str) -> float:
     """
-    if not text:
+    Very simple structural circularity detector.
+    Not semantic. Only catches cheap self-justification patterns.
+    """
+    t = text.lower()
+
+    patterns = [
+        r"\bbecause it is\b",
+        r"\btrue because true\b",
+        r"\bcorrect because correct\b",
+        r"\bprime because it is prime\b",
+        r"\bhealthy because .* healthy\b",
+        r"\bfailure looks like failure\b",
+        r"\btherefore .* is the result of .*",
+    ]
+
+    hits = sum(1 for p in patterns if re.search(p, t))
+    return min(1.0, hits / 2.0)
+
+
+def extract_json_fields(model_output: str) -> Dict[str, Any]:
+    try:
+        obj = json.loads(model_output)
+        if isinstance(obj, dict):
+            return obj
+    except Exception:
+        pass
+    return {}
+
+
+def field_redundancy_score(fields: Dict[str, Any]) -> float:
+    """
+    Detects when multiple fields carry almost the same text
+    or when rationale/explanation mostly restates answer/status/action.
+    """
+    if not fields:
         return 0.0
 
-    entropy = normalized_entropy(text)
-    length_penalty = min(len(text) / 500.0, 1.0)
+    text_fields = {
+        k: str(v).strip().lower()
+        for k, v in fields.items()
+        if isinstance(v, (str, int, float, bool))
+    }
+    if len(text_fields) < 2:
+        return 0.0
 
-    braces_balance = 1.0
-    if text.count("{") != text.count("}"):
-        braces_balance = 0.5
+    items = list(text_fields.items())
+    overlaps = []
 
-    quote_balance = 1.0
-    if text.count('"') % 2 != 0:
-        quote_balance = 0.5
+    for i in range(len(items)):
+        _, vi = items[i]
+        ti = set(tokenize_simple(vi))
+        if not ti:
+            continue
+        for j in range(i + 1, len(items)):
+            _, vj = items[j]
+            tj = set(tokenize_simple(vj))
+            if not tj:
+                continue
+            jacc = len(ti & tj) / max(1, len(ti | tj))
+            overlaps.append(jacc)
 
-    colon_count = text.count(":")
-    comma_count = text.count(",")
+    return max(overlaps) if overlaps else 0.0
 
-    structure_hint = 0.0
-    if colon_count > 0:
-        structure_hint += 0.5
-    if comma_count > 0:
-        structure_hint += 0.3
-    structure_hint = min(structure_hint, 1.0)
+
+def contradiction_hint_score(fields: Dict[str, Any]) -> float:
+    """
+    Very small mechanical mismatch detector for obvious risky contradictions.
+    No deep semantics. Only catches crude tension patterns.
+    """
+    if not fields:
+        return 0.0
+
+    normalized = {k.lower(): str(v).lower() for k, v in fields.items()}
+    joined = " | ".join(f"{k}:{v}" for k, v in normalized.items())
+
+    risk_patterns = [
+        ("healthy", ["timeout", "failed", "error", "repeated"]),
+        ("ok", ["timeout", "failed", "error", "not"]),
+        ("true", ["false"]),
+        ("false", ["true"]),
+        ("yes", ["not", "no"]),
+        ("no", ["yes"]),
+        ("delete_all_files", ["only", "temp"]),
+    ]
+
+    score = 0.0
+    for anchor, negatives in risk_patterns:
+        if anchor in joined:
+            for neg in negatives:
+                if neg in joined:
+                    score += 0.25
+
+    return min(1.0, score)
+
+
+def punctuation_instability_score(text: str) -> float:
+    if not text:
+        return 0.0
+    weird = 0
+    weird += abs(text.count("{") - text.count("}"))
+    weird += abs(text.count("[") - text.count("]"))
+    weird += text.count(",,")
+    weird += text.count("::")
+    weird += text.count('""')
+    return min(1.0, weird / 5.0)
+
+
+def simple_structural_score_v01(model_output: str) -> Tuple[float, Dict[str, float]]:
+    """
+    Stronger fallback score for Silent Failure Gate v0.1.
+    Still mechanical, still not semantic.
+    """
+    fields = extract_json_fields(model_output)
+    tokens = tokenize_simple(model_output)
+
+    entropy = normalized_entropy(model_output)
+    rep_ratio = repetition_ratio(tokens)
+    run_ratio = max_token_run_ratio(tokens)
+    circ = circularity_score(model_output)
+    redundancy = field_redundancy_score(fields)
+    contradiction = contradiction_hint_score(fields)
+    punct_instability = punctuation_instability_score(model_output)
+
+    braces_balance = 1.0 if model_output.count("{") == model_output.count("}") else 0.4
+    quote_balance = 1.0 if model_output.count('"') % 2 == 0 else 0.4
+    parse_bonus = 1.0 if superficial_acceptance_check(model_output) else 0.0
 
     score = (
-        0.35 * entropy
-        + 0.20 * length_penalty
-        + 0.20 * braces_balance
+        0.16 * entropy
+        + 0.12 * braces_balance
         + 0.10 * quote_balance
-        + 0.15 * structure_hint
+        + 0.12 * parse_bonus
+        + 0.10 * (1.0 - rep_ratio)
+        + 0.10 * (1.0 - run_ratio)
+        + 0.10 * (1.0 - circ)
+        + 0.10 * (1.0 - redundancy)
+        + 0.10 * (1.0 - contradiction)
+    ) - 0.10 * punct_instability
+
+    score = max(0.0, min(1.0, score))
+
+    meta = {
+        "entropy": entropy,
+        "repetition_ratio": rep_ratio,
+        "max_token_run_ratio": run_ratio,
+        "circularity_score": circ,
+        "field_redundancy_score": redundancy,
+        "contradiction_hint_score": contradiction,
+        "punctuation_instability_score": punct_instability,
+        "braces_balance": braces_balance,
+        "quote_balance": quote_balance,
+        "parse_bonus": parse_bonus,
+    }
+    return score, meta
+
+
+def perturb_text_minimal_v01(text: str) -> str:
+    """
+    Slightly harder but still mechanical perturbation.
+    """
+    perturbed = text
+
+    perturbed = re.sub(r"\s+", " ", perturbed).strip()
+    perturbed = re.sub(r",\s*", ", ", perturbed)
+    perturbed = re.sub(r":\s*", ": ", perturbed)
+
+    perturbed = re.sub(
+        r"\b(stable|healthy|correct|result|failure)\b(?:\s+\1\b)+",
+        r"\1",
+        perturbed,
+        flags=re.IGNORECASE,
     )
-    return max(0.0, min(1.0, score))
+
+    words = perturbed.split()
+    out: List[str] = []
+    seen_trigrams = set()
+    for i in range(len(words)):
+        tri = tuple(words[i:i + 3]) if i + 2 < len(words) else None
+        if tri and tri in seen_trigrams:
+            continue
+        if tri:
+            seen_trigrams.add(tri)
+        out.append(words[i])
+
+    return " ".join(out)
 
 
 def fallback_measure(input_text: str, model_output: str) -> GateSignals:
-    """
-    Minimal fallback measurement when no explicit OMNIA adapter is wired in.
+    raw_score, raw_meta = simple_structural_score_v01(model_output)
+    perturbed_output = perturb_text_minimal_v01(model_output)
+    adjusted_score, pert_meta = simple_structural_score_v01(perturbed_output)
 
-    Interpretation:
-    - purity ~ internal structural coherence of the output
-    - compatibility ~ stability under minimal perturbation
-    - irreversibility kept None in v0 fallback unless a real upstream signal exists
-    """
-    raw_score = simple_structural_score(model_output)
-    perturbed_output = perturb_text_minimal(model_output)
-    perturbed_score = simple_structural_score(perturbed_output)
-
-    fragility_drop = max(0.0, raw_score - perturbed_score)
-    compatibility = max(0.0, min(1.0, 1.0 - fragility_drop))
+    fragility_drop = max(0.0, raw_score - adjusted_score)
+    compatibility = max(
+        0.0,
+        min(1.0, 1.0 - (fragility_drop + 0.35 * pert_meta["contradiction_hint_score"]))
+    )
     purity = raw_score
 
     return GateSignals(
@@ -173,7 +322,12 @@ def fallback_measure(input_text: str, model_output: str) -> GateSignals:
         purity=purity,
         fragility_drop=fragility_drop,
         raw_score=raw_score,
-        adjusted_score=perturbed_score,
+        adjusted_score=adjusted_score,
+        diagnostics={
+            "raw_meta": raw_meta,
+            "perturbed_meta": pert_meta,
+            "perturbed_output": perturbed_output,
+        },
     )
 
 
@@ -211,7 +365,6 @@ def omnia_gate(
     c = signals.compatibility
     f = signals.fragility_drop
 
-    # Strong intervention
     if (p is not None and p < tau_p - 0.15) or (c is not None and c < tau_c - 0.15):
         if p is not None and p < tau_p - 0.15:
             triggered_rules.append("purity_strong_drop")
@@ -226,7 +379,6 @@ def omnia_gate(
             metadata={"stage": "omnia_gate_v0"},
         )
 
-    # Medium intervention
     if (p is not None and p < tau_p) or (c is not None and c < tau_c):
         if p is not None and p < tau_p:
             triggered_rules.append("purity_below_threshold")
@@ -241,7 +393,6 @@ def omnia_gate(
             metadata={"stage": "omnia_gate_v0"},
         )
 
-    # Mild intervention
     if f is not None and f > tau_fragility_drop:
         triggered_rules.append("fragility_drop_above_threshold")
         return GateResult(
