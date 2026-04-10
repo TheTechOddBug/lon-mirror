@@ -1,4 +1,4 @@
-# OMNIA v1.0 — Structural Measurement Engine
+# OMNIA v1.0 - Structural Measurement Engine
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19497026.svg)](https://doi.org/10.5281/zenodo.19497026)
 
@@ -9,16 +9,17 @@
 
 ## What OMNIA is
 
-Systems often look stable until they fail.
+Systems often appear stable until failure is already visible.
 
-OMNIA is a post-hoc structural measurement layer designed to detect coherence, fragility, instability, and regime change before they become obvious at the surface level.
+OMNIA is a post-hoc structural measurement engine designed to detect coherence, fragility, instability, and regime change before these effects become obvious at the surface level.
 
 It does not interpret semantics.  
 It does not replace model cognition.  
 It does not make final decisions.  
-It does not act as a proof engine or a primality test.
+It does not act as a proof engine.  
+It does not act as a primality test.
 
-It measures only:
+OMNIA measures only:
 
 ```text
 output = measurement only
@@ -31,7 +32,7 @@ Core principle
 
 Structural truth = invariance under transformation
 
-If a structure survives perturbation, it carries stable signal.
+If a structure remains stable under perturbation, it carries durable signal.
 If it collapses under mild transformation, it was representation-dependent.
 
 
@@ -45,7 +46,7 @@ OMNIA is a bounded measurement layer.
 
 It may emit structural signals, rankings, compatibility values, instability indicators, or stop conditions.
 
-It does not decide what the host system should do with them.
+It does not decide what a host system should do with them.
 
 Canonical chain:
 
@@ -68,13 +69,13 @@ refusal of false stabilization under persistent incoherence
 
 bounded structural compatibility output between states
 
-post-hoc ranking / filtering on structured candidates
+post-hoc ranking and filtering on structured candidates
 
 monitored structural bias correction in numeric ranking
 
 public-facing fragility display where correctness and stability diverge
 
-runtime retry / escalation intervention on structured LLM outputs inside the validated example perimeter
+runtime retry and escalation intervention on structured LLM outputs inside the validated example perimeter
 
 adapter-mediated workflow control with measurable safety dividend in tested runtime scenarios
 
@@ -93,7 +94,7 @@ Independent transformation families currently used in the project:
 
 BASE -> multi-representation invariance
 
-TIME -> drift / instability over time
+TIME -> drift and instability over time
 
 CAUSA -> relational dependencies
 
@@ -108,6 +109,8 @@ Each lens emits an independent structural signal.
 ---
 
 Core metrics
+
+Primary structural metrics:
 
 Omega -> structural coherence under perturbation
 
@@ -124,7 +127,7 @@ R -> recovery capacity
 dO -> structural distance between consecutive states
 
 
-Numeric ranking / SBC-related fields currently exposed:
+Numeric ranking and SBC-related exposed fields:
 
 omega_raw
 
@@ -151,7 +154,7 @@ mild_variation
 structural_break
 
 
-This transition layer can be combined with memory / regime policy in the tested scenarios.
+This transition layer can be combined with memory and regime policy inside the tested scenarios.
 
 
 ---
@@ -271,13 +274,10 @@ OMNIA should be read through a narrow benchmark center.
 
 Primary benchmark entry points:
 
-Factual stability benchmark
 OMNIA_FACT_BENCHMARK_v0.1.py
 
-Reasoning-output structural benchmark
 OMNIA_TOTALE_GSM8K_EVAL_v0.1.py
 
-Multi-model comparative benchmark
 OMNIA_TOTALE_MULTIMODEL_EVAL_v0.2.py
 
 
@@ -290,7 +290,7 @@ Additional reports, notes, and side validations may support them, but should not
 
 Runtime external-impact path
 
-The main external-impact example path of OMNIA v1.0 is now:
+The main external-impact path of OMNIA v1.0 is now:
 
 1. calibrated silent-failure detection
 
@@ -308,9 +308,9 @@ The main external-impact example path of OMNIA v1.0 is now:
 
 
 
-The core runtime validation artifacts include:
+Core runtime validation artifacts include:
 
-docs/OMNIA_SILENT_FAILURE_GATE_V0.md
+docs/OMNIA_SILENT_FAILURE_GATE_v0.md
 
 docs/OMNIA_SILENT_FAILURE_GATE_V0_RESULTS.md
 
@@ -389,7 +389,7 @@ monitoring streams
 
 structured operational traces
 
-candidate ranking / filtering tasks
+candidate ranking and filtering tasks
 
 
 The project is strongest when treated as a post-hoc measurement layer, not as a semantic or decision engine.
@@ -487,7 +487,7 @@ detect instability and regime change
 
 provide external measurement usable by host systems
 
-support bounded retry / escalation intervention in validated runtime workflows
+support bounded retry and escalation intervention in validated runtime workflows
 
 
 The project is built around one hard rule:
