@@ -1,4 +1,4 @@
-# OMNIA v1.0 - Structura Measurement Engine
+# OMNIA v1.0 - Structural Measurement Engine
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19497026.svg)](https://doi.org/10.5281/zenodo.19497026)
 
