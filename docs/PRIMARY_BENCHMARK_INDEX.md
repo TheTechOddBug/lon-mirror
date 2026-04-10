@@ -1,131 +1,98 @@
-# OMNIA Primary Benchmark Index
-## Canonical benchmark entry points
+# Primary Benchmark Index
 
-Status: active
-Purpose: define the exact benchmark files that represent the public evidence layer of OMNIA
+This file defines the narrow public benchmark index for OMNIA v1.0.
 
----
+It exists to keep the benchmark entry path short, readable, and externally usable.
 
-## 1. Rule
-
-This file identifies the exact benchmark entry points that should represent OMNIA publicly.
-
-These are not necessarily the only benchmark-related files in the repo.
-They are the files that should be treated as the main evidence path for external readers.
+OMNIA should be evaluated through a small evidence center, not through the full repository.
 
 ---
 
-## 2. Primary benchmark entry points
+## Primary benchmark set
 
-### A. Factual stability benchmark
+### 1. Factual stability benchmark
 
-Canonical files:
+`OMNIA_FACT_BENCHMARK_v0.1.py`
 
-- `OMNIA_FACT_BENCHMARK_v0.1.py`
+Focus:
+structural stability on factual-style outputs under controlled variation.
 
 Role:
-measure structural stability or fragility signals on factual-style outputs.
-
-Why it is primary:
-this is one of the clearest bridges between OMNIA and real reliability use cases.
-
-Public function:
-show that OMNIA can operate on outputs where external readers immediately understand the value of stability assessment.
+first entry point for basic structural separation.
 
 ---
 
-### B. Reasoning-output structural benchmark
+### 2. Reasoning-output structural benchmark
 
-Canonical files:
+`OMNIA_TOTALE_GSM8K_EVAL_v0.1.py`
 
-- `OMNIA_TOTALE_GSM8K_EVAL_v0.1.py`
+Focus:
+structural behavior on reasoning-style outputs where surface plausibility and structural robustness may diverge.
 
 Role:
-measure structural behavior on reasoning-like outputs without claiming semantic reasoning or mathematical solving ability.
-
-Why it is primary:
-it connects OMNIA to a known evaluation territory while preserving the measurement-only boundary.
-
-Public function:
-show that OMNIA can detect signals around fragility, instability, or structural inconsistency in chain-like outputs.
+main entry point for silent-failure style evaluation inside the tested perimeter.
 
 ---
 
-### C. Multi-model comparative benchmark
+### 3. Multi-model comparative benchmark
 
-Canonical files:
+`OMNIA_TOTALE_MULTIMODEL_EVAL_v0.2.py`
 
-- `OMNIA_TOTALE_MULTIMODEL_EVAL_v0.2.py`
+Focus:
+same OMNIA runtime logic across the tested model pair under the same pipeline.
 
 Role:
-compare outputs across different models using OMNIA as an external measurement layer.
-
-Why it is primary:
-this supports the strongest architecture claim in the project:
-OMNIA is model-agnostic and sits outside the model.
-
-Public function:
-show that OMNIA can be used comparatively, not only internally on one stream.
+main entry point for bounded cross-model portability.
 
 ---
 
-## 3. Supporting benchmark materials
+## Recommended reading order
 
-These files may support the main benchmark story, but they are not the first public entry points unless explicitly needed.
+Read in this order:
 
-Possible examples:
+1. `OMNIA_FACT_BENCHMARK_v0.1.py`
+2. `OMNIA_TOTALE_GSM8K_EVAL_v0.1.py`
+3. `OMNIA_TOTALE_MULTIMODEL_EVAL_v0.2.py`
 
-- benchmark reports
-- benchmark notes
-- result summaries
-- case-study documents linked to the primary benchmark files
-- standardized test outputs
-- reproducibility helpers
-
-Rule:
-supporting material supports.
-It does not replace the canonical benchmark entry file.
+This order moves from simpler structural separation to stronger runtime evidence.
 
 ---
 
-## 4. Public reading order
+## How this index should be used
 
-External readers should encounter benchmarks in this order:
+Use this index if the goal is to answer one of these questions quickly:
 
-1. factual benchmark
-2. reasoning-output benchmark
-3. multi-model benchmark
+- Where is the main benchmark evidence for OMNIA?
+- Which benchmark should be read first?
+- Which file shows reasoning-output structural evaluation?
+- Which file shows bounded cross-model portability?
 
-This order maximizes clarity and minimizes dispersion.
+This file is an index, not a benchmark report.
 
 ---
 
-## 5. Interpretation rule
+## Boundary of interpretation
 
-These benchmarks support the following claim only:
+These benchmarks support a bounded engineering claim only.
 
-OMNIA provides post-hoc structural measurement signals that may help detect coherence, fragility, instability, or related properties across outputs and models.
+They support the view that, within the tested perimeter:
 
-These benchmarks do NOT support claims of:
+- OMNIA can act as a post-hoc structural measurement layer
+- OMNIA can expose fragility signals beyond surface plausibility
+- OMNIA can support runtime intervention logic in the tested setup
 
-- semantic understanding
-- superior reasoning
+They do not support claims of:
+
 - universal truth detection
-- proof generation
-- replacement of model inference
+- semantic understanding
+- general reasoning replacement
+- unrestricted portability
+- universal model safety
 
 ---
 
-## 6. Maintenance rule
+## Related files
 
-If a stronger benchmark replaces one of the above, this file must be updated explicitly.
-
-No benchmark should become publicly central by accident.
-
----
-
-## 7. Final rule
-
-The benchmark center of OMNIA must remain narrow, explicit, and reproducible.
-
-Three strong benchmark entry points are better than ten scattered ones.
+- `README.md`
+- `docs/PRIMARY_BENCHMARKS.md`
+- `docs/PRIMARY_ADOPTION_PATH.md`
