@@ -1,236 +1,299 @@
-# OMNIA Silent Failure Gate v0.2 — Results
-## Calibrated external impact baseline
+# OMNIA Silent Failure Gate v0 - Results
 
-Status: recorded  
-Scope: calibrated rerun of the OMNIA Silent Failure Gate on the 17-sample validation set
+This document reports the first bounded results for the OMNIA Silent Failure Gate v0.
 
----
+It is not a general benchmark claim.  
+It is not a universality claim.  
+It is a narrow runtime result inside the tested perimeter.
 
-## 1. Summary
-
-Total processed: 17
-
-Gate matches expected: 16/17 (94.1%)
-
-Action distribution:
-
-- pass: 4
-- low_confidence_flag: 3
-- retry: 2
-- escalate: 6
-- reject_surface: 2
+Canonical framework: https://github.com/Tuttotorna/lon-mirror
 
 ---
 
-## 2. Main result
+## Purpose
 
-The v0.2 calibration improved the separation between:
+The purpose of Silent Failure Gate v0 is simple:
 
-- retry
-- escalate
+detect outputs that may look acceptable on the surface but remain structurally fragile under post-hoc analysis.
 
-without degrading the stable positive cases.
+The gate does not solve tasks.  
+The gate does not interpret semantics.  
+The gate does not replace reasoning or final verification.
 
-The two previously under-classified silent-failure cases:
+Its role is narrower:
 
-- `escalate_001`
-- `escalate_005`
-
-were both moved from `retry` to `escalate`.
-
-At the same time:
-
-- `pass_*` remained stable as `pass`
-- the grey zone did not collapse into over-escalation
-
-This means the v0.2 override improved severity classification without introducing visible collateral damage.
+- inspect structural stability after generation
+- detect silent fragility not obvious from surface plausibility alone
+- support bounded runtime actions:
+  - PASS
+  - RETRY
+  - ESCALATE
 
 ---
 
-## 3. Target audit
+## Tested question
 
-| Sample ID | Outcome v0.1 | Outcome v0.2 | Rationale v0.2 |
-|---|---|---|---|
-| escalate_001 | retry | escalate | Triggered: `combined_strong_fragility` (`P=0.72`, `C=0.80`) |
-| escalate_005 | retry | escalate | Triggered: `combined_strong_fragility` (`P=0.71`, `C=0.79`) |
-| pass_001-003 | pass | pass | No false alarms introduced |
-| retry_001-002 | retry | retry | Remained in the correct intermediate bucket |
+The tested question in v0 was not:
 
----
+"Can OMNIA solve language tasks better than an LLM?"
 
-## 4. Why v0.2 is better than v0.1
+The tested question was:
 
-### 4.1 Severity separation improved
+"Can OMNIA act as a bounded post-hoc runtime layer that detects some silent structural failures and supports intervention without collapsing healthy outputs?"
 
-The main weakness of v0.1 was not silent-failure blindness.
-
-The weakness was insufficient separation between:
-
-- outputs that should trigger regeneration
-- outputs that should trigger immediate higher-control intervention
-
-v0.2 improves this by introducing a combined override:
-
-```python
-if sig.purity is not None and sig.compatibility is not None:
-    if sig.purity < 0.73 and sig.compatibility < 0.82:
-        action = "escalate"
-
-This acts as a structural emergency brake.
-
-4.2 Stable positives remained stable
-
-The pass_* samples did not move.
-
-This is critical.
-
-It means the new combined low-purity / low-compatibility zone is not touching the stable area of the tested perimeter.
-
-4.3 Grey zone preserved
-
-The retry_* and flag_* areas were not destroyed.
-
-This matters because the gate is not supposed to turn every fragile signal into a maximal intervention.
-
-Its value depends on preserving graded action.
-
+That is the only relevant question here.
 
 ---
 
-5. Threshold set for v0.2
+## Evaluated perimeter
 
-The calibrated threshold set is now:
+The v0 result should be read inside this perimeter:
 
-TAU_P = 0.80
+- structured LLM-style outputs
+- post-hoc analysis only
+- bounded runtime gate logic
+- small controlled and semi-controlled evaluation setup
+- intervention logic limited to PASS / RETRY / ESCALATE
 
-TAU_C = 0.88
-
-TAU_FRAGILITY_DROP = 0.04
-
-
-with the additional combined strong-fragility override:
-
-if sig.purity is not None and sig.compatibility is not None:
-    if sig.purity < 0.73 and sig.compatibility < 0.82:
-        action = "escalate"
-
-Operational reading:
-
-TAU_P was raised slightly to sharpen the purity boundary
-
-TAU_C remained unchanged because it was already useful
-
-TAU_FRAGILITY_DROP remained unchanged because it was already useful for the mild-fragility zone
-
-the override handles the specific structural basin where regeneration is no longer the best first action
-
-
+This document does not support claims outside that perimeter.
 
 ---
 
-6. Interpretation
+## Runtime logic evaluated
 
-6.1 What was demonstrated
-
-The following is now supported inside the tested perimeter:
-
-OMNIA can intercept silent failures that baseline surface validation would accept
-
-OMNIA can distinguish between:
-
-low-confidence fragility
-
-retry-worthy instability
-
-escalate-worthy structural danger
-
-
-threshold tuning behaves predictably and measurably
-
-
-6.2 What was not demonstrated
-
-This result still does not prove:
-
-semantic reasoning superiority
-
-truth detection
-
-production readiness
-
-universal gate behavior
-
-broad generalization outside the tested structured-output set
-
-
-The claim remains narrow and technical.
-
-
----
-
-7. Supported claim
-
-OMNIA Silent Failure Gate v0.2 materially improves the severity calibration of post-hoc intervention in the tested workflow, while preserving stable outputs and intercepting all tested silent-failure cases.
-
-
----
-
-8. Practical meaning
-
-v0.2 is the first version that behaves like an operationally meaningful gate rather than only a structural detector.
-
-It now supports a usable distinction between:
-
-"looks acceptable and is structurally stable"
-
-"looks acceptable but should be flagged"
-
-"looks acceptable but should be retried"
-
-"looks acceptable but should not be trusted without escalation"
-
-
-This is the first baseline in the project where post-hoc structural measurement visibly changes downstream workflow behavior with calibrated severity.
-
-
----
-
-9. Final verdict
-
-v0.2 is the current baseline reference for the Silent Failure Gate example.
-
-It should be treated as:
-
-stable for the current example perimeter
-
-still experimental outside that perimeter
-
-the correct reference point for any next-step extension of the gate workflow
-
-
-
----
-
-10. Next step
-
-The next useful step is not another abstract calibration cycle.
-
-The next useful step is one of these:
-
-1. expand the sample set moderately while preserving label discipline
-
-
-2. connect the gate to a more realistic adapter path
-
-
-3. compare baseline vs gated workflow on a slightly broader structured-output task
-
-
-
-The architecture should remain unchanged unless new evidence forces a revision.
-
-## Commit message
+The evaluated runtime pattern is:
 
 ```text
-docs: record OMNIA Silent Failure Gate v0.2 calibrated results
+model output
+  ->
+OMNIA structural signals
+  ->
+gate decision
+  ->
+pass / retry / escalate
 
+The point is not to prove truth directly.
+
+The point is to reduce false confidence on outputs that remain superficially plausible while structurally weak.
+
+
+---
+
+Main result
+
+Within the tested perimeter, Silent Failure Gate v0 showed behavior consistent with a useful post-hoc structural intervention layer.
+
+In practical terms, this means:
+
+some superficially acceptable outputs were flagged as structurally fragile
+
+some fragile outputs were routed away from silent acceptance
+
+healthy outputs were not uniformly blocked
+
+retry / escalation behavior remained bounded rather than uncontrolled
+
+the gate produced auditable intervention points instead of hidden judgment
+
+
+That is the real result.
+
+Not perfection.
+Not universality.
+A bounded operational effect.
+
+
+---
+
+What was observed
+
+The main observed effects were:
+
+1. Silent-failure sensitivity
+
+The gate was able to mark some outputs that looked acceptable at first pass but showed structural weakness under OMNIA-style post-hoc measurement.
+
+This is the core result of the entire v0 branch.
+
+2. Bounded intervention behavior
+
+The gate did not behave like a blanket blocker.
+
+Its value depends on selective intervention, not indiscriminate refusal.
+
+The tested behavior remained consistent with a bounded retry / escalation layer rather than a collapse into defensive overreaction.
+
+3. Preservation of healthy outputs
+
+Inside the tested setup, healthy outputs were preserved often enough for the gate to remain usable as a runtime component.
+
+This matters because a gate that blocks everything has no operational value.
+
+4. Auditability
+
+The intervention path remained externally inspectable.
+
+This is important because OMNIA is not meant to hide judgment behind opaque semantics. It is meant to expose measurable structural signals that a host system can use.
+
+
+---
+
+Interpretable outcome
+
+The strongest interpretation supported by v0 is this:
+
+OMNIA can contribute runtime value not by replacing reasoning, but by measuring structural fragility after reasoning-like generation has already occurred.
+
+That is the correct reading.
+
+OMNIA is not the generator. OMNIA is not the judge of meaning. OMNIA is not the final decision maker.
+
+OMNIA measures structural conditions that can justify caution.
+
+
+---
+
+What counts as success in v0
+
+Success in v0 was intentionally narrow.
+
+The gate only needed to demonstrate one real thing:
+
+that at least part of the gap between surface plausibility and structural robustness can be operationally exposed.
+
+Within the tested perimeter, that happened.
+
+This is enough to justify the branch.
+
+
+---
+
+Practical meaning of the result
+
+The practical meaning is not abstract.
+
+If a model output appears smooth and acceptable, a downstream system may still want to know:
+
+is this structurally stable?
+
+is this only locally plausible?
+
+should this pass silently?
+
+should this trigger another attempt?
+
+should this be escalated?
+
+
+Silent Failure Gate v0 shows that OMNIA can contribute to exactly this layer of handling.
+
+That is the external-impact value.
+
+
+---
+
+What v0 does not prove
+
+This result does not prove:
+
+universal truth detection
+
+semantic correctness detection
+
+general reasoning superiority
+
+universal model safety
+
+unrestricted deployment readiness
+
+optimal thresholds
+
+full portability across arbitrary systems
+
+
+It also does not prove that every plausible-looking failure will be caught.
+
+That would be false.
+
+
+---
+
+Why this matters
+
+Many systems fail in a dangerous way: not by producing obvious nonsense, but by producing outputs that look acceptable long enough to pass.
+
+That is where a silent-failure gate matters.
+
+If OMNIA can reduce even part of that risk inside a bounded runtime pipeline, then it has already crossed the threshold from theory to instrument.
+
+That is why this result matters.
+
+
+---
+
+Boundary of claim
+
+The bounded claim supported here is:
+
+within the tested perimeter, OMNIA Silent Failure Gate v0 behaved as a usable post-hoc structural layer for detecting some silent failures and supporting bounded retry / escalation logic.
+
+That is the claim.
+
+Nothing broader should be inferred from this file alone.
+
+
+---
+
+Operational conclusion
+
+The correct conclusion is not:
+
+"OMNIA solves reliability."
+
+The correct conclusion is:
+
+"OMNIA has demonstrated an initial, bounded, runtime-relevant structural intervention effect."
+
+That is enough for v0.
+
+
+---
+
+Next step after v0
+
+The correct next step is not conceptual expansion.
+
+It is tighter runtime evidence.
+
+That means:
+
+larger evaluated set
+
+clearer thresholds
+
+stronger result reporting
+
+comparison against simpler baselines
+
+continued boundedness of retry cost
+
+continued preservation of healthy outputs
+
+
+v0 justifies moving forward.
+It does not justify exaggeration.
+
+
+---
+
+Final statement
+
+Silent Failure Gate v0 should be read as the first minimal external-impact result of OMNIA.
+
+Its value is narrow but real:
+
+it shows that OMNIA can operate as more than a conceptual measurement language.
+
+Inside the tested perimeter, it can act as a post-hoc structural runtime layer that exposes some silent fragility and supports bounded intervention.
+
+That is the correct result.
