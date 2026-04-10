@@ -1,9 +1,3 @@
-Nome file:
-
-README.md
-
-Contenuto completo:
-
 # OMNIA v1.0 — Structural Measurement Engine
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19488048.svg)](https://doi.org/10.5281/zenodo.19488048)
