@@ -75,7 +75,7 @@ monitored structural bias correction in numeric ranking
 
 public-facing fragility display where correctness and stability diverge
 
-runtime retry and escalation intervention on structured LLM outputs inside the validated example perimeter
+runtime retry and escalation intervention on structured LLM outputs inside the tested example perimeter
 
 adapter-mediated workflow control with measurable safety dividend in tested runtime scenarios
 
@@ -220,16 +220,16 @@ Expected behavior:
 
 structured -> high Omega
 perturbed  -> Omega drop
-random     -> Delta_struct approx 0
+random     -> low stable structure / near-null structural consistency
 
-If this separation appears, the system is working as intended.
+If this separation appears, the system is behaving as intended inside the demo perimeter.
 
 
 ---
 
-Current validated status
+Current evaluated status
 
-OMNIA v1.0 has already been validated, within the tested perimeter, across:
+OMNIA v1.0 has been evaluated, within the tested perimeter, across:
 
 controlled structural benchmarks
 
@@ -243,10 +243,10 @@ expanded structured-output runtime dataset
 
 real backend execution
 
-cross-model comparison under the same runtime pipeline
+cross-model portability under the same runtime pipeline
 
 
-Inside this perimeter, OMNIA behaves as a post-hoc structural runtime safety layer for structured LLM outputs.
+Inside this perimeter, OMNIA has shown behavior consistent with a post-hoc structural runtime safety layer for structured LLM outputs.
 
 This means it has demonstrated:
 
@@ -312,27 +312,27 @@ Core runtime validation artifacts include:
 
 docs/OMNIA_SILENT_FAILURE_GATE_v0.md
 
-docs/OMNIA_SILENT_FAILURE_GATE_V0_RESULTS.md
+docs/OMNIA_SILENT_FAILURE_GATE_v0_RESULTS.md
 
-docs/OMNIA_SILENT_FAILURE_GATE_V0_2_RESULTS.md
+docs/OMNIA_SILENT_FAILURE_GATE_v0_2_RESULTS.md
 
-docs/OMNIA_SILENT_FAILURE_RETRY_LOOP_V0_RESULTS.md
+docs/OMNIA_SILENT_FAILURE_RETRY_LOOP_v0_RESULTS.md
 
-docs/OMNIA_RETRY_LOOP_ADAPTER_PATH_V0.md
+docs/OMNIA_RETRY_LOOP_ADAPTER_PATH_v0.md
 
-docs/OMNIA_RETRY_LOOP_ADAPTER_PATH_V0_RESULTS.md
+docs/OMNIA_RETRY_LOOP_ADAPTER_PATH_v0_RESULTS.md
 
-docs/OMNIA_RETRY_LOOP_DATASET_EXPANSION_V0.md
+docs/OMNIA_RETRY_LOOP_DATASET_EXPANSION_v0.md
 
-docs/OMNIA_RETRY_LOOP_DATASET_EXPANSION_V0_RESULTS.md
+docs/OMNIA_RETRY_LOOP_DATASET_EXPANSION_v0_RESULTS.md
 
-docs/OMNIA_RETRY_LOOP_REAL_BACKEND_V0.md
+docs/OMNIA_RETRY_LOOP_REAL_BACKEND_v0.md
 
-docs/OMNIA_RETRY_LOOP_REAL_BACKEND_V0_RESULTS.md
+docs/OMNIA_RETRY_LOOP_REAL_BACKEND_v0_RESULTS.md
 
-docs/OMNIA_RETRY_LOOP_CROSS_MODEL_V0.md
+docs/OMNIA_RETRY_LOOP_CROSS_MODEL_v0.md
 
-docs/OMNIA_RETRY_LOOP_CROSS_MODEL_V0_RESULTS.md
+docs/OMNIA_RETRY_LOOP_CROSS_MODEL_v0_RESULTS.md
 
 
 These artifacts define the most advanced validated runtime branch of the project.
@@ -487,7 +487,7 @@ detect instability and regime change
 
 provide external measurement usable by host systems
 
-support bounded retry and escalation intervention in validated runtime workflows
+support bounded retry and escalation intervention in tested runtime workflows
 
 
 The project is built around one hard rule:
