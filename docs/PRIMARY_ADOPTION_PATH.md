@@ -1,4 +1,4 @@
-# Primary Adoption Path
+# Primary Adoption Pat
 
 This file defines the shortest external adoption path for OMNIA v1.0.
 
