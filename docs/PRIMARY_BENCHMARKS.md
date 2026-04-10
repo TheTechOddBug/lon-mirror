@@ -1,131 +1,74 @@
-# OMNIA Primary Benchmarks
-## What stays at the center of public evidence
+# Primary Benchmarks
 
-Status: active
-Purpose: define the benchmark core of the project
+This file defines the main public evidence path for OMNIA v1.0.
 
----
-
-## 1. Rule
-
-Not every benchmark belongs to the public center of OMNIA.
-
-A benchmark is primary only if it satisfies most of these:
-
-- directly tests OMNIA as a measurement layer
-- is reproducible
-- has a clear baseline comparison
-- is understandable by an external reader
-- supports the Core / Evidence / Adoption roadmap
-- is not mainly exploratory or historical
-
-If a benchmark does not meet these conditions, it is secondary.
+OMNIA should be evaluated through a narrow benchmark center, not through the entire repository.
 
 ---
 
-## 2. Primary benchmark set
+## Benchmark 1 - Factual stability
 
-The public benchmark center of OMNIA should stay narrow.
+`OMNIA_FACT_BENCHMARK_v0.1.py`
 
-Recommended primary set:
-
-### A. Fact / factual stability benchmark
 Purpose:
-show whether OMNIA detects structural instability or reliability signals on factual outputs.
+measure structural stability on factual-style outputs under controlled variation.
 
-Reason:
-this is directly legible to external evaluators and aligned with the reliability use case.
+Use this to inspect whether OMNIA separates stable outputs from structurally weak ones inside the tested perimeter.
 
-### B. GSM8K / reasoning-output structural evaluation
+---
+
+## Benchmark 2 - Reasoning-output structural evaluation
+
+`OMNIA_TOTALE_GSM8K_EVAL_v0.1.py`
+
 Purpose:
-test whether OMNIA captures structural fragility or instability in reasoning-like outputs.
+measure structural behavior on reasoning-style outputs, especially where surface plausibility and structural robustness may diverge.
 
-Reason:
-this connects OMNIA to a known evaluation space without claiming semantic reasoning.
+Use this to inspect silent-failure sensitivity in the tested reasoning-output perimeter.
 
-### C. Multi-model comparative evaluation
+---
+
+## Benchmark 3 - Multi-model comparative evaluation
+
+`OMNIA_TOTALE_MULTIMODEL_EVAL_v0.2.py`
+
 Purpose:
-show whether OMNIA produces meaningful comparative measurement across outputs from different models.
+measure whether the same OMNIA runtime logic remains usable across the tested model pair under the same pipeline.
 
-Reason:
-this strengthens the model-agnostic positioning.
-
----
-
-## 3. Secondary benchmarks
-
-These may remain useful, but should not define first public understanding.
-
-Examples:
-
-- narrow one-off experiments
-- internal exploratory validations
-- special-case numeric side paths
-- partial stress tests without clear adoption value
-- benchmarks not yet standardized
-
-Secondary does not mean useless.
-It means not central.
+Use this to inspect bounded cross-model portability inside the tested runtime setup.
 
 ---
 
-## 4. Benchmark positioning rule
+## Recommended order
 
-Public readers should see first:
+Read and run in this order:
 
-1. one factual benchmark
-2. one reasoning-like benchmark
-3. one multi-model benchmark
+1. `OMNIA_FACT_BENCHMARK_v0.1.py`
+2. `OMNIA_TOTALE_GSM8K_EVAL_v0.1.py`
+3. `OMNIA_TOTALE_MULTIMODEL_EVAL_v0.2.py`
 
-This is enough to establish breadth without looking scattered.
-
-Do not lead with too many benchmark stories at once.
+This order moves from simpler structural separation to stronger runtime evidence.
 
 ---
 
-## 5. Required structure for each primary benchmark
+## What these benchmarks support
 
-Each primary benchmark should expose the same minimal structure:
+Within the tested perimeter, these benchmarks support a bounded claim:
 
-- objective
-- dataset or input type
-- what OMNIA measures
-- baseline(s)
-- output format
-- result summary
-- limitations
-- reproduction path
-
-If one of these is missing, the benchmark is not ready for central positioning.
+- OMNIA can act as a post-hoc structural measurement layer
+- OMNIA can expose fragility signals not reducible to surface plausibility alone
+- OMNIA can support runtime intervention logic in the tested setup
 
 ---
 
-## 6. Exclusion rule
+## What these benchmarks do not support
 
-A benchmark should stay outside the center if:
+These benchmarks do not support claims of:
 
-- it mainly demonstrates curiosity
-- it depends on too much internal explanation
-- it is not reproducible enough
-- it does not clearly support a real OMNIA use case
-- it risks mispositioning OMNIA
+- universal truth detection
+- semantic understanding
+- general reasoning replacement
+- universal model safety
+- unrestricted portability
 
----
-
-## 7. Immediate consequence
-
-From now on, benchmark work should be classified as:
-
-- primary
-- secondary
-- archived exploratory
-
-No unclassified benchmark should enter the public narrative.
-
----
-
-## 8. Final rule
-
-OMNIA does not need many benchmark stories.
-
-It needs a small number of strong ones.
+The benchmark center is evidence of bounded engineering behavior, not universality.
