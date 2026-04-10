@@ -1,4 +1,4 @@
-# Primary Adoption Pat
+# Primary Adoption Path
 
 This file defines the shortest external adoption path for OMNIA v1.0.
 
@@ -84,3 +84,64 @@ The architectural boundary remains:
 
 ```text
 measurement != inference != decision
+
+
+---
+
+Recommended external reading order
+
+For a new integrator:
+
+1. README.md
+
+
+2. docs/PRIMARY_BENCHMARKS.md
+
+
+3. OMNIA_MINIMAL_INTERFACE.md
+
+
+4. INTERFACE.md
+
+
+5. adapters/llm_output_adapter.py
+
+
+6. integrations/caios/
+
+
+
+This order moves from concept, to evidence, to interface, to concrete integration.
+
+
+---
+
+What this adoption path supports
+
+Within the tested perimeter, this path supports a bounded view of OMNIA as:
+
+a post-hoc structural measurement layer
+
+a runtime-compatible signal provider
+
+a bounded component for retry / escalation style workflows
+
+
+
+---
+
+What this adoption path does not imply
+
+This adoption path does not imply:
+
+universality
+
+semantic comprehension
+
+autonomous reasoning
+
+full deployment readiness in arbitrary environments
+
+
+It defines the shortest readable path to the currently demonstrated integration perimeter.
+
