@@ -47,145 +47,17 @@ transition classification
 
 regime tracking after drift or rupture
 
-refusal of false stabilization under persistent incoherence
-
-bounded structural compatibility output between states
-
 post-hoc ranking and filtering on structured candidates
 
-monitored structural bias correction in numeric ranking
+runtime retry and escalation intervention on structured LLM outputs
 
-public-facing fragility display where correctness and stability diverge
-
-runtime retry and escalation intervention on structured LLM outputs inside the tested example perimeter
-
-adapter-mediated workflow control with measurable safety dividend in tested runtime scenarios
+adapter-mediated workflow control in tested runtime scenarios
 
 cross-model runtime portability inside the tested structured-output perimeter
 
 
 This is a real tested perimeter.
 It is not a universality claim.
-
-
----
-
-Structural lenses
-
-Independent transformation families currently used in the project:
-
-BASE -> multi-representation invariance
-
-TIME -> drift and instability over time
-
-CAUSA -> relational dependencies
-
-TOKEN -> sequence perturbation
-
-LCR -> logical coherence reduction
-
-
-Each lens emits an independent structural signal.
-
-
----
-
-Core metrics
-
-Primary structural metrics:
-
-Omega -> structural coherence under perturbation
-
-Omega-set -> residual invariance across transformations
-
-SEI -> remaining extractable structure
-
-IRI -> irreversible structural loss
-
-TDelta -> divergence point
-
-R -> recovery capacity
-
-dO -> structural distance between consecutive states
-
-
-Numeric ranking and SBC-related exposed fields:
-
-omega_raw
-
-omega_adjusted
-
-structural_bias_meta.bias_penalty_raw
-
-structural_bias_meta.bias_penalty_norm
-
-structural_bias_meta.lambda_value
-
-
-
----
-
-Transition logic
-
-At runtime, OMNIA classifies transitions into three zones:
-
-equivalence
-
-mild_variation
-
-structural_break
-
-
-This transition layer can be combined with memory and regime policy inside the tested scenarios.
-
-
----
-
-Memory and regime policy
-
-The current memory layer supports these states:
-
-STABLE
-
-DRIFTING
-
-CANDIDATE
-
-CHAOTIC
-
-
-This means OMNIA can:
-
-open a post-break candidate window
-
-evaluate internal coherence of post-break states
-
-confirm a new stable regime when coherence is high enough
-
-refuse the commit if post-break states remain incoherent
-
-
-This is the difference between adaptation and false normalization of chaos.
-
-
----
-
-Structural Compatibility Unit
-
-OMNIA emits a bounded structural compatibility bundle between states:
-
-U_v1(S1, S2) = (C, I, P)
-
-where:
-
-C = compatibility
-
-I = irreversibility within the observed window
-
-P = purity / internal coherence
-
-
-This is an operational bundle within the tested perimeter, not a universal final object.
 
 
 ---
@@ -325,74 +197,6 @@ This is the most advanced external-impact branch currently documented in the rep
 
 ---
 
-Numeric ranking perimeter
-
-OMNIA was also tested on real integer candidate sets using multi-base structural representations.
-
-This supports a narrow claim only:
-
-OMNIA can produce a non-random ranking signal on tested prime candidate sets
-
-OMNIA can support search-space reduction on tested candidate sets
-
-OMNIA does not prove primality
-
-OMNIA does not solve open mathematical problems
-
-
-A correction layer was then introduced to handle structurally regular false positives:
-
-Omega_adjusted = Omega_raw - lambda * regularity_penalty_norm
-
-Current validated balanced value:
-
-lambda = 0.03
-
-This correction is currently integrated in shadow mode.
-
-It exists to improve ranking purity while preserving raw score visibility.
-
-Numeric ranking is part of the experimental measurement perimeter.
-It is not the central public identity of OMNIA.
-
-
----
-
-Where OMNIA applies
-
-OMNIA can be used on systems where ordered representation matters, including:
-
-AI outputs
-
-logs
-
-code
-
-numeric sequences
-
-monitoring streams
-
-structured operational traces
-
-candidate ranking and filtering tasks
-
-
-The project is strongest when treated as a post-hoc measurement layer, not as a semantic or decision engine.
-
-The currently strongest demonstrated use case is:
-
-structured JSON-like LLM outputs
-
-silent-failure interception
-
-retry / escalation control
-
-runtime auditability
-
-
-
----
-
 Primary adoption path
 
 For an external integrator, the shortest usable path is:
@@ -413,40 +217,6 @@ For an external integrator, the shortest usable path is:
 OMNIA adoption means external usability as a structural measurement layer.
 
 It does not mean full conceptual immersion in the entire MB-X.01 ecosystem.
-
-
----
-
-Recommended reading order
-
-For a new external reader, the recommended order is:
-
-1. README.md
-
-
-2. ARCHITECTURE_BOUNDARY.md
-
-
-3. OMNIA_MINIMAL_INTERFACE.md
-
-
-4. INTERFACE.md
-
-
-5. docs/PRIMARY_BENCHMARKS.md
-
-
-6. docs/PRIMARY_BENCHMARK_INDEX.md
-
-
-7. docs/PRIMARY_ADOPTION_PATH.md
-
-
-8. docs/PRIMARY_ADOPTION_INDEX.md
-
-
-
-If the reader wants the strongest runtime branch after that, the next documents should be the Silent Failure Gate, Retry Loop, Adapter Path, Real Backend, and Cross-Model files listed above.
 
 
 ---
@@ -494,10 +264,6 @@ ranking correlation is not proof
 
 false positives remain part of observed behavior
 
-omega_adjusted is monitored and exposed, but not treated as universal default truth
-
-SCU v1 is bounded to the tested perimeter
-
 adoption is still early and selective
 
 real backend validation is still bounded to the tested structured-output runtime setup
@@ -508,27 +274,9 @@ cross-model portability is demonstrated only for the tested model pair and pipel
 
 ---
 
-Canonical project rule
-
-OMNIA does not need more identities.
-
-It needs:
-
-less dispersion
-
-stronger evidence
-
-clearer integration
-
-external reproducibility
-
-
-
----
-
 Final v1.0 status
 
-OMNIA v1.0 should now be treated as a completed foundational cycle.
+OMNIA v1.0 should be treated as a completed foundational cycle.
 
 It is not complete because no more ideas exist.
 
