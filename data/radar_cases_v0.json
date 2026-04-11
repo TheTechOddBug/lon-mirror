@@ -1,0 +1,86 @@
+{
+  "version": "v0",
+  "description": "Synthetic cases for OMNIA-RADAR offline opportunity detection.",
+  "cases": [
+    {
+      "id": "radar_01_growth_zone",
+      "description": "High opportunity, high recoverability, open gate.",
+      "signals": {
+        "opportunity": 0.85,
+        "recoverability": 0.80,
+        "stability_gate": 0.90
+      },
+      "expected_regime": "GROWTH_ZONE"
+    },
+    {
+      "id": "radar_02_recoverable_but_narrow",
+      "description": "Some opportunity remains, but not strongly.",
+      "signals": {
+        "opportunity": 0.45,
+        "recoverability": 0.70,
+        "stability_gate": 0.85
+      },
+      "expected_regime": "BORDERLINE_ZONE"
+    },
+    {
+      "id": "radar_03_false_opportunity_suppressed",
+      "description": "Apparent opportunity exists, but low gate suppresses it.",
+      "signals": {
+        "opportunity": 0.90,
+        "recoverability": 0.40,
+        "stability_gate": 0.20
+      },
+      "expected_regime": "DEAD_ZONE"
+    },
+    {
+      "id": "radar_04_saturated_dead_zone",
+      "description": "Very low opportunity, very low recoverability, closed gate.",
+      "signals": {
+        "opportunity": 0.10,
+        "recoverability": 0.10,
+        "stability_gate": 0.10
+      },
+      "expected_regime": "DEAD_ZONE"
+    },
+    {
+      "id": "radar_05_high_opportunity_low_recoverability",
+      "description": "Large residual space but poor recoverability.",
+      "signals": {
+        "opportunity": 0.88,
+        "recoverability": 0.18,
+        "stability_gate": 0.92
+      },
+      "expected_regime": "DEAD_ZONE"
+    },
+    {
+      "id": "radar_06_moderate_growth",
+      "description": "Balanced case with moderate-high opportunity and acceptable gate.",
+      "signals": {
+        "opportunity": 0.68,
+        "recoverability": 0.76,
+        "stability_gate": 0.82
+      },
+      "expected_regime": "GROWTH_ZONE"
+    },
+    {
+      "id": "radar_07_gate_limited_borderline",
+      "description": "Opportunity exists, but gate softness keeps the score borderline.",
+      "signals": {
+        "opportunity": 0.72,
+        "recoverability": 0.62,
+        "stability_gate": 0.46
+      },
+      "expected_regime": "BORDERLINE_ZONE"
+    },
+    {
+      "id": "radar_08_recoverable_low_opportunity",
+      "description": "Recoverable state but little residual opportunity remains.",
+      "signals": {
+        "opportunity": 0.24,
+        "recoverability": 0.83,
+        "stability_gate": 0.88
+      },
+      "expected_regime": "BORDERLINE_ZONE"
+    }
+  ]
+}
