@@ -1,0 +1,94 @@
+{
+  "version": "v0",
+  "description": "Synthetic cases for the OMNIA Silent Failure Gate offline demonstrator.",
+  "cases": [
+    {
+      "id": "case_01_clean_pass",
+      "description": "Structurally clean case with high stability, low fragility, low irrecoverability.",
+      "signals": {
+        "stability": 0.92,
+        "fragility": 0.08,
+        "irrecoverability": 0.03,
+        "retry_budget": 1
+      },
+      "expected_action": "PASS"
+    },
+    {
+      "id": "case_02_borderline_retry",
+      "description": "Moderately fragile but still recoverable case. One bounded retry is justified.",
+      "signals": {
+        "stability": 0.54,
+        "fragility": 0.46,
+        "irrecoverability": 0.18,
+        "retry_budget": 1
+      },
+      "expected_action": "RETRY"
+    },
+    {
+      "id": "case_03_retry_exhausted_pass",
+      "description": "Borderline case with no retry budget left. The gate should not loop indefinitely.",
+      "signals": {
+        "stability": 0.58,
+        "fragility": 0.42,
+        "irrecoverability": 0.16,
+        "retry_budget": 0
+      },
+      "expected_action": "PASS"
+    },
+    {
+      "id": "case_04_irrecoverable_escalate",
+      "description": "Highly unstable and effectively non-recoverable case.",
+      "signals": {
+        "stability": 0.14,
+        "fragility": 0.81,
+        "irrecoverability": 0.88,
+        "retry_budget": 1
+      },
+      "expected_action": "ESCALATE"
+    },
+    {
+      "id": "case_05_fragile_escalate",
+      "description": "Fragility is extremely high even before full irrecoverability saturation.",
+      "signals": {
+        "stability": 0.19,
+        "fragility": 0.91,
+        "irrecoverability": 0.55,
+        "retry_budget": 1
+      },
+      "expected_action": "ESCALATE"
+    },
+    {
+      "id": "case_06_stable_pass",
+      "description": "Cleanly stable case with very low structural risk.",
+      "signals": {
+        "stability": 0.87,
+        "fragility": 0.12,
+        "irrecoverability": 0.07,
+        "retry_budget": 2
+      },
+      "expected_action": "PASS"
+    },
+    {
+      "id": "case_07_recoverable_retry",
+      "description": "Low irrecoverability but visible fragility. Retry remains the bounded action.",
+      "signals": {
+        "stability": 0.49,
+        "fragility": 0.51,
+        "irrecoverability": 0.21,
+        "retry_budget": 2
+      },
+      "expected_action": "RETRY"
+    },
+    {
+      "id": "case_08_limit_escalate",
+      "description": "Saturation-like case close to structural stop boundary.",
+      "signals": {
+        "stability": 0.11,
+        "fragility": 0.67,
+        "irrecoverability": 0.93,
+        "retry_budget": 2
+      },
+      "expected_action": "ESCALATE"
+    }
+  ]
+}
