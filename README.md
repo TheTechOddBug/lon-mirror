@@ -1,4 +1,4 @@
-# OMNIA v1.0 — Structural Measurement Engine
+# OMNIA v1.0 — Structural Trust Gate
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19513076.svg)](https://doi.org/10.5281/zenodo.19513076)
 
@@ -11,20 +11,52 @@
 
 OMNIA is a post-hoc structural measurement engine.
 
-It measures whether an output remains structurally stable under controlled transformations.
+More precisely, it is a **structural trust gate**:
+a layer that detects when an output looks acceptable on the surface but is not stable enough to be trusted as-is.
 
-It does not interpret semantics.  
-It does not replace reasoning.  
-It does not make decisions.
+LLM failures are not only obvious failures.  
+They also appear as outputs that seem plausible, pass too easily, and remain structurally fragile underneath.
+
+OMNIA exists to catch those cases before trust turns into error.
+
+It does **not** interpret semantics.  
+It does **not** replace reasoning.  
+It does **not** decide goals.  
+It does **not** act as an autonomous agent.
 
 Its role is narrower and harder:
 
 - detect structural fragility before visible collapse
 - separate durable structure from representation-dependent behavior
 - expose measurable instability signals for downstream systems
+- support bounded trust decisions by host systems inside the tested perimeter
 
 **Core principle:** structural truth = invariance under transformation  
 **Architectural boundary:** measurement != inference != decision
+
+---
+
+## Why OMNIA matters
+
+Most systems are checked only for explicit wrongness.
+
+That is not enough.
+
+A system can still fail when an output:
+
+- looks coherent
+- sounds correct
+- fits the expected format
+- passes superficial inspection
+- is still structurally unstable underneath
+
+This is the practical target of OMNIA.
+
+OMNIA does not ask:
+"does this sound good?"
+
+OMNIA asks:
+"is this stable enough to be trusted as-is inside the tested setup?"
 
 ---
 
@@ -35,21 +67,30 @@ OMNIA belongs to the MB-X.01 ecosystem and remains the canonical post-hoc struct
 Canonical chain:
 
 ```text
-Dual-Echo -> OMNIAMIND -> OMNIA -> OMNIA-LIMIT -> Decision Layer (external)
+Dual-Echo -> OMNIAMIND -> OMNIA -> OMNIA-RADAR -> OMNIA-LIMIT -> Decision Layer (external)
 
 Within this chain:
 
-OMNIAMIND measures pre-output structural dynamics
+Dual-Echo = theoretical origin
 
-OMNIA measures post-hoc output stability under controlled transformations
+OMNIAMIND = pre-output structural dynamics
 
-OMNIA-LIMIT defines structural stop / saturation conditions
+OMNIA = post-hoc structural measurement
 
-Decision Layer remains external
+OMNIA-RADAR = residual structural opportunity detection
+
+OMNIA-LIMIT = structural stop / saturation boundary
+
+Decision Layer = any action-taking layer, always external
 
 
 Canonical ecosystem map:
+
 https://github.com/Tuttotorna/lon-mirror/blob/main/ECOSYSTEM.md
+
+Non-negotiable rule:
+
+measure != cognition != decision
 
 
 ---
@@ -66,7 +107,7 @@ regime tracking after drift or rupture
 
 post-hoc ranking and filtering on structured candidates
 
-runtime retry and escalation intervention on structured LLM outputs
+runtime retry / escalation support on structured LLM outputs
 
 adapter-mediated workflow control in tested runtime scenarios
 
@@ -79,9 +120,9 @@ It is not a universality claim.
 
 ---
 
-Primary demonstrated use case
+Current strongest public use case
 
-The strongest demonstrated public use case currently exposed in the repository is:
+The strongest public use case currently exposed in the repository is:
 
 structured LLM outputs
 
@@ -89,10 +130,53 @@ silent-failure interception
 
 bounded retry / escalation support
 
-runtime auditability within the tested perimeter
+runtime auditability inside the tested perimeter
 
 
 This is the current external-impact center of the project.
+
+In practical terms:
+
+OMNIA is strongest where an output can look acceptable, yet still be too fragile to pass without an additional structural check.
+
+
+---
+
+What makes OMNIA different
+
+OMNIA is not positioned as:
+
+a model
+
+a general-purpose agent
+
+a semantic evaluator
+
+a truth oracle
+
+a decision engine
+
+
+Its role is narrower:
+
+measure structural fragility before visible collapse
+
+isolate durable signal from representational noise
+
+detect instability and regime change
+
+expose measurement usable by host systems
+
+support bounded retry / escalation flows inside the tested runtime perimeter
+
+
+The project is built around one hard rule:
+
+measurement first
+decision external
+
+That restriction is not a weakness.
+It is part of the architecture.
 
 
 ---
@@ -161,7 +245,7 @@ Primary evidence center
 
 OMNIA should be read through a narrow evidence center, not through the entire repository.
 
-The main public evidence path is:
+Main public benchmark entry points:
 
 1. OMNIA_FACT_BENCHMARK_v0.1.py
 
@@ -173,9 +257,9 @@ The main public evidence path is:
 
 
 
-These three entry points define the primary benchmark center of the project.
+These define the primary benchmark center of the project.
 
-Additional reports, notes, and side validations may support them, but should not replace them as the public center.
+Additional reports, notes, and side validations may support them, but should not replace them as the main public center.
 
 
 ---
@@ -230,7 +314,9 @@ RETRY
 ESCALATE
 
 
-This branch does not replace runtime validation. It exists to show how structural signals can drive a bounded action surface without requiring external dependencies.
+This branch does not replace runtime validation.
+
+It exists to show how structural signals can drive a bounded action surface without requiring external dependencies.
 
 Core artifacts:
 
@@ -263,41 +349,8 @@ For an external integrator, the shortest usable path is:
 
 
 OMNIA adoption means external usability as a structural measurement layer.
-It does not mean full conceptual immersion in the entire MB-X.01 ecosystem.
 
-
----
-
-What makes OMNIA different
-
-OMNIA is not positioned as:
-
-a model
-
-a guardrail
-
-a semantic evaluator
-
-a decision engine
-
-
-Its role is narrower:
-
-measure structural fragility before visible collapse
-
-isolate structure-dependent signal from representational noise
-
-detect instability and regime change
-
-provide external measurement usable by host systems
-
-support bounded retry and escalation intervention in tested runtime workflows
-
-
-The project is built around one hard rule:
-
-measurement first
-decision external
+It does not require full conceptual immersion in the entire MB-X.01 ecosystem.
 
 
 ---
@@ -355,15 +408,15 @@ These limits are part of the architecture, not an afterthought.
 
 Current repository state
 
-The repository currently contains two different but compatible states:
+The repository currently contains two compatible but asymmetrical states:
 
 Branch	Status	Note
 
-OMNIA runtime branch	FOUNDATIONALLY STABILIZED	Real backend, retry-loop, adapter path, and cross-model perimeter documented.
-OMNIAMIND analytical branch	OPERATIONAL OFFLINE	Synthetic proxy engine, formalization, and offline comparison package available, but no real trace ingestion yet.
+OMNIA runtime branch	FOUNDATIONALLY STABILIZED	Real backend, retry-loop, adapter path, and cross-model perimeter documented
+OMNIAMIND analytical branch	OPERATIONAL OFFLINE	Synthetic proxy engine, formalization, and offline comparison package available, but no real trace ingestion yet
 
 
-This means the repository is stronger on post-hoc structural measurement than on upstream empirical pre-output measurement.
+This means the repository is currently stronger on post-hoc structural measurement than on upstream empirical pre-output measurement.
 
 That asymmetry is real and explicitly declared.
 
@@ -403,6 +456,10 @@ Minimal conclusion
 
 OMNIA v1.0 is a bounded structural measurement engine.
 
+Externally, the clearest way to understand it is this:
+
+OMNIA is a structural trust gate for plausible but fragile outputs.
+
 It is strongest where the project currently has real tested perimeter:
 
 structured LLM outputs
@@ -417,11 +474,15 @@ tested cross-model path inside the declared setup
 
 
 It is not a universality claim.
+It is not another agent.
+It is not a semantic judge.
+
 It is a completed foundational engineering layer inside MB-X.01.
 
-The correct current state is:
+Current correct state:
 
-OMNIA: canonical post-hoc structural measurement engine
-OMNIAMIND: upstream analytical extension
-OMNIA-LIMIT: downstream structural boundary
-v1.0: foundationally stabilized
+OMNIA       = canonical post-hoc structural measurement engine
+OMNIAMIND   = upstream analytical extension
+OMNIA-LIMIT = downstream structural boundary
+v1.0        = foundationally stabilized
+
