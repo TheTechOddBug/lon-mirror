@@ -17,7 +17,7 @@ This repository is part of the **MB-X.01 / OMNIABASE / OMNIA** ecosystem.
 - **lon-mirror** = the historical, operational, and research core of the OMNIA diagnostics lineage
 
 Canonical ecosystem map:  
-**[lon-mirror / ECOSYSTEM.md](https://github.com/Tuttotorna/lon-mirror/blob/main/ECOSYSTEM.md)**
+**[ECOSYSTEM.md](https://github.com/Tuttotorna/lon-mirror/blob/main/ECOSYSTEM.md)**
 
 This repository should not be read as the umbrella framework itself.
 
@@ -109,19 +109,19 @@ Within the broader MB-X.01 / OMNIABASE ecosystem, the canonical chain is:
 ```text
 Dual-Echo -> OMNIAMIND -> OMNIA -> OMNIA-RADAR -> OMNIA-LIMIT -> Decision Layer (external)
 
-Within this chain:
+Repository references for the chain:
 
-Dual-Echo = theoretical origin
+dual-echo-perception — theoretical origin
 
-OMNIAMIND = pre-output structural dynamics
+OMNIAMIND — pre-output structural dynamics
 
-OMNIA = post-hoc structural measurement
+OMNIA — post-hoc structural measurement
 
-OMNIA-RADAR = residual structural opportunity detection
+OMNIA-RADAR — residual structural opportunity detection
 
-OMNIA-LIMIT = structural stop / saturation boundary
+omnia-limit — structural stop / saturation boundary
 
-Decision Layer = any action-taking layer, always external
+Decision Layer — any action-taking layer, always external
 
 
 Non-negotiable rule:
@@ -423,11 +423,35 @@ OMNIAMIND = pre-output structural dynamics
 
 OMNIA = post-hoc structural stability under transformation
 
-OMNIA-LIMIT = structural stop / saturation boundary
+omnia-limit = structural stop / saturation boundary
 
 
 OMNIAMIND does not replace OMNIA.
 It extends structural visibility before final emission.
+
+
+---
+
+Related Repositories
+
+For the shortest functional reading of the broader lineage:
+
+OMNIABASE — umbrella framework
+
+OMNIA — Diagnostics / Structural Measurement branch
+
+observer-suspension — epistemic pre-layer
+
+omniabase-coordinate-discovery — Coordinate Discovery branch
+
+omega-translator — Cross-Representation Translation branch
+
+OMNIA-RADAR — residual structural opportunity detection
+
+omnia-limit — structural boundary / saturation layer
+
+Pre-Deployment-Structural-Gate — deployment-facing diagnostics extension
+
 
 
 ---
