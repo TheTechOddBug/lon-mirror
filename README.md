@@ -3,20 +3,21 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19513076.svg)](https://doi.org/10.5281/zenodo.19513076)
 
 **Author:** Massimiliano Brighindi  
+**Contact:** brighissimo@gmail.com  
 **Project:** MB-X.01
 
 ---
 
-## Position in the ecosystem
+## Position in the Ecosystem
 
 This repository is part of the **MB-X.01 / OMNIABASE / OMNIA** ecosystem.
 
-- **OMNIABASE** = the general multirepresentational framework
-- **OMNIA** = the Diagnostics / Structural Measurement branch
+- **[OMNIABASE](https://github.com/Tuttotorna/OMNIABASE)** = the general multirepresentational framework
+- **[OMNIA](https://github.com/Tuttotorna/OMNIA)** = the Diagnostics / Structural Measurement branch
 - **lon-mirror** = the historical, operational, and research core of the OMNIA diagnostics lineage
 
 Canonical ecosystem map:  
-https://github.com/Tuttotorna/lon-mirror/blob/main/ECOSYSTEM.md
+**[lon-mirror / ECOSYSTEM.md](https://github.com/Tuttotorna/lon-mirror/blob/main/ECOSYSTEM.md)**
 
 This repository should not be read as the umbrella framework itself.
 
@@ -46,12 +47,12 @@ Its center of gravity is:
 
 In practical terms:
 
-if `OMNIA` is the clean public branch-facing repository,  
-then `lon-mirror` is the deeper engineering and research core behind that lineage.
+if **[OMNIA](https://github.com/Tuttotorna/OMNIA)** is the clean public branch-facing repository,  
+then **lon-mirror** is the deeper engineering and research core behind that lineage.
 
 ---
 
-## What OMNIA is, in this repository
+## What OMNIA Is, in This Repository
 
 Within this repository, **OMNIA** should be understood as a **post-hoc structural measurement engine**.
 
@@ -80,7 +81,7 @@ Its role is narrower and harder:
 
 ---
 
-## Why this repository matters
+## Why This Repository Matters
 
 Most systems are checked only for explicit wrongness.
 
@@ -101,7 +102,7 @@ not only the clean statement of the branch, but also the surrounding operational
 
 ---
 
-## Canonical chain
+## Canonical Chain
 
 Within the broader MB-X.01 / OMNIABASE ecosystem, the canonical chain is:
 
@@ -130,7 +131,7 @@ measurement != cognition != decision
 
 ---
 
-What this repository currently supports
+What This Repository Currently Supports
 
 Within the tested perimeter, the material preserved here currently supports:
 
@@ -156,7 +157,7 @@ It is not a universality claim.
 
 ---
 
-Current strongest public use case
+Current Strongest Public Use Case
 
 The strongest public use case currently exposed in this repository is:
 
@@ -178,7 +179,7 @@ the OMNIA lineage is strongest where an output can look acceptable, yet still be
 
 ---
 
-What makes the lineage different
+What Makes the Lineage Different
 
 The OMNIA diagnostics lineage is not positioned as:
 
@@ -239,7 +240,7 @@ If this separation appears, the system is behaving as intended inside the demo p
 
 ---
 
-Current evaluated status
+Current Evaluated Status
 
 Within the tested perimeter, the material in this repository documents evaluation across:
 
@@ -280,7 +281,7 @@ This remains a bounded engineering result, not a universality claim.
 
 ---
 
-Primary evidence center
+Primary Evidence Center
 
 This repository should be read through a narrow evidence center, not through the entire repository at once.
 
@@ -303,7 +304,7 @@ Additional reports, notes, and side validations may support them, but should not
 
 ---
 
-Primary runtime path
+Primary Runtime Path
 
 The strongest runtime branch currently exposed in the repository is:
 
@@ -353,7 +354,7 @@ This is the most advanced externally legible branch currently documented in the 
 
 ---
 
-Silent Failure Gate (offline demonstrator)
+Silent Failure Gate (Offline Demonstrator)
 
 The repository also contains a synthetic offline demonstrator for bounded routing logic:
 
@@ -386,7 +387,7 @@ This is an offline architectural demonstrator only.
 
 ---
 
-Primary adoption path
+Primary Adoption Path
 
 For an external integrator, the shortest usable path is:
 
@@ -431,7 +432,7 @@ It extends structural visibility before final emission.
 
 ---
 
-Current limits
+Current Limits
 
 Current limits remain explicit:
 
@@ -461,7 +462,7 @@ These limits are part of the architecture, not an afterthought.
 
 ---
 
-Current repository state
+Current Repository State
 
 This repository currently contains two compatible but asymmetrical states:
 
@@ -478,7 +479,7 @@ That asymmetry is real and explicitly declared.
 
 ---
 
-Why lon-mirror still matters
+Why lon-mirror Still Matters
 
 Now that OMNIABASE exists as the umbrella framework and OMNIA exists as the cleaner branch-facing repository, lon-mirror should be understood as preserving what those repositories do not try to contain all at once:
 
@@ -500,11 +501,12 @@ It is the deepest public operational core of one of its most mature branches.
 
 ---
 
-Final v1.0 status
+Final v1.0 Status
 
 The OMNIA diagnostics lineage documented here should be treated as a completed foundational cycle.
 
-It is not complete because no more ideas exist. It is complete because the architectural uncertainty required to define the v1.0 perimeter has been exhausted.
+It is not complete because no more ideas exist.
+It is complete because the architectural uncertainty required to define the v1.0 perimeter has been exhausted.
 
 What now exists is:
 
@@ -528,7 +530,7 @@ That is the correct end state of this foundational cycle.
 
 ---
 
-Minimal conclusion
+Minimal Conclusion
 
 lon-mirror preserves the historical and operational core of the OMNIA diagnostics lineage inside the OMNIABASE ecosystem.
 
@@ -549,7 +551,9 @@ runtime auditability
 tested cross-model path inside the declared setup
 
 
-It is not a universality claim. It is not another agent. It is not a semantic judge.
+It is not a universality claim.
+It is not another agent.
+It is not a semantic judge.
 
 It is a bounded, completed, foundational diagnostics lineage inside MB-X.01 / OMNIABASE.
 
@@ -561,4 +565,3 @@ lon-mirror  = historical and operational core of that branch
 OMNIAMIND   = upstream analytical extension
 OMNIA-LIMIT = downstream structural boundary
 v1.0        = foundationally stabilized
-
