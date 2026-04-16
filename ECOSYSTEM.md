@@ -1,217 +1,434 @@
-# MB-X.01 / OMNIA — Canonical Ecosystem Map
+# MB-X.01 / OMNIABASE / OMNIA — ECOSYSTEM MAP
 
-This repository (`Tuttotorna/lon-mirror`) is the **canonical hub** of the MB-X.01 / OMNIA ecosystem.
+## Status
 
-It defines:
-- the **single official architecture chain**
-- the **role** of each repository
-- the **non-negotiable boundaries** between layers (measure ≠ cognition ≠ decision)
+This document defines the current ecosystem map for the MB-X.01 / OMNIABASE / OMNIA lineage.
 
----
+Its purpose is to preserve architectural clarity.
 
-## Canonical Architecture Chain (non-negotiable)
-
-**Dual-Echo → OMNIAMIND → OMNIA → OMNIA-RADAR → OMNIA-LIMIT → Decision Layer (external)**
-
-- **Dual-Echo**: theoretical origin (interferential self / coherence)
-- **OMNIAMIND**: experimental dual-core cognition dynamics (simulation layer)
-- **OMNIA**: post-hoc structural measurement engine (instrument layer)
-- **OMNIA-RADAR**: structural opportunity detector (residual growth zones)
-- **OMNIA-LIMIT**: epistemic boundary / STOP certificate (termination layer)
-- **Decision Layer**: anything that decides actions (must be external to OMNIA)
+The ecosystem should not be read as a flat collection of related repositories.
+It should be read as a layered structure with distinct roles.
 
 ---
 
-## Repository Roles (single source of truth)
+## 1. Core architectural rule
 
-### 1) Foundation / Theory
-- **dual-echo-perception**  
-  Role: theoretical + formal core (dual interference, self emergence).  
-  Output: concepts, definitions, formal frames that motivate the chain.
+Not every repository in the ecosystem plays the same role.
 
-Repo: https://github.com/Tuttotorna/dual-echo-perception
+A repository may function as:
 
----
+- umbrella framework repository
+- canonical branch repository
+- branch implementation or deep operational core
+- epistemic pre-layer
+- satellite or adjacent repository
+- historical or contextual repository
 
-### 2) Experimental Cognition Layer
-- **OMNIAMIND**  
-  Role: experimental dual-core cognitive dynamics (micro-divergence / reconvergence).  
-  Output: simulations, cognitive operators, controlled divergence experiments.
+These roles must remain distinct.
 
-Repo: https://github.com/Tuttotorna/OMNIAMIND
-
----
-
-### 3) Measurement / Instrument Layer
-- **OMNIA**  
-  Role: **structural measurement engine** (post-hoc, deterministic, model-agnostic).  
-  Guarantees:
-  - does **not** interpret meaning
-  - does **not** decide
-  - does **not** optimize
-  - does **not** learn  
-  Output: invariance, drift, saturation, irreversibility, Ω-residue.
-
-Repo: https://github.com/Tuttotorna/OMNIA
-
-- **lon-mirror**  
-  Role: canonical hub + map + external anchoring (L.O.N. pointer).  
-  Output: architecture map, cross-repo coherence, crawler-readable index.
-
-Repo: https://github.com/Tuttotorna/lon-mirror
+Architectural clarity matters more than chronological history.
 
 ---
 
-### 4) Structural Opportunity Layer
-- **OMNIA-RADAR**  
-  Role: post-hoc structural opportunity detector.  
-  Measures zones where:
-  - SEI is high (structure still extractable)
-  - IRI is low (no irreversible collapse)
-  - drift is controlled (growth regime)
+## 2. Umbrella framework
 
-RADAR does **not** decide or recommend.  
-It outputs **non-zero only if residual opportunity exists beyond LIMIT**.
+### `OMNIABASE`
 
-Repo: https://github.com/Tuttotorna/OMNIA-RADAR
+Role:
 
----
+the general umbrella repository of the framework.
 
-### 5) Boundary / Termination Layer
-- **omnia-limit**  
-  Role: epistemic boundary layer; declares **STOP** under structural saturation / non-reducibility.  
-  Output: boundary certificates (SNRC), impossibility envelope, termination rules.
+Function:
 
-Repo: https://github.com/Tuttotorna/omnia-limit
+- define the foundational principle
+- define the common architecture
+- define the canonical branches
+- define the shared lexicon
+- define the philosophical and epistemic scope
+- map the ecosystem as a whole
 
----
+Core principle:
 
-### 6) Human Trajectory Layer (phenomenic input)
-- **omnia-human-trajectory**  
-  Role: structural decomposition of human trajectories and real-world sequences  
-  into OMNIA-compatible signals (drift, coherence, instability).
+> a phenomenon should not be treated as exhausted by a single representation.
 
-This is a **source layer**, not a decision layer.
+This repository is the constitutional center of the framework.
 
-Repo: https://github.com/Tuttotorna/omnia-human-trajectory
+It is not the place for branch-local benchmark depth, implementation overload, or experimental accumulation.
 
 ---
 
-### 7) Ω Tooling (Residue, Translation, Propagation)
+## 3. Canonical branches
 
-These are **support modules** around Ω (Omega-set / invariant residue).  
-They are not the canonical chain by themselves; they plug into OMNIA or sit adjacent as utilities.
-
-- **omega-method**  
-  Role: Ω measurement methods / formalization variants / experiments.  
-  Repo: https://github.com/Tuttotorna/omega-method
-
-- **omega-translator**  
-  Role: bridge layer to render Ω-residue / structural diagnostics into human-readable artifacts.  
-  Repo: https://github.com/Tuttotorna/omega-translator
-
-- **omega-latent-carrier**  
-  Role: carrier / propagation experiments for Ω-structured signals across representations.  
-  Repo: https://github.com/Tuttotorna/omega-latent-carrier
-
-- **omega-eden-perception**  
-  Role: pre-perception purity lens (Eden score).  
-  Measures source structural coherence before drift.
-
-Repo: https://github.com/Tuttotorna/omega-eden-perception
+From the Omniabase principle, three canonical branches follow.
 
 ---
 
-## Hard Boundaries (enforced by architecture)
+### A. Diagnostics / Structural Measurement
 
-1) **OMNIA measures. It never decides.**  
-2) **OMNIAMIND may simulate cognition. It does not certify truth.**  
-3) **OMNIA-RADAR detects opportunity. It does not recommend action.**  
-4) **OMNIA-LIMIT terminates admissible processing. It does not “try harder”.**  
-5) Any policy, moderation, trading, or action logic must live **outside** OMNIA/OMNIA-LIMIT.
+Central question:
+
+> when something looks stable in one representation, does that stability survive when representation changes?
+
+Function:
+
+- measure robustness
+- detect fragility
+- detect drift
+- detect saturation
+- detect collapse proximity
+- expose representation dependence
+
+Canonical public branch repository:
+
+- `OMNIA`
+
+Deep operational / historical / research core:
+
+- `lon-mirror`
+
+Related branch repositories:
+
+- `omnia-limit`
+- `Pre-Deployment-Structural-Gate`
+- `OMNIA-RADAR`
+
+Interpretation:
+
+`OMNIA` is the clean branch-facing repository.  
+`lon-mirror` is the deeper public operational core of the same diagnostics lineage.
 
 ---
 
-## Canonical Link Header (to add in every repo README)
+### B. Coordinate Discovery
 
-Add this exact line at the top of each repo README:
+Central question:
 
-**Canonical ecosystem map:** https://github.com/Tuttotorna/lon-mirror/blob/main/ECOSYSTEM.md
+> what hidden structure becomes visible only when a phenomenon is observed across multiple codings rather than a single one?
+
+Function:
+
+- expose hidden coordinates
+- identify latent factors
+- detect regime separations
+- produce structural maps
+- provide better descriptive axes for modeling
+
+Canonical repository:
+
+- `omniabase-coordinate-discovery`
+
+Interpretation:
+
+This is the generative branch of Omniabase.
 
 ---
 
-## Machine-Readable Index (optional but recommended)
+### C. Cross-Representation Translation
 
-If present, create `lon-mirror/repos.json` with the following structure:
+Central question:
 
-```json
-{
-  "ecosystem": "MB-X.01 / OMNIA",
-  "canonical_hub": "https://github.com/Tuttotorna/lon-mirror",
-  "canonical_map": "https://github.com/Tuttotorna/lon-mirror/blob/main/ECOSYSTEM.md",
-  "chain": [
-    "dual-echo-perception",
-    "OMNIAMIND",
-    "OMNIA",
-    "OMNIA-RADAR",
-    "omnia-limit",
-    "decision-layer-external"
-  ],
-  "repos": [
-    {
-      "name": "lon-mirror",
-      "role": "canonical_hub",
-      "url": "https://github.com/Tuttotorna/lon-mirror"
-    },
-    {
-      "name": "dual-echo-perception",
-      "role": "foundation_theory",
-      "url": "https://github.com/Tuttotorna/dual-echo-perception"
-    },
-    {
-      "name": "OMNIAMIND",
-      "role": "experimental_cognition_layer",
-      "url": "https://github.com/Tuttotorna/OMNIAMIND"
-    },
-    {
-      "name": "OMNIA",
-      "role": "measurement_engine",
-      "url": "https://github.com/Tuttotorna/OMNIA"
-    },
-    {
-      "name": "OMNIA-RADAR",
-      "role": "structural_opportunity_layer",
-      "url": "https://github.com/Tuttotorna/OMNIA-RADAR"
-    },
-    {
-      "name": "omnia-limit",
-      "role": "boundary_termination_layer",
-      "url": "https://github.com/Tuttotorna/omnia-limit"
-    },
-    {
-      "name": "omnia-human-trajectory",
-      "role": "phenomenic_input_layer",
-      "url": "https://github.com/Tuttotorna/omnia-human-trajectory"
-    },
-    {
-      "name": "omega-method",
-      "role": "omega_tooling_method",
-      "url": "https://github.com/Tuttotorna/omega-method"
-    },
-    {
-      "name": "omega-translator",
-      "role": "omega_tooling_translation",
-      "url": "https://github.com/Tuttotorna/omega-translator"
-    },
-    {
-      "name": "omega-latent-carrier",
-      "role": "omega_tooling_carrier",
-      "url": "https://github.com/Tuttotorna/omega-latent-carrier"
-    },
-    {
-      "name": "omega-eden-perception",
-      "role": "omega_tooling_eden_purity",
-      "url": "https://github.com/Tuttotorna/omega-eden-perception"
-    }
-  ]
-}
+> when two descriptions appear different, how much are they still describing the same structural object?
+
+Function:
+
+- measure compatibility
+- estimate invariant residue across descriptions
+- align formalisms
+- map translatability
+- detect structural incompatibility
+
+Current repositories aligned with this branch:
+
+- `omega-translator`
+- `HASC-Human-AI-Structural-Compatibility-Protocol`
+
+Interpretation:
+
+This branch is conceptually clear, but still more distributed than Diagnostics.
+
+---
+
+## 4. Epistemic pre-layer
+
+Some repositories do not define a canonical branch directly, but prepare the conceptual move into Omniabase.
+
+### `observer-suspension`
+
+Role:
+
+epistemic pre-layer.
+
+Function:
+
+- reduce observer privilege
+- weaken single-view sufficiency
+- prepare the transition from observer-centered description to representation-variable structural analysis
+
+Interpretation:
+
+This repository is not the whole of Omniabase.
+
+It is one of its strongest conceptual gateways.
+
+---
+
+## 5. Upstream and downstream lineage inside the diagnostics branch
+
+Inside the diagnostics lineage, the canonical chain is:
+
+```text
+Dual-Echo -> OMNIAMIND -> OMNIA -> OMNIA-RADAR -> OMNIA-LIMIT -> Decision Layer (external)
+
+Role of each layer
+
+Dual-Echo -> theoretical origin
+
+OMNIAMIND -> upstream structural dynamics before final emission
+
+OMNIA -> canonical post-hoc structural measurement engine
+
+OMNIA-RADAR -> residual structural opportunity / continuation analysis
+
+OMNIA-LIMIT -> structural stop / saturation boundary
+
+Decision Layer -> action-taking layer, always external
+
+
+Non-negotiable rule:
+
+measurement != cognition != decision
+
+This chain belongs inside the Diagnostics lineage. It does not define the whole OMNIABASE framework.
+
+
+---
+
+6. Position of lon-mirror
+
+lon-mirror must now be read in a narrower and more precise way than before.
+
+It is:
+
+not the umbrella framework
+
+not the total center of the ecosystem
+
+not the whole of OMNIA
+
+not the whole of MB-X.01
+
+
+It is:
+
+the historical core of the OMNIA diagnostics lineage
+
+the operational archive of the branch
+
+the deeper engineering and research repository behind the cleaner OMNIA branch repo
+
+the place where runtime paths, benchmark depth, and historical branch memory are preserved
+
+
+Short formula:
+
+OMNIABASE defines the framework.
+OMNIA defines the branch.
+lon-mirror preserves the deepest operational core of that branch.
+
+
+---
+
+7. Other important repositories
+
+The ecosystem also contains repositories that are historically important, adjacent, or satellite in role.
+
+These may include:
+
+dual-echo-perception
+
+omega-method
+
+reason-bridge
+
+omega-latent-carrier
+
+omega-eden-perception
+
+omnia-gsm8k-claim
+
+omnia-human-trajectory
+
+MATHEMATICS-WITHOUT-REPRESENTATION
+
+Omniabase-MBX01
+
+MetaBase-AdaptiveLogic
+
+MetaBase-MBX01
+
+ottavia-base8-mb01
+
+
+These repositories may preserve:
+
+historical context
+
+adjacent formal ideas
+
+exploratory directions
+
+conceptual satellites
+
+branch-adjacent experiments
+
+
+They may influence the ecosystem without defining its main architecture.
+
+
+---
+
+8. Recommended reading order
+
+A newcomer should not read the ecosystem randomly.
+
+Recommended order:
+
+Step 1 — Framework
+
+OMNIABASE
+
+
+Step 2 — Philosophical / epistemic gateway
+
+observer-suspension
+
+
+Step 3 — Canonical branch repositories
+
+OMNIA
+
+omniabase-coordinate-discovery
+
+omega-translator
+
+HASC-Human-AI-Structural-Compatibility-Protocol
+
+
+Step 4 — Deep diagnostics core
+
+lon-mirror
+
+omnia-limit
+
+Pre-Deployment-Structural-Gate
+
+OMNIA-RADAR
+
+
+Step 5 — Historical / adjacent satellites
+
+dual-echo-perception
+
+omega-method
+
+reason-bridge
+
+and related repositories
+
+
+This order preserves clarity: framework first, branch next, depth later.
+
+
+---
+
+9. Non-negotiable distinctions
+
+The ecosystem must preserve the following separations.
+
+A. Framework != branch
+
+OMNIABASE is broader than any one branch.
+
+B. Branch != deep branch core
+
+OMNIA is the branch-facing diagnostics repository. lon-mirror is its deeper operational core.
+
+C. Branch != satellite
+
+A repository may be relevant without being canonical.
+
+D. Epistemic pre-layer != framework center
+
+A conceptual gateway does not define the whole architecture.
+
+E. Historical relevance != present architectural centrality
+
+A repository may matter historically without being the current center.
+
+These distinctions protect legibility.
+
+
+---
+
+10. Strategic orientation
+
+At the current stage, the correct external orientation is:
+
+OMNIABASE -> framework-level identity
+
+OMNIA -> first strong operational face of the ecosystem
+
+lon-mirror -> deep diagnostics archive / operational lab
+
+Coordinate Discovery -> next frontier branch
+
+Translation -> compatibility and bridge branch
+
+Observer Suspension -> epistemic gateway
+
+
+This preserves both credibility and conceptual breadth.
+
+
+---
+
+11. Compact map
+
+OMNIABASE
+├── Diagnostics / Structural Measurement
+│   ├── OMNIA
+│   ├── lon-mirror
+│   ├── OMNIA-RADAR
+│   ├── OMNIA-LIMIT
+│   └── Pre-Deployment-Structural-Gate
+│
+├── Coordinate Discovery
+│   └── omniabase-coordinate-discovery
+│
+├── Cross-Representation Translation
+│   ├── omega-translator
+│   └── HASC-Human-AI-Structural-Compatibility-Protocol
+│
+└── Epistemic Pre-layer
+    └── observer-suspension
+
+Additional repositories remain satellites, historical layers, or adjacent lines unless explicitly reclassified.
+
+
+---
+
+12. Summary
+
+The current ecosystem should be read through one clear rule:
+
+the framework must remain more legible than its history.
+
+Shortest valid formula:
+
+OMNIABASE = general multirepresentational framework
+OMNIA = canonical Diagnostics branch
+lon-mirror = historical and operational core of that branch
+Coordinate Discovery = generative branch
+Cross-Representation Translation = compatibility branch
+observer-suspension = epistemic pre-layer
+
