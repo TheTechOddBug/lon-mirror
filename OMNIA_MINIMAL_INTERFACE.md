@@ -1,149 +1,315 @@
-# OMNIA — Minimal Interface (5-Minute Use)
+# OMNIA — MINIMAL INTERFACE
 
-OMNIA is **not a model**.  
-OMNIA is a **structural diagnostic and gating engine**.
+## Status
 
-It measures instability, ambiguity, and impossibility across numbers, time, causality, language, and facts — and outputs a single actionable signal.
+This document defines the shortest usable integration path into the **OMNIA diagnostics lineage** preserved in `lon-mirror`.
 
----
+Its purpose is practical:
 
-## What OMNIA does (in one sentence)
+to let an external integrator understand what OMNIA expects, what it returns, and how to use it without first absorbing the full historical depth of the repository.
 
-> Given an output (number / series / text), OMNIA tells you whether it is **structurally safe**, **ambiguous**, or **impossible**.
+This is the minimal interface document.
 
----
-
-## Inputs (minimal)
-
-OMNIA can be called with **any subset** of the following:
-
-### 1. Numeric input
-```python
-n = 173
-
-2. Time series
-
-series = [ ... ]   # list of floats
-
-3. Multi-channel signals
-
-series_dict = {"s1": [...], "s2": [...], "s3": [...]}
-
-4. Token / language input
-
-tokens = ["The", "system", "deleted", "the", "user"]
-token_numbers = [len(t) for t in tokens]  # or any proxy
-
-5. External coherence (optional)
-
-omega_ext = 0.72   # fact + numeric consistency (LCR)
-ambiguity_score = 0.65
-
+It is intentionally narrower than the full architectural documentation.
 
 ---
 
-Core Call
+## 1. Position in the ecosystem
 
-from omnia.engine import run_omnia_totale
-from ICE.OMNIA_ICE_v0_1 import ICEInput, ice_gate
+At the top level:
 
-result = run_omnia_totale(
-    n=n,
-    series=series,
-    series_dict=series_dict,
-    extra={
-        "tokens": tokens,
-        "token_numbers": token_numbers,
-    }
-)
+- **OMNIABASE** = general multirepresentational framework
+- **OMNIA** = Diagnostics / Structural Measurement branch
+- **lon-mirror** = historical and operational core of that branch
 
-ice = ice_gate(
-    ICEInput(
-        omega_total=result.omega_total,
-        lens_scores=result.lens_scores,
-        lens_metadata=result.lens_metadata,
-        omega_ext=omega_ext,
-        ambiguity_score=ambiguity_score,
-    )
-)
+This document concerns only the minimal usable path into the **OMNIA diagnostics lineage**.
+
+It does not define the whole framework.
+
+---
+
+## 2. One-line description
+
+**OMNIA is a post-hoc structural diagnostics layer for outputs that look acceptable but may remain structurally fragile underneath.**
+
+That is the shortest correct summary.
+
+---
+
+## 3. What problem this interface solves
+
+Many systems can already produce outputs that look plausible, formatted, and locally coherent.
+
+That is not always enough.
+
+The failure class targeted here is:
+
+- plausible output
+- acceptable surface form
+- low obvious wrongness
+- hidden structural fragility underneath
+
+OMNIA exists to detect that class inside a bounded tested perimeter.
+
+---
+
+## 4. Minimal mental model
+
+The shortest mental model is:
+
+1. a host system generates an output
+2. OMNIA measures structural behavior
+3. OMNIA returns bounded structural signals
+4. the host system decides what to do next
+
+OMNIA does not replace the host system.
+OMNIA does not decide on its own.
+OMNIA measures.
+
+---
+
+## 5. Minimal architectural rule
+
+**measurement != cognition != decision**
+
+This is the only architectural rule an integrator must not violate.
+
+- OMNIA measures
+- the host interprets
+- the host decides
+
+If this separation is broken, the architecture is being misused.
+
+---
+
+## 6. Minimal input contract
+
+The input must already exist.
+
+OMNIA does not generate the object under inspection.
+
+Typical acceptable inputs include:
+
+- a structured model output
+- a candidate answer
+- a reasoning trace
+- a transformation-ready representation
+- a set of structured candidates for comparison
+
+The stronger current perimeter is based on **structured outputs**, especially structured LLM output workflows.
+
+---
+
+## 7. Minimal output contract
+
+The output of OMNIA is **structural measurement**, not semantic judgment.
+
+Typical outputs may include:
+
+- structural score
+- fragility signal
+- drift indicator
+- saturation / collapse indicator
+- rank support across candidates
+- bounded routing support such as:
+  - PASS
+  - RETRY
+  - ESCALATE
+
+These are support signals for the host system.
+
+They are not final truth statements.
+
+---
+
+## 8. Strongest current use case
+
+The strongest currently exposed external use case is:
+
+- structured LLM outputs
+- silent-failure interception
+- bounded retry / escalation support
+- runtime auditability inside the tested perimeter
+
+This is the shortest realistic adoption path.
+
+It is not a universality claim.
+It is the currently strongest public perimeter.
+
+---
+
+## 9. Minimal adoption path
+
+If you want the shortest practical path, use this order:
+
+1. read this file
+2. inspect `INTERFACE.md`
+3. inspect `adapters/llm_output_adapter.py`
+4. inspect `integrations/caios/`
+5. inspect selected runtime docs in `docs/`
+
+This is enough to understand the basic integration logic without first reading the entire repository.
+
+---
+
+## 10. Minimal runtime pattern
+
+The shortest valid runtime pattern is:
+
+```text
+host system produces output
+        ↓
+OMNIA adapter receives output
+        ↓
+OMNIA computes structural signal
+        ↓
+host system reads signal
+        ↓
+host system keeps / retries / escalates
+
+This is the minimal loop.
+
+It is intentionally bounded.
 
 
 ---
 
-Output (what you actually use)
+11. Why this is useful
 
-Structural score
+This layer is useful when a host system already has:
 
-result.omega_total
+output generation
 
-Per-lens contributions
+formatting
 
-result.lens_scores
+task execution
 
-Final gate decision
+business logic
 
-ice.status
 
-Possible values:
+but still lacks a good way to detect whether a plausible-looking output is structurally weak.
 
-PASS → structurally safe to output
-
-ESCALATE → ambiguous, needs clarification or second pass
-
-BLOCK → impossible (0% class), must not be output
-
+OMNIA is designed to fill that gap.
 
 
 ---
 
-Why this exists
+12. What the integrator should not expect
 
-OMNIA enforces one invariant:
+Do not expect this minimal interface to provide:
 
-> Zero-percent statements must never pass.
+semantic interpretation
+
+direct correctness proof
+
+full alignment control
+
+unrestricted domain verification
+
+universal safety certification
+
+autonomous decision logic
 
 
+This is not a universal wrapper.
 
-It does not decide truth.
-It prevents impossible outputs and exposes ambiguity.
-
-
----
-
-Typical use cases
-
-LLM hallucination gating
-
-Chain-of-thought auditing
-
-Safety filters (pre- or post-generation)
-
-Research diagnostics
-
-Model-agnostic evaluation
-
+It is a bounded diagnostics layer.
 
 
 ---
 
-Design principle
+13. Current tested perimeter
 
-OMNIA is:
+The strongest currently documented tested perimeter includes:
 
-model-agnostic
+structured output workflows
 
-non-narrative
+retry-loop routing
 
-composable
+adapter-mediated intervention
 
-auditable
+real backend execution
 
-measurable
+bounded cross-model portability in the tested setup
 
 
-If you can produce an output, OMNIA can measure its structural integrity.
+This is the zone where the interface should be read as strongest.
+
+Outside this zone, claims must remain narrower.
 
 
 ---
 
-End of interface.
+14. Minimal external phrasing
+
+If you need the shortest correct external description, use one of these.
+
+Option A
+
+OMNIA is a post-hoc structural diagnostics layer for plausible-but-fragile outputs.
+
+Option B
+
+OMNIA measures whether an output remains structurally stable enough to be trusted as-is inside the tested perimeter.
+
+Option C
+
+OMNIA provides bounded structural trust signals for structured outputs after inference.
+
+These are acceptable external formulations.
+
+
+---
+
+15. Minimal repository path
+
+If you want the shortest file path into the lineage, start here:
+
+OMNIA_MINIMAL_INTERFACE.md
+
+INTERFACE.md
+
+README.md
+
+adapters/llm_output_adapter.py
+
+integrations/caios/
+
+selected runtime docs in docs/
+
+
+This is the shortest usable path.
+
+
+---
+
+16. Boundary reminder
+
+The minimal interface should always be understood under one constraint:
+
+it returns bounded structural diagnostics under declared conditions.
+
+It does not certify the whole world. It does not settle truth in the large. It does not erase the need for host interpretation and external decision layers.
+
+That boundary is part of the usefulness of the interface.
+
+
+---
+
+17. Summary
+
+The minimal interface of the OMNIA diagnostics lineage is simple:
+
+input already exists
+
+OMNIA measures structural behavior
+
+OMNIA returns bounded structural signals
+
+host system remains responsible for action
+
+
+Shortest formula:
+
+OMNIA is a post-hoc structural diagnostics layer for outputs that look acceptable but may still be too fragile to trust as-is.
+
