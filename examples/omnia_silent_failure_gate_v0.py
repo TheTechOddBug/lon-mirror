@@ -1,129 +1,254 @@
-# OMNIA Silent Failure Gate v0 — Results
-## First external impact audit
+"""
+OMNIA Silent Failure Gate v0
+Toy structural sensitivity demo.
 
-Status: recorded  
-Scope: initial audit of the OMNIA Silent Failure Gate v0.1 on the 17-sample validation set
+What this demo does:
+- measures transform sensitivity of model outputs
+- compares exact match vs normalized correctness
+- shows that some normalized-correct outputs are structurally more sensitive than others
 
----
+What this demo does NOT do:
+- it does not prove semantic fragility in general
+- it does not prove pre-collapse prediction
+- it does not establish real-world failure forecasting
+"""
 
-## 1. Summary
+import json
+import re
+from typing import Dict, List
 
-Total processed: 17
+from omnia.lenses.aperspective_invariance import (
+    AperspectiveInvariance,
+    t_identity,
+    t_whitespace_collapse,
+    t_reverse,
+    t_drop_vowels,
+)
+from omnia.iri import IRI
+from omnia.sei import SEI
+from omnia.omega_set import OmegaSet
 
-Baseline acceptance matches: 17/17 (100.0%)
 
-Gate matches expected: 14/17 (82.4%)
+def normalize_text(text: str) -> str:
+    text = text.strip().lower()
+    text = re.sub(r"\s+", " ", text)
+    text = re.sub(r"[\"'`]", "", text)
+    return text
 
-Action distribution:
 
-- pass: 4
-- low_confidence_flag: 3
-- retry: 4
-- escalate: 4
-- reject_surface: 2
+def extract_number(text: str) -> str:
+    matches = re.findall(r"-?\d+(?:\.\d+)?", text)
+    return matches[-1] if matches else ""
 
----
 
-## 2. Main result
+def extract_yes_no(text: str) -> str:
+    t = normalize_text(text)
+    if re.search(r"\byes\b", t):
+        return "yes"
+    if re.search(r"\bno\b", t):
+        return "no"
+    return ""
 
-The key result is not overall classification perfection.
 
-The key result is this:
+def extract_capital_answer(text: str) -> str:
+    t = normalize_text(text)
+    if "paris" in t:
+        return "paris"
+    if "lyon" in t:
+        return "lyon"
+    if "marseille" in t:
+        return "marseille"
+    return ""
 
-No `escalate_*` sample was allowed to pass as `pass`.
 
-This means the OMNIA-gated workflow reduced silent-failure acceptance relative to the baseline workflow.
+def extract_translation_answer(text: str) -> str:
+    t = normalize_text(text)
+    if "hola" in t:
+        return "hola"
+    return ""
 
-Baseline behavior:
-- accepts all structurally valid JSON outputs
 
-OMNIA gate behavior:
-- intervenes on all tested silent-failure cases
-- maps them to either `retry` or `escalate`
+def normalize_answer(question: str, text: str) -> str:
+    q = normalize_text(question)
+    t = normalize_text(text)
 
-This is the first minimal external effect.
+    if "17 * 23" in q or "2 + 2" in q or "sqrt(144)" in q or "what year did wwii end" in q:
+        num = extract_number(t)
+        return num if num else t
 
----
+    if "solve: x + 5 = 12" in q:
+        num = extract_number(t)
+        return f"x = {num}" if num else t
 
-## 3. Selected audit cases
+    if "capital of france" in q:
+        ans = extract_capital_answer(t)
+        return ans if ans else t
 
-| Sample ID | Expected | Actual | Purity (P) | Compatibility (C) | Fragility Drop | Triggered Rules |
-|---|---|---:|---:|---:|---:|---|
-| flag_001 | flag | flag | 0.82 | 0.91 | 0.06 | fragility_drop_above_threshold |
-| flag_002 | flag | retry | 0.76 | 0.85 | 0.05 | purity_below_threshold, comp_below_threshold |
-| flag_003 | flag | flag | 0.80 | 0.89 | 0.07 | fragility_drop_above_threshold |
-| retry_001 | retry | retry | 0.74 | 0.82 | 0.08 | purity_below_threshold, comp_below_threshold |
-| retry_002 | retry | retry | 0.75 | 0.84 | 0.06 | purity_below_threshold, comp_below_threshold |
-| retry_003 | retry | flag | 0.81 | 0.90 | 0.05 | fragility_drop_above_threshold |
-| retry_004 | retry | retry | 0.68 | 0.72 | 0.12 | purity_below_threshold, comp_below_threshold |
-| escalate_001 | escalate | retry | 0.72 | 0.80 | 0.09 | purity_below_threshold, comp_below_threshold |
-| escalate_002 | escalate | escalate | 0.61 | 0.65 | 0.15 | strong_fragility |
-| escalate_003 | escalate | escalate | 0.58 | 0.52 | 0.18 | strong_fragility |
-| escalate_004 | escalate | escalate | 0.62 | 0.68 | 0.14 | strong_fragility |
-| escalate_005 | escalate | retry | 0.71 | 0.79 | 0.10 | purity_below_threshold |
+    if "is 17 prime" in q:
+        ans = extract_yes_no(t)
+        return ans if ans else t
 
----
+    if "translate 'hello' to spanish" in q:
+        ans = extract_translation_answer(t)
+        return ans if ans else t
 
-## 4. Interpretation
+    return t
 
-### 4.1 Silent failure interception
 
-The strongest positive result is:
+def measure_output(text: str) -> Dict:
+    transforms = [
+        ("id", t_identity),
+        ("ws", t_whitespace_collapse),
+        ("rev", t_reverse),
+        ("vow-", t_drop_vowels),
+    ]
 
-- all tested silent failures were intercepted
-- none of them passed as structurally safe
+    ap = AperspectiveInvariance(transforms=transforms)
+    ap_result = ap.measure(text)
 
-This is the first evidence that OMNIA can materially alter a workflow outcome in the presence of silent structural failure.
+    omega_samples = list(ap_result.per_transform_scores.values())
+    omega_set = OmegaSet(omega_samples)
+    omega_stats = omega_set.estimate()
 
-### 4.2 Grey-zone behavior
+    cost_curve = list(range(len(omega_samples)))
+    sei = SEI(window=1, eps=1e-12)
+    sei_curve = sei.curve(omega_samples, cost_curve)
+    sei_mean = sum(sei_curve) / len(sei_curve) if sei_curve else 0.0
 
-The `flag_*` and `retry_*` classes show that the gate is already differentiating between:
+    text_perturbed = re.sub(r"\s+", "  ", text).strip()
+    ap_perturbed = ap.measure(text_perturbed)
 
-- mild structural fragility
-- moderate instability
-- stronger collapse
+    iri_calculator = IRI()
+    iri_value = iri_calculator.value(
+        ap_result.omega_score,
+        ap_perturbed.omega_score
+    )
 
-This supports the use of graduated actions instead of binary blocking.
+    return {
+        "omega": round(ap_result.omega_score, 6),
+        "omega_median": round(omega_stats["median"], 6),
+        "omega_mad": round(omega_stats["mad"], 6),
+        "sei_mean": round(sei_mean, 6),
+        "iri": round(iri_value, 6),
+    }
 
-### 4.3 Remaining calibration issue
 
-The main remaining weakness is not silent-failure blindness.
+def classify_structural_sensitivity(metrics: Dict) -> str:
+    omega = metrics["omega"]
+    mad = metrics["omega_mad"]
+    iri = metrics["iri"]
+    sei = metrics["sei_mean"]
 
-The remaining weakness is boundary precision between:
+    if omega < 0.30 or iri > 0.40 or abs(sei) < 0.01:
+        return "degraded"
 
-- `retry`
-- `escalate`
+    if omega > 0.70 and mad < 0.10 and iri < 0.10:
+        return "invariant"
 
-Two `escalate_*` samples were downgraded to `retry`:
+    return "sensitive"
 
-- `escalate_001`
-- `escalate_005`
 
-This suggests that the strong-intervention threshold is slightly too soft for certain structurally dangerous but still moderately coherent outputs.
+def process_dataset(input_path: str, output_path: str) -> List[Dict]:
+    results = []
 
----
+    with open(input_path, "r", encoding="utf-8") as f:
+        for line in f:
+            if not line.strip():
+                continue
 
-## 5. Threshold verdict
+            item = json.loads(line)
 
-Current thresholds:
+            metrics = measure_output(item["model_output"])
+            structural_class = classify_structural_sensitivity(metrics)
 
-- `TAU_P = 0.78`
-- `TAU_C = 0.88`
-- `TAU_FRAGILITY_DROP = 0.04`
+            exact_match = item["model_output"].strip() == item["correct"].strip()
 
-Operational verdict:
+            normalized_model = normalize_answer(item["question"], item["model_output"])
+            normalized_correct = normalize_answer(item["question"], item["correct"])
+            normalized_match = normalized_model == normalized_correct
 
-- `TAU_C` is useful and should remain unchanged for now
-- `TAU_FRAGILITY_DROP` is useful and should remain unchanged for now
-- `TAU_P` is slightly soft for the strong-fragility boundary
+            result = {
+                "id": item["id"],
+                "question": item["question"],
+                "correct": item["correct"],
+                "model_output": item["model_output"],
+                "exact_match": exact_match,
+                "normalized_model_output": normalized_model,
+                "normalized_correct": normalized_correct,
+                "normalized_match": normalized_match,
+                **metrics,
+                "structural_class": structural_class,
+            }
+            results.append(result)
 
-Recommended next calibration:
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(results, f, indent=2, ensure_ascii=False)
 
-- raise `TAU_P` slightly to `0.80`
+    return results
 
-Recommended strong-fragility override:
 
-```python
-if sig.purity is not None and sig.compatibility is not None:
-    if sig.purity < 0.73 and sig.compatibility < 0.82:
-        action = "escalate"
+def summarize(results: List[Dict]) -> Dict:
+    total = len(results)
+
+    exact_match_count = sum(1 for r in results if r["exact_match"])
+    normalized_match_count = sum(1 for r in results if r["normalized_match"])
+
+    invariant_count = sum(1 for r in results if r["structural_class"] == "invariant")
+    sensitive_count = sum(1 for r in results if r["structural_class"] == "sensitive")
+    degraded_count = sum(1 for r in results if r["structural_class"] == "degraded")
+
+    normalized_match_but_sensitive = sum(
+        1 for r in results
+        if r["normalized_match"] and r["structural_class"] == "sensitive"
+    )
+    normalized_match_but_degraded = sum(
+        1 for r in results
+        if r["normalized_match"] and r["structural_class"] == "degraded"
+    )
+
+    return {
+        "total": total,
+        "exact_match_count": exact_match_count,
+        "normalized_match_count": normalized_match_count,
+        "invariant_count": invariant_count,
+        "sensitive_count": sensitive_count,
+        "degraded_count": degraded_count,
+        "normalized_match_but_sensitive": normalized_match_but_sensitive,
+        "normalized_match_but_degraded": normalized_match_but_degraded,
+    }
+
+
+def print_summary(summary: Dict) -> None:
+    total = summary["total"]
+
+    print("OMNIA Silent Failure Gate v0")
+    print("=" * 60)
+    print()
+    print(f"Total examples: {total}")
+    print(f"Exact match: {summary['exact_match_count']} ({100.0 * summary['exact_match_count'] / total:.1f}%)")
+    print(f"Normalized match: {summary['normalized_match_count']} ({100.0 * summary['normalized_match_count'] / total:.1f}%)")
+    print()
+    print(f"Invariant: {summary['invariant_count']} ({100.0 * summary['invariant_count'] / total:.1f}%)")
+    print(f"Sensitive: {summary['sensitive_count']} ({100.0 * summary['sensitive_count'] / total:.1f}%)")
+    print(f"Degraded: {summary['degraded_count']} ({100.0 * summary['degraded_count'] / total:.1f}%)")
+    print()
+    print("Among normalized-correct outputs:")
+    print(f"  Sensitive: {summary['normalized_match_but_sensitive']}")
+    print(f"  Degraded:  {summary['normalized_match_but_degraded']}")
+    print()
+    print("Interpretation:")
+    print("- exact_match is strict string equality")
+    print("- normalized_match is a toy task-aware normalization")
+    print("- structural_class is transform sensitivity only")
+    print("- no semantic truth claim is made here")
+
+
+if __name__ == "__main__":
+    input_file = "examples/silent_failure_v0.jsonl"
+    output_file = "examples/silent_failure_results_v0.json"
+
+    results = process_dataset(input_file, output_file)
+    summary = summarize(results)
+    print_summary(summary)
+
+    print(f"Results written to: {output_file}")
