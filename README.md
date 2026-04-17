@@ -1,615 +1,526 @@
-# lon-mirror — Historical and Operational Core of the OMNIA Diagnostics Lineage
+# OMNIA v1.0 — Structural Measurement Engine
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19513076.svg)](https://doi.org/10.5281/zenodo.19513076)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19488048.svg)](https://doi.org/10.5281/zenodo.19488048)
 
 **Author:** Massimiliano Brighindi  
-**Contact:** brighissimo@gmail.com  
 **Project:** MB-X.01
 
 ---
 
-## First Real Operational Result
+## What OMNIA is
 
-The first narrow operational result in this repository is:
+OMNIA is a post-hoc structural measurement engine.
 
-**OMNIA Silent Failure Gate v0**
+It does not replace reasoning.  
+It does not interpret semantics.  
+It does not make final decisions.
 
-A minimal post-hoc structural gate applied to LLM outputs improved final accuracy through selective retry:
-
-- **Baseline:** 78.0%
-- **Gate + Retry:** 86.5%
-- **Net gain:** +8.5%
-- **Hard tasks:** +14% / +15%
-- **Retry rate:** 26.0%
-
-Full result:
-
-- [`docs/OMNIA_SILENT_FAILURE_GATE_REAL_RESULT_v0.md`](./docs/OMNIA_SILENT_FAILURE_GATE_REAL_RESULT_v0.md)
-
-Minimal executable artifact:
-
-- `run_omnia_gate.py`
-
-This is the first clear practical result in the repository:
-a bounded software artifact with measurable operational gain.
-
----
-
-## Position in the Ecosystem
-
-This repository is part of the **MB-X.01 / OMNIABASE / OMNIA** ecosystem.
-
-- **[OMNIABASE](https://github.com/Tuttotorna/OMNIABASE)** = general multirepresentational framework
-- **[OMNIA](https://github.com/Tuttotorna/OMNIA)** = canonical diagnostics / structural measurement branch
-- **lon-mirror** = historical, operational, and research core of the OMNIA diagnostics lineage
-
-Canonical ecosystem map:
-
-- **[ECOSYSTEM.md](https://github.com/Tuttotorna/lon-mirror/blob/main/ECOSYSTEM.md)**
-
-Compressed identity:
-
-```text
-OMNIABASE = framework
-OMNIA = canonical measurement branch
-lon-mirror = operational core and historical archive of that branch
-
-
----
-
-What This Repository Is
-
-lon-mirror is the deepest public operational repository in the OMNIA diagnostics lineage.
-
-It preserves:
-
-operational artifacts
-
-benchmark material
-
-retry / escalation pathways
-
-structural gate experiments
-
-real-run traces
-
-cross-model diagnostics material
-
-bounded runtime evidence
-
-early pre-collapse evidence under fixed protocols
-
-
-In practical terms:
-
-if OMNIA is the cleaner branch-facing repository,
-then lon-mirror is the deeper engineering and evidence-preserving core behind that branch.
-
-
----
-
-What OMNIA Is, Here
-
-Within this repository, OMNIA should be read as a post-hoc structural measurement layer.
-
-Its role is narrow:
-
-measure structural fragility in outputs that may look acceptable on the surface
-
-expose instability before visible collapse
-
-support bounded retry / escalation decisions in host systems
-
-separate durable structure from representation-dependent behavior
-
-
-It does not:
-
-interpret semantics
-
-replace reasoning
-
-act as an autonomous agent
-
-decide goals
-
-serve as a truth oracle
-
+It measures whether an output or state remains structurally stable under controlled transformations.
 
 Core principle:
 
+```text
 structural truth = invariance under transformation
 
-Architectural boundary:
+OMNIA is designed to detect:
+
+structural stability
+
+fragility
+
+instability
+
+saturation
+
+irreversibility
+
+compatibility shifts
+
+
+It is not a generative model.
+It is not a semantic classifier.
+It is not a decision layer.
+
+Output remains:
+
+measurement only
+
+
+---
+
+Architectural boundary
+
+The architectural boundary is non-negotiable:
 
 measurement != inference != decision
 
+OMNIA measures structure.
+Another layer may reason.
+Another layer may decide.
 
----
+OMNIA itself does not collapse these roles.
 
-Why This Repository Matters
+This boundary matters because it prevents the system from being reinterpreted as:
 
-Many systems are checked only for explicit wrongness.
+a truth oracle
 
-That is not enough.
+a semantic validator
 
-A system can fail even when an output:
+a policy engine
 
-looks coherent
-
-sounds correct
-
-matches the expected format
-
-passes superficial inspection
-
-is still structurally unstable underneath
+a universal gate by itself
 
 
-This repository matters because it preserves the deepest public material for detecting exactly that class of failure.
-
-Not just claims.
-Operational path.
-
-Not just theory.
-Measured artifacts.
+That would be false.
 
 
 ---
 
-Canonical Chain
+What OMNIA currently measures
 
-Within the broader MB-X.01 / OMNIABASE ecosystem, the canonical chain is:
+The current ecosystem includes structural diagnostics such as:
 
-Dual-Echo -> OMNIAMIND -> OMNIA -> OMNIA-RADAR -> OMNIA-LIMIT -> Decision Layer (external)
+coherence under transformation
 
-Repository roles:
+compatibility between outputs or states
 
-dual-echo-perception = theoretical origin
+instability under perturbation
 
-OMNIAMIND = upstream structural dynamics / pre-output analysis
+saturation / exhaustion behavior
 
-OMNIA = post-hoc structural measurement
+irreversibility of structural loss
 
-OMNIA-RADAR = residual structural opportunity detection
+divergence time and resilience
 
-omnia-limit = structural stop / saturation boundary
+bounded post-hoc gate signals
 
-decision layer = always external
 
+These measurements are intended to answer one narrow question:
 
-Non-negotiable rule:
-
-measurement != cognition != decision
-
-
----
-
-Current Strongest Public Use Cases
-
-The strongest public use cases currently exposed here are:
-
-1. Structured-output runtime diagnostics
-
-silent-failure interception
-
-bounded retry / escalation support
-
-adapter-mediated workflow intervention
-
-runtime auditability inside the tested perimeter
-
-
-2. Early structural degradation analysis
-
-consistency decline before first observed accuracy loss
-
-fixed-protocol real runs
-
-cross-model comparison on closed-form domains
-
-bounded pre-collapse evidence
-
-
-The first is the strongest current runtime engineering branch.
-The second is the strongest current diagnostic branch for early instability.
-
-
----
-
-Current Evaluated Status
-
-Within the tested perimeter, the material in this repository documents evaluation across:
-
-controlled structural benchmarks
-
-calibrated silent-failure gate behavior
-
-retry-loop intervention
-
-adapter-path runtime integration
-
-expanded structured-output datasets
-
-real backend execution
-
-cross-model portability under the same pipeline
-
-synthetic pre-collapse sweeps
-
-initial real pre-collapse cases
-
-initial cross-model real replication
-
-
-Inside this perimeter, the OMNIA lineage has shown behavior consistent with a bounded post-hoc structural diagnostics layer for structured LLM outputs.
-
-This includes documented evidence of:
-
-measurable retry benefit
-
-bounded retry waste
-
-low over-defensive cost
-
-preservation of healthy outputs
-
-portability across the tested model pair
-
-auditable intervention behavior
-
-early structural degradation preceding first observed accuracy drop in bounded runs
-
-
-This remains a bounded engineering result, not a universality claim.
-
-
----
-
-Primary Evidence Center
-
-This repository should be read through a narrow evidence center, not through the full archive at once.
-
-Main benchmark / evaluation entry points include:
-
-OMNIA_FACT_BENCHMARK_v0.1.py
-
-OMNIA_TOTALE_GSM8K_EVAL_v0.1.py
-
-OMNIA_TOTALE_MULTIMODEL_EVAL_v0.2.py
-
-
-Primary operational result:
-
-docs/OMNIA_SILENT_FAILURE_GATE_REAL_RESULT_v0.md
-
-
-These form the main public evidence center of the diagnostics lineage.
-
-
----
-
-Primary Runtime Path
-
-The strongest runtime branch currently documented here is:
-
-1. silent-failure detection
-
-
-2. bounded retry / escalation
-
-
-3. adapter-mediated workflow control
-
-
-4. real backend execution
-
-
-5. cross-model portability inside the tested pipeline
-
-
-
-Core runtime artifacts include:
-
-docs/OMNIA_SILENT_FAILURE_GATE_v0.md
-
-docs/OMNIA_SILENT_FAILURE_GATE_v0_RESULTS.md
-
-docs/OMNIA_SILENT_FAILURE_GATE_REAL_RESULT_v0.md
-
-docs/OMNIA_SILENT_FAILURE_RETRY_LOOP_v0_RESULTS.md
-
-docs/OMNIA_RETRY_LOOP_ADAPTER_PATH_v0.md
-
-docs/OMNIA_RETRY_LOOP_ADAPTER_PATH_v0_RESULTS.md
-
-docs/OMNIA_RETRY_LOOP_DATASET_EXPANSION_v0.md
-
-docs/OMNIA_RETRY_LOOP_DATASET_EXPANSION_v0_RESULTS.md
-
-docs/OMNIA_RETRY_LOOP_REAL_BACKEND_v0.md
-
-docs/OMNIA_RETRY_LOOP_REAL_BACKEND_v0_RESULTS.md
-
-docs/OMNIA_RETRY_LOOP_CROSS_MODEL_v0.md
-
-docs/OMNIA_RETRY_LOOP_CROSS_MODEL_v0_RESULTS.md
-
-
-This is the most advanced externally legible runtime branch currently documented in the repository.
-
-
----
-
-Real Pre-Collapse Evidence
-
-The repository also preserves an early real-evidence branch focused on structural consistency degradation before the first observed accuracy loss under fixed protocols.
-
-This branch should be read narrowly.
-
-It does not claim a universal law.
-
-It documents an observed pattern under:
-
-fixed prompting
-
-fixed normalization
-
-fixed metric
-
-closed-form tasks
-
-real model outputs
-
-cross-model comparison
-
-
-Core artifacts:
-
-docs/REAL_PRECOLLAPSE_CASES_v1.md
-
-docs/CROSS_MODEL_PRECOLLAPSE_REPLICATION_v0.md
-
-examples/consistency_metric_v1.py
-
-examples/real_llm_precollapse_suite_v0.py
-
-
-Archived real-run artifacts are stored under:
-
-examples/real_runs/
-
-
-Current evidence boundary:
-
-> In two closed-form task families and two distinct models, consistency_v1 declined before the first observed accuracy loss under an identical protocol.
+> what remains structurally stable when representation, perturbation, or viewpoint changes?
 
 
 
 
 ---
 
-Reproducibility
+Current role of OMNIABASE
 
-Clone and run:
+OMNIABASE is currently positioned as an auxiliary structural review sensor inside the broader OMNIA measurement architecture.
 
-git clone https://github.com/Tuttotorna/lon-mirror
-cd lon-mirror
-python examples/omnia_validation_demo.py
+Its current best-supported role is not primary rejection and not replacement of strong handcrafted gate rules.
 
-Expected qualitative behavior:
+Instead, it is used to add a bounded review signal on outputs that are still superficially acceptable but structurally suspicious, especially in the suspicious-clean region:
 
-structured -> high Omega
+soft repetition
 
-perturbed -> Omega drop
+low-diversity explanation
 
-random -> low stable structure / near-null structural consistency
+rigid templating
 
-
-Minimal operational gate form:
-
-python run_omnia_gate.py --input sample.jsonl --output gated.jsonl --print-summary
+near-threshold structural regularity
 
 
----
+In the current Phase 6 sandbox results, OMNIABASE showed its strongest value when used in a layered policy such as:
 
-Primary Adoption Path
+if baseline warns:
+    retry
+elif OMNIABASE warns:
+    review
+else:
+    accept
 
-For an external integrator, the shortest usable path is:
+This role is supported by:
 
-1. OMNIA_MINIMAL_INTERFACE.md
+synthetic benchmark evidence
 
+gate adapter and sandbox comparisons
 
-2. INTERFACE.md
+end-to-end sandbox policy tests
 
-
-3. adapters/llm_output_adapter.py
-
-
-4. integrations/caios/
-
-
-
-Adoption here means external usability as a structural measurement layer.
-It does not require immersion in the full archive.
+human-rated sandbox evidence
 
 
----
+Short note:
 
-Related Repositories
+docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
 
-For the shortest functional reading of the broader lineage:
+docs/PHASE6_FREEZE.md
 
-OMNIABASE — umbrella framework
 
-OMNIA — diagnostics / structural measurement branch
+Important boundary:
 
-observer-suspension — epistemic pre-layer
-
-omniabase-coordinate-discovery — coordinate discovery branch
-
-omega-translator — cross-representation translation branch
-
-OMNIA-RADAR — residual structural opportunity detection
-
-omnia-limit — structural boundary / saturation layer
-
-Pre-Deployment-Structural-Gate — deployment-facing diagnostics extension
-
+OMNIABASE is not currently claimed as a production-ready replacement for strong rule-based gates, and it is not presented as a direct retry/reject engine.
 
 
 ---
 
-Current Limits
+Why this repository exists
 
-Current limits remain explicit:
+This repository exists to make structural diagnostics executable, testable, and bounded.
 
-controlled and semi-controlled datasets
+The goal is not to produce larger narratives.
 
-bounded evaluated perimeters
+The goal is to freeze a usable architecture where:
 
-benchmark-dependent evidence
+measurement remains distinct from reasoning
 
-no universality claim
+structural diagnostics remain reproducible
 
-false positives remain part of observed behavior
+instability can be detected before obvious collapse
 
-adoption is still early and selective
-
-real backend validation remains bounded to the tested structured-output setup
-
-cross-model portability remains bounded to the tested model pair and pipeline
-
-real pre-collapse evidence currently covers only two models and two closed-form domains
-
-no claim yet on open-ended reasoning, broad semantic tasks, or production thresholds
+auxiliary gate signals can be attached without breaking the boundary
 
 
-These limits are part of the architecture, not an afterthought.
+This makes OMNIA useful as a structural layer inside broader AI or analysis pipelines.
 
 
 ---
 
-Current Repository State
+Current repository focus
 
-This repository currently contains two compatible but asymmetrical states:
+The current stable direction of the repository is:
 
-Branch	Status	Note
+Dual-Echo / OMNIAMIND lineage
+-> OMNIA measurement
+-> bounded post-hoc gate behavior
+-> OMNIABASE auxiliary review sensing
 
-OMNIA runtime branch	FOUNDATIONALLY STABILIZED	real backend, retry-loop, adapter path, and cross-model perimeter documented
-OMNIAMIND analytical branch	OPERATIONAL OFFLINE	synthetic proxy engine, formalization, and offline comparison package available, but no real trace ingestion yet
-Pre-collapse evidence branch	INITIAL REAL POSITIVE EVIDENCE	multi-domain real cases and initial cross-model replication under fixed protocol
+This means the repo is no longer just conceptual.
 
+It now contains:
 
-This means the repository is currently strongest on:
+measurement logic
 
-post-hoc structural measurement
+executable sandbox experiments
 
-runtime diagnostics
+adapter experiments
 
-bounded trust routing
+gate-policy experiments
 
-initial real evidence of early structural degradation
+bounded evidence for a review-sensor role
 
-
-That asymmetry is real and explicitly declared.
 
 
 ---
 
-Why lon-mirror Still Matters
+Minimal practical interpretation
 
-Now that OMNIABASE exists as the umbrella framework and OMNIA exists as the cleaner branch-facing repository, lon-mirror preserves what those repositories do not try to contain all at once:
+OMNIA should currently be read as a layered structural toolkit.
 
-the deeper operational archive
+Baseline layer
 
-the richer benchmark context
+Handles obvious failures well:
 
-the experimental breadth of the diagnostics lineage
+loops
 
-the engineering path that led to the current stabilized perimeter
+repeated tokens
 
-the canonical ecosystem memory of this branch
+repeated characters
 
-the real-run artifacts behind current pre-collapse evidence
+explicit syntactic pattern spam
 
-
-It is therefore not the umbrella framework.
-
-It is the deepest public operational core of one of its most mature branches.
+brittle numeric structures when explicitly encoded
 
 
----
+OMNIABASE layer
 
-Final v1.0 Status
+Adds review-level caution on outputs that are not clearly broken but still look structurally suspicious.
 
-The OMNIA diagnostics lineage documented here should be treated as a completed foundational cycle.
+Decision layer
 
-It is not complete because no more ideas exist.
+Must remain external.
 
-It is complete because the architectural uncertainty required to define the current foundational perimeter has been exhausted.
-
-What now exists is:
-
-stable
-
-measured
-
-auditable
-
-runtime-tested
-
-real-backend-tested
-
-cross-model-tested inside the declared runtime perimeter
-
-explicitly bounded
-
-extended by initial real multi-domain pre-collapse evidence
-
-
-This is the correct state of the current foundational cycle.
+That is the correct current interpretation.
 
 
 ---
 
-Minimal Conclusion
+Current best-supported use-case
 
-lon-mirror preserves the historical and operational core of the OMNIA diagnostics lineage inside the OMNIABASE ecosystem.
+The strongest currently supported use-case is:
 
-Externally, the clearest way to understand the work preserved here is this:
+auxiliary review sensing for suspicious-clean outputs
 
-> the OMNIA lineage is a structural trust and diagnostics layer for plausible but fragile outputs.
+These are outputs that:
 
+still look readable
 
+are not obviously degenerate
 
-It is strongest where the project currently has a real tested perimeter:
+may still pass a shallow gate
 
-structured LLM outputs
-
-silent-failure interception
-
-bounded retry / escalation
-
-runtime auditability
-
-tested cross-model path inside the declared setup
-
-initial cross-model real evidence that structural consistency can move earlier than accuracy in closed-form tasks
+but show rigidity, low diversity, soft repetition, or suspicious structural regularity
 
 
-It is not a universality claim.
-It is not another agent.
-It is not a semantic judge.
+That is where the current evidence is strongest.
 
-It is a bounded, completed, foundational diagnostics lineage inside MB-X.01 / OMNIABASE.
 
-Current correct state:
+---
 
-OMNIABASE   = general multirepresentational framework
-OMNIA       = canonical Diagnostics / Structural Measurement branch
-lon-mirror  = historical and operational core of that branch
-OMNIAMIND   = upstream analytical extension
-OMNIA-LIMIT = downstream structural boundary
-v1.0        = foundationally stabilized
+What OMNIA is not claiming
+
+This repository does not currently claim that OMNIA or OMNIABASE is:
+
+a production-ready universal gate
+
+a replacement for strong handcrafted baselines
+
+a semantic truth engine
+
+a correctness oracle
+
+a final decision system
+
+a completed deployment layer
+
+
+Those claims would be stronger than the current evidence.
+
+
+---
+
+Repository guide
+
+A good short path through the current repository is:
+
+README.md
+
+docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
+
+docs/PHASE6_FREEZE.md
+
+docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
+
+docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
+
+
+If you want the shortest current explanation of the OMNIABASE role, start with:
+
+docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
+
+
+If you want the frozen conclusion of the current phase, read:
+
+docs/PHASE6_FREEZE.md
+
+
+
+---
+
+Phase 6 summary
+
+Phase 6 established a narrow but credible result:
+
+> OMNIABASE is useful when treated as an auxiliary review trigger, not as a replacement gate.
+
+
+
+The current evidence shows:
+
+weak baseline comparison: OMNIABASE adds signal
+
+strong baseline comparison: explicit heuristics remain stronger on obvious pattern classes
+
+real-output sandbox: OMNIABASE adds signal on suspicious-clean outputs
+
+end-to-end policy sandbox: review is the correct action
+
+suspicious-clean expansion: strongest sandbox gain so far
+
+human-rated sandbox pass: combined policy improves over baseline in the tested set
+
+
+This is enough to define a stable role.
+
+It is not enough to claim full external validation.
+
+
+---
+
+Example policy sketch
+
+The current best sandbox policy is intentionally simple:
+
+if baseline warns:
+    retry
+elif OMNIABASE warns:
+    review
+else:
+    accept
+
+This is important because it preserves the right hierarchy:
+
+baseline handles obvious failures
+
+OMNIABASE handles subtle suspiciousness
+
+neither one becomes a universal judge
+
+
+
+---
+
+Canonical examples
+
+Example 1 — baseline is sufficient
+
+retry retry retry retry retry
+
+A strong handcrafted baseline already catches this.
+
+Example 2 — OMNIABASE adds useful caution
+
+The answer seems correct. The answer seems correct. The answer seems correct.
+
+This may not always be strong enough for explicit heuristics, but it is structurally suspicious enough to justify review.
+
+Example 3 — OMNIABASE can be stricter than needed
+
+12121213
+
+Near-threshold structures can trigger review even when a human might still accept them.
+
+This is a calibration issue, not something to hide.
+
+It is one reason why OMNIABASE should remain a review sensor rather than a direct rejection trigger.
+
+
+---
+
+Current limitations
+
+The current phase still has active limitations.
+
+1. Projection bridge
+
+For text behavior, OMNIABASE currently depends on:
+
+text -> deterministic integer projection -> OMNIABASE lens
+
+This is useful, but still a limitation.
+
+2. Sandbox evidence
+
+Most current evidence is still sandbox evidence.
+
+3. Human validation is still limited
+
+The current human-rated pass is useful, but not yet independent enough to count as strong external validation.
+
+4. No live deployment evidence
+
+There is still no real traffic or deployment benchmark.
+
+5. Threshold calibration remains open
+
+Useful thresholds exist, but they are not yet final.
+
+
+---
+
+Current file landmarks
+
+Core and role documents:
+
+docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
+
+docs/PHASE6_FREEZE.md
+
+
+Phase 6 result documents:
+
+docs/OMNIABASE_SYNTHETIC_BENCHMARK_v0_RESULTS.md
+
+docs/OMNIA_GATE_BASELINE_VS_OMNIABASE_v0_RESULTS.md
+
+docs/OMNIA_GATE_STRONGER_BASELINE_VS_OMNIABASE_v0_RESULTS.md
+
+docs/OMNIA_REAL_OUTPUT_SANDBOX_v0_RESULTS.md
+
+docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
+
+docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
+
+
+Example scripts:
+
+examples/omnia_base_gate_adapter_demo.py
+
+examples/omnia_gate_baseline_vs_omniabase_v0.py
+
+examples/omnia_gate_stronger_baseline_vs_omniabase_v0.py
+
+examples/omnia_real_output_sandbox_v0.py
+
+examples/omnia_end_to_end_sandbox_v0.py
+
+examples/omnia_suspicious_clean_expansion_v0.py
+
+examples/omnia_human_rated_validation_pack_v0.py
+
+examples/omnia_human_validation_compare_v0.py
+
+
+Core lens:
+
+omnia/lenses/base_lens.py
+
+
+
+---
+
+Current claim level
+
+The strongest current claim that remains technically honest is:
+
+> OMNIA includes a credible OMNIABASE-based auxiliary review sensor for suspicious-clean outputs, supported by sandbox and human-rated sandbox evidence.
+
+
+
+Anything stronger than that is premature.
+
+
+---
+
+What should happen next
+
+The next correct directions are:
+
+1. independent human rating
+
+
+2. threshold calibration
+
+
+3. small corpus of real LLM outputs
+
+
+4. deployment-like review pipeline test
+
+
+
+The wrong direction would be to inflate OMNIABASE back into universal claims.
+
+
+---
+
+Final statement
+
+The value of the current repository state is not that it proved everything.
+
+The value is that it reduced a broad and unstable idea into a role that is:
+
+specific
+
+testable
+
+operationally plausible
+
+architecturally bounded
+
+technically honest
+
+
+That is stronger than a larger claim that cannot survive contact with data.
 
