@@ -111,13 +111,26 @@ class OmniabaseLens:
         cross_base_stability = max(0.0, 1.0 - representation_drift)
 
         # Base sensitivity:
-        # how much one base deviates from the family center compared to average deviation.
-        max_distance = max(distances)
-        avg_distance = representation_drift
-        if avg_distance == 0.0:
+        # how unevenly the deviation is distributed across bases.
+        #
+        # Interpretation:
+        # - higher value: instability is concentrated in a subset of bases
+        # - lower value: drift is more evenly distributed across bases
+        #
+        # Implementation:
+        # coefficient of variation over per-base distances,
+        # then smoothly mapped into [0, 1).
+        if len(distances) < 2:
             base_sensitivity = 0.0
         else:
-            base_sensitivity = min(1.0, max(0.0, (max_distance - avg_distance) / (avg_distance + 1e-12)))
+            distance_mean = mean(distances)
+            distance_std = pstdev(distances)
+
+            if distance_mean == 0.0:
+                base_sensitivity = 0.0
+            else:
+                cv = distance_std / (distance_mean + 1e-12)
+                base_sensitivity = cv / (1.0 + cv)
 
         collapse_count = sum(1 for d in distances if d > self.collapse_threshold)
 
@@ -211,14 +224,18 @@ class OmniabaseLens:
         if not vectors:
             raise ValueError("vectors must not be empty.")
 
-        dims = len(vectors[0])
-        return [mean(vec[i] for vec in vectors) for i in range(dims)]
+        return [mean(values) for values in zip(*vectors)]
 
     @staticmethod
     def _normalized_distance(vec: list[float], centroid: list[float]) -> float:
         """
-        Normalized mean relative distance in [0, +inf), usually small.
-        Lower = more stable across bases.
+        Normalized mean relative distance from the cross-base centroid.
+
+        Lower value:
+        - more profile consistency across bases
+
+        Higher value:
+        - stronger representation drift across bases
         """
         parts: list[float] = []
 
