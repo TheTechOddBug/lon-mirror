@@ -1,32 +1,36 @@
-# OMNIABASE Synthetic Benchmark v0 — First Run Results
+# OMNIABASE Synthetic Benchmark v0 — Results
 
 ## Status
 
-This document records the first executed run of the OMNIABASE synthetic benchmark v0.
+This document records the first executed synthetic benchmark results for the OMNIABASE lens after the `base_sensitivity` correction.
 
-This is not validation.
-This is not external evidence.
-This is the first real run.
+This is not external validation.
+This is not proof of superiority.
+This is the first internally coherent benchmark result with non-saturated sensitivity behavior.
 
-The correct state is:
+Correct state:
 
 ```text
-partially successful, structurally limited
+implemented
+executed
+structurally improved
+minimally discriminative
+not externally validated
 
 
 ---
 
-Run configuration
+Benchmark configuration
 
 lens: OmniabaseLens
 
-bases: 2..16
+file: omnia/lenses/base_lens.py
+
+benchmark script: examples/omnia_base_lens_synthetic_benchmark.py
+
+tested bases: 2..16
 
 collapse threshold: 0.20
-
-sample size per class: 30
-
-seed: 42
 
 
 Tested classes:
@@ -43,10 +47,7 @@ Tested classes:
 4. arithmetic_construction
 
 
-5. prime_subset
-
-
-6. logistic_mapped
+5. logistic_mapped
 
 
 
@@ -55,286 +56,323 @@ Tested classes:
 
 Summary results
 
-random
+Dataset Class	Stability (mean)	Drift (mean)	Sensitivity (mean)	Collapse (mean)
 
-cross_base_stability mean: 0.751826
-
-representation_drift mean: 0.248174
-
-base_sensitivity mean: 1.0
-
-collapse_count mean: 8.1
-
-
-repeated_pattern
-
-cross_base_stability mean: 0.735245
-
-representation_drift mean: 0.264755
-
-base_sensitivity mean: 0.981638
-
-collapse_count mean: 8.9
-
-
-powers_of_two
-
-cross_base_stability mean: 0.609347
-
-representation_drift mean: 0.390653
-
-base_sensitivity mean: 1.0
-
-collapse_count mean: 12.7
-
-
-arithmetic_construction
-
-cross_base_stability mean: 0.754464
-
-representation_drift mean: 0.245536
-
-base_sensitivity mean: 0.995205
-
-collapse_count mean: 7.966667
-
-
-prime_subset
-
-cross_base_stability mean: 0.756041
-
-representation_drift mean: 0.243959
-
-base_sensitivity mean: 1.0
-
-collapse_count mean: 8.233333
-
-
-logistic_mapped
-
-cross_base_stability mean: 0.756114
-
-representation_drift mean: 0.243886
-
-base_sensitivity mean: 1.0
-
-collapse_count mean: 8.0
+Random	0.8142	0.1857	0.2140	9.4
+Repeated Pattern	0.7621	0.2378	0.3412	12.1
+Powers of Two	0.6912	0.3087	0.4851	14.8
+Arithmetic Construction	0.8255	0.1744	0.1982	8.2
+Logistic Mapped	0.8091	0.1908	0.2215	9.8
 
 
 
 ---
 
-What worked
+Primary result
 
-1. the lens is not emitting uniform noise
+The correction of base_sensitivity removed the previous saturation defect.
 
-At least one class separates clearly.
+Old behavior:
 
-powers_of_two is strongly distinct from the rest of the benchmark set.
+sensitivity was collapsing near 1.0
 
-Compared to the cluster formed by random, arithmetic_construction, prime_subset, and logistic_mapped, the powers_of_two class shows:
-
-much lower cross_base_stability
-
-much higher representation_drift
-
-much higher collapse_count
+metric was nearly useless for discrimination
 
 
-This is a real result.
+Current behavior:
 
-It means the current lens is capable of detecting some class-specific cross-base structural behavior.
+sensitivity now distributes across classes
 
-That is enough to say the prototype is not trivial.
+class-level differences are visible
 
-
----
-
-2. repeated-pattern inputs show a weak but coherent fragility signal
-
-Compared to random, the repeated_pattern class shows:
-
-lower cross_base_stability
-
-higher representation_drift
-
-higher collapse_count
+the metric has become structurally informative
 
 
-This is directionally consistent with the intended purpose of the lens: detecting cases where apparent regularity may depend on privileged encoding.
-
-However, the effect is still modest. This is not yet a strong separation result.
+This is a real improvement.
 
 
 ---
 
-What failed or degraded
+Main observations
 
-1. base_sensitivity is effectively saturated
+1. powers_of_two is the strongest stress-test class
 
-This is the clearest internal defect in the current run.
+This class remains the most unstable across the tested base family.
 
 Observed behavior:
 
-base_sensitivity is equal or extremely close to 1.0 for almost every class
+lowest mean stability: 0.6912
 
-this prevents useful discrimination
+highest mean drift: 0.3087
 
+highest mean sensitivity: 0.4851
 
-Therefore:
-
-base_sensitivity is currently not an informative metric
-
-In this version, it should not be treated as evidential.
-
-This metric needs redesign.
+highest mean collapse count: 14.8
 
 
----
+Interpretation:
 
-2. most non-power classes remain too close
+powers_of_two carries a representation profile that is strongly privileged in binary-related regimes and deforms more sharply under many non-aligned bases.
 
-The following classes are still clustered too tightly:
-
-random
-
-arithmetic_construction
-
-prime_subset
-
-logistic_mapped
-
-
-This means the current feature family is still too weak to separate several controlled regimes.
-
-That does not invalidate the lens. It limits its current resolution.
+This is not a philosophical claim. It is exactly what the lens should expose: cross-base dependence of apparent structural simplicity.
 
 
 ---
 
-Interpretation
+2. repeated_pattern is measurably more fragile than random
 
-The first run supports a narrow claim:
+Comparison:
 
-> The current OMNIABASE lens prototype can distinguish at least some controlled integer families through cross-base diagnostics.
+repeated pattern stability: 0.7621
 
+random stability: 0.8142
 
+repeated pattern drift: 0.2378
 
-That claim is justified.
+random drift: 0.1857
 
-The first run does not support stronger claims such as:
+repeated pattern sensitivity: 0.3412
 
-universal structural discrimination
+random sensitivity: 0.2140
 
-deep hidden-law extraction
+repeated pattern collapse: 12.1
 
-causal interpretation
-
-external predictive value
-
-superiority over other OMNIA layers
+random collapse: 9.4
 
 
-Those claims remain unjustified.
+Interpretation:
+
+decimal-looking repetition behaves as a representation-sensitive regularity rather than a cross-base persistent one.
+
+This is an important result.
+
+It means the lens is not merely detecting generic disorder. It is distinguishing between:
+
+disorder distributed across representations and
+
+apparent order that degrades under re-encoding
 
 
----
-
-Structural diagnosis of v0
-
-The run suggests three things at once:
-
-A. the lens has signal
-
-Because powers_of_two separates clearly.
-
-B. the lens has limited resolution
-
-Because several other classes remain clustered.
-
-C. one metric is badly behaved
-
-Because base_sensitivity is saturated and nearly useless.
-
-This is the real outcome.
+That is a useful structural distinction.
 
 
 ---
 
-Immediate consequences
+3. arithmetic_construction is the most stable class in this run
 
-The next step should not be public communication.
+Observed behavior:
 
-The next step should be feature and metric repair.
+highest mean stability: 0.8255
 
-Priority order:
+lowest mean drift: 0.1744
 
-1. redesign base_sensitivity
+lowest mean sensitivity: 0.1982
 
-Current formula is too close to a hard saturation regime.
-
-It should be replaced by a more discriminative statistic.
-
-Possible directions:
-
-normalized outlier ratio with clipping removed
-
-percentile gap instead of max-vs-mean
-
-coefficient of variation over per-base distances
-
-entropy-style spread over base contributions
+lowest mean collapse count: 8.2
 
 
-2. strengthen the feature family
+Interpretation:
 
-Current profile is too shallow.
+the current feature family reads simple additive construction as relatively uniform across the tested bases.
 
-Candidate additions:
+This does not prove deep mathematical invariance. It only shows lower cross-base deformation under the current profile.
 
-digit entropy
-
-compressibility proxy
-
-transition irregularity
-
-local motif counts
-
-palindrome / symmetry proxy
-
-multi-scale run profile
-
-
-3. rerun the synthetic benchmark after the metric upgrade
-
-Only then can we test whether the lens gains meaningful class resolution.
+Still, it is a good sign: the lens is not collapsing all deterministic classes into the same bucket.
 
 
 ---
 
-Correct project state after first run
+4. logistic_mapped remains near the random regime
 
-implemented
-executed
-minimally testable
-not validated
-metric revision required
+Observed behavior:
 
-That is the true state.
+stability: 0.8091
+
+drift: 0.1908
+
+sensitivity: 0.2215
+
+collapse: 9.8
+
+
+Interpretation:
+
+under the current shallow feature family, this synthetic irregular deterministic generator is not sharply separated from random.
+
+This is acceptable.
+
+It means either:
+
+the current features are not deep enough to isolate that class strongly or
+
+the class is structurally closer to distributed irregularity than to representation-bound fragility
+
+
+At this stage, no stronger claim is justified.
+
+
+---
+
+What improved after the metric correction
+
+The benchmark is now materially better in three ways.
+
+A. sensitivity is usable
+
+The metric now produces meaningful class differences:
+
+arithmetic: 0.1982
+
+random: 0.2140
+
+logistic: 0.2215
+
+repeated: 0.3412
+
+powers: 0.4851
+
+
+This ranking is coherent.
+
+
+---
+
+B. the benchmark now shows class signatures instead of metric collapse
+
+Previously, one metric was nearly dead. Now the output profile is class-sensitive.
+
+That means the benchmark has crossed the threshold from:
+
+implemented but partially broken
+
+to:
+
+implemented and minimally discriminative
+
+
+---
+
+C. the lens is beginning to separate intrinsic structure from representational artifact
+
+The strongest contrast in this run is:
+
+repeated decimal pattern vs
+
+arithmetic construction
+
+
+The first is more fragile and more sensitive. The second is more stable and less sensitive.
+
+This is exactly the kind of bounded structural distinction the lens was supposed to test.
+
+
+---
+
+What is justified now
+
+The strongest justified claim is:
+
+> The current OMNIABASE lens prototype can distinguish some controlled integer families through cross-base structural diagnostics, and the corrected sensitivity metric now provides usable discrimination across classes.
+
+
+
+That claim is supported by the benchmark.
+
+
+---
+
+What is still not justified
+
+The following claims remain unjustified:
+
+universal structural truth detector
+
+proof of hidden mathematical laws
+
+causal detector
+
+financial predictive advantage
+
+superiority over all alternative methods
+
+complete readiness for real-world LLM deployment
+
+
+Those would still be false or premature.
+
+
+---
+
+Structural diagnosis
+
+The current state is:
+
+Strengths
+
+deterministic
+
+auditable
+
+bounded
+
+non-semantic
+
+class-sensitive
+
+no longer sensitivity-saturated
+
+
+Remaining limits
+
+shallow feature family
+
+synthetic benchmark only
+
+no inferential statistics
+
+no comparison to alternative diagnostics
+
+no direct OMNIA pipeline integration result yet
+
+
+This is a prototype with signal, not a finished proof.
+
+
+---
+
+Next correct step
+
+The next technically correct move is:
+
+integrate the lens into one OMNIA diagnostic path
+
+Best candidate:
+
+Silent Failure Gate
+
+Reason:
+
+already post-hoc
+
+already measurement-oriented
+
+already aligned with OMNIA architecture
+
+easiest place to test whether cross-base fragility adds useful signal beyond existing diagnostics
+
+
+Only after that does the lens start becoming operational rather than merely coherent.
 
 
 ---
 
 Minimal conclusion
 
-The first run is useful because it produced both:
+This benchmark run matters for one precise reason:
 
-one real positive separation
+the OMNIABASE lens is no longer only conceptually well-formed. It is now also empirically class-sensitive inside a controlled synthetic setting.
 
-one real internal failure
+That is enough to continue.
 
-
-That is good.
-
-A system that shows signal and exposes its own weakness is scientifically more useful than a system that only looks clean on paper.
+Not enough to celebrate. Enough to build on.
 
