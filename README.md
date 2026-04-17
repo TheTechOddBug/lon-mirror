@@ -13,75 +13,124 @@
 This repository is part of the **MB-X.01 / OMNIABASE / OMNIA** ecosystem.
 
 - **[OMNIABASE](https://github.com/Tuttotorna/OMNIABASE)** = the general multirepresentational framework
-- **[OMNIA](https://github.com/Tuttotorna/OMNIA)** = the Diagnostics / Structural Measurement branch
+- **[OMNIA](https://github.com/Tuttotorna/OMNIA)** = the canonical Diagnostics / Structural Measurement branch
 - **lon-mirror** = the historical, operational, and research core of the OMNIA diagnostics lineage
 
 Canonical ecosystem map:  
 **[ECOSYSTEM.md](https://github.com/Tuttotorna/lon-mirror/blob/main/ECOSYSTEM.md)**
 
-This repository should not be read as the umbrella framework itself.
+This repository is not the umbrella framework itself.
 
-Its role is different:
+Its role is different.
 
-**lon-mirror preserves the deepest operational, experimental, and architectural material of the OMNIA branch.**
+**lon-mirror preserves the deepest public operational, experimental, and architectural material of the OMNIA branch.**
 
-Ω · Ω̂ · SEI · IRI · OMNIA-LIMIT  
-**MB-X.01**
+Compressed identity:
+
+```text
+OMNIABASE = framework
+OMNIA = canonical measurement branch
+lon-mirror = operational core and historical archive of that branch
+
 
 ---
 
-## Overview
+Overview
 
-**lon-mirror** is the historical and operational core repository of the **OMNIA diagnostics lineage**.
+lon-mirror is the deepest public operational repository of the OMNIA diagnostics lineage.
 
-It contains the deepest implementation, documentation, experiments, reports, adapters, and benchmark material connected to the OMNIA branch.
+It contains:
+
+implementation material
+
+benchmark material
+
+runtime pathway documentation
+
+retry / escalation experiments
+
+structural gate experiments
+
+archived engineering branches
+
+real-run artifacts
+
+cross-model diagnostics material
+
+early real evidence on pre-collapse behavior under fixed protocols
+
 
 Its center of gravity is:
 
-- post-hoc structural measurement
-- structural trust gating
-- silent-failure interception
-- bounded retry / escalation support
-- structural drift, saturation, and collapse analysis
-- runtime-oriented diagnostics on structured outputs
+post-hoc structural measurement
+
+structural trust gating
+
+silent-failure interception
+
+bounded retry / escalation support
+
+structural drift, saturation, and collapse analysis
+
+runtime-oriented diagnostics on structured outputs
+
 
 In practical terms:
 
-if **[OMNIA](https://github.com/Tuttotorna/OMNIA)** is the clean public branch-facing repository,  
-then **lon-mirror** is the deeper engineering and research core behind that lineage.
+if OMNIA is the cleaner branch-facing repository,
+then lon-mirror is the deeper engineering, archival, and evidence-preserving core behind that lineage.
+
 
 ---
 
-## What OMNIA Is, in This Repository
+What OMNIA Is, in This Repository
 
-Within this repository, **OMNIA** should be understood as a **post-hoc structural measurement engine**.
+Within this repository, OMNIA should be read as a post-hoc structural measurement engine.
 
-More precisely, it is a **structural trust gate**:
-a layer that detects when an output looks acceptable on the surface but is not stable enough to be trusted as-is.
+More precisely, it is a bounded structural trust layer:
 
-LLM failures are not only obvious failures.  
-They also appear as outputs that seem plausible, pass too easily, and remain structurally fragile underneath.
+a layer that measures whether an output that looks acceptable on the surface is stable enough to be trusted inside the declared tested perimeter.
 
-OMNIA exists to catch those cases before trust turns into error.
+LLM failures are not only obvious failures.
 
-It does **not** interpret semantics.  
-It does **not** replace reasoning.  
-It does **not** decide goals.  
-It does **not** act as an autonomous agent.
+They also appear as outputs that:
+
+look coherent
+
+sound correct
+
+fit the expected format
+
+pass superficial inspection
+
+remain structurally fragile underneath
+
+
+OMNIA exists to expose those cases before trust silently turns into error.
+
+It does not interpret semantics.
+It does not replace reasoning.
+It does not decide goals.
+It does not act as an autonomous agent.
 
 Its role is narrower and harder:
 
-- detect structural fragility before visible collapse
-- separate durable structure from representation-dependent behavior
-- expose measurable instability signals for downstream systems
-- support bounded trust decisions by host systems inside the tested perimeter
+detect structural fragility before visible collapse
 
-**Core principle:** structural truth = invariance under transformation  
-**Architectural boundary:** measurement != inference != decision
+separate durable structure from representation-dependent behavior
+
+expose measurable instability signals for downstream systems
+
+support bounded trust decisions by host systems inside the tested perimeter
+
+
+Core principle: structural truth = invariance under transformation
+Architectural boundary: measurement != inference != decision
+
 
 ---
 
-## Why This Repository Matters
+Why This Repository Matters
 
 Most systems are checked only for explicit wrongness.
 
@@ -89,31 +138,54 @@ That is not enough.
 
 A system can still fail when an output:
 
-- looks coherent
-- sounds correct
-- fits the expected format
-- passes superficial inspection
-- is still structurally unstable underneath
+looks coherent
+
+sounds correct
+
+fits the expected format
+
+passes superficial inspection
+
+is still structurally unstable underneath
+
 
 This is the practical target of the OMNIA diagnostics lineage.
 
 This repository matters because it preserves the deepest public material for that work:
-not only the clean statement of the branch, but also the surrounding operational path that made it testable.
+
+not only the branch statement, but the operational path that made it testable.
+
+It contains not just claims, but:
+
+benchmark routes
+
+runtime gates
+
+retry-loop evidence
+
+adapter paths
+
+real backend traces
+
+real pre-collapse case material
+
+cross-model comparison artifacts
+
+
 
 ---
 
-## Canonical Chain
+Canonical Chain
 
 Within the broader MB-X.01 / OMNIABASE ecosystem, the canonical chain is:
 
-```text
 Dual-Echo -> OMNIAMIND -> OMNIA -> OMNIA-RADAR -> OMNIA-LIMIT -> Decision Layer (external)
 
 Repository references for the chain:
 
 dual-echo-perception — theoretical origin
 
-OMNIAMIND — pre-output structural dynamics
+OMNIAMIND — upstream structural dynamics / pre-output analysis
 
 OMNIA — post-hoc structural measurement
 
@@ -121,7 +193,7 @@ OMNIA-RADAR — residual structural opportunity detection
 
 omnia-limit — structural stop / saturation boundary
 
-Decision Layer — any action-taking layer, always external
+Decision Layer — always external
 
 
 Non-negotiable rule:
@@ -149,6 +221,10 @@ adapter-mediated workflow control in tested runtime scenarios
 
 cross-model runtime portability inside the tested structured-output perimeter
 
+initial real pre-collapse analysis under fixed protocols
+
+initial cross-model evidence that structural consistency can move earlier than accuracy in closed-form task families
+
 
 This is a real tested perimeter.
 
@@ -157,24 +233,37 @@ It is not a universality claim.
 
 ---
 
-Current Strongest Public Use Case
+Current Strongest Public Use Cases
 
-The strongest public use case currently exposed in this repository is:
+The strongest public use cases currently exposed in this repository are:
 
-structured LLM outputs
+1. Structured-output runtime diagnostics
 
 silent-failure interception
 
 bounded retry / escalation support
 
+adapter-mediated workflow intervention
+
 runtime auditability inside the tested perimeter
 
 
-This is the current external-impact center of the documented work.
+2. Early structural degradation analysis
 
-In practical terms:
+consistency decline before the first observed accuracy loss
 
-the OMNIA lineage is strongest where an output can look acceptable, yet still be too fragile to pass without an additional structural check.
+fixed-protocol real runs
+
+cross-model comparison on closed-form domains
+
+bounded pre-collapse evidence
+
+
+These are different layers of the same lineage.
+
+The first is the strongest runtime engineering branch.
+
+The second is the strongest current diagnostic signal regarding early instability under controlled real runs.
 
 
 ---
@@ -213,6 +302,7 @@ measurement first
 decision external
 
 That restriction is not a weakness.
+
 It is part of the architecture.
 
 
@@ -229,13 +319,10 @@ python examples/omnia_validation_demo.py
 Expected behavior:
 
 structured -> high Omega
-
 perturbed -> Omega drop
-
 random -> low stable structure / near-null structural consistency
 
-
-If this separation appears, the system is behaving as intended inside the demo perimeter.
+If this qualitative separation appears, the system is behaving as intended inside the demo perimeter.
 
 
 ---
@@ -252,16 +339,24 @@ retry-loop workflow intervention
 
 adapter-path runtime integration
 
-expanded structured-output runtime dataset
+expanded structured-output runtime datasets
 
 real backend execution
 
 cross-model portability under the same runtime pipeline
 
+synthetic pre-collapse sweeps
 
-Inside this perimeter, the OMNIA lineage has shown behavior consistent with a post-hoc structural runtime safety layer for structured LLM outputs.
+replicated synthetic lead-pattern tests
 
-This includes evidence of:
+initial real pre-collapse cases
+
+initial cross-model real pre-collapse replication
+
+
+Inside this perimeter, the OMNIA lineage has shown behavior consistent with a post-hoc structural runtime diagnostics layer for structured LLM outputs.
+
+This includes documented evidence of:
 
 positive safety dividend
 
@@ -271,21 +366,23 @@ low over-defensive cost
 
 stable preservation of healthy outputs
 
-portability across the tested model pair
+portability across the tested runtime model pair
 
 auditable intervention behavior under runtime conditions
 
+early structural degradation preceding the first observed accuracy drop in bounded real closed-form runs
 
-This remains a bounded engineering result, not a universality claim.
+
+This remains a bounded engineering and measurement result, not a universality claim.
 
 
 ---
 
 Primary Evidence Center
 
-This repository should be read through a narrow evidence center, not through the entire repository at once.
+This repository should be read through a narrow evidence center, not through the full archive at once.
 
-Main public benchmark entry points:
+Main benchmark / evaluation entry points include:
 
 1. OMNIA_FACT_BENCHMARK_v0.1.py
 
@@ -299,14 +396,14 @@ Main public benchmark entry points:
 
 These define the main benchmark center of the diagnostics lineage.
 
-Additional reports, notes, and side validations may support them, but should not replace them as the public center of gravity.
+Additional reports, notes, runtime artifacts, and pre-collapse documents support them, but should not replace them as the benchmark center of gravity.
 
 
 ---
 
 Primary Runtime Path
 
-The strongest runtime branch currently exposed in the repository is:
+The strongest runtime branch currently documented in the repository is:
 
 1. silent-failure detection
 
@@ -349,7 +446,56 @@ docs/OMNIA_RETRY_LOOP_CROSS_MODEL_v0.md
 docs/OMNIA_RETRY_LOOP_CROSS_MODEL_v0_RESULTS.md
 
 
-This is the most advanced externally legible branch currently documented in the repository.
+This remains the most advanced externally legible runtime branch currently documented in the repository.
+
+
+---
+
+Real Pre-Collapse Evidence
+
+The repository now also preserves an early real-evidence branch focused on consistency degradation before the first observed accuracy loss under fixed protocols.
+
+This branch should be read narrowly.
+
+It does not claim a universal law.
+
+It documents an observed pattern under:
+
+fixed prompting
+
+fixed normalization
+
+fixed metric
+
+closed-form tasks
+
+real model outputs
+
+cross-model comparison
+
+
+Core artifacts:
+
+docs/REAL_PRECOLLAPSE_CASES_v1.md
+
+docs/CROSS_MODEL_PRECOLLAPSE_REPLICATION_v0.md
+
+examples/consistency_metric_v1.py
+
+examples/real_llm_precollapse_suite_v0.py
+
+
+Archived real-run artifacts are stored under:
+
+examples/real_runs/
+
+This branch currently supports the following statement:
+
+> In two closed-form task families and two distinct models, consistency_v1 declined before the first observed accuracy loss under an identical protocol.
+
+
+
+That is the current evidence boundary.
 
 
 ---
@@ -406,7 +552,7 @@ For an external integrator, the shortest usable path is:
 
 Adoption here means external usability as a structural measurement layer.
 
-It does not require full immersion in the entire MB-X.01 history.
+It does not require immersion in the full MB-X.01 archive.
 
 
 ---
@@ -419,7 +565,7 @@ OMNIA remains the canonical post-hoc structural measurement engine.
 
 Difference in role:
 
-OMNIAMIND = pre-output structural dynamics
+OMNIAMIND = upstream structural dynamics / pre-output analysis
 
 OMNIA = post-hoc structural stability under transformation
 
@@ -427,6 +573,7 @@ omnia-limit = structural stop / saturation boundary
 
 
 OMNIAMIND does not replace OMNIA.
+
 It extends structural visibility before final emission.
 
 
@@ -462,9 +609,7 @@ Current limits remain explicit:
 
 controlled and semi-controlled datasets
 
-limited distributional analysis
-
-mostly narrow tested perimeters
+bounded evaluated perimeters
 
 benchmark-dependent evidence
 
@@ -476,9 +621,13 @@ false positives remain part of observed behavior
 
 adoption is still early and selective
 
-real backend validation is still bounded to the tested structured-output runtime setup
+real backend validation remains bounded to the tested structured-output runtime setup
 
-cross-model portability is demonstrated only for the tested model pair and pipeline
+cross-model portability remains bounded to the tested model pair and pipeline
+
+real pre-collapse evidence currently covers only two models and two closed-form domains
+
+no claim yet on open-ended reasoning, broad semantic tasks, or production thresholds
 
 
 These limits are part of the architecture, not an afterthought.
@@ -492,11 +641,21 @@ This repository currently contains two compatible but asymmetrical states:
 
 Branch	Status	Note
 
-OMNIA runtime branch	FOUNDATIONALLY STABILIZED	Real backend, retry-loop, adapter path, and cross-model perimeter documented
-OMNIAMIND analytical branch	OPERATIONAL OFFLINE	Synthetic proxy engine, formalization, and offline comparison package available, but no real trace ingestion yet
+OMNIA runtime branch	FOUNDATIONALLY STABILIZED	real backend, retry-loop, adapter path, and cross-model perimeter documented
+OMNIAMIND analytical branch	OPERATIONAL OFFLINE	synthetic proxy engine, formalization, and offline comparison package available, but no real trace ingestion yet
+Pre-collapse evidence branch	INITIAL REAL POSITIVE EVIDENCE	multi-domain real cases and initial cross-model replication under fixed protocol
 
 
-This means the repository is currently stronger on post-hoc structural measurement than on upstream empirical pre-output measurement.
+This means the repository is currently strongest on:
+
+post-hoc structural measurement
+
+runtime diagnostics
+
+bounded trust routing
+
+initial real evidence of early structural degradation
+
 
 That asymmetry is real and explicitly declared.
 
@@ -505,7 +664,7 @@ That asymmetry is real and explicitly declared.
 
 Why lon-mirror Still Matters
 
-Now that OMNIABASE exists as the umbrella framework and OMNIA exists as the cleaner branch-facing repository, lon-mirror should be understood as preserving what those repositories do not try to contain all at once:
+Now that OMNIABASE exists as the umbrella framework and OMNIA exists as the cleaner branch-facing repository, lon-mirror should be read as preserving what those repositories do not try to contain all at once:
 
 the deeper operational archive
 
@@ -516,6 +675,8 @@ the experimental breadth of the diagnostics lineage
 the engineering path that led to the current stabilized perimeter
 
 the canonical ecosystem memory of this branch
+
+the real-run artifacts behind the current pre-collapse evidence
 
 
 It is therefore not the umbrella framework.
@@ -530,7 +691,8 @@ Final v1.0 Status
 The OMNIA diagnostics lineage documented here should be treated as a completed foundational cycle.
 
 It is not complete because no more ideas exist.
-It is complete because the architectural uncertainty required to define the v1.0 perimeter has been exhausted.
+
+It is complete because the architectural uncertainty required to define the current foundational perimeter has been exhausted.
 
 What now exists is:
 
@@ -544,12 +706,14 @@ runtime-tested
 
 real-backend-tested
 
-cross-model-tested
+cross-model-tested inside the declared runtime perimeter
 
-bounded by explicit limits
+explicitly bounded
+
+extended by initial real multi-domain pre-collapse evidence
 
 
-That is the correct end state of this foundational cycle.
+This is the correct state of the current foundational cycle.
 
 
 ---
@@ -560,9 +724,11 @@ lon-mirror preserves the historical and operational core of the OMNIA diagnostic
 
 Externally, the clearest way to understand the work preserved here is this:
 
-the OMNIA lineage is a structural trust gate for plausible but fragile outputs.
+> the OMNIA lineage is a structural trust and diagnostics layer for plausible but fragile outputs.
 
-It is strongest where the project currently has real tested perimeter:
+
+
+It is strongest where the project currently has a real tested perimeter:
 
 structured LLM outputs
 
@@ -573,6 +739,8 @@ bounded retry / escalation
 runtime auditability
 
 tested cross-model path inside the declared setup
+
+initial cross-model real evidence that structural consistency can move earlier than accuracy in closed-form tasks
 
 
 It is not a universality claim.
