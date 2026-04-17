@@ -1,0 +1,59 @@
+{"family":"arithmetic_multiplication_real","level":1,"question_group_id":"mul_12_13","prompt_variant_id":1,"prompt":"What is 12 * 13?","ground_truth":"156","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":1,"question_group_id":"mul_12_13","prompt_variant_id":2,"prompt":"12 * 13 = ?","ground_truth":"156","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":1,"question_group_id":"mul_12_13","prompt_variant_id":3,"prompt":"Compute 12 times 13.","ground_truth":"156","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":1,"question_group_id":"mul_12_13","prompt_variant_id":4,"prompt":"Multiply 12 and 13.","ground_truth":"156","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":1,"question_group_id":"mul_12_13","prompt_variant_id":5,"prompt":"12 multiplied by 13?","ground_truth":"156","model_name":"your-model-name","model_output":""}
+
+{"family":"arithmetic_multiplication_real","level":2,"question_group_id":"mul_23_47","prompt_variant_id":1,"prompt":"What is 23 * 47?","ground_truth":"1081","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":2,"question_group_id":"mul_23_47","prompt_variant_id":2,"prompt":"23 * 47 = ?","ground_truth":"1081","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":2,"question_group_id":"mul_23_47","prompt_variant_id":3,"prompt":"Compute 23 times 47.","ground_truth":"1081","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":2,"question_group_id":"mul_23_47","prompt_variant_id":4,"prompt":"Multiply 23 and 47.","ground_truth":"1081","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":2,"question_group_id":"mul_23_47","prompt_variant_id":5,"prompt":"23 multiplied by 47?","ground_truth":"1081","model_name":"your-model-name","model_output":""}
+
+{"family":"arithmetic_multiplication_real","level":3,"question_group_id":"mul_56_78","prompt_variant_id":1,"prompt":"What is 56 * 78?","ground_truth":"4368","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":3,"question_group_id":"mul_56_78","prompt_variant_id":2,"prompt":"56 * 78 = ?","ground_truth":"4368","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":3,"question_group_id":"mul_56_78","prompt_variant_id":3,"prompt":"Compute 56 times 78.","ground_truth":"4368","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":3,"question_group_id":"mul_56_78","prompt_variant_id":4,"prompt":"Multiply 56 and 78.","ground_truth":"4368","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":3,"question_group_id":"mul_56_78","prompt_variant_id":5,"prompt":"56 multiplied by 78?","ground_truth":"4368","model_name":"your-model-name","model_output":""}
+
+{"family":"arithmetic_multiplication_real","level":4,"question_group_id":"mul_123_45","prompt_variant_id":1,"prompt":"What is 123 * 45?","ground_truth":"5535","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":4,"question_group_id":"mul_123_45","prompt_variant_id":2,"prompt":"123 * 45 = ?","ground_truth":"5535","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":4,"question_group_id":"mul_123_45","prompt_variant_id":3,"prompt":"Compute 123 times 45.","ground_truth":"5535","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":4,"question_group_id":"mul_123_45","prompt_variant_id":4,"prompt":"Multiply 123 and 45.","ground_truth":"5535","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":4,"question_group_id":"mul_123_45","prompt_variant_id":5,"prompt":"123 multiplied by 45?","ground_truth":"5535","model_name":"your-model-name","model_output":""}
+
+{"family":"arithmetic_multiplication_real","level":5,"question_group_id":"mul_234_67","prompt_variant_id":1,"prompt":"What is 234 * 67?","ground_truth":"15678","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":5,"question_group_id":"mul_234_67","prompt_variant_id":2,"prompt":"234 * 67 = ?","ground_truth":"15678","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":5,"question_group_id":"mul_234_67","prompt_variant_id":3,"prompt":"Compute 234 times 67.","ground_truth":"15678","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":5,"question_group_id":"mul_234_67","prompt_variant_id":4,"prompt":"Multiply 234 and 67.","ground_truth":"15678","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":5,"question_group_id":"mul_234_67","prompt_variant_id":5,"prompt":"234 multiplied by 67?","ground_truth":"15678","model_name":"your-model-name","model_output":""}
+
+{"family":"arithmetic_multiplication_real","level":6,"question_group_id":"mul_123_456","prompt_variant_id":1,"prompt":"What is 123 * 456?","ground_truth":"56088","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":6,"question_group_id":"mul_123_456","prompt_variant_id":2,"prompt":"123 * 456 = ?","ground_truth":"56088","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":6,"question_group_id":"mul_123_456","prompt_variant_id":3,"prompt":"Compute 123 times 456.","ground_truth":"56088","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":6,"question_group_id":"mul_123_456","prompt_variant_id":4,"prompt":"Multiply 123 and 456.","ground_truth":"56088","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":6,"question_group_id":"mul_123_456","prompt_variant_id":5,"prompt":"123 multiplied by 456?","ground_truth":"56088","model_name":"your-model-name","model_output":""}
+
+{"family":"arithmetic_multiplication_real","level":7,"question_group_id":"mul_789_654","prompt_variant_id":1,"prompt":"What is 789 * 654?","ground_truth":"516006","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":7,"question_group_id":"mul_789_654","prompt_variant_id":2,"prompt":"789 * 654 = ?","ground_truth":"516006","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":7,"question_group_id":"mul_789_654","prompt_variant_id":3,"prompt":"Compute 789 times 654.","ground_truth":"516006","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":7,"question_group_id":"mul_789_654","prompt_variant_id":4,"prompt":"Multiply 789 and 654.","ground_truth":"516006","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":7,"question_group_id":"mul_789_654","prompt_variant_id":5,"prompt":"789 multiplied by 654?","ground_truth":"516006","model_name":"your-model-name","model_output":""}
+
+{"family":"arithmetic_multiplication_real","level":8,"question_group_id":"mul_1234_56","prompt_variant_id":1,"prompt":"What is 1234 * 56?","ground_truth":"69104","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":8,"question_group_id":"mul_1234_56","prompt_variant_id":2,"prompt":"1234 * 56 = ?","ground_truth":"69104","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":8,"question_group_id":"mul_1234_56","prompt_variant_id":3,"prompt":"Compute 1234 times 56.","ground_truth":"69104","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":8,"question_group_id":"mul_1234_56","prompt_variant_id":4,"prompt":"Multiply 1234 and 56.","ground_truth":"69104","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":8,"question_group_id":"mul_1234_56","prompt_variant_id":5,"prompt":"1234 multiplied by 56?","ground_truth":"69104","model_name":"your-model-name","model_output":""}
+
+{"family":"arithmetic_multiplication_real","level":9,"question_group_id":"mul_1234_567","prompt_variant_id":1,"prompt":"What is 1234 * 567?","ground_truth":"699678","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":9,"question_group_id":"mul_1234_567","prompt_variant_id":2,"prompt":"1234 * 567 = ?","ground_truth":"699678","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":9,"question_group_id":"mul_1234_567","prompt_variant_id":3,"prompt":"Compute 1234 times 567.","ground_truth":"699678","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":9,"question_group_id":"mul_1234_567","prompt_variant_id":4,"prompt":"Multiply 1234 and 567.","ground_truth":"699678","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":9,"question_group_id":"mul_1234_567","prompt_variant_id":5,"prompt":"1234 multiplied by 567?","ground_truth":"699678","model_name":"your-model-name","model_output":""}
+
+{"family":"arithmetic_multiplication_real","level":10,"question_group_id":"mul_12345_678","prompt_variant_id":1,"prompt":"What is 12345 * 678?","ground_truth":"8369910","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":10,"question_group_id":"mul_12345_678","prompt_variant_id":2,"prompt":"12345 * 678 = ?","ground_truth":"8369910","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":10,"question_group_id":"mul_12345_678","prompt_variant_id":3,"prompt":"Compute 12345 times 678.","ground_truth":"8369910","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":10,"question_group_id":"mul_12345_678","prompt_variant_id":4,"prompt":"Multiply 12345 and 678.","ground_truth":"8369910","model_name":"your-model-name","model_output":""}
+{"family":"arithmetic_multiplication_real","level":10,"question_group_id":"mul_12345_678","prompt_variant_id":5,"prompt":"12345 multiplied by 678?","ground_truth":"8369910","model_name":"your-model-name","model_output":""}
