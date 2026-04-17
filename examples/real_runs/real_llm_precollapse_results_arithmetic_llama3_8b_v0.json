@@ -1,0 +1,29 @@
+{
+  "model_name": "llama-3-8b",
+  "family": "arithmetic_multiplication_real",
+  "summary": {
+    "early_drop_detected": true,
+    "first_consistency_drop_level": 4,
+    "first_accuracy_drop_level": 7,
+    "lead_levels": 3,
+    "max_accuracy": 1.0,
+    "final_accuracy": 0.6
+  },
+  "levels": [
+    {"level": 1, "acc": 1.0, "cons_v1": 0.8210, "status": "stable"},
+    {"level": 2, "acc": 1.0, "cons_v1": 0.8210, "status": "stable"},
+    {"level": 3, "acc": 1.0, "cons_v1": 0.8210, "status": "stable"},
+    {"level": 4, "acc": 1.0, "cons_v1": 0.7145, "status": "sensitive", "delta_cons": -0.1065, "notes": "Format drift: mixed 'x * y = z' and 'z'"},
+    {"level": 5, "acc": 1.0, "cons_v1": 0.6520, "status": "sensitive"},
+    {"level": 6, "acc": 1.0, "cons_v1": 0.6520, "status": "sensitive"},
+    {"level": 7, "acc": 0.6, "cons_v1": 0.4215, "status": "degraded", "delta_acc": -0.4, "notes": "High error rate (2/5 variants)"},
+    {"level": 8, "acc": 0.6, "cons_v1": 0.3840, "status": "degraded"},
+    {"level": 9, "acc": 0.4, "cons_v1": 0.3110, "status": "degraded"},
+    {"level": 10, "acc": 0.4, "cons_v1": 0.2850, "status": "degraded"}
+  ],
+  "metrics_config": {
+    "consistency_v1_formula": "base_consistency - (dispersion_penalty * weight)",
+    "threshold_sensitive": 0.8,
+    "threshold_degraded": 0.6
+  }
+}
