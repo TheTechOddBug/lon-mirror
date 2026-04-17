@@ -454,4 +454,35 @@ Possible additions:
 Run two strengthening tests:
 
 1. threshold sensitivity sweep
-2. class
+2. class-size normalization check
+
+Only after that should OMNIA integration claims be expanded.
+
+---
+
+## Minimal claims allowed after v0
+
+If the benchmark shows visible class separation, the strongest allowed claim is:
+
+> The current OMNIABASE lens prototype is capable of distinguishing some controlled integer families through cross-base structural diagnostics.
+
+That claim is acceptable.
+
+The following claims remain unacceptable:
+
+- the lens detects hidden laws
+- the lens discovers universal structure
+- the lens proves mathematical essence
+- the lens yields operational alpha
+- the lens outperforms existing OMNIA diagnostics
+
+Those require later evidence.
+
+---
+
+## Operational state after this benchmark
+
+If the benchmark script runs and yields readable class summaries, the project state becomes:
+
+```text
+implemented and minimally testable
