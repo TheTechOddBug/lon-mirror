@@ -1,0 +1,50 @@
+{"id": 1, "question": "What is 17 * 23?", "correct": "391", "model_output": "391"}
+{"id": 2, "question": "What is 17 * 23?", "correct": "391", "model_output": "17 times 23 equals 391"}
+{"id": 3, "question": "What is 17 * 23?", "correct": "391", "model_output": "The product of seventeen and twenty-three is three hundred ninety-one (391)"}
+{"id": 4, "question": "What is 17 * 23?", "correct": "391", "model_output": "Well, let me think... 17*20=340, 17*3=51, so 340+51=391"}
+{"id": 5, "question": "What is 17 * 23?", "correct": "391", "model_output": "391 is the answer"}
+{"id": 6, "question": "What is 17 * 23?", "correct": "391", "model_output": "The calculation shows that 17 multiplied by 23 gives us 391"}
+{"id": 7, "question": "What is 17 * 23?", "correct": "391", "model_output": "If you multiply 17 by 23, you get 391, which is correct"}
+{"id": 8, "question": "What is 17 * 23?", "correct": "391", "model_output": "393"}
+{"id": 9, "question": "What is 17 * 23?", "correct": "391", "model_output": "Let me calculate: 17*20=340, 17*3=51, total=391, so the answer is 393"}
+{"id": 10, "question": "What is 17 * 23?", "correct": "391", "model_output": "I believe it's around 390-395, probably 393"}
+{"id": 11, "question": "Solve: x + 5 = 12", "correct": "x = 7", "model_output": "x = 7"}
+{"id": 12, "question": "Solve: x + 5 = 12", "correct": "x = 7", "model_output": "To solve x + 5 = 12, subtract 5 from both sides: x = 7"}
+{"id": 13, "question": "Solve: x + 5 = 12", "correct": "x = 7", "model_output": "x equals seven because 7 plus 5 equals 12"}
+{"id": 14, "question": "Solve: x + 5 = 12", "correct": "x = 7", "model_output": "The solution is x = 7, which can be verified by substitution"}
+{"id": 15, "question": "Solve: x + 5 = 12", "correct": "x = 7", "model_output": "x = 8"}
+{"id": 16, "question": "Solve: x + 5 = 12", "correct": "x = 7", "model_output": "I think x should be 8 because 8+5=13 which is close to 12"}
+{"id": 17, "question": "Capital of France?", "correct": "Paris", "model_output": "Paris"}
+{"id": 18, "question": "Capital of France?", "correct": "Paris", "model_output": "The capital of France is Paris"}
+{"id": 19, "question": "Capital of France?", "correct": "Paris", "model_output": "Paris is the capital and largest city of France"}
+{"id": 20, "question": "Capital of France?", "correct": "Paris", "model_output": "France's capital is Paris, located in the north-central part of the country"}
+{"id": 21, "question": "Capital of France?", "correct": "Paris", "model_output": "Lyon"}
+{"id": 22, "question": "Capital of France?", "correct": "Paris", "model_output": "I believe it's Lyon or maybe Marseille"}
+{"id": 23, "question": "What is 2 + 2?", "correct": "4", "model_output": "4"}
+{"id": 24, "question": "What is 2 + 2?", "correct": "4", "model_output": "Two plus two equals four"}
+{"id": 25, "question": "What is 2 + 2?", "correct": "4", "model_output": "The sum of 2 and 2 is 4"}
+{"id": 26, "question": "What is 2 + 2?", "correct": "4", "model_output": "When you add 2 to 2, you get 4 as the result"}
+{"id": 27, "question": "What is 2 + 2?", "correct": "4", "model_output": "5"}
+{"id": 28, "question": "What is 2 + 2?", "correct": "4", "model_output": "I'm not sure, maybe 5?"}
+{"id": 29, "question": "What year did WWII end?", "correct": "1945", "model_output": "1945"}
+{"id": 30, "question": "What year did WWII end?", "correct": "1945", "model_output": "World War II ended in 1945"}
+{"id": 31, "question": "What year did WWII end?", "correct": "1945", "model_output": "WWII concluded in 1945 with the surrender of Japan"}
+{"id": 32, "question": "What year did WWII end?", "correct": "1945", "model_output": "The war ended in 1945 after atomic bombs were dropped on Hiroshima and Nagasaki"}
+{"id": 33, "question": "What year did WWII end?", "correct": "1945", "model_output": "1944"}
+{"id": 34, "question": "What year did WWII end?", "correct": "1945", "model_output": "I think it was 1944 or 1946"}
+{"id": 35, "question": "Is 17 prime?", "correct": "yes", "model_output": "yes"}
+{"id": 36, "question": "Is 17 prime?", "correct": "yes", "model_output": "Yes, 17 is prime"}
+{"id": 37, "question": "Is 17 prime?", "correct": "yes", "model_output": "17 is a prime number because it has no divisors other than 1 and itself"}
+{"id": 38, "question": "Is 17 prime?", "correct": "yes", "model_output": "Yes, 17 is prime as it's only divisible by 1 and 17"}
+{"id": 39, "question": "Is 17 prime?", "correct": "yes", "model_output": "no"}
+{"id": 40, "question": "Is 17 prime?", "correct": "yes", "model_output": "I don't think so, 17 can be divided by other numbers"}
+{"id": 41, "question": "What is sqrt(144)?", "correct": "12", "model_output": "12"}
+{"id": 42, "question": "What is sqrt(144)?", "correct": "12", "model_output": "The square root of 144 is 12"}
+{"id": 43, "question": "What is sqrt(144)?", "correct": "12", "model_output": "sqrt(144) = 12 because 12 * 12 = 144"}
+{"id": 44, "question": "What is sqrt(144)?", "correct": "12", "model_output": "Twelve, since twelve squared equals one hundred forty-four"}
+{"id": 45, "question": "What is sqrt(144)?", "correct": "12", "model_output": "14"}
+{"id": 46, "question": "What is sqrt(144)?", "correct": "12", "model_output": "I think it's around 13 or 14"}
+{"id": 47, "question": "Translate 'hello' to Spanish", "correct": "hola", "model_output": "hola"}
+{"id": 48, "question": "Translate 'hello' to Spanish", "correct": "hola", "model_output": "The Spanish word for hello is 'hola'"}
+{"id": 49, "question": "Translate 'hello' to Spanish", "correct": "hola", "model_output": "In Spanish, you say 'hola' to greet someone"}
+{"id": 50, "question": "Translate 'hello' to Spanish", "correct": "hola", "model_output": "'Hello' translates to 'hola' in Spanish, pronounced oh-lah"}
