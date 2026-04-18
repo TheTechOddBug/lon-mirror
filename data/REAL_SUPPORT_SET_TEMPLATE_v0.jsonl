@@ -1,14 +1,14 @@
-{"id":"real_ex001","raw_output":"REPLACE_WITH_REAL_OUTPUT_001","target_label":"accept","note":"good as-is; specific and acceptable reply"}
+{"id":"real_ex001","raw_output":"Thanks for your patience. If your refund was approved 4 days ago, it may still be processing with your bank, as refunds can take several business days to appear. Please check again in the next few days. If it still does not show up, reply with your order number and we’ll look into it right away.","target_label":"accept","note":"good as-is; specific and actionable refund reply"}
 {"id":"real_ex002","raw_output":"REPLACE_WITH_REAL_OUTPUT_002","target_label":"accept","note":"good as-is; specific and acceptable reply"}
 {"id":"real_ex003","raw_output":"REPLACE_WITH_REAL_OUTPUT_003","target_label":"accept","note":"good as-is; specific and acceptable reply"}
 {"id":"real_ex004","raw_output":"REPLACE_WITH_REAL_OUTPUT_004","target_label":"accept","note":"good as-is; specific and acceptable reply"}
 {"id":"real_ex005","raw_output":"REPLACE_WITH_REAL_OUTPUT_005","target_label":"accept","note":"good as-is; specific and acceptable reply"}
-{"id":"real_ex006","raw_output":"REPLACE_WITH_REAL_OUTPUT_006","target_label":"review","note":"looks passable but should be checked by a human"}
+{"id":"real_ex006","raw_output":"Thank you for reaching out, and I’m sorry for any concern this may have caused. We understand how important it is to receive your order, and we want to reassure you that your request is being looked into. We appreciate your patience and understanding in the meantime.","target_label":"review","note":"polite but vague; no concrete next step"}
 {"id":"real_ex007","raw_output":"REPLACE_WITH_REAL_OUTPUT_007","target_label":"review","note":"looks passable but should be checked by a human"}
 {"id":"real_ex008","raw_output":"REPLACE_WITH_REAL_OUTPUT_008","target_label":"review","note":"looks passable but should be checked by a human"}
 {"id":"real_ex009","raw_output":"REPLACE_WITH_REAL_OUTPUT_009","target_label":"review","note":"looks passable but should be checked by a human"}
 {"id":"real_ex010","raw_output":"REPLACE_WITH_REAL_OUTPUT_010","target_label":"review","note":"looks passable but should be checked by a human"}
-{"id":"real_ex011","raw_output":"REPLACE_WITH_REAL_OUTPUT_011","target_label":"retry","note":"should be regenerated or discarded"}
+{"id":"real_ex011","raw_output":"We’re sorry your account is locked. We understand you need access now, and we’re sorry your account is locked. Please reset your password using the account recovery link. If you still can’t access your account, please contact support and we will help you regain access as soon as possible. We understand you need access now, and we will help as soon as possible.","target_label":"retry","note":"repetitive and weak; should be regenerated"}
 {"id":"real_ex012","raw_output":"REPLACE_WITH_REAL_OUTPUT_012","target_label":"retry","note":"should be regenerated or discarded"}
 {"id":"real_ex013","raw_output":"REPLACE_WITH_REAL_OUTPUT_013","target_label":"retry","note":"should be regenerated or discarded"}
 {"id":"real_ex014","raw_output":"REPLACE_WITH_REAL_OUTPUT_014","target_label":"retry","note":"should be regenerated or discarded"}
