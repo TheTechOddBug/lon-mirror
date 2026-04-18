@@ -1,0 +1,12 @@
+{"id":"ex001","text":"retry retry retry retry retry","target_label":"retry","group":"obvious_failure"}
+{"id":"ex002","text":"aaaaaaaaaaaaaaa","target_label":"retry","group":"obvious_failure"}
+{"id":"ex003","text":"The answer seems correct. The answer seems correct. The answer seems correct.","target_label":"review","group":"suspicious_clean"}
+{"id":"ex004","text":"Your request has been processed successfully. Your request has been processed successfully.","target_label":"review","group":"suspicious_clean"}
+{"id":"ex005","text":"We can help with that. We can help with that. Please check again.","target_label":"review","group":"suspicious_clean"}
+{"id":"ex006","text":"Your order is confirmed and will arrive tomorrow.","target_label":"accept","group":"acceptable"}
+{"id":"ex007","text":"I cannot change the shipping address after dispatch, but I can help you contact support.","target_label":"accept","group":"acceptable"}
+{"id":"ex008","text":"Please reset your password using the link in the email we just sent.","target_label":"accept","group":"acceptable"}
+{"id":"ex009","text":"The payment was declined. Please verify your card details and try again.","target_label":"accept","group":"acceptable"}
+{"id":"ex010","text":"Your refund request is under review. You will receive an update within 3 business days.","target_label":"accept","group":"acceptable"}
+{"id":"ex011","text":"We are sorry for the inconvenience. We are sorry for the inconvenience. We are sorry for the inconvenience.","target_label":"review","group":"suspicious_clean"}
+{"id":"ex012","text":"The account has been verified and no further action is required.","target_label":"accept","group":"acceptable"}
