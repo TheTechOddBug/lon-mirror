@@ -93,6 +93,14 @@ COMBINED_FALSE_ACCEPTS: 0
 FALSE_ACCEPT_REDUCTION: 6
 EXTRA_REVIEWS_FROM_OMNIA: 6
 
+REALISH V0
+
+N_EXAMPLES: 15
+BASELINE_FALSE_ACCEPTS: 5
+COMBINED_FALSE_ACCEPTS: 0
+FALSE_ACCEPT_REDUCTION: 5
+EXTRA_REVIEWS_FROM_OMNIA: 5
+
 This is the first bounded proxy linking OMNIA to a realistic operational cost pattern:
 
 false accept reduction under a layered policy
@@ -162,10 +170,13 @@ For the shortest correct reading path:
 5. docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md
 
 
-6. docs/PROOF_CARD.md
+6. docs/OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md
 
 
-7. docs/EXTERNAL_STATUS.md
+7. docs/PROOF_CARD.md
+
+
+8. docs/EXTERNAL_STATUS.md
 
 
 
