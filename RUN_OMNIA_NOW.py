@@ -1,3 +1,9 @@
+Nome file
+
+RUN_OMNIA_NOW.py
+
+Contenuto completo
+
 import re
 from collections import Counter
 
@@ -129,8 +135,14 @@ def run_case(text: str) -> None:
     print(f"OMNIA_SCORE: {omnia_score:.3f}")
     print(f"ACTION: {action}")
     print(f"CLAIM: {claim}")
+    print("-" * 60)
 
 
 if __name__ == "__main__":
-    demo_input = "The answer seems correct. The answer seems correct. The answer seems correct."
-    run_case(demo_input)
+    cases = [
+        "The answer seems correct. The answer seems correct. The answer seems correct.",
+        "retry retry retry retry retry",
+    ]
+
+    for case in cases:
+        run_case(case)
