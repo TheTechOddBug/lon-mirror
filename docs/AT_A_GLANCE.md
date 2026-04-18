@@ -75,14 +75,23 @@ obvious failure case -> retry
 
 ---
 
-First damage-proxy result
+Damage-proxy results
 
-On a 12-example support-style miniset:
+V0
 
+N_EXAMPLES: 12
 BASELINE_FALSE_ACCEPTS: 4
 COMBINED_FALSE_ACCEPTS: 0
 FALSE_ACCEPT_REDUCTION: 4
 EXTRA_REVIEWS_FROM_OMNIA: 4
+
+V1
+
+N_EXAMPLES: 20
+BASELINE_FALSE_ACCEPTS: 6
+COMBINED_FALSE_ACCEPTS: 0
+FALSE_ACCEPT_REDUCTION: 6
+EXTRA_REVIEWS_FROM_OMNIA: 6
 
 This is the first bounded proxy linking OMNIA to a realistic operational cost pattern:
 
@@ -95,7 +104,7 @@ One policy
 
 if baseline warns:
     retry
-elif OMNIABASE warns:
+elif OMNIA warns:
     review
 else:
     accept
@@ -150,10 +159,13 @@ For the shortest correct reading path:
 4. docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md
 
 
-5. docs/PROOF_CARD.md
+5. docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md
 
 
-6. docs/EXTERNAL_STATUS.md
+6. docs/PROOF_CARD.md
+
+
+7. docs/EXTERNAL_STATUS.md
 
 
 
