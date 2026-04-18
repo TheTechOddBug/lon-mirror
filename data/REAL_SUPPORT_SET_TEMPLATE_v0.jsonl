@@ -1,15 +1,15 @@
-{"id":"real_ex001","raw_output":"","target_label":"accept","note":""}
-{"id":"real_ex002","raw_output":"","target_label":"accept","note":""}
-{"id":"real_ex003","raw_output":"","target_label":"accept","note":""}
-{"id":"real_ex004","raw_output":"","target_label":"accept","note":""}
-{"id":"real_ex005","raw_output":"","target_label":"accept","note":""}
-{"id":"real_ex006","raw_output":"","target_label":"review","note":""}
-{"id":"real_ex007","raw_output":"","target_label":"review","note":""}
-{"id":"real_ex008","raw_output":"","target_label":"review","note":""}
-{"id":"real_ex009","raw_output":"","target_label":"review","note":""}
-{"id":"real_ex010","raw_output":"","target_label":"review","note":""}
-{"id":"real_ex011","raw_output":"","target_label":"retry","note":""}
-{"id":"real_ex012","raw_output":"","target_label":"retry","note":""}
-{"id":"real_ex013","raw_output":"","target_label":"retry","note":""}
-{"id":"real_ex014","raw_output":"","target_label":"retry","note":""}
-{"id":"real_ex015","raw_output":"","target_label":"retry","note":""}
+{"id":"real_ex001","raw_output":"PASTE_REAL_OUTPUT_HERE","target_label":"accept","note":"good as-is"}
+{"id":"real_ex002","raw_output":"PASTE_REAL_OUTPUT_HERE","target_label":"accept","note":"good as-is"}
+{"id":"real_ex003","raw_output":"PASTE_REAL_OUTPUT_HERE","target_label":"accept","note":"good as-is"}
+{"id":"real_ex004","raw_output":"PASTE_REAL_OUTPUT_HERE","target_label":"accept","note":"good as-is"}
+{"id":"real_ex005","raw_output":"PASTE_REAL_OUTPUT_HERE","target_label":"accept","note":"good as-is"}
+{"id":"real_ex006","raw_output":"PASTE_REAL_OUTPUT_HERE","target_label":"review","note":"looks passable but should be checked by a human"}
+{"id":"real_ex007","raw_output":"PASTE_REAL_OUTPUT_HERE","target_label":"review","note":"looks passable but should be checked by a human"}
+{"id":"real_ex008","raw_output":"PASTE_REAL_OUTPUT_HERE","target_label":"review","note":"looks passable but should be checked by a human"}
+{"id":"real_ex009","raw_output":"PASTE_REAL_OUTPUT_HERE","target_label":"review","note":"looks passable but should be checked by a human"}
+{"id":"real_ex010","raw_output":"PASTE_REAL_OUTPUT_HERE","target_label":"review","note":"looks passable but should be checked by a human"}
+{"id":"real_ex011","raw_output":"PASTE_REAL_OUTPUT_HERE","target_label":"retry","note":"should be regenerated or discarded"}
+{"id":"real_ex012","raw_output":"PASTE_REAL_OUTPUT_HERE","target_label":"retry","note":"should be regenerated or discarded"}
+{"id":"real_ex013","raw_output":"PASTE_REAL_OUTPUT_HERE","target_label":"retry","note":"should be regenerated or discarded"}
+{"id":"real_ex014","raw_output":"PASTE_REAL_OUTPUT_HERE","target_label":"retry","note":"should be regenerated or discarded"}
+{"id":"real_ex015","raw_output":"PASTE_REAL_OUTPUT_HERE","target_label":"retry","note":"should be regenerated or discarded"}
