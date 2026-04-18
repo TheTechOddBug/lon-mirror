@@ -168,6 +168,3 @@ One sentence version:
 Readable is not the same as structurally safe.
 
 OMNIA exists to measure that gap.
-
-`
-
