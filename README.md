@@ -15,9 +15,10 @@ If this repository feels broad at first glance, do not begin from the full archi
 
 Use this short path first:
 
-1. `docs/PROOF_CARD.md`
-2. `docs/OMNIABASE_REVIEW_SENSOR_NOTE.md`
-3. `docs/PHASE6_FREEZE.md`
+1. [docs/PROOF_CARD.md](./docs/PROOF_CARD.md)
+2. [docs/ONE_EXAMPLE.md](./docs/ONE_EXAMPLE.md)
+3. [docs/OMNIABASE_REVIEW_SENSOR_NOTE.md](./docs/OMNIABASE_REVIEW_SENSOR_NOTE.md)
+4. [docs/PHASE6_FREEZE.md](./docs/PHASE6_FREEZE.md)
 
 That is the shortest current path from first contact to the strongest bounded claim supported by the repository.
 
@@ -274,6 +275,32 @@ That is where the current evidence is strongest.
 
 ---
 
+One concrete example
+
+A readable output is not automatically a structurally safe output.
+
+Example:
+
+The answer seems correct. The answer seems correct. The answer seems correct.
+
+This is not a catastrophic failure.
+
+It is readable.
+It is superficially acceptable.
+It may even pass shallow checks.
+
+But structurally it is suspicious enough to justify review.
+
+That is exactly the regime where OMNIABASE currently adds value.
+
+For a compressed walkthrough, read:
+
+docs/ONE_EXAMPLE.md
+
+
+
+---
+
 What OMNIA is not claiming
 
 This repository does not currently claim that OMNIA or OMNIABASE is:
@@ -303,22 +330,33 @@ A good short path through the current repository is:
 1. README.md
 
 
-2. docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
+2. START_HERE.md
 
 
-3. docs/PHASE6_FREEZE.md
+3. docs/PROOF_CARD.md
 
 
-4. docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
+4. docs/ONE_EXAMPLE.md
 
 
-5. docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
+5. docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
+
+
+6. docs/PHASE6_FREEZE.md
+
+
+7. docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
+
+
+8. docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
 
 
 
 If the goal is the shortest explanation of the OMNIABASE role, start with:
 
-docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
+docs/PROOF_CARD.md
+
+docs/ONE_EXAMPLE.md
 
 
 If the goal is the frozen conclusion of the current phase, read:
@@ -400,11 +438,11 @@ Example 3 - OMNIABASE can be stricter than needed
 
 12121213
 
-Near-threshold structures can trigger review even when a human might still accept them.
+Near-threshold structures can trigger caution even when a human might still accept them.
 
 This is a calibration issue, not something to hide.
 
-It is one reason why OMNIABASE should remain a review sensor rather than a direct rejection trigger.
+It is one reason why OMNIABASE should currently remain a review sensor rather than a direct rejection trigger.
 
 
 ---
@@ -447,6 +485,15 @@ Core and role documents
 docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
 
 docs/PHASE6_FREEZE.md
+
+
+Entry documents
+
+START_HERE.md
+
+docs/PROOF_CARD.md
+
+docs/ONE_EXAMPLE.md
 
 
 Phase 6 result documents
