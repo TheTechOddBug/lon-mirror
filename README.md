@@ -18,11 +18,12 @@ Use this short path first:
 1. [docs/AT_A_GLANCE.md](./docs/AT_A_GLANCE.md)
 2. [docs/RUN_OMNIA_NOW_RESULT.md](./docs/RUN_OMNIA_NOW_RESULT.md)
 3. [docs/RUN_OMNIA_NOW_SECOND_RESULT.md](./docs/RUN_OMNIA_NOW_SECOND_RESULT.md)
-4. [docs/PROOF_CARD.md](./docs/PROOF_CARD.md)
-5. [docs/ONE_EXAMPLE.md](./docs/ONE_EXAMPLE.md)
-6. [docs/OMNIABASE_REVIEW_SENSOR_NOTE.md](./docs/OMNIABASE_REVIEW_SENSOR_NOTE.md)
-7. [docs/PHASE6_FREEZE.md](./docs/PHASE6_FREEZE.md)
-8. [docs/EXTERNAL_STATUS.md](./docs/EXTERNAL_STATUS.md)
+4. [docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md](./docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md)
+5. [docs/PROOF_CARD.md](./docs/PROOF_CARD.md)
+6. [docs/ONE_EXAMPLE.md](./docs/ONE_EXAMPLE.md)
+7. [docs/OMNIABASE_REVIEW_SENSOR_NOTE.md](./docs/OMNIABASE_REVIEW_SENSOR_NOTE.md)
+8. [docs/PHASE6_FREEZE.md](./docs/PHASE6_FREEZE.md)
+9. [docs/EXTERNAL_STATUS.md](./docs/EXTERNAL_STATUS.md)
 
 That is the shortest current path from first contact to the strongest bounded claim supported by the repository.
 
@@ -346,6 +347,31 @@ obvious failure case -> retry
 
 ---
 
+First damage-proxy result
+
+A first bounded proxy for operational cost is now available in:
+
+docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md
+
+
+On a 12-example support-style miniset:
+
+BASELINE_FALSE_ACCEPTS: 4
+COMBINED_FALSE_ACCEPTS: 0
+FALSE_ACCEPT_REDUCTION: 4
+EXTRA_REVIEWS_FROM_OMNIA: 4
+
+This is the first readable result linking OMNIA to a realistic cost pattern:
+
+false accept reduction under a layered policy
+
+This does not prove deployment performance.
+
+It shows that OMNIA can already be evaluated against a bounded damage proxy rather than architecture alone.
+
+
+---
+
 One concrete example
 
 A readable output is not automatically a structurally safe output.
@@ -433,25 +459,28 @@ A good short path through the current repository is:
 5. docs/RUN_OMNIA_NOW_SECOND_RESULT.md
 
 
-6. docs/PROOF_CARD.md
+6. docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md
 
 
-7. docs/ONE_EXAMPLE.md
+7. docs/PROOF_CARD.md
 
 
-8. docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
+8. docs/ONE_EXAMPLE.md
 
 
-9. docs/PHASE6_FREEZE.md
+9. docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
 
 
-10. docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
+10. docs/PHASE6_FREEZE.md
 
 
-11. docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
+11. docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
 
 
-12. docs/EXTERNAL_STATUS.md
+12. docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
+
+
+13. docs/EXTERNAL_STATUS.md
 
 
 
@@ -462,6 +491,8 @@ docs/AT_A_GLANCE.md
 docs/RUN_OMNIA_NOW_RESULT.md
 
 docs/RUN_OMNIA_NOW_SECOND_RESULT.md
+
+docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md
 
 docs/PROOF_CARD.md
 
@@ -586,6 +617,12 @@ There is still no real traffic or deployment benchmark.
 
 Useful thresholds exist, but they are not yet final.
 
+6. Damage-proxy scope is still small
+
+The current false-accept result comes from a 12-example support-style miniset.
+
+It is useful as a first external anchor, but still far from broad validation.
+
 
 ---
 
@@ -607,6 +644,8 @@ docs/AT_A_GLANCE.md
 docs/RUN_OMNIA_NOW_RESULT.md
 
 docs/RUN_OMNIA_NOW_SECOND_RESULT.md
+
+docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md
 
 docs/PROOF_CARD.md
 
@@ -633,6 +672,8 @@ docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
 Example scripts
 
 RUN_OMNIA_NOW.py
+
+examples/omnia_support_false_accept_miniset_v0.py
 
 examples/omnia_base_gate_adapter_demo.py
 
@@ -712,3 +753,4 @@ technically honest
 
 
 That is stronger than a larger claim that cannot survive contact with data.
+
