@@ -100,6 +100,63 @@ That would be false.
 
 ---
 
+Current strongest supported claim
+
+The strongest externally honest claim currently supported by the repository is:
+
+> OMNIA includes a credible OMNIABASE-based auxiliary review sensor for suspicious-clean outputs, supported by sandbox and human-rated sandbox evidence.
+
+
+
+In practical terms, this means:
+
+baseline handles obvious failures
+
+OMNIABASE adds bounded review signal on suspicious-clean outputs
+
+final decision remains external
+
+
+This is the current supported role.
+
+Not more.
+
+
+---
+
+Broader repository trajectory
+
+The broader technical trajectory shown by this repository is:
+
+> toward a bounded runtime structural trust layer inside the tested perimeter.
+
+
+
+This is a trajectory, not a stronger already-proven claim.
+
+It reflects the direction of the runtime branch, the gate logic, the retry/review split, and the effort to connect structural diagnostics to operational cost patterns.
+
+It does not mean that OMNIA is already established as:
+
+a production-ready universal gate
+
+a deployment-proven runtime safety layer at scale
+
+a replacement for strong handcrafted baselines
+
+a final decision system
+
+
+The distinction is strict:
+
+supported now = bounded auxiliary review role
+
+trajectory = bounded runtime structural trust layer inside the tested perimeter
+
+
+
+---
+
 What OMNIA currently measures
 
 The current ecosystem includes structural diagnostics such as:
@@ -391,6 +448,28 @@ false accept reduction under a layered policy
 This does not prove deployment performance.
 
 It shows that OMNIA can already be evaluated against a bounded damage proxy rather than architecture alone.
+
+
+---
+
+Runtime trajectory inside the tested perimeter
+
+Within the tested perimeter, the repository trajectory points toward a bounded runtime structural trust layer for structured outputs.
+
+That trajectory currently rests on:
+
+post-hoc structural measurement
+
+silent-failure interception in suspicious-clean regimes
+
+bounded retry/review split under a layered policy
+
+early damage-proxy evidence through false-accept reduction
+
+
+This should be read as a technical direction supported by internal artifacts and bounded tests.
+
+It should not be read as proof of broad deployment readiness.
 
 
 ---
