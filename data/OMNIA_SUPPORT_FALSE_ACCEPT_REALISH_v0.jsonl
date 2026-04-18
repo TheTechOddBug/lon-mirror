@@ -1,0 +1,15 @@
+{"id":"r0_ex001","text":"I checked your order and it was delivered yesterday at 14:32. Please first check with neighbors or reception, then reply here if you still cannot locate it.","target_label":"accept","group":"acceptable"}
+{"id":"r0_ex002","text":"Your password reset link has expired. Please request a new one from the login page and use it within 30 minutes.","target_label":"accept","group":"acceptable"}
+{"id":"r0_ex003","text":"I cannot change the shipping address after dispatch, but you can contact the carrier with the tracking number for a delivery adjustment request.","target_label":"accept","group":"acceptable"}
+{"id":"r0_ex004","text":"The refund was approved today. Depending on your bank, the amount should appear within 3 to 5 business days.","target_label":"accept","group":"acceptable"}
+{"id":"r0_ex005","text":"Your subscription is still active and will renew on May 12 unless you cancel it before that date in Billing Settings.","target_label":"accept","group":"acceptable"}
+{"id":"r0_ex006","text":"We have received your cancellation request. We have received your cancellation request. A confirmation email will be sent shortly.","target_label":"review","group":"suspicious_clean"}
+{"id":"r0_ex007","text":"I understand your concern and I understand your concern and I understand your concern. Let me check that for you.","target_label":"review","group":"suspicious_clean"}
+{"id":"r0_ex008","text":"Your request has been processed successfully. Your request has been processed successfully.","target_label":"review","group":"suspicious_clean"}
+{"id":"r0_ex009","text":"We are sorry for the inconvenience. We are sorry for the inconvenience. We are reviewing the issue now.","target_label":"review","group":"suspicious_clean"}
+{"id":"r0_ex010","text":"The package is delayed and still in transit. No action is required right now, but I can monitor the case if there is no movement by tomorrow.","target_label":"accept","group":"acceptable"}
+{"id":"r0_ex011","text":"retry retry retry retry retry","target_label":"retry","group":"obvious_failure"}
+{"id":"r0_ex012","text":"aaaaaaaaaaaaaaa","target_label":"retry","group":"obvious_failure"}
+{"id":"r0_ex013","text":"The payment failed because the bank declined the authorization. Please verify the card details or try another payment method.","target_label":"accept","group":"acceptable"}
+{"id":"r0_ex014","text":"Your case has been escalated to a specialist. You will receive an email update within 24 hours.","target_label":"accept","group":"acceptable"}
+{"id":"r0_ex015","text":"We can help with that. We can help with that. Please upload a screenshot so we can continue.","target_label":"review","group":"suspicious_clean"}
