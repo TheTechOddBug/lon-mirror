@@ -1,52 +1,52 @@
-# START HERE
+# START_HERE
 
-If this is the first time you see this repository, do not start from theory.
+If this is your first time here, do not start from the full architecture.
 
-Start from one concrete fact:
+Start from one bounded claim:
 
-**OMNIA does not try to understand meaning.**
-It measures whether an output remains structurally stable under controlled transformations.
+> OMNIA includes a credible OMNIABASE-based auxiliary review sensor for suspicious-clean outputs, supported by sandbox and human-rated sandbox evidence.
 
-That is the whole entry point.
+This means outputs that:
+
+- still look readable
+- are not obviously broken
+- may still pass shallow checks
+- still show structural suspiciousness
+
+That is the current supported role.
+
+Not more.
 
 ---
 
-## What to do first
+## Fastest reading path
 
 Read these in order:
 
-1. `docs/OMNIA_SILENT_FAILURE_GATE_v0.md`
-2. `docs/OMNIA_SILENT_FAILURE_GATE_v0_RESULTS.md`
+1. `docs/AT_A_GLANCE.md`
+2. `docs/PROOF_CARD.md`
+3. `docs/ONE_EXAMPLE.md`
+4. `docs/EXTERNAL_STATUS.md`
+5. `docs/PHASE6_FREEZE.md`
 
-Then inspect:
-
-3. `examples/omnia_silent_failure_gate_v0.py`
-
-This is the shortest path to the first externally legible proof of value.
+This is the shortest path from first contact to the current bounded claim.
 
 ---
 
 ## What OMNIA is
 
-OMNIA is a **post-hoc structural measurement engine**.
+OMNIA is a post-hoc structural measurement engine.
 
-It does not do semantic interpretation.  
-It does not replace the model.  
-It does not decide what is true.  
-It does not generate answers.
+It does not replace reasoning.  
+It does not interpret semantics.  
+It does not make final decisions.
 
-It measures:
-
-- structural stability
-- structural fragility
-- saturation
-- irreversibility
-- transformation-invariant residue
+Its role is to measure whether structure remains stable under controlled transformation.
 
 Core principle:
 
 ```text
-Structural truth = invariance under controlled transformation
+structural truth = invariance under transformation
 
 Architectural boundary:
 
@@ -55,121 +55,86 @@ measurement != inference != decision
 
 ---
 
-Why this matters
+What OMNIABASE currently does
 
-Many outputs look correct on the surface.
+OMNIABASE is currently best read as an auxiliary structural review sensor inside the broader OMNIA measurement architecture.
 
-But a system can produce:
+Its best-supported use is not direct rejection.
 
-a valid-looking answer
+Its best-supported use is not replacement of strong handcrafted baselines.
 
-valid JSON
+Its current role is narrower:
 
-a coherent sentence
+baseline handles obvious failures
 
-a plausible explanation
+OMNIABASE adds caution on suspicious-clean outputs
 
-
-while still being structurally fragile.
-
-OMNIA is built to detect that hidden fragility.
-
-This is the first practical use:
-
-silent failure detection
-
-Not when the system is obviously broken.
-When it still looks fine.
+final decision remains external
 
 
----
+The correct policy sketch is:
 
-Fastest proof path
-
-If you want the shortest concrete path, follow this order:
-
-1. docs/OMNIA_SILENT_FAILURE_GATE_v0.md
-
-
-2. docs/OMNIA_SILENT_FAILURE_GATE_v0_RESULTS.md
-
-
-3. examples/omnia_silent_failure_gate_v0.py
-
-
-4. README.md
-
-
-
-This order is intentional.
-
-It starts from effect, then mechanism, then full system.
+if baseline warns:
+    retry
+elif OMNIABASE warns:
+    review
+else:
+    accept
 
 
 ---
 
-What not to expect here
+What has been shown
 
-Do not expect:
+The repository currently shows:
 
-a chatbot
+bounded post-hoc structural measurement
 
-a theorem prover
+executable sandbox experiments
 
-a truth oracle
+a narrowed auxiliary review role
 
-a semantic evaluator
+sandbox and human-rated sandbox support for that role
 
-a benchmark leaderboard trick
-
-
-OMNIA is narrower than that.
-
-Its role is stricter:
-
-measure whether structure survives representation change
 
 
 ---
 
-Repository role
+What has not been shown
 
-This repository is the public canonical mirror of the MB-X.01 / OMNIA line.
+The repository does not currently show that OMNIA or OMNIABASE is:
 
-Its role is:
+a production-ready universal gate
 
-preserve the canonical state
+a replacement for strong handcrafted baselines
 
-expose the system publicly
+a semantic truth engine
 
-provide a stable external reference point
+a correctness oracle
+
+a final decision system
+
+deployment-proven at scale
 
 
-It is not optimized as a product page.
-
-This START_HERE.md exists to remove that friction.
+Any such claim would exceed the current evidence.
 
 
 ---
 
-If you only remember one line
+One example
 
-Remember this:
+This output is readable:
 
-OMNIA measures when an output still looks valid but is already structurally failing.
+The answer seems correct. The answer seems correct. The answer seems correct.
 
-Poi modifica il `README.md` aggiungendo **subito sotto titolo, DOI e autore** questo blocco:
+Readable does not automatically mean structurally safe.
 
-```markdown
-## New here
+That is the gap OMNIA is currently meant to measure.
 
-Start here: [START_HERE.md](./START_HERE.md)
 
-If the repository feels too broad at first glance, do not begin from theory.
+---
 
-Begin from the shortest external proof path:
+If you only keep one line
 
-- `docs/OMNIA_SILENT_FAILURE_GATE_v0.md`
-- `docs/OMNIA_SILENT_FAILURE_GATE_v0_RESULTS.md`
-- `examples/omnia_silent_failure_gate_v0.py`
-
+OMNIA currently supports a bounded auxiliary review role for suspicious-clean outputs.
