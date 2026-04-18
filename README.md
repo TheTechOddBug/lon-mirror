@@ -19,6 +19,7 @@ Use this short path first:
 2. [docs/ONE_EXAMPLE.md](./docs/ONE_EXAMPLE.md)
 3. [docs/OMNIABASE_REVIEW_SENSOR_NOTE.md](./docs/OMNIABASE_REVIEW_SENSOR_NOTE.md)
 4. [docs/PHASE6_FREEZE.md](./docs/PHASE6_FREEZE.md)
+5. [docs/EXTERNAL_STATUS.md](./docs/EXTERNAL_STATUS.md)
 
 That is the shortest current path from first contact to the strongest bounded claim supported by the repository.
 
@@ -301,6 +302,26 @@ docs/ONE_EXAMPLE.md
 
 ---
 
+External status
+
+For the clearest statement of what has and has not been shown, read:
+
+docs/EXTERNAL_STATUS.md
+
+
+The external claim boundary is intentionally narrow.
+
+The strongest current claim that remains technically honest is:
+
+> OMNIA includes a credible OMNIABASE-based auxiliary review sensor for suspicious-clean outputs, supported by sandbox and human-rated sandbox evidence.
+
+
+
+Anything stronger than that is premature.
+
+
+---
+
 What OMNIA is not claiming
 
 This repository does not currently claim that OMNIA or OMNIABASE is:
@@ -351,12 +372,17 @@ A good short path through the current repository is:
 8. docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
 
 
+9. docs/EXTERNAL_STATUS.md
+
+
 
 If the goal is the shortest explanation of the OMNIABASE role, start with:
 
 docs/PROOF_CARD.md
 
 docs/ONE_EXAMPLE.md
+
+docs/EXTERNAL_STATUS.md
 
 
 If the goal is the frozen conclusion of the current phase, read:
@@ -494,6 +520,8 @@ START_HERE.md
 docs/PROOF_CARD.md
 
 docs/ONE_EXAMPLE.md
+
+docs/EXTERNAL_STATUS.md
 
 
 Phase 6 result documents
