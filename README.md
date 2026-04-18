@@ -1,9 +1,25 @@
-# OMNIA v1.0 — Structural Measurement Engine
+# OMNIA v1.0 - Structural Measurement Engine
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19488048.svg)](https://doi.org/10.5281/zenodo.19488048)
 
 **Author:** Massimiliano Brighindi  
 **Project:** MB-X.01
+
+---
+
+## New here
+
+Start here: [START_HERE.md](./START_HERE.md)
+
+If this repository feels broad at first glance, do not begin from the full architecture.
+
+Use this short path first:
+
+1. `docs/PROOF_CARD.md`
+2. `docs/OMNIABASE_REVIEW_SENSOR_NOTE.md`
+3. `docs/PHASE6_FREEZE.md`
+
+That is the shortest current path from first contact to the strongest bounded claim supported by the repository.
 
 ---
 
@@ -60,7 +76,7 @@ Another layer may decide.
 
 OMNIA itself does not collapse these roles.
 
-This boundary matters because it prevents the system from being reinterpreted as:
+This boundary matters because it prevents the system from being misread as:
 
 a truth oracle
 
@@ -95,7 +111,7 @@ divergence time and resilience
 bounded post-hoc gate signals
 
 
-These measurements are intended to answer one narrow question:
+These measurements answer one narrow question:
 
 > what remains structurally stable when representation, perturbation, or viewpoint changes?
 
@@ -108,7 +124,7 @@ Current role of OMNIABASE
 
 OMNIABASE is currently positioned as an auxiliary structural review sensor inside the broader OMNIA measurement architecture.
 
-Its current best-supported role is not primary rejection and not replacement of strong handcrafted gate rules.
+Its best-supported role is not primary rejection and not replacement of strong handcrafted gate rules.
 
 Instead, it is used to add a bounded review signal on outputs that are still superficially acceptable but structurally suspicious, especially in the suspicious-clean region:
 
@@ -141,7 +157,7 @@ end-to-end sandbox policy tests
 human-rated sandbox evidence
 
 
-Short note:
+Shortest role documents:
 
 docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
 
@@ -159,7 +175,7 @@ Why this repository exists
 
 This repository exists to make structural diagnostics executable, testable, and bounded.
 
-The goal is not to produce larger narratives.
+The goal is not to produce broader narratives.
 
 The goal is to freeze a usable architecture where:
 
@@ -186,7 +202,7 @@ Dual-Echo / OMNIAMIND lineage
 -> bounded post-hoc gate behavior
 -> OMNIABASE auxiliary review sensing
 
-This means the repo is no longer just conceptual.
+This means the repository is no longer only conceptual.
 
 It now contains:
 
@@ -210,7 +226,7 @@ OMNIA should currently be read as a layered structural toolkit.
 
 Baseline layer
 
-Handles obvious failures well:
+Handles obvious failures well, such as:
 
 loops
 
@@ -236,9 +252,9 @@ That is the correct current interpretation.
 
 ---
 
-Current best-supported use-case
+Current best-supported use case
 
-The strongest currently supported use-case is:
+The strongest currently supported use case is:
 
 auxiliary review sensing for suspicious-clean outputs
 
@@ -275,7 +291,7 @@ a final decision system
 a completed deployment layer
 
 
-Those claims would be stronger than the current evidence.
+Those claims would exceed the current evidence.
 
 
 ---
@@ -284,23 +300,28 @@ Repository guide
 
 A good short path through the current repository is:
 
-README.md
+1. README.md
+
+
+2. docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
+
+
+3. docs/PHASE6_FREEZE.md
+
+
+4. docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
+
+
+5. docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
+
+
+
+If the goal is the shortest explanation of the OMNIABASE role, start with:
 
 docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
 
-docs/PHASE6_FREEZE.md
 
-docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
-
-docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
-
-
-If you want the shortest current explanation of the OMNIABASE role, start with:
-
-docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
-
-
-If you want the frozen conclusion of the current phase, read:
+If the goal is the frozen conclusion of the current phase, read:
 
 docs/PHASE6_FREEZE.md
 
@@ -349,13 +370,13 @@ elif OMNIABASE warns:
 else:
     accept
 
-This is important because it preserves the right hierarchy:
+This preserves the right hierarchy:
 
 baseline handles obvious failures
 
 OMNIABASE handles subtle suspiciousness
 
-neither one becomes a universal judge
+neither becomes a universal judge
 
 
 
@@ -363,19 +384,19 @@ neither one becomes a universal judge
 
 Canonical examples
 
-Example 1 — baseline is sufficient
+Example 1 - baseline is sufficient
 
 retry retry retry retry retry
 
 A strong handcrafted baseline already catches this.
 
-Example 2 — OMNIABASE adds useful caution
+Example 2 - OMNIABASE adds useful caution
 
 The answer seems correct. The answer seems correct. The answer seems correct.
 
 This may not always be strong enough for explicit heuristics, but it is structurally suspicious enough to justify review.
 
-Example 3 — OMNIABASE can be stricter than needed
+Example 3 - OMNIABASE can be stricter than needed
 
 12121213
 
@@ -421,14 +442,14 @@ Useful thresholds exist, but they are not yet final.
 
 Current file landmarks
 
-Core and role documents:
+Core and role documents
 
 docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
 
 docs/PHASE6_FREEZE.md
 
 
-Phase 6 result documents:
+Phase 6 result documents
 
 docs/OMNIABASE_SYNTHETIC_BENCHMARK_v0_RESULTS.md
 
@@ -443,7 +464,7 @@ docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
 docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
 
 
-Example scripts:
+Example scripts
 
 examples/omnia_base_gate_adapter_demo.py
 
@@ -462,7 +483,7 @@ examples/omnia_human_rated_validation_pack_v0.py
 examples/omnia_human_validation_compare_v0.py
 
 
-Core lens:
+Core lens
 
 omnia/lenses/base_lens.py
 
