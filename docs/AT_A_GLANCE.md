@@ -49,19 +49,28 @@ Anything stronger is premature.
 
 ---
 
-One example
+Two minimal executable cases
 
-Readable is not the same as structurally safe.
+Case 1 - suspicious-clean output
 
-Example:
+INPUT: The answer seems correct. The answer seems correct. The answer seems correct.
+BASELINE: no warning
+OMNIA: review
+ACTION: review
 
-The answer seems correct. The answer seems correct. The answer seems correct.
+Case 2 - obvious failure
 
-This is readable and superficially acceptable.
+INPUT: retry retry retry retry retry
+BASELINE: warning
+OMNIA: review
+ACTION: retry
 
-But it is also structurally suspicious enough to justify review.
+These two cases expose the current bounded policy split:
 
-That is the regime where OMNIABASE currently adds value.
+suspicious-clean case -> review
+
+obvious failure case -> retry
+
 
 
 ---
@@ -116,13 +125,16 @@ For the shortest correct reading path:
 1. docs/AT_A_GLANCE.md
 
 
-2. docs/PROOF_CARD.md
+2. docs/RUN_OMNIA_NOW_RESULT.md
 
 
-3. docs/ONE_EXAMPLE.md
+3. docs/RUN_OMNIA_NOW_SECOND_RESULT.md
 
 
-4. docs/EXTERNAL_STATUS.md
+4. docs/PROOF_CARD.md
+
+
+5. docs/EXTERNAL_STATUS.md
 
 
 
