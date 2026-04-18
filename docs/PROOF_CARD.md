@@ -1,123 +1,180 @@
 # OMNIA - Proof Card
 
-## One claim
+## One sentence
 
-OMNIA can flag outputs that still look acceptable on the surface but are already structurally fragile.
-
-This is not semantic judgment.
-
-This is post-hoc structural measurement under controlled transformation.
+OMNIA measures when an output still looks acceptable on the surface but is already structurally fragile.
 
 ---
 
-## One concrete use
+## What it is
 
-**Silent Failure Gate**
+OMNIA is a post-hoc structural measurement engine.
 
-A model output may appear fine because it is:
+It does not interpret semantics.  
+It does not replace reasoning.  
+It does not make final decisions.
 
-- fluent
-- formatted correctly
-- superficially consistent
+Its role is narrower:
 
-and still be fragile.
+**measure whether structure remains stable under controlled transformation**
 
-OMNIA is built to detect that hidden failure regime before it is mistaken for stability.
-
----
-
-## One operational principle
+Core principle:
 
 ```text
-Structural truth = invariance under controlled transformation
+structural truth = invariance under transformation
+
+Architectural boundary:
 
 measurement != inference != decision
 
 
 ---
 
-One example of what OMNIA checks
+What the current evidence supports
 
-A system produces an answer that remains acceptable only in one narrow form.
+The strongest technically honest claim is:
 
-After controlled transformations, the output shows:
-
-compatibility drop
-
-coherence loss
-
-fragility increase
-
-reduced structural residue
+> OMNIABASE currently works as an auxiliary review sensor for suspicious-clean outputs.
 
 
-That is not robust structure.
 
-That is surface validity masking instability.
+That means outputs that:
 
+still look readable
 
----
+are not obviously broken
 
-One practical effect
+may still pass a shallow gate
 
-OMNIA can be used as a post-hoc gate to trigger:
-
-low confidence flag
-
-retry
-
-escalation
+but show rigidity, soft repetition, low diversity, or suspicious structural regularity
 
 
-This makes it useful where silent failure matters more than visible failure.
+This is the current supported role.
+
+Not more.
 
 
 ---
 
-Shortest path to inspect
+What this does in practice
 
-docs/OMNIA_SILENT_FAILURE_GATE_v0.md
+The best current use is a layered policy:
 
-docs/OMNIA_SILENT_FAILURE_GATE_v0_RESULTS.md
+if baseline warns:
+    retry
+elif OMNIABASE warns:
+    review
+else:
+    accept
 
-examples/omnia_silent_failure_gate_v0.py
+Interpretation:
+
+strong handcrafted baselines handle obvious failures
+
+OMNIABASE adds caution on subtler suspicious-clean cases
+
+final decision remains external
+
+
+
+---
+
+Why this matters
+
+Many outputs fail in a quiet way.
+
+They are not visibly collapsed.
+They are not obvious garbage.
+They may still look acceptable.
+
+But structurally they are already weak.
+
+OMNIA is meant to detect that hidden weakness before it is mistaken for stability.
+
+
+---
+
+What OMNIA is not claiming
+
+OMNIA and OMNIABASE are not currently claimed as:
+
+a production-ready universal gate
+
+a replacement for strong handcrafted baselines
+
+a semantic truth engine
+
+a correctness oracle
+
+a final decision system
+
+
+Those claims would exceed the evidence.
+
+
+---
+
+Shortest proof path
+
+Read these in order:
+
+1. docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
+
+
+2. docs/PHASE6_FREEZE.md
+
+
+3. docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
+
+
+4. docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
+
 
 
 
 ---
 
-Repository boundary
+Minimal examples
 
-OMNIA does not:
+Example 1 - obvious failure
 
-interpret meaning
+retry retry retry retry retry
 
-replace the underlying model
+A strong baseline should already catch this.
 
-decide truth
+Example 2 - suspicious-clean output
 
-act as a semantic evaluator
+The answer seems correct. The answer seems correct. The answer seems correct.
 
+This may still pass shallow checks, but it is structurally suspicious enough to justify review.
 
-It measures structural behavior only.
+Example 3 - near-threshold pattern
+
+12121213
+
+This can trigger caution even when a human might still accept it.
+
+That is why OMNIABASE should currently remain a review sensor, not a rejection engine.
 
 
 ---
 
-If reduced to one sentence
+Current limitation
 
-OMNIA measures when an output still looks valid but is already structurally failing.
+The current text-facing bridge still depends on:
 
-Poi aggiungi nel `README.md`, dentro la sezione iniziale, questo blocco subito sotto `New here`:
+text -> deterministic integer projection -> OMNIABASE lens
 
-```markdown
-## Proof in one page
+So the current role is useful, bounded, and credible, but not final.
 
-For the shortest single-page explanation, read:
 
-- [docs/PROOF_CARD.md](./docs/PROOF_CARD.md)
+---
 
-Commit message
+Final compressed statement
 
-Add one-page proof card for first external understanding
+OMNIA did not prove a universal gate.
+
+It did something narrower and more honest:
+
+it reduced a broad idea to a testable auxiliary review role with bounded evidence.
 
