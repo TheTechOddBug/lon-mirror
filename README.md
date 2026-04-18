@@ -16,11 +16,12 @@ If this repository feels broad at first glance, do not begin from the full archi
 Use this short path first:
 
 1. [docs/AT_A_GLANCE.md](./docs/AT_A_GLANCE.md)
-2. [docs/PROOF_CARD.md](./docs/PROOF_CARD.md)
-3. [docs/ONE_EXAMPLE.md](./docs/ONE_EXAMPLE.md)
-4. [docs/OMNIABASE_REVIEW_SENSOR_NOTE.md](./docs/OMNIABASE_REVIEW_SENSOR_NOTE.md)
-5. [docs/PHASE6_FREEZE.md](./docs/PHASE6_FREEZE.md)
-6. [docs/EXTERNAL_STATUS.md](./docs/EXTERNAL_STATUS.md)
+2. [docs/RUN_OMNIA_NOW_RESULT.md](./docs/RUN_OMNIA_NOW_RESULT.md)
+3. [docs/PROOF_CARD.md](./docs/PROOF_CARD.md)
+4. [docs/ONE_EXAMPLE.md](./docs/ONE_EXAMPLE.md)
+5. [docs/OMNIABASE_REVIEW_SENSOR_NOTE.md](./docs/OMNIABASE_REVIEW_SENSOR_NOTE.md)
+6. [docs/PHASE6_FREEZE.md](./docs/PHASE6_FREEZE.md)
+7. [docs/EXTERNAL_STATUS.md](./docs/EXTERNAL_STATUS.md)
 
 That is the shortest current path from first contact to the strongest bounded claim supported by the repository.
 
@@ -277,6 +278,35 @@ That is where the current evidence is strongest.
 
 ---
 
+One concrete executable result
+
+A first minimal executable result is now available in:
+
+docs/RUN_OMNIA_NOW_RESULT.md
+
+
+Observed demo pattern:
+
+INPUT: The answer seems correct. The answer seems correct. The answer seems correct.
+BASELINE: no warning
+BASELINE_REASON: no obvious baseline failure
+OMNIA: review
+OMNIA_REASON: suspicious-clean structural regularity
+OMNIA_SCORE: 0.933
+ACTION: review
+CLAIM: bounded review signal on suspicious-clean output
+
+This is not a universal proof.
+
+It is a bounded executable demonstration of the gap:
+
+BASELINE: no warning
+OMNIA: review
+ACTION: review
+
+
+---
+
 One concrete example
 
 A readable output is not automatically a structurally safe output.
@@ -358,31 +388,36 @@ A good short path through the current repository is:
 3. docs/AT_A_GLANCE.md
 
 
-4. docs/PROOF_CARD.md
+4. docs/RUN_OMNIA_NOW_RESULT.md
 
 
-5. docs/ONE_EXAMPLE.md
+5. docs/PROOF_CARD.md
 
 
-6. docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
+6. docs/ONE_EXAMPLE.md
 
 
-7. docs/PHASE6_FREEZE.md
+7. docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
 
 
-8. docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
+8. docs/PHASE6_FREEZE.md
 
 
-9. docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
+9. docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
 
 
-10. docs/EXTERNAL_STATUS.md
+10. docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
+
+
+11. docs/EXTERNAL_STATUS.md
 
 
 
 If the goal is the shortest explanation of the OMNIABASE role, start with:
 
 docs/AT_A_GLANCE.md
+
+docs/RUN_OMNIA_NOW_RESULT.md
 
 docs/PROOF_CARD.md
 
@@ -525,6 +560,8 @@ START_HERE.md
 
 docs/AT_A_GLANCE.md
 
+docs/RUN_OMNIA_NOW_RESULT.md
+
 docs/PROOF_CARD.md
 
 docs/ONE_EXAMPLE.md
@@ -548,6 +585,8 @@ docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
 
 
 Example scripts
+
+RUN_OMNIA_NOW.py
 
 examples/omnia_base_gate_adapter_demo.py
 
