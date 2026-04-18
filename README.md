@@ -15,11 +15,12 @@ If this repository feels broad at first glance, do not begin from the full archi
 
 Use this short path first:
 
-1. [docs/PROOF_CARD.md](./docs/PROOF_CARD.md)
-2. [docs/ONE_EXAMPLE.md](./docs/ONE_EXAMPLE.md)
-3. [docs/OMNIABASE_REVIEW_SENSOR_NOTE.md](./docs/OMNIABASE_REVIEW_SENSOR_NOTE.md)
-4. [docs/PHASE6_FREEZE.md](./docs/PHASE6_FREEZE.md)
-5. [docs/EXTERNAL_STATUS.md](./docs/EXTERNAL_STATUS.md)
+1. [docs/AT_A_GLANCE.md](./docs/AT_A_GLANCE.md)
+2. [docs/PROOF_CARD.md](./docs/PROOF_CARD.md)
+3. [docs/ONE_EXAMPLE.md](./docs/ONE_EXAMPLE.md)
+4. [docs/OMNIABASE_REVIEW_SENSOR_NOTE.md](./docs/OMNIABASE_REVIEW_SENSOR_NOTE.md)
+5. [docs/PHASE6_FREEZE.md](./docs/PHASE6_FREEZE.md)
+6. [docs/EXTERNAL_STATUS.md](./docs/EXTERNAL_STATUS.md)
 
 That is the shortest current path from first contact to the strongest bounded claim supported by the repository.
 
@@ -354,29 +355,34 @@ A good short path through the current repository is:
 2. START_HERE.md
 
 
-3. docs/PROOF_CARD.md
+3. docs/AT_A_GLANCE.md
 
 
-4. docs/ONE_EXAMPLE.md
+4. docs/PROOF_CARD.md
 
 
-5. docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
+5. docs/ONE_EXAMPLE.md
 
 
-6. docs/PHASE6_FREEZE.md
+6. docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
 
 
-7. docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
+7. docs/PHASE6_FREEZE.md
 
 
-8. docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
+8. docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
 
 
-9. docs/EXTERNAL_STATUS.md
+9. docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
+
+
+10. docs/EXTERNAL_STATUS.md
 
 
 
 If the goal is the shortest explanation of the OMNIABASE role, start with:
+
+docs/AT_A_GLANCE.md
 
 docs/PROOF_CARD.md
 
@@ -516,6 +522,8 @@ docs/PHASE6_FREEZE.md
 Entry documents
 
 START_HERE.md
+
+docs/AT_A_GLANCE.md
 
 docs/PROOF_CARD.md
 
