@@ -34,19 +34,19 @@ What the current evidence supports
 
 The strongest technically honest claim is:
 
-> OMNIABASE currently works as an auxiliary review sensor for suspicious-clean outputs.
+> OMNIA includes a credible OMNIABASE-based auxiliary review sensor for suspicious-clean outputs, supported by sandbox and human-rated sandbox evidence.
 
 
 
-That means outputs that:
+This means outputs that:
 
 still look readable
 
 are not obviously broken
 
-may still pass a shallow gate
+may still pass shallow checks
 
-but show rigidity, soft repetition, low diversity, or suspicious structural regularity
+still show structural suspiciousness
 
 
 This is the current supported role.
@@ -118,16 +118,16 @@ Shortest proof path
 
 Read these in order:
 
-1. docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
+1. docs/AT_A_GLANCE.md
 
 
-2. docs/PHASE6_FREEZE.md
+2. docs/ONE_EXAMPLE.md
 
 
-3. docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
+3. docs/EXTERNAL_STATUS.md
 
 
-4. docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
+4. docs/PHASE6_FREEZE.md
 
 
 
@@ -177,4 +177,3 @@ OMNIA did not prove a universal gate.
 It did something narrower and more honest:
 
 it reduced a broad idea to a testable auxiliary review role with bounded evidence.
-
