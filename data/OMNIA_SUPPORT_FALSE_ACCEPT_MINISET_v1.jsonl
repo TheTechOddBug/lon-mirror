@@ -1,0 +1,20 @@
+{"id":"v1_ex001","text":"retry retry retry retry retry","target_label":"retry","group":"obvious_failure"}
+{"id":"v1_ex002","text":"aaaaaaaaaaaaaaa","target_label":"retry","group":"obvious_failure"}
+{"id":"v1_ex003","text":"Your request has been processed successfully. Your request has been processed successfully.","target_label":"review","group":"suspicious_clean"}
+{"id":"v1_ex004","text":"We are sorry for the inconvenience. We are sorry for the inconvenience. We are sorry for the inconvenience.","target_label":"review","group":"suspicious_clean"}
+{"id":"v1_ex005","text":"We can help with that. We can help with that. Please check again.","target_label":"review","group":"suspicious_clean"}
+{"id":"v1_ex006","text":"Your order was delivered yesterday. If you still cannot find it, please check with neighbors or the building reception.","target_label":"accept","group":"acceptable"}
+{"id":"v1_ex007","text":"I cannot change the shipping address after dispatch, but I can help you contact support.","target_label":"accept","group":"acceptable"}
+{"id":"v1_ex008","text":"Please reset your password using the link in the email we just sent.","target_label":"accept","group":"acceptable"}
+{"id":"v1_ex009","text":"The payment was declined. Please verify your card details and try again.","target_label":"accept","group":"acceptable"}
+{"id":"v1_ex010","text":"Your refund request is under review. You will receive an update within 3 business days.","target_label":"accept","group":"acceptable"}
+{"id":"v1_ex011","text":"I can confirm the package is delayed, but it is still in transit and no action is required right now.","target_label":"accept","group":"acceptable"}
+{"id":"v1_ex012","text":"The account has been verified and no further action is required.","target_label":"accept","group":"acceptable"}
+{"id":"v1_ex013","text":"Your cancellation has been submitted. Your cancellation has been submitted. A confirmation email will follow.","target_label":"review","group":"suspicious_clean"}
+{"id":"v1_ex014","text":"We have received your request and are currently reviewing it. We have received your request and are currently reviewing it.","target_label":"review","group":"suspicious_clean"}
+{"id":"v1_ex015","text":"Your invoice is available in the billing section of your account dashboard.","target_label":"accept","group":"acceptable"}
+{"id":"v1_ex016","text":"You can update your notification settings from the Preferences page after signing in.","target_label":"accept","group":"acceptable"}
+{"id":"v1_ex017","text":"Your subscription remains active until the end of the current billing cycle.","target_label":"accept","group":"acceptable"}
+{"id":"v1_ex018","text":"The replacement request was approved and the new item will ship within 2 business days.","target_label":"accept","group":"acceptable"}
+{"id":"v1_ex019","text":"I understand your concern and I understand your concern and I understand your concern.","target_label":"review","group":"suspicious_clean"}
+{"id":"v1_ex020","text":"Your case has been escalated to a specialist and you will receive a reply by email.","target_label":"accept","group":"acceptable"}
