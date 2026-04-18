@@ -132,5 +132,3 @@ For the shortest correct reading path:
 One-line summary
 
 OMNIA currently supports a bounded auxiliary review role for suspicious-clean outputs, not a universal gate claim.
-
-
