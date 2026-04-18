@@ -75,6 +75,22 @@ obvious failure case -> retry
 
 ---
 
+First damage-proxy result
+
+On a 12-example support-style miniset:
+
+BASELINE_FALSE_ACCEPTS: 4
+COMBINED_FALSE_ACCEPTS: 0
+FALSE_ACCEPT_REDUCTION: 4
+EXTRA_REVIEWS_FROM_OMNIA: 4
+
+This is the first bounded proxy linking OMNIA to a realistic operational cost pattern:
+
+false accept reduction under a layered policy
+
+
+---
+
 One policy
 
 if baseline warns:
@@ -131,10 +147,13 @@ For the shortest correct reading path:
 3. docs/RUN_OMNIA_NOW_SECOND_RESULT.md
 
 
-4. docs/PROOF_CARD.md
+4. docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md
 
 
-5. docs/EXTERNAL_STATUS.md
+5. docs/PROOF_CARD.md
+
+
+6. docs/EXTERNAL_STATUS.md
 
 
 
