@@ -1,0 +1,21 @@
+OMNIA is now showing the minimum thing a structural system must show if it wants to be evaluated seriously:
+
+not a theory,
+not a slogan,
+but a visible policy split.
+
+Case 1:
+surface looks acceptable
+baseline does not fire
+OMNIA flags review
+
+Case 2:
+failure is obvious
+baseline fires
+action is retry
+
+This is the current bounded claim:
+OMNIA can catch silent structural fragility that a baseline may miss, while preserving the hierarchy where strong baselines still handle obvious failures.
+
+Repo:
+https://github.com/Tuttotorna/lon-mirror
