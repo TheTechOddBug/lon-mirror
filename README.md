@@ -17,11 +17,12 @@ Use this short path first:
 
 1. [docs/AT_A_GLANCE.md](./docs/AT_A_GLANCE.md)
 2. [docs/RUN_OMNIA_NOW_RESULT.md](./docs/RUN_OMNIA_NOW_RESULT.md)
-3. [docs/PROOF_CARD.md](./docs/PROOF_CARD.md)
-4. [docs/ONE_EXAMPLE.md](./docs/ONE_EXAMPLE.md)
-5. [docs/OMNIABASE_REVIEW_SENSOR_NOTE.md](./docs/OMNIABASE_REVIEW_SENSOR_NOTE.md)
-6. [docs/PHASE6_FREEZE.md](./docs/PHASE6_FREEZE.md)
-7. [docs/EXTERNAL_STATUS.md](./docs/EXTERNAL_STATUS.md)
+3. [docs/RUN_OMNIA_NOW_SECOND_RESULT.md](./docs/RUN_OMNIA_NOW_SECOND_RESULT.md)
+4. [docs/PROOF_CARD.md](./docs/PROOF_CARD.md)
+5. [docs/ONE_EXAMPLE.md](./docs/ONE_EXAMPLE.md)
+6. [docs/OMNIABASE_REVIEW_SENSOR_NOTE.md](./docs/OMNIABASE_REVIEW_SENSOR_NOTE.md)
+7. [docs/PHASE6_FREEZE.md](./docs/PHASE6_FREEZE.md)
+8. [docs/EXTERNAL_STATUS.md](./docs/EXTERNAL_STATUS.md)
 
 That is the shortest current path from first contact to the strongest bounded claim supported by the repository.
 
@@ -278,31 +279,69 @@ That is where the current evidence is strongest.
 
 ---
 
-One concrete executable result
+Minimal executable policy split
 
-A first minimal executable result is now available in:
+The current entry-point demo already shows two minimal readable regimes.
 
-docs/RUN_OMNIA_NOW_RESULT.md
-
-
-Observed demo pattern:
+Case 1 - suspicious-clean output
 
 INPUT: The answer seems correct. The answer seems correct. The answer seems correct.
 BASELINE: no warning
-BASELINE_REASON: no obvious baseline failure
 OMNIA: review
-OMNIA_REASON: suspicious-clean structural regularity
-OMNIA_SCORE: 0.933
 ACTION: review
-CLAIM: bounded review signal on suspicious-clean output
 
-This is not a universal proof.
+Case 2 - obvious failure
 
-It is a bounded executable demonstration of the gap:
+INPUT: retry retry retry retry retry
+BASELINE: warning
+OMNIA: review
+ACTION: retry
 
+These two cases are enough to expose the current bounded policy split:
+
+suspicious-clean case -> review
+
+obvious failure case -> retry
+
+
+This does not prove a universal gate.
+
+It shows that the layered policy is at least executable, readable, and behaviorally distinct across two short cases.
+
+
+---
+
+Minimal executable results
+
+Two minimal executable results are now available:
+
+docs/RUN_OMNIA_NOW_RESULT.md
+
+docs/RUN_OMNIA_NOW_SECOND_RESULT.md
+
+
+Observed demo patterns:
+
+CASE 1
+INPUT: The answer seems correct. The answer seems correct. The answer seems correct.
 BASELINE: no warning
 OMNIA: review
 ACTION: review
+
+CASE 2
+INPUT: retry retry retry retry retry
+BASELINE: warning
+OMNIA: review
+ACTION: retry
+
+This is not a universal proof.
+
+It is a bounded executable demonstration that the current layered policy produces two distinct readable regimes:
+
+suspicious-clean case -> review
+
+obvious failure case -> retry
+
 
 
 ---
@@ -391,25 +430,28 @@ A good short path through the current repository is:
 4. docs/RUN_OMNIA_NOW_RESULT.md
 
 
-5. docs/PROOF_CARD.md
+5. docs/RUN_OMNIA_NOW_SECOND_RESULT.md
 
 
-6. docs/ONE_EXAMPLE.md
+6. docs/PROOF_CARD.md
 
 
-7. docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
+7. docs/ONE_EXAMPLE.md
 
 
-8. docs/PHASE6_FREEZE.md
+8. docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
 
 
-9. docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
+9. docs/PHASE6_FREEZE.md
 
 
-10. docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
+10. docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
 
 
-11. docs/EXTERNAL_STATUS.md
+11. docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
+
+
+12. docs/EXTERNAL_STATUS.md
 
 
 
@@ -418,6 +460,8 @@ If the goal is the shortest explanation of the OMNIABASE role, start with:
 docs/AT_A_GLANCE.md
 
 docs/RUN_OMNIA_NOW_RESULT.md
+
+docs/RUN_OMNIA_NOW_SECOND_RESULT.md
 
 docs/PROOF_CARD.md
 
@@ -561,6 +605,8 @@ START_HERE.md
 docs/AT_A_GLANCE.md
 
 docs/RUN_OMNIA_NOW_RESULT.md
+
+docs/RUN_OMNIA_NOW_SECOND_RESULT.md
 
 docs/PROOF_CARD.md
 
