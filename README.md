@@ -16,17 +16,18 @@ If this repository feels broad at first glance, do not begin from the full archi
 Use this short path first:
 
 1. [docs/AT_A_GLANCE.md](./docs/AT_A_GLANCE.md)
-2. [docs/RUN_OMNIA_NOW_RESULT.md](./docs/RUN_OMNIA_NOW_RESULT.md)
-3. [docs/RUN_OMNIA_NOW_SECOND_RESULT.md](./docs/RUN_OMNIA_NOW_SECOND_RESULT.md)
-4. [docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md](./docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md)
-5. [docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md](./docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md)
-6. [docs/OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md](./docs/OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md)
-7. [docs/OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md](./docs/OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md)
-8. [docs/PROOF_CARD.md](./docs/PROOF_CARD.md)
-9. [docs/ONE_EXAMPLE.md](./docs/ONE_EXAMPLE.md)
-10. [docs/OMNIABASE_REVIEW_SENSOR_NOTE.md](./docs/OMNIABASE_REVIEW_SENSOR_NOTE.md)
-11. [docs/PHASE6_FREEZE.md](./docs/PHASE6_FREEZE.md)
-12. [docs/EXTERNAL_STATUS.md](./docs/EXTERNAL_STATUS.md)
+2. [docs/OMNIA_10_SECONDS_DEMO_RESULT.md](./docs/OMNIA_10_SECONDS_DEMO_RESULT.md)
+3. [docs/RUN_OMNIA_NOW_RESULT.md](./docs/RUN_OMNIA_NOW_RESULT.md)
+4. [docs/RUN_OMNIA_NOW_SECOND_RESULT.md](./docs/RUN_OMNIA_NOW_SECOND_RESULT.md)
+5. [docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md](./docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md)
+6. [docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md](./docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md)
+7. [docs/OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md](./docs/OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md)
+8. [docs/OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md](./docs/OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md)
+9. [docs/PROOF_CARD.md](./docs/PROOF_CARD.md)
+10. [docs/ONE_EXAMPLE.md](./docs/ONE_EXAMPLE.md)
+11. [docs/OMNIABASE_REVIEW_SENSOR_NOTE.md](./docs/OMNIABASE_REVIEW_SENSOR_NOTE.md)
+12. [docs/PHASE6_FREEZE.md](./docs/PHASE6_FREEZE.md)
+13. [docs/EXTERNAL_STATUS.md](./docs/EXTERNAL_STATUS.md)
 
 That is the shortest current path from first contact to the strongest bounded claim supported by the repository.
 
@@ -340,6 +341,24 @@ That is where the current evidence is strongest.
 
 ---
 
+Fastest visible entry point
+
+The shortest visible demonstration is now available in:
+
+docs/OMNIA_10_SECONDS_DEMO_RESULT.md
+
+
+Observed pattern:
+
+BASELINE: no warning
+OMNIA: review
+ACTION: review
+
+This is the smallest readable form of the current OMNIA role.
+
+
+---
+
 Minimal executable policy split
 
 The current entry-point demo already shows two minimal readable regimes.
@@ -374,7 +393,9 @@ It shows that the layered policy is at least executable, readable, and behaviora
 
 Minimal executable results
 
-Two minimal executable results are now available:
+Three compressed executable entry points are now available:
+
+docs/OMNIA_10_SECONDS_DEMO_RESULT.md
 
 docs/RUN_OMNIA_NOW_RESULT.md
 
@@ -382,6 +403,11 @@ docs/RUN_OMNIA_NOW_SECOND_RESULT.md
 
 
 Observed demo patterns:
+
+10 SECONDS
+BASELINE: no warning
+OMNIA: review
+ACTION: review
 
 CASE 1
 INPUT: The answer seems correct. The answer seems correct. The answer seems correct.
@@ -397,12 +423,7 @@ ACTION: retry
 
 This is not a universal proof.
 
-It is a bounded executable demonstration that the current layered policy produces two distinct readable regimes:
-
-suspicious-clean case -> review
-
-obvious failure case -> retry
-
+It is a bounded executable demonstration that the current layered policy produces distinct readable regimes.
 
 
 ---
@@ -566,49 +587,54 @@ A good short path through the current repository is:
 3. docs/AT_A_GLANCE.md
 
 
-4. docs/RUN_OMNIA_NOW_RESULT.md
+4. docs/OMNIA_10_SECONDS_DEMO_RESULT.md
 
 
-5. docs/RUN_OMNIA_NOW_SECOND_RESULT.md
+5. docs/RUN_OMNIA_NOW_RESULT.md
 
 
-6. docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md
+6. docs/RUN_OMNIA_NOW_SECOND_RESULT.md
 
 
-7. docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md
+7. docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md
 
 
-8. docs/OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md
+8. docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md
 
 
-9. docs/OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md
+9. docs/OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md
 
 
-10. docs/PROOF_CARD.md
+10. docs/OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md
 
 
-11. docs/ONE_EXAMPLE.md
+11. docs/PROOF_CARD.md
 
 
-12. docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
+12. docs/ONE_EXAMPLE.md
 
 
-13. docs/PHASE6_FREEZE.md
+13. docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
 
 
-14. docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
+14. docs/PHASE6_FREEZE.md
 
 
-15. docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
+15. docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
 
 
-16. docs/EXTERNAL_STATUS.md
+16. docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
+
+
+17. docs/EXTERNAL_STATUS.md
 
 
 
 If the goal is the shortest explanation of the OMNIABASE role, start with:
 
 docs/AT_A_GLANCE.md
+
+docs/OMNIA_10_SECONDS_DEMO_RESULT.md
 
 docs/RUN_OMNIA_NOW_RESULT.md
 
@@ -769,6 +795,8 @@ START_HERE.md
 
 docs/AT_A_GLANCE.md
 
+docs/OMNIA_10_SECONDS_DEMO_RESULT.md
+
 docs/RUN_OMNIA_NOW_RESULT.md
 
 docs/RUN_OMNIA_NOW_SECOND_RESULT.md
@@ -806,6 +834,8 @@ docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
 Example scripts
 
 RUN_OMNIA_NOW.py
+
+demo/omnia_10_seconds.py
 
 examples/omnia_support_false_accept_miniset_v0.py
 
