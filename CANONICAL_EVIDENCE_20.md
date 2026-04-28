@@ -89,10 +89,10 @@ instead of collapsing structural behavior into a single scalar.
 | 01 | readable / superficially acceptable | OMNIABASE review signal where baseline gives no warning | suspicious-clean output escalated to review instead of accept | `docs/OMNIA_10_SECONDS_DEMO_RESULT.md` |
 | 02 | formally correct answer | Ω and Score⁺ degrade under controlled clause augmentation | correctness preserved while structural stability drops | `RESULTS_GSM_FORMAL_METRICS_V0.md` |
 | 03 | recoverable vs non-recoverable transformations | IRI separates temporary deformation from irreversible loss | lossy deletion produces maximal residue while recoverable type drift does not | `RESULTS_IRI_VALIDATION_V2.md` |
-| 04 | pending | pending | pending | pending |
-| 05 | pending | pending | pending | pending |
-| 06 | pending | pending | pending | pending |
-| 07 | pending | pending | pending | pending |
+| 04 | stable vs oscillating trajectories | SEI separates saturation from continued instability | saturated trajectory scores near 1 while oscillating trajectory drops | `RESULTS_SEI_VALIDATION_V0.md` |
+| 05 | rapid vs slow divergence | TΔ separates early threshold crossing from delayed crossing | rapid divergence crosses θ at step 2, slow divergence at step 6 | `RESULTS_TDELTA_VALIDATION_V0.md` |
+| 06 | recovery paths | R separates perfect, partial, and failed recovery | resilience decreases from 1.0 to 0.0 across recovery quality | `RESULTS_R_VALIDATION_V0.md` |
+| 07 | invariant extraction | Ω̂ returns surviving components instead of a scalar score | `active` and `id` survive while `name` and `score` fail | `RESULTS_OMEGA_HAT_VALIDATION_V0.md` |
 | 08 | pending | pending | pending | pending |
 | 09 | pending | pending | pending | pending |
 | 10 | pending | pending | pending | pending |
@@ -379,6 +379,388 @@ Irreversible loss requires residual damage after attempted recovery.
 
 ```text
 RESULTS_IRI_VALIDATION_V2.md
+```
+
+---
+
+# Case 04 — Saturation vs Instability
+
+## Context
+
+This case comes from the SEI validation.
+
+SEI measures whether a structural trajectory stabilizes or continues to oscillate.
+
+It does not measure correctness.
+
+It measures saturation of structural behavior.
+
+---
+
+## Tested Trajectories
+
+```text
+saturated:
+[0.92, 0.91, 0.91, 0.90, 0.91, 0.91]
+
+unstable:
+[0.95, 0.40, 0.88, 0.35, 0.90, 0.30]
+
+converging:
+[0.55, 0.68, 0.76, 0.82, 0.84, 0.85]
+```
+
+---
+
+## Results
+
+```text
+SEI(saturated)  = 0.999840
+SEI(converging) = 0.945600
+SEI(unstable)   = 0.617600
+```
+
+---
+
+## Surface Status
+
+All trajectories are valid bounded Ω sequences.
+
+The difference is not validity.
+
+The difference is dynamic behavior.
+
+---
+
+## Structural Signal
+
+SEI separates:
+
+```text
+stable / saturated behavior
+```
+
+from:
+
+```text
+continued oscillation
+```
+
+The saturated trajectory scores near 1.
+
+The oscillating trajectory drops.
+
+---
+
+## Why This Matters
+
+A system can keep producing bounded outputs while remaining dynamically unstable.
+
+SEI measures stabilization, not correctness.
+
+---
+
+## Supported Claim
+
+```text
+Stability over time is different from instantaneous correctness.
+```
+
+---
+
+## Source
+
+```text
+RESULTS_SEI_VALIDATION_V0.md
+```
+
+---
+
+# Case 05 — Divergence Timing
+
+## Context
+
+This case comes from the TΔ validation.
+
+TΔ measures the first point where structural divergence crosses a declared threshold.
+
+It does not measure total instability.
+
+It measures timing of threshold crossing.
+
+---
+
+## Threshold
+
+```text
+θ = 0.30
+```
+
+---
+
+## Tested Trajectories
+
+```text
+rapid_divergence:
+[0.05, 0.18, 0.35, 0.50, 0.72]
+
+slow_divergence:
+[0.02, 0.05, 0.10, 0.15, 0.21, 0.28, 0.31, 0.40]
+
+no_divergence:
+[0.03, 0.05, 0.08, 0.10, 0.12, 0.14]
+```
+
+---
+
+## Results
+
+```text
+TΔ(rapid_divergence) = 2
+TΔ(slow_divergence)  = 6
+TΔ(no_divergence)    = undefined
+```
+
+---
+
+## Surface Status
+
+All trajectories remain valid bounded distance sequences.
+
+The important difference is when the declared threshold is crossed.
+
+---
+
+## Structural Signal
+
+TΔ separates:
+
+```text
+early structural divergence
+```
+
+from:
+
+```text
+late structural divergence
+```
+
+and from:
+
+```text
+no detected divergence
+```
+
+---
+
+## Why This Matters
+
+Two systems can both diverge, but not at the same time.
+
+TΔ captures this temporal difference.
+
+---
+
+## Supported Claim
+
+```text
+Structural divergence is not only a magnitude.
+It also has a time of threshold crossing.
+```
+
+---
+
+## Source
+
+```text
+RESULTS_TDELTA_VALIDATION_V0.md
+```
+
+---
+
+# Case 06 — Recovery Efficiency
+
+## Context
+
+This case comes from the R validation.
+
+R measures recovery efficiency after perturbation.
+
+It does not measure the initial amount of damage.
+
+It measures how much damage remains after recovery.
+
+---
+
+## Results
+
+```text
+perfect_recovery:
+Dp = 0.700000
+Dr = 0.000000
+R  = 1.000000
+
+partial_recovery:
+Dp = 0.850000
+Dr = 0.500000
+R  = 0.411765
+
+failed_recovery:
+Dp = 0.850000
+Dr = 0.850000
+R  = 0.000000
+```
+
+---
+
+## Surface Status
+
+All cases use controlled perturbation and recovery paths.
+
+The important distinction is how much residual damage remains after recovery.
+
+---
+
+## Structural Signal
+
+R separates:
+
+```text
+perfect recovery
+```
+
+from:
+
+```text
+partial recovery
+```
+
+and from:
+
+```text
+failed recovery
+```
+
+---
+
+## Why This Matters
+
+Perturbation alone does not define structural weakness.
+
+A system can be strongly perturbed but still resilient if recovery restores the original structure.
+
+---
+
+## Supported Claim
+
+```text
+Damage and recovery capability are different structural properties.
+```
+
+---
+
+## Source
+
+```text
+RESULTS_R_VALIDATION_V0.md
+```
+
+---
+
+# Case 07 — Residual Invariant Extraction
+
+## Context
+
+This case comes from the Ω̂ validation.
+
+Ω̂ does not return a scalar score.
+
+It returns the structural components that survive all tested transformations.
+
+---
+
+## Base Object
+
+```json
+{
+  "id": 42,
+  "name": "Alice",
+  "score": 100,
+  "active": true
+}
+```
+
+---
+
+## Result
+
+```text
+Ω̂ = ['active', 'id']
+```
+
+---
+
+## Surface Status
+
+All tested variants are controlled transformations of the same object.
+
+The important question is not whether the object remains parseable.
+
+The important question is:
+
+```text
+which features survived?
+```
+
+---
+
+## Structural Signal
+
+Ω̂ identifies the surviving invariant set:
+
+```text
+active
+id
+```
+
+The following features fail invariance:
+
+```text
+name
+score
+```
+
+Reasons:
+
+```text
+name  → null insertion
+score → type drift
+```
+
+---
+
+## Why This Matters
+
+Scalar metrics say how much structure survives.
+
+Ω̂ identifies what survives.
+
+This moves the framework from scoring toward invariant extraction.
+
+---
+
+## Supported Claim
+
+```text
+Structural measurement can identify residual invariant components, not only aggregate scores.
+```
+
+---
+
+## Source
+
+```text
+RESULTS_OMEGA_HAT_VALIDATION_V0.md
 ```
 
 ---
