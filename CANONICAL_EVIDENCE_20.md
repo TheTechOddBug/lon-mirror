@@ -87,7 +87,7 @@ instead of collapsing structural behavior into a single scalar.
 | Case | Surface Status | Structural Signal | Observed Consequence | Source |
 |---|---|---|---|---|
 | 01 | readable / superficially acceptable | OMNIABASE review signal where baseline gives no warning | suspicious-clean output escalated to review instead of accept | `docs/OMNIA_10_SECONDS_DEMO_RESULT.md` |
-| 02 | pending | pending | pending | pending |
+| 02 | formally correct answer | Ω and Score⁺ degrade under controlled clause augmentation | correctness preserved while structural stability drops | `RESULTS_GSM_FORMAL_METRICS_V0.md` |
 | 03 | pending | pending | pending | pending |
 | 04 | pending | pending | pending | pending |
 | 05 | pending | pending | pending | pending |
@@ -175,6 +175,105 @@ Readable output does not imply structural safety.
 
 ```text
 docs/OMNIA_10_SECONDS_DEMO_RESULT.md
+```
+
+---
+
+# Case 02 — Correct Answer, Degraded Structure
+
+## Context
+
+This case comes from the GSM symbolic v0 formal metrics run.
+
+The important point is that the model answer remains correct, but structural stability decreases under a controlled variant.
+
+---
+
+## Base Case
+
+```text
+template_id:  gsmsym_001
+variant_type: base
+is_correct:   true
+omega:        1.000000
+score_plus:   0.800641
+rank:         stable
+```
+
+---
+
+## Controlled Variant
+
+```text
+template_id:  gsmsym_001
+variant_type: clause_augmented
+is_correct:   true
+omega:        0.826667
+score_plus:   0.658337
+rank:         watch
+```
+
+---
+
+## Structural Drop
+
+```text
+score_drop: 0.142304
+omega_drop: 0.173333
+```
+
+---
+
+## Surface Status
+
+The final answer is still correct.
+
+A correctness-only evaluator would likely mark both cases as acceptable.
+
+---
+
+## Structural Signal
+
+The controlled clause augmentation produces a measurable degradation:
+
+```text
+Ω decreases
+Score⁺ decreases
+fragility_rank changes toward watch
+```
+
+---
+
+## Why This Matters
+
+This case separates:
+
+```text
+answer correctness
+```
+
+from:
+
+```text
+structural stability
+```
+
+The output can remain formally correct while the structural signal becomes weaker.
+
+---
+
+## Supported Claim
+
+```text
+Correctness does not imply structural stability.
+```
+
+---
+
+## Source
+
+```text
+RESULTS_GSM_FORMAL_METRICS_V0.md
 ```
 
 ---
