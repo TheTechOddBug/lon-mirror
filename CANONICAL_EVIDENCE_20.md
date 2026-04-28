@@ -88,7 +88,7 @@ instead of collapsing structural behavior into a single scalar.
 |---|---|---|---|---|
 | 01 | readable / superficially acceptable | OMNIABASE review signal where baseline gives no warning | suspicious-clean output escalated to review instead of accept | `docs/OMNIA_10_SECONDS_DEMO_RESULT.md` |
 | 02 | formally correct answer | Ω and Score⁺ degrade under controlled clause augmentation | correctness preserved while structural stability drops | `RESULTS_GSM_FORMAL_METRICS_V0.md` |
-| 03 | pending | pending | pending | pending |
+| 03 | recoverable vs non-recoverable transformations | IRI separates temporary deformation from irreversible loss | lossy deletion produces maximal residue while recoverable type drift does not | `RESULTS_IRI_VALIDATION_V2.md` |
 | 04 | pending | pending | pending | pending |
 | 05 | pending | pending | pending | pending |
 | 06 | pending | pending | pending | pending |
@@ -274,6 +274,111 @@ Correctness does not imply structural stability.
 
 ```text
 RESULTS_GSM_FORMAL_METRICS_V0.md
+```
+
+---
+
+# Case 03 — Irreversible Structural Loss
+
+## Context
+
+This case comes from the IRI v2 validation.
+
+IRI measures irreversible structural residue after a transformation and attempted recovery.
+
+The important point is that not all structural damage is equal:
+
+```text
+temporary deformation
+!=
+irreversible loss
+```
+
+---
+
+## Tested Transformations
+
+```text
+reorder
+type_recoverable
+type_nonrecoverable
+lossy
+```
+
+---
+
+## Results
+
+```text
+reorder             : 0.000000
+type_recoverable    : 0.000000
+type_nonrecoverable : 0.700000
+lossy               : 1.000000
+```
+
+---
+
+## Surface Status
+
+All cases are controlled transformations of the same simple structure.
+
+Some transformations visibly change the object, but the key distinction is whether recovery restores the original structure.
+
+---
+
+## Structural Signal
+
+IRI separates:
+
+```text
+recoverable deformation
+```
+
+from:
+
+```text
+irreversible structural residue
+```
+
+Recoverable type drift returns:
+
+```text
+IRI = 0.000000
+```
+
+Lossy deletion returns:
+
+```text
+IRI = 1.000000
+```
+
+---
+
+## Why This Matters
+
+This case shows that structural change and irreversible structural loss are not the same phenomenon.
+
+A structure may change temporarily and still fully recover.
+
+Another structure may lose information that cannot be reconstructed.
+
+IRI captures that difference.
+
+---
+
+## Supported Claim
+
+```text
+Change does not imply irreversible loss.
+Irreversible loss requires residual damage after attempted recovery.
+```
+
+---
+
+## Source
+
+```text
+RESULTS_IRI_VALIDATION_V2.md
 ```
 
 ---
