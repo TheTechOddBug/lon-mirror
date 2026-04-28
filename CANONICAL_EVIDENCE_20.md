@@ -86,63 +86,96 @@ instead of collapsing structural behavior into a single scalar.
 
 | Case | Surface Status | Structural Signal | Observed Consequence | Source |
 |---|---|---|---|---|
-| 01 | readable | Ω drop | review triggered | |
-| 02 | formally correct | low Ω | degraded variant stability | |
-| 03 | valid JSON | high IRI | irreversible structure loss | |
-| 04 | stable answer | low SEI | unstable trajectory | |
-| 05 | acceptable output | low Ω̂ | invariant collapse | |
-| 06 | correct arithmetic | TΔ early crossing | rapid divergence | |
-| 07 | coherent text | low R | failed recovery | |
-| 08 | semantic similarity preserved | Ω drop | structural degradation | |
-| 09 | baseline accepted | OMNIABASE warning | suspicious-clean review | |
-| 10 | parseable structure | Ω̂ shrinkage | feature loss | |
-| 11 | stable formatting | hidden instability | review escalation | |
-| 12 | valid schema | irreversible drift | recovery failure | |
-| 13 | high surface quality | low resilience | unstable correction path | |
-| 14 | normal output | saturation collapse | unstable regime | |
-| 15 | syntactically valid | structural rigidity | review recommended | |
-| 16 | near-threshold structure | high instability | caution triggered | |
-| 17 | apparently recovered | residual IRI | incomplete restoration | |
-| 18 | coherent trajectory | delayed divergence | TΔ separation | |
-| 19 | stable baseline | Ω̂ preserved | invariant persistence | |
-| 20 | superficially acceptable | combined metric degradation | structural warning | |
+| 01 | readable / superficially acceptable | OMNIABASE review signal where baseline gives no warning | suspicious-clean output escalated to review instead of accept | `docs/OMNIA_10_SECONDS_DEMO_RESULT.md` |
+| 02 | pending | pending | pending | pending |
+| 03 | pending | pending | pending | pending |
+| 04 | pending | pending | pending | pending |
+| 05 | pending | pending | pending | pending |
+| 06 | pending | pending | pending | pending |
+| 07 | pending | pending | pending | pending |
+| 08 | pending | pending | pending | pending |
+| 09 | pending | pending | pending | pending |
+| 10 | pending | pending | pending | pending |
+| 11 | pending | pending | pending | pending |
+| 12 | pending | pending | pending | pending |
+| 13 | pending | pending | pending | pending |
+| 14 | pending | pending | pending | pending |
+| 15 | pending | pending | pending | pending |
+| 16 | pending | pending | pending | pending |
+| 17 | pending | pending | pending | pending |
+| 18 | pending | pending | pending | pending |
+| 19 | pending | pending | pending | pending |
+| 20 | pending | pending | pending | pending |
 
 ---
 
-# Minimal Example
+# Case 01 — Suspicious-Clean Repetition
 
-Example:
-
-```text
-The answer seems correct.
-The answer seems correct.
-The answer seems correct.
-```
-
-Surface interpretation:
+## Input
 
 ```text
-readable
-semantically acceptable
-not catastrophic
+The answer seems correct. The answer seems correct. The answer seems correct.
 ```
 
-Structural interpretation:
+## Surface Status
+
+The output is readable.
+
+It is not catastrophic spam.
+
+It is not malformed.
+
+A shallow baseline may accept it because it does not look like an obvious failure.
+
+---
+
+## Structural Signal
+
+OMNIABASE detects suspicious structural regularity.
+
+Observed pattern:
 
 ```text
-rigidity
-low diversity
-suspicious repetition
+BASELINE: no warning
+OMNIA: review
+ACTION: review
 ```
 
-Observed behavior:
+---
+
+## Why This Matters
+
+This case separates:
 
 ```text
-baseline → no warning
-OMNIABASE → review
+obvious failure detection
 ```
 
-This is one of the current suspicious-clean examples.
+from:
+
+```text
+suspicious-clean structural review
+```
+
+The point is not that the output is definitely wrong.
+
+The point is that the output is structurally rigid enough to justify review.
+
+---
+
+## Supported Claim
+
+```text
+Readable output does not imply structural safety.
+```
+
+---
+
+## Source
+
+```text
+docs/OMNIA_10_SECONDS_DEMO_RESULT.md
+```
 
 ---
 
