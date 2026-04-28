@@ -1,4 +1,4 @@
-# OMNIA v1.0 - Structural Measurement Engine
+# OMNIA v1.0 — Structural Measurement Engine
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19657788.svg)](https://doi.org/10.5281/zenodo.19657788)
 
@@ -7,159 +7,200 @@
 
 ---
 
-## New here
+# New Here
 
-Start here: [START_HERE.md](./START_HERE.md)
+Start here:
 
-If this repository feels broad at first glance, do not begin from the full architecture.
+```text
+START_HERE.md
+
+If the repository feels broad at first glance, do not begin from the full architecture.
 
 Use this short path first:
 
-1. [docs/AT_A_GLANCE.md](./docs/AT_A_GLANCE.md)
-2. [docs/OMNIA_10_SECONDS_DEMO_RESULT.md](./docs/OMNIA_10_SECONDS_DEMO_RESULT.md)
-3. [docs/RUN_OMNIA_NOW_RESULT.md](./docs/RUN_OMNIA_NOW_RESULT.md)
-4. [docs/RUN_OMNIA_NOW_SECOND_RESULT.md](./docs/RUN_OMNIA_NOW_SECOND_RESULT.md)
-5. [docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md](./docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md)
-6. [docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md](./docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md)
-7. [docs/OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md](./docs/OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md)
-8. [docs/OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md](./docs/OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md)
-9. [docs/PROOF_CARD.md](./docs/PROOF_CARD.md)
-10. [docs/ONE_EXAMPLE.md](./docs/ONE_EXAMPLE.md)
-11. [docs/OMNIABASE_REVIEW_SENSOR_NOTE.md](./docs/OMNIABASE_REVIEW_SENSOR_NOTE.md)
-12. [docs/PHASE6_FREEZE.md](./docs/PHASE6_FREEZE.md)
-13. [docs/EXTERNAL_STATUS.md](./docs/EXTERNAL_STATUS.md)
+1. docs/AT_A_GLANCE.md
 
-That is the shortest current path from first contact to the strongest bounded claim supported by the repository.
+
+2. docs/OMNIA_10_SECONDS_DEMO_RESULT.md
+
+
+3. docs/RUN_OMNIA_NOW_RESULT.md
+
+
+4. docs/RUN_OMNIA_NOW_SECOND_RESULT.md
+
+
+5. docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md
+
+
+6. docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md
+
+
+7. docs/OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md
+
+
+8. docs/OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md
+
+
+9. docs/PROOF_CARD.md
+
+
+10. docs/ONE_EXAMPLE.md
+
+
+11. docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
+
+
+12. docs/PHASE6_FREEZE.md
+
+
+13. docs/EXTERNAL_STATUS.md
+
+
+
+That path is currently the shortest route from first contact to the strongest bounded claim supported by the repository.
+
 
 ---
 
-## What OMNIA is
+What OMNIA Is
 
 OMNIA is a post-hoc structural measurement engine.
 
-It does not replace reasoning.  
-It does not interpret semantics.  
+It does not replace reasoning.
+It does not interpret semantics.
 It does not make final decisions.
 
-It measures whether an output or state remains structurally stable under controlled transformations.
+Its role is:
+
+measurement only
+
+OMNIA measures whether outputs, states, or trajectories remain structurally stable under controlled transformations.
 
 Core principle:
 
-```text
 structural truth = invariance under transformation
-
-OMNIA is designed to detect:
-
-structural stability
-
-fragility
-
-instability
-
-saturation
-
-irreversibility
-
-compatibility shifts
-
-
-It is not a generative model.
-It is not a semantic classifier.
-It is not a decision layer.
-
-Output remains:
-
-measurement only
 
 
 ---
 
-Architectural boundary
+Architectural Boundary
 
-The architectural boundary is non-negotiable:
+The architectural boundary is strict:
 
 measurement != inference != decision
 
 OMNIA measures structure.
-Another layer may reason.
-Another layer may decide.
+
+Another layer may:
+
+reason
+
+interpret
+
+decide
+
+apply policy
+
 
 OMNIA itself does not collapse these roles.
 
-This boundary matters because it prevents the system from being misread as:
+This prevents the framework from being misread as:
 
-a truth oracle
+a semantic truth engine
 
-a semantic validator
+a correctness oracle
+
+a universal gate
 
 a policy engine
 
-a universal gate by itself
+a final decision layer
 
 
-That would be false.
-
-
----
-
-Current strongest supported claim
-
-The strongest externally honest claim currently supported by the repository is:
-
-> OMNIA includes a credible OMNIABASE-based auxiliary review sensor for suspicious-clean outputs, supported by sandbox and human-rated sandbox evidence.
-
-
-
-In practical terms, this means:
-
-baseline handles obvious failures
-
-OMNIABASE adds bounded review signal on suspicious-clean outputs
-
-final decision remains external
-
-
-This is the current supported role.
-
-Not more.
+Those interpretations would be false.
 
 
 ---
 
-Broader repository trajectory
+Structural Metric Layer
 
-The broader technical trajectory shown by this repository is:
+The repository now includes a formal structural metric layer.
 
-> toward a bounded runtime structural trust layer inside the tested perimeter.
+The framework separates multiple independent structural properties instead of collapsing them into a single scalar score.
 
+Current metrics include:
 
-
-This is a trajectory, not a stronger already-proven claim.
-
-It reflects the direction of the runtime branch, the gate logic, the retry/review split, and the effort to connect structural diagnostics to operational cost patterns.
-
-It does not mean that OMNIA is already established as:
-
-a production-ready universal gate
-
-a deployment-proven runtime safety layer at scale
-
-a replacement for strong handcrafted baselines
-
-a final decision system
-
-
-The distinction is strict:
-
-supported now = bounded auxiliary review role
-
-trajectory = bounded runtime structural trust layer inside the tested perimeter
-
+Ω   → structural invariance
+IRI → irreversibility
+SEI → saturation
+TΔ  → divergence time
+R   → resilience
+Ω̂   → residual invariant set
 
 
 ---
 
-What OMNIA currently measures
+Current Metric Interpretation
+
+Ω   = how much structure changes
+IRI = how much structure cannot be recovered
+SEI = whether structural behavior stabilizes
+TΔ  = when divergence crosses a critical threshold
+R   = how effectively structure recovers
+Ω̂   = which structural components survive
+
+These metrics are intentionally separated.
+
+The framework does not compress all structural behavior into a single score.
+
+
+---
+
+Current Metric Status
+
+The repository currently includes:
+
+formal metric definitions
+
+executable minimal implementations
+
+controlled local validation tests
+
+explicit limitations
+
+
+Current status:
+
+operationally coherent under controlled tests
+
+Not externally validated.
+
+Not deployment-grade.
+
+Not scientifically established.
+
+
+---
+
+Current Formal Metric Documents
+
+Formal definitions:
+
+FORMAL_METRICS.md
+
+Controlled validation documents:
+
+RESULTS_IRI_VALIDATION_V2.md
+RESULTS_SEI_VALIDATION_V0.md
+RESULTS_TDELTA_VALIDATION_V0.md
+RESULTS_R_VALIDATION_V0.md
+RESULTS_OMEGA_HAT_VALIDATION_V0.md
+
+
+---
+
+What OMNIA Currently Measures
 
 The current ecosystem includes structural diagnostics such as:
 
@@ -173,7 +214,11 @@ saturation / exhaustion behavior
 
 irreversibility of structural loss
 
-divergence time and resilience
+divergence time
+
+resilience after perturbation
+
+residual invariant extraction
 
 bounded post-hoc gate signals
 
@@ -187,24 +232,67 @@ These measurements answer one narrow question:
 
 ---
 
-Current role of OMNIABASE
+Current Role of OMNIABASE
 
-OMNIABASE is currently positioned as an auxiliary structural review sensor inside the broader OMNIA measurement architecture.
+OMNIABASE is currently positioned as:
 
-Its best-supported role is not primary rejection and not replacement of strong handcrafted gate rules.
+an auxiliary structural review sensor
 
-Instead, it is used to add a bounded review signal on outputs that are still superficially acceptable but structurally suspicious, especially in the suspicious-clean region:
+inside the broader OMNIA measurement architecture.
+
+Its strongest current role is:
+
+bounded review sensing for suspicious-clean outputs
+
+not:
+
+universal rejection
+
+semantic validation
+
+production-grade gating
+
+replacement for strong handcrafted baselines
+
+
+
+---
+
+Suspicious-Clean Regime
+
+The strongest current evidence exists in the suspicious-clean region.
+
+Examples include:
 
 soft repetition
 
-low-diversity explanation
+low-diversity explanations
 
 rigid templating
 
 near-threshold structural regularity
 
 
-In the current Phase 6 sandbox results, OMNIABASE showed its strongest value when used in a layered policy such as:
+Example:
+
+The answer seems correct. The answer seems correct. The answer seems correct.
+
+This is readable.
+
+It is superficially acceptable.
+
+It may pass shallow checks.
+
+But structurally it is suspicious enough to justify review.
+
+That is where OMNIABASE currently adds value.
+
+
+---
+
+Current Layered Policy
+
+The current bounded policy sketch is intentionally simple:
 
 if baseline warns:
     retry
@@ -213,87 +301,98 @@ elif OMNIABASE warns:
 else:
     accept
 
-This role is supported by:
+This preserves the intended hierarchy:
 
-synthetic benchmark evidence
+baseline   → obvious failures
+OMNIABASE  → subtle suspiciousness
+decision   → external
 
-gate adapter and sandbox comparisons
-
-end-to-end sandbox policy tests
-
-human-rated sandbox evidence
-
-
-Shortest role documents:
-
-docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
-
-docs/PHASE6_FREEZE.md
-
-
-Important boundary:
-
-OMNIABASE is not currently claimed as a production-ready replacement for strong rule-based gates, and it is not presented as a direct retry/reject engine.
+Neither OMNIABASE nor OMNIA acts as a universal judge.
 
 
 ---
 
-Why this repository exists
+Current Strongest Supported Claim
 
-This repository exists to make structural diagnostics executable, testable, and bounded.
+The strongest technically honest claim currently supported by the repository is:
 
-The goal is not to produce broader narratives.
-
-The goal is to freeze a usable architecture where:
-
-measurement remains distinct from reasoning
-
-structural diagnostics remain reproducible
-
-instability can be detected before obvious collapse
-
-auxiliary gate signals can be attached without breaking the boundary
+> OMNIA includes a credible OMNIABASE-based auxiliary review sensor for suspicious-clean outputs, supported by sandbox and human-rated sandbox evidence.
 
 
-This makes OMNIA useful as a structural layer inside broader AI or analysis pipelines.
+
+Nothing stronger is currently justified.
 
 
 ---
 
-Current repository focus
+Current Repository Direction
 
-The current stable direction of the repository is:
+The broader repository trajectory points toward:
+
+a bounded runtime structural trust layer
+inside the tested perimeter
+
+This is a trajectory.
+
+Not a proven deployment claim.
+
+The repository does NOT currently establish:
+
+universal runtime safety
+
+production readiness
+
+deployment-scale validation
+
+replacement of strong baselines
+
+final decision autonomy
+
+
+
+---
+
+Current Repository Focus
+
+The current stable direction is:
 
 Dual-Echo / OMNIAMIND lineage
--> OMNIA measurement
--> bounded post-hoc gate behavior
--> OMNIABASE auxiliary review sensing
+→ OMNIA structural measurement
+→ bounded post-hoc gate behavior
+→ OMNIABASE auxiliary review sensing
 
-This means the repository is no longer only conceptual.
+The repository is no longer purely conceptual.
 
-It now contains:
+It now includes:
 
-measurement logic
+formal metric definitions
 
-executable sandbox experiments
+executable experiments
 
-adapter experiments
+sandbox evaluations
 
 gate-policy experiments
 
-bounded evidence for a review-sensor role
+invariant extraction tests
+
+bounded review-sensor evidence
 
 
 
 ---
 
-Minimal practical interpretation
+Minimal Practical Interpretation
 
-OMNIA should currently be read as a layered structural toolkit.
+OMNIA should currently be interpreted as:
 
-Baseline layer
+a layered structural measurement toolkit
 
-Handles obvious failures well, such as:
+
+---
+
+Baseline Layer
+
+Handles obvious failures well:
 
 loops
 
@@ -301,52 +400,46 @@ repeated tokens
 
 repeated characters
 
-explicit syntactic pattern spam
+explicit syntactic spam
 
-brittle numeric structures when explicitly encoded
+brittle encoded numeric structures
 
-
-OMNIABASE layer
-
-Adds review-level caution on outputs that are not clearly broken but still look structurally suspicious.
-
-Decision layer
-
-Must remain external.
-
-That is the correct current interpretation.
 
 
 ---
 
-Current best-supported use case
+OMNIABASE Layer
 
-The strongest currently supported use case is:
-
-auxiliary review sensing for suspicious-clean outputs
-
-These are outputs that:
+Adds bounded review-level caution on outputs that:
 
 still look readable
 
-are not obviously degenerate
+are not obviously broken
 
-may still pass a shallow gate
+may still pass shallow gates
 
-but show rigidity, low diversity, soft repetition, or suspicious structural regularity
+remain structurally suspicious
 
-
-That is where the current evidence is strongest.
 
 
 ---
 
-Fastest visible entry point
+Decision Layer
 
-The shortest visible demonstration is now available in:
+Must remain external.
+
+That boundary is intentional.
+
+
+---
+
+Fastest Visible Entry Point
+
+Shortest demonstrations:
 
 docs/OMNIA_10_SECONDS_DEMO_RESULT.md
-
+docs/RUN_OMNIA_NOW_RESULT.md
+docs/RUN_OMNIA_NOW_SECOND_RESULT.md
 
 Observed pattern:
 
@@ -354,572 +447,212 @@ BASELINE: no warning
 OMNIA: review
 ACTION: review
 
-This is the smallest readable form of the current OMNIA role.
+This is not proof of universal gating.
+
+It is a bounded executable demonstration of distinct policy behavior.
 
 
 ---
 
-Minimal executable policy split
+Damage-Proxy Results
 
-The current entry-point demo already shows two minimal readable regimes.
-
-Case 1 - suspicious-clean output
-
-INPUT: The answer seems correct. The answer seems correct. The answer seems correct.
-BASELINE: no warning
-OMNIA: review
-ACTION: review
-
-Case 2 - obvious failure
-
-INPUT: retry retry retry retry retry
-BASELINE: warning
-OMNIA: review
-ACTION: retry
-
-These two cases are enough to expose the current bounded policy split:
-
-suspicious-clean case -> review
-
-obvious failure case -> retry
-
-
-This does not prove a universal gate.
-
-It shows that the layered policy is at least executable, readable, and behaviorally distinct across two short cases.
-
-
----
-
-Minimal executable results
-
-Three compressed executable entry points are now available:
-
-docs/OMNIA_10_SECONDS_DEMO_RESULT.md
-
-docs/RUN_OMNIA_NOW_RESULT.md
-
-docs/RUN_OMNIA_NOW_SECOND_RESULT.md
-
-
-Observed demo patterns:
-
-10 SECONDS
-BASELINE: no warning
-OMNIA: review
-ACTION: review
-
-CASE 1
-INPUT: The answer seems correct. The answer seems correct. The answer seems correct.
-BASELINE: no warning
-OMNIA: review
-ACTION: review
-
-CASE 2
-INPUT: retry retry retry retry retry
-BASELINE: warning
-OMNIA: review
-ACTION: retry
-
-This is not a universal proof.
-
-It is a bounded executable demonstration that the current layered policy produces distinct readable regimes.
-
-
----
-
-Damage-proxy results
-
-Four bounded proxy tests are now available:
+Current bounded proxy tests:
 
 docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md
-
 docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md
-
 docs/OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md
-
 docs/OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md
 
+Observed pattern:
 
-V0
-
-N_EXAMPLES: 12
-BASELINE_FALSE_ACCEPTS: 4
-COMBINED_FALSE_ACCEPTS: 0
-FALSE_ACCEPT_REDUCTION: 4
-EXTRA_REVIEWS_FROM_OMNIA: 4
-
-V1
-
-N_EXAMPLES: 20
-BASELINE_FALSE_ACCEPTS: 6
-COMBINED_FALSE_ACCEPTS: 0
-FALSE_ACCEPT_REDUCTION: 6
-EXTRA_REVIEWS_FROM_OMNIA: 6
-
-REALISH V0
-
-N_EXAMPLES: 15
-BASELINE_FALSE_ACCEPTS: 5
-COMBINED_FALSE_ACCEPTS: 0
-FALSE_ACCEPT_REDUCTION: 5
-EXTRA_REVIEWS_FROM_OMNIA: 5
-
-LLM SUPPORT V0
-
-N_EXAMPLES: 15
-BASELINE_FALSE_ACCEPTS: 8
-COMBINED_FALSE_ACCEPTS: 1
-FALSE_ACCEPT_REDUCTION: 7
-EXTRA_REVIEWS_FROM_OMNIA: 7
-
-This is the current readable result linking OMNIA to an operational cost pattern:
-
-false accept reduction under a layered policy
+baseline false accepts ↓
+combined review policy improves
 
 This does not prove deployment performance.
 
-It shows that OMNIA can already be evaluated against bounded damage proxies rather than architecture alone.
+It shows bounded operational usefulness under tested conditions.
 
 
 ---
 
-Runtime trajectory inside the tested perimeter
+Relation Between Metrics
 
-Within the tested perimeter, the repository trajectory points toward a bounded runtime structural trust layer for structured outputs.
+The framework intentionally separates structural properties.
 
-That trajectory currently rests on:
+Examples:
 
-post-hoc structural measurement
+high Ω  + low R
+high SEI + low Ω
+low IRI + small Ω̂
 
-silent-failure interception in suspicious-clean regimes
+These are different structural states.
 
-bounded retry/review split under a layered policy
-
-early damage-proxy evidence through false-accept reduction
-
-
-This should be read as a technical direction supported by internal artifacts and bounded tests.
-
-It should not be read as proof of broad deployment readiness.
+The framework avoids collapsing them into a single global interpretation.
 
 
 ---
 
-One concrete example
+Current Limits
 
-A readable output is not automatically a structurally safe output.
-
-Example:
-
-The answer seems correct. The answer seems correct. The answer seems correct.
-
-This is not a catastrophic failure.
-
-It is readable.
-It is superficially acceptable.
-It may even pass shallow checks.
-
-But structurally it is suspicious enough to justify review.
-
-That is exactly the regime where OMNIABASE currently adds value.
-
-For a compressed walkthrough, read:
-
-docs/ONE_EXAMPLE.md
-
+The repository still has major limitations.
 
 
 ---
 
-External status
+1. Sandbox Scope
 
-For the clearest statement of what has and has not been shown, read:
-
-docs/EXTERNAL_STATUS.md
-
-
-The external claim boundary is intentionally narrow.
-
-The strongest current claim that remains technically honest is:
-
-> OMNIA includes a credible OMNIABASE-based auxiliary review sensor for suspicious-clean outputs, supported by sandbox and human-rated sandbox evidence.
-
-
-
-Anything stronger than that is premature.
+Most evidence remains sandbox-level.
 
 
 ---
 
-What OMNIA is not claiming
+2. Projection Bridge
 
-This repository does not currently claim that OMNIA or OMNIABASE is:
+Current text behavior often depends on:
 
-a production-ready universal gate
+text → deterministic integer projection → OMNIABASE lens
 
-a replacement for strong handcrafted baselines
-
-a semantic truth engine
-
-a correctness oracle
-
-a final decision system
-
-a completed deployment layer
-
-
-Those claims would exceed the current evidence.
+This remains a limitation.
 
 
 ---
 
-Repository guide
+3. Limited Human Validation
 
-A good short path through the current repository is:
-
-1. README.md
+Current human-rated tests are still limited in scale and independence.
 
 
-2. START_HERE.md
+---
 
+4. No Real Deployment Evidence
 
-3. docs/AT_A_GLANCE.md
+There is currently:
 
+no live traffic evidence
 
-4. docs/OMNIA_10_SECONDS_DEMO_RESULT.md
+no production benchmark
 
-
-5. docs/RUN_OMNIA_NOW_RESULT.md
-
-
-6. docs/RUN_OMNIA_NOW_SECOND_RESULT.md
-
-
-7. docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md
-
-
-8. docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md
-
-
-9. docs/OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md
-
-
-10. docs/OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md
-
-
-11. docs/PROOF_CARD.md
-
-
-12. docs/ONE_EXAMPLE.md
-
-
-13. docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
-
-
-14. docs/PHASE6_FREEZE.md
-
-
-15. docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
-
-
-16. docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
-
-
-17. docs/EXTERNAL_STATUS.md
-
-
-
-If the goal is the shortest explanation of the OMNIABASE role, start with:
-
-docs/AT_A_GLANCE.md
-
-docs/OMNIA_10_SECONDS_DEMO_RESULT.md
-
-docs/RUN_OMNIA_NOW_RESULT.md
-
-docs/RUN_OMNIA_NOW_SECOND_RESULT.md
-
-docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md
-
-docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md
-
-docs/OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md
-
-docs/OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md
-
-docs/PROOF_CARD.md
-
-docs/ONE_EXAMPLE.md
-
-docs/EXTERNAL_STATUS.md
-
-
-If the goal is the frozen conclusion of the current phase, read:
-
-docs/PHASE6_FREEZE.md
+no deployment-scale validation
 
 
 
 ---
 
-Phase 6 summary
+5. Metric Dependency
 
-Phase 6 established a narrow but credible result:
+Current metrics still depend heavily on:
 
-> OMNIABASE is useful when treated as an auxiliary review trigger, not as a replacement gate.
+f(x)
+d(x,y)
+thresholds
+weights
 
-
-
-The current evidence shows:
-
-weak baseline comparison: OMNIABASE adds signal
-
-strong baseline comparison: explicit heuristics remain stronger on obvious pattern classes
-
-real-output sandbox: OMNIABASE adds signal on suspicious-clean outputs
-
-end-to-end policy sandbox: review is the correct action
-
-suspicious-clean expansion: strongest sandbox gain so far
-
-human-rated sandbox pass: combined policy improves over baseline in the tested set
-
-
-This is enough to define a stable role.
-
-It is not enough to claim full external validation.
+Metric forms are therefore not yet canonical.
 
 
 ---
 
-Example policy sketch
+6. Small Damage-Proxy Scope
 
-The current best sandbox policy is intentionally simple:
+Current evaluations remain small-scale.
 
-if baseline warns:
-    retry
-elif OMNIABASE warns:
-    review
-else:
-    accept
+Useful as bounded anchors.
 
-This preserves the right hierarchy:
-
-baseline handles obvious failures
-
-OMNIABASE handles subtle suspiciousness
-
-neither becomes a universal judge
-
+Not broad validation.
 
 
 ---
 
-Canonical examples
+Current File Landmarks
 
-Example 1 - baseline is sufficient
+Core documents:
 
-retry retry retry retry retry
-
-A strong handcrafted baseline already catches this.
-
-Example 2 - OMNIABASE adds useful caution
-
-The answer seems correct. The answer seems correct. The answer seems correct.
-
-This may not always be strong enough for explicit heuristics, but it is structurally suspicious enough to justify review.
-
-Example 3 - OMNIABASE can be stricter than needed
-
-12121213
-
-Near-threshold structures can trigger caution even when a human might still accept them.
-
-This is a calibration issue, not something to hide.
-
-It is one reason why OMNIABASE should currently remain a review sensor rather than a direct rejection trigger.
-
-
----
-
-Current limitations
-
-The current phase still has active limitations.
-
-1. Projection bridge
-
-For text behavior, OMNIABASE currently depends on:
-
-text -> deterministic integer projection -> OMNIABASE lens
-
-This is useful, but still a limitation.
-
-2. Sandbox evidence
-
-Most current evidence is still sandbox evidence.
-
-3. Human validation is still limited
-
-The current human-rated pass is useful, but not yet independent enough to count as strong external validation.
-
-4. No live deployment evidence
-
-There is still no real traffic or deployment benchmark.
-
-5. Threshold calibration remains open
-
-Useful thresholds exist, but they are not yet final.
-
-6. Damage-proxy scope is still small
-
-The current false-accept results come from 12-example, 20-example, 15-example, and 15-example LLM support-style evaluations.
-
-They are useful as first external anchors, but still far from broad validation.
-
-
----
-
-Current file landmarks
-
-Core and role documents
-
+FORMAL_METRICS.md
 docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
-
 docs/PHASE6_FREEZE.md
+docs/EXTERNAL_STATUS.md
 
+Metric validation documents:
 
-Entry documents
+RESULTS_IRI_VALIDATION_V2.md
+RESULTS_SEI_VALIDATION_V0.md
+RESULTS_TDELTA_VALIDATION_V0.md
+RESULTS_R_VALIDATION_V0.md
+RESULTS_OMEGA_HAT_VALIDATION_V0.md
+
+Entry documents:
 
 START_HERE.md
-
 docs/AT_A_GLANCE.md
-
 docs/OMNIA_10_SECONDS_DEMO_RESULT.md
-
 docs/RUN_OMNIA_NOW_RESULT.md
-
 docs/RUN_OMNIA_NOW_SECOND_RESULT.md
-
-docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md
-
-docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md
-
-docs/OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md
-
-docs/OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md
-
 docs/PROOF_CARD.md
-
 docs/ONE_EXAMPLE.md
-
-docs/EXTERNAL_STATUS.md
-
-
-Phase 6 result documents
-
-docs/OMNIABASE_SYNTHETIC_BENCHMARK_v0_RESULTS.md
-
-docs/OMNIA_GATE_BASELINE_VS_OMNIABASE_v0_RESULTS.md
-
-docs/OMNIA_GATE_STRONGER_BASELINE_VS_OMNIABASE_v0_RESULTS.md
-
-docs/OMNIA_REAL_OUTPUT_SANDBOX_v0_RESULTS.md
-
-docs/OMNIA_END_TO_END_SANDBOX_v0_RESULTS.md
-
-docs/OMNIA_SUSPICIOUS_CLEAN_EXPANSION_v0_RESULTS.md
-
-
-Example scripts
-
-RUN_OMNIA_NOW.py
-
-demo/omnia_10_seconds.py
-
-examples/omnia_support_false_accept_miniset_v0.py
-
-examples/omnia_support_false_accept_miniset_v1.py
-
-examples/omnia_support_false_accept_realish_v0.py
-
-examples/omnia_llm_support_set_v0.py
-
-examples/omnia_base_gate_adapter_demo.py
-
-examples/omnia_gate_baseline_vs_omniabase_v0.py
-
-examples/omnia_gate_stronger_baseline_vs_omniabase_v0.py
-
-examples/omnia_real_output_sandbox_v0.py
-
-examples/omnia_end_to_end_sandbox_v0.py
-
-examples/omnia_suspicious_clean_expansion_v0.py
-
-examples/omnia_human_rated_validation_pack_v0.py
-
-examples/omnia_human_validation_compare_v0.py
-
-
-Core lens
-
-omnia/lenses/base_lens.py
-
 
 
 ---
 
-Current claim level
+Current Claim Level
 
-The strongest current claim that remains technically honest is:
+Current strongest bounded claim:
 
 > OMNIA includes a credible OMNIABASE-based auxiliary review sensor for suspicious-clean outputs, supported by sandbox and human-rated sandbox evidence.
 
 
 
-Anything stronger than that is premature.
+Anything substantially stronger would exceed current evidence.
 
 
 ---
 
-What should happen next
+What Should Happen Next
 
-The next correct directions are:
+Correct next directions:
 
-1. independent human rating
+1. independent human evaluation
 
 
 2. threshold calibration
 
 
-3. small corpus of real LLM outputs
+3. real LLM output datasets
 
 
-4. deployment-like review pipeline test
+4. deployment-like review pipelines
+
+
+5. large-scale structural benchmarking
+
+
+6. stronger invariant extraction systems
 
 
 
-The wrong direction would be to inflate OMNIABASE back into universal claims.
+Wrong direction:
+
+inflating bounded results into universal claims
 
 
 ---
 
-Final statement
+Final Statement
 
-The value of the current repository state is not that it proved everything.
+The value of the current repository state is not that it proved universal structural truth.
 
-The value is that it reduced a broad and unstable idea into a role that is:
+The value is that it reduced broad structural claims into:
 
-specific
+bounded
+
+executable
 
 testable
 
-operationally plausible
+structurally differentiated
 
-architecturally bounded
-
-technically honest
+architecturally constrained
 
 
-That is stronger than a larger claim that cannot survive contact with data.
+measurements.
+
+The repository now contains a coherent structural measurement framework with explicit limits rather than unconstrained conceptual claims.
