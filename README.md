@@ -20,21 +20,51 @@ If the repository feels broad at first glance, do not begin from the full archit
 Use this short path first:
 
 1. `CANONICAL_EVIDENCE.md`
-2. `docs/AT_A_GLANCE.md`
-3. `docs/OMNIA_10_SECONDS_DEMO_RESULT.md`
-4. `docs/RUN_OMNIA_NOW_RESULT.md`
-5. `docs/RUN_OMNIA_NOW_SECOND_RESULT.md`
-6. `docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md`
-7. `docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md`
-8. `docs/OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md`
-9. `docs/OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md`
-10. `docs/PROOF_CARD.md`
-11. `docs/ONE_EXAMPLE.md`
-12. `docs/OMNIABASE_REVIEW_SENSOR_NOTE.md`
-13. `docs/PHASE6_FREEZE.md`
-14. `docs/EXTERNAL_STATUS.md`
+2. `RUN_ALL_CANONICAL_CASES.py`
+3. `FORMAL_METRICS.md`
+4. `docs/AT_A_GLANCE.md`
+5. `docs/OMNIA_10_SECONDS_DEMO_RESULT.md`
+6. `docs/RUN_OMNIA_NOW_RESULT.md`
+7. `docs/RUN_OMNIA_NOW_SECOND_RESULT.md`
+8. `docs/OMNIABASE_REVIEW_SENSOR_NOTE.md`
+9. `docs/PHASE6_FREEZE.md`
+10. `docs/EXTERNAL_STATUS.md`
 
 That path is currently the shortest route from first contact to the strongest bounded claim supported by the repository.
+
+---
+
+# Quick External Run
+
+To execute the current canonical evidence cases:
+
+```bash
+python RUN_ALL_CANONICAL_CASES.py
+```
+
+This runner executes the current canonical structural cases:
+
+```text
+01 suspicious-clean review signal
+02 correctness vs structural stability
+03 irreversibility
+04 saturation
+05 divergence timing
+06 resilience
+07 residual invariant extraction
+```
+
+The purpose is not to prove universal structural truth.
+
+The purpose is to expose the framework to quick external inspection.
+
+Expected interpretation:
+
+```text
+the framework separates multiple structural properties under controlled tests
+```
+
+Not more.
 
 ---
 
@@ -125,12 +155,20 @@ The repository includes a formal structural metric layer.
 Current metrics include:
 
 ```text
-Ω   → structural invariance
-IRI → irreversibility
-SEI → saturation
-TΔ  → divergence time
-R   → resilience
-Ω̂   → residual invariant set
+Omega      structural invariance
+IRI        irreversibility
+SEI        saturation
+TDelta     divergence time
+R          resilience
+Omega-hat  residual invariant set
+```
+
+ASCII aliases are used where needed for compatibility:
+
+```text
+Omega      = Ω
+TDelta     = TΔ
+Omega-hat  = Ω̂
 ```
 
 ---
@@ -138,12 +176,12 @@ R   → resilience
 # Current Metric Interpretation
 
 ```text
-Ω   = how much structure changes
-IRI = how much structure cannot be recovered
-SEI = whether structural behavior stabilizes
-TΔ  = when divergence crosses a critical threshold
-R   = how effectively structure recovers
-Ω̂   = which structural components survive
+Omega      = how much structure changes
+IRI        = how much structure cannot be recovered
+SEI        = whether structural behavior stabilizes
+TDelta     = when divergence crosses a critical threshold
+R          = how effectively structure recovers
+Omega-hat  = which structural components survive
 ```
 
 These metrics are intentionally separated.
@@ -160,6 +198,7 @@ The repository currently includes:
 - executable minimal implementations
 - controlled local validation tests
 - explicit limitations
+- a single-entry canonical runner
 
 Current status:
 
@@ -181,6 +220,21 @@ Formal definitions:
 
 ```text
 FORMAL_METRICS.md
+```
+
+Canonical evidence:
+
+```text
+CANONICAL_EVIDENCE.md
+```
+
+External test pack:
+
+```text
+OMNIA_EXTERNAL_TEST_PACK_V0.md
+RUN_EXTERNAL_TEST_PACK_V0.md
+RUN_ALL_CANONICAL_CASES.md
+RUN_ALL_CANONICAL_CASES.py
 ```
 
 Controlled validation documents:
@@ -313,9 +367,9 @@ else:
 This preserves the intended hierarchy:
 
 ```text
-baseline   → obvious failures
-OMNIABASE  → subtle suspiciousness
-decision   → external
+baseline   obvious failures
+OMNIABASE  subtle suspiciousness
+decision   external
 ```
 
 Neither OMNIABASE nor OMNIA acts as a universal judge.
@@ -361,10 +415,12 @@ The current stable direction is:
 
 ```text
 Dual-Echo / OMNIAMIND lineage
-→ OMNIA structural measurement
-→ bounded post-hoc gate behavior
-→ OMNIABASE auxiliary review sensing
-→ formal structural metric layer
+-> OMNIA structural measurement
+-> bounded post-hoc gate behavior
+-> OMNIABASE auxiliary review sensing
+-> formal structural metric layer
+-> canonical evidence
+-> external reproducibility path
 ```
 
 The repository is no longer purely conceptual.
@@ -378,6 +434,7 @@ It now includes:
 - invariant extraction tests
 - bounded review-sensor evidence
 - canonical evidence compression
+- single-entry canonical execution
 
 ---
 
@@ -427,6 +484,18 @@ Separates structural behavior into measurable properties:
 
 ---
 
+## Runner Layer
+
+Provides a single-entry reproduction path:
+
+```text
+python RUN_ALL_CANONICAL_CASES.py
+```
+
+This lowers external inspection friction.
+
+---
+
 ## Decision Layer
 
 Must remain external.
@@ -441,12 +510,13 @@ Shortest demonstrations:
 
 ```text
 CANONICAL_EVIDENCE.md
+RUN_ALL_CANONICAL_CASES.py
 docs/OMNIA_10_SECONDS_DEMO_RESULT.md
 docs/RUN_OMNIA_NOW_RESULT.md
 docs/RUN_OMNIA_NOW_SECOND_RESULT.md
 ```
 
-Observed pattern:
+Observed policy pattern:
 
 ```text
 BASELINE: no warning
@@ -509,9 +579,9 @@ The framework intentionally separates structural properties.
 Examples:
 
 ```text
-high Ω  + low R
-high SEI + low Ω
-low IRI + small Ω̂
+high Omega + low R
+high SEI   + low Omega
+low IRI    + small Omega-hat
 ```
 
 These are different structural states.
@@ -553,7 +623,7 @@ Most evidence remains sandbox-level.
 Current text behavior often depends on:
 
 ```text
-text → deterministic integer projection → OMNIABASE lens
+text -> deterministic integer projection -> OMNIABASE lens
 ```
 
 This remains a limitation.
@@ -610,6 +680,10 @@ README.md
 START_HERE.md
 CANONICAL_EVIDENCE.md
 FORMAL_METRICS.md
+OMNIA_EXTERNAL_TEST_PACK_V0.md
+RUN_EXTERNAL_TEST_PACK_V0.md
+RUN_ALL_CANONICAL_CASES.md
+RUN_ALL_CANONICAL_CASES.py
 docs/AT_A_GLANCE.md
 docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
 docs/PHASE6_FREEZE.md
@@ -668,6 +742,7 @@ Correct next directions:
 5. large-scale structural benchmarking
 6. stronger invariant extraction systems
 7. cross-metric evidence cases
+8. improved external reproducibility
 
 Wrong direction:
 
@@ -688,6 +763,7 @@ The value is that it reduced broad structural claims into:
 - testable
 - structurally differentiated
 - architecturally constrained
+- externally inspectable
 
 measurements.
 
