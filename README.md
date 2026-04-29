@@ -11,24 +11,22 @@
 
 Start here:
 
-```text
-START_HERE.md
-```
+- [START_HERE.md](./START_HERE.md)
 
 If the repository feels broad at first glance, do not begin from the full architecture.
 
 Use this short path first:
 
-1. `CANONICAL_EVIDENCE.md`
-2. `RUN_ALL_CANONICAL_CASES.py`
-3. `FORMAL_METRICS.md`
-4. `docs/AT_A_GLANCE.md`
-5. `docs/OMNIA_10_SECONDS_DEMO_RESULT.md`
-6. `docs/RUN_OMNIA_NOW_RESULT.md`
-7. `docs/RUN_OMNIA_NOW_SECOND_RESULT.md`
-8. `docs/OMNIABASE_REVIEW_SENSOR_NOTE.md`
-9. `docs/PHASE6_FREEZE.md`
-10. `docs/EXTERNAL_STATUS.md`
+1. [CANONICAL_EVIDENCE.md](./CANONICAL_EVIDENCE.md)
+2. [RUN_ALL_CANONICAL_CASES.py](./RUN_ALL_CANONICAL_CASES.py)
+3. [FORMAL_METRICS.md](./FORMAL_METRICS.md)
+4. [AT_A_GLANCE.md](./docs/AT_A_GLANCE.md)
+5. [OMNIA_10_SECONDS_DEMO_RESULT.md](./docs/OMNIA_10_SECONDS_DEMO_RESULT.md)
+6. [RUN_OMNIA_NOW_RESULT.md](./docs/RUN_OMNIA_NOW_RESULT.md)
+7. [RUN_OMNIA_NOW_SECOND_RESULT.md](./docs/RUN_OMNIA_NOW_SECOND_RESULT.md)
+8. [OMNIABASE_REVIEW_SENSOR_NOTE.md](./docs/OMNIABASE_REVIEW_SENSOR_NOTE.md)
+9. [PHASE6_FREEZE.md](./docs/PHASE6_FREEZE.md)
+10. [EXTERNAL_STATUS.md](./docs/EXTERNAL_STATUS.md)
 
 That path is currently the shortest route from first contact to the strongest bounded claim supported by the repository.
 
@@ -42,17 +40,19 @@ To execute the current canonical evidence cases:
 python RUN_ALL_CANONICAL_CASES.py
 ```
 
+Runner file:
+
+- [RUN_ALL_CANONICAL_CASES.py](./RUN_ALL_CANONICAL_CASES.py)
+
 This runner executes the current canonical structural cases:
 
-```text
-01 suspicious-clean review signal
-02 correctness vs structural stability
-03 irreversibility
-04 saturation
-05 divergence timing
-06 resilience
-07 residual invariant extraction
-```
+1. suspicious-clean review signal
+2. correctness vs structural stability
+3. irreversibility
+4. saturation
+5. divergence timing
+6. resilience
+7. residual invariant extraction
 
 The purpose is not to prove universal structural truth.
 
@@ -218,34 +218,26 @@ Not scientifically established.
 
 Formal definitions:
 
-```text
-FORMAL_METRICS.md
-```
+- [FORMAL_METRICS.md](./FORMAL_METRICS.md)
 
 Canonical evidence:
 
-```text
-CANONICAL_EVIDENCE.md
-```
+- [CANONICAL_EVIDENCE.md](./CANONICAL_EVIDENCE.md)
 
 External test pack:
 
-```text
-OMNIA_EXTERNAL_TEST_PACK_V0.md
-RUN_EXTERNAL_TEST_PACK_V0.md
-RUN_ALL_CANONICAL_CASES.md
-RUN_ALL_CANONICAL_CASES.py
-```
+- [OMNIA_EXTERNAL_TEST_PACK_V0.md](./OMNIA_EXTERNAL_TEST_PACK_V0.md)
+- [RUN_EXTERNAL_TEST_PACK_V0.md](./RUN_EXTERNAL_TEST_PACK_V0.md)
+- [RUN_ALL_CANONICAL_CASES.md](./RUN_ALL_CANONICAL_CASES.md)
+- [RUN_ALL_CANONICAL_CASES.py](./RUN_ALL_CANONICAL_CASES.py)
 
 Controlled validation documents:
 
-```text
-RESULTS_IRI_VALIDATION_V2.md
-RESULTS_SEI_VALIDATION_V0.md
-RESULTS_TDELTA_VALIDATION_V0.md
-RESULTS_R_VALIDATION_V0.md
-RESULTS_OMEGA_HAT_VALIDATION_V0.md
-```
+- [RESULTS_IRI_VALIDATION_V2.md](./RESULTS_IRI_VALIDATION_V2.md)
+- [RESULTS_SEI_VALIDATION_V0.md](./RESULTS_SEI_VALIDATION_V0.md)
+- [RESULTS_TDELTA_VALIDATION_V0.md](./RESULTS_TDELTA_VALIDATION_V0.md)
+- [RESULTS_R_VALIDATION_V0.md](./RESULTS_R_VALIDATION_V0.md)
+- [RESULTS_OMEGA_HAT_VALIDATION_V0.md](./RESULTS_OMEGA_HAT_VALIDATION_V0.md)
 
 ---
 
@@ -253,9 +245,7 @@ RESULTS_OMEGA_HAT_VALIDATION_V0.md
 
 For a compressed view of the strongest currently readable evidence slices, see:
 
-```text
-CANONICAL_EVIDENCE.md
-```
+- [CANONICAL_EVIDENCE.md](./CANONICAL_EVIDENCE.md)
 
 This file collects the current canonical cases where surface validity and structural stability separate.
 
@@ -488,9 +478,13 @@ Separates structural behavior into measurable properties:
 
 Provides a single-entry reproduction path:
 
-```text
+```bash
 python RUN_ALL_CANONICAL_CASES.py
 ```
+
+Runner file:
+
+- [RUN_ALL_CANONICAL_CASES.py](./RUN_ALL_CANONICAL_CASES.py)
 
 This lowers external inspection friction.
 
@@ -508,13 +502,11 @@ That boundary is intentional.
 
 Shortest demonstrations:
 
-```text
-CANONICAL_EVIDENCE.md
-RUN_ALL_CANONICAL_CASES.py
-docs/OMNIA_10_SECONDS_DEMO_RESULT.md
-docs/RUN_OMNIA_NOW_RESULT.md
-docs/RUN_OMNIA_NOW_SECOND_RESULT.md
-```
+- [CANONICAL_EVIDENCE.md](./CANONICAL_EVIDENCE.md)
+- [RUN_ALL_CANONICAL_CASES.py](./RUN_ALL_CANONICAL_CASES.py)
+- [OMNIA_10_SECONDS_DEMO_RESULT.md](./docs/OMNIA_10_SECONDS_DEMO_RESULT.md)
+- [RUN_OMNIA_NOW_RESULT.md](./docs/RUN_OMNIA_NOW_RESULT.md)
+- [RUN_OMNIA_NOW_SECOND_RESULT.md](./docs/RUN_OMNIA_NOW_SECOND_RESULT.md)
 
 Observed policy pattern:
 
@@ -534,12 +526,10 @@ It is a bounded executable demonstration of distinct policy behavior.
 
 Current bounded proxy tests:
 
-```text
-docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md
-docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md
-docs/OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md
-docs/OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md
-```
+- [OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md](./docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md)
+- [OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md](./docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md)
+- [OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md](./docs/OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md)
+- [OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md](./docs/OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md)
 
 Observed pattern:
 
@@ -675,49 +665,41 @@ Not broad validation.
 
 Core documents:
 
-```text
-README.md
-START_HERE.md
-CANONICAL_EVIDENCE.md
-FORMAL_METRICS.md
-OMNIA_EXTERNAL_TEST_PACK_V0.md
-RUN_EXTERNAL_TEST_PACK_V0.md
-RUN_ALL_CANONICAL_CASES.md
-RUN_ALL_CANONICAL_CASES.py
-docs/AT_A_GLANCE.md
-docs/OMNIABASE_REVIEW_SENSOR_NOTE.md
-docs/PHASE6_FREEZE.md
-docs/EXTERNAL_STATUS.md
-```
+- [README.md](./README.md)
+- [START_HERE.md](./START_HERE.md)
+- [CANONICAL_EVIDENCE.md](./CANONICAL_EVIDENCE.md)
+- [FORMAL_METRICS.md](./FORMAL_METRICS.md)
+- [OMNIA_EXTERNAL_TEST_PACK_V0.md](./OMNIA_EXTERNAL_TEST_PACK_V0.md)
+- [RUN_EXTERNAL_TEST_PACK_V0.md](./RUN_EXTERNAL_TEST_PACK_V0.md)
+- [RUN_ALL_CANONICAL_CASES.md](./RUN_ALL_CANONICAL_CASES.md)
+- [RUN_ALL_CANONICAL_CASES.py](./RUN_ALL_CANONICAL_CASES.py)
+- [AT_A_GLANCE.md](./docs/AT_A_GLANCE.md)
+- [OMNIABASE_REVIEW_SENSOR_NOTE.md](./docs/OMNIABASE_REVIEW_SENSOR_NOTE.md)
+- [PHASE6_FREEZE.md](./docs/PHASE6_FREEZE.md)
+- [EXTERNAL_STATUS.md](./docs/EXTERNAL_STATUS.md)
 
 Metric validation documents:
 
-```text
-RESULTS_IRI_VALIDATION_V2.md
-RESULTS_SEI_VALIDATION_V0.md
-RESULTS_TDELTA_VALIDATION_V0.md
-RESULTS_R_VALIDATION_V0.md
-RESULTS_OMEGA_HAT_VALIDATION_V0.md
-```
+- [RESULTS_IRI_VALIDATION_V2.md](./RESULTS_IRI_VALIDATION_V2.md)
+- [RESULTS_SEI_VALIDATION_V0.md](./RESULTS_SEI_VALIDATION_V0.md)
+- [RESULTS_TDELTA_VALIDATION_V0.md](./RESULTS_TDELTA_VALIDATION_V0.md)
+- [RESULTS_R_VALIDATION_V0.md](./RESULTS_R_VALIDATION_V0.md)
+- [RESULTS_OMEGA_HAT_VALIDATION_V0.md](./RESULTS_OMEGA_HAT_VALIDATION_V0.md)
 
 Entry and proof documents:
 
-```text
-docs/OMNIA_10_SECONDS_DEMO_RESULT.md
-docs/RUN_OMNIA_NOW_RESULT.md
-docs/RUN_OMNIA_NOW_SECOND_RESULT.md
-docs/PROOF_CARD.md
-docs/ONE_EXAMPLE.md
-```
+- [OMNIA_10_SECONDS_DEMO_RESULT.md](./docs/OMNIA_10_SECONDS_DEMO_RESULT.md)
+- [RUN_OMNIA_NOW_RESULT.md](./docs/RUN_OMNIA_NOW_RESULT.md)
+- [RUN_OMNIA_NOW_SECOND_RESULT.md](./docs/RUN_OMNIA_NOW_SECOND_RESULT.md)
+- [PROOF_CARD.md](./docs/PROOF_CARD.md)
+- [ONE_EXAMPLE.md](./docs/ONE_EXAMPLE.md)
 
 Damage-proxy documents:
 
-```text
-docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md
-docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md
-docs/OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md
-docs/OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md
-```
+- [OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md](./docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v0_RESULTS.md)
+- [OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md](./docs/OMNIA_SUPPORT_FALSE_ACCEPT_MINISET_v1_RESULTS.md)
+- [OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md](./docs/OMNIA_SUPPORT_FALSE_ACCEPT_REALISH_v0_RESULTS.md)
+- [OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md](./docs/OMNIA_LLM_SUPPORT_SET_v0_RESULTS.md)
 
 ---
 
