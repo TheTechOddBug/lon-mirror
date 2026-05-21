@@ -1,5 +1,20 @@
 # MB-X.01 / OMNIA
 
+<!-- ZENODO DOI:START -->
+
+## DOI
+
+[![DOI](https://zenodo.org/badge/1067137742.svg)](https://zenodo.org/badge/latestdoi/1067137742)
+
+Zenodo DOI badge for this repository.
+
+Repository: Tuttotorna/lon-mirror
+GitHub repository id: 1067137742
+Latest release DOI: pending Zenodo publication or resolved dynamically by Zenodo badge
+
+<!-- ZENODO DOI:END -->
+
+
 <!-- MB-X.01 LON ROOT REFERENCE LINK:START -->
 ## MB-X.01 / L.O.N. ecosystem entry point
 
