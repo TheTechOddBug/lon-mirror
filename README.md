@@ -17,6 +17,23 @@ measurement != validation != orchestration != decision
 ~~~
 <!-- MB-X.01 LON ROOT REFERENCE LINK:END -->
 
+<!-- LON-MIRROR PUBLIC ENTRYPOINT:START -->
+## Public entry point
+
+lon-mirror is the root reference observer for the MB-X.01 / Logical Origin Node ecosystem.
+
+Start here:
+
+- Public entry point: docs/PUBLIC_ENTRYPOINT.md
+- Public entry point URL: https://github.com/Tuttotorna/lon-mirror/blob/main/docs/PUBLIC_ENTRYPOINT.md
+- Full MB-X.01 / L.O.N. ecosystem entry point: https://github.com/Tuttotorna/OMNIA-VALIDATION/blob/main/docs/MBX01_LON_ECOSYSTEM_ENTRYPOINT.md
+
+Boundary:
+
+    measurement != validation != orchestration != decision
+
+<!-- LON-MIRROR PUBLIC ENTRYPOINT:END -->
+
 
 ## DOI
 
