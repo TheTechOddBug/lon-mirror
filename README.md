@@ -1,16 +1,35 @@
+<!-- MB-X.01 LON RELEASE:START -->
+
+## MB-X.01 / L.O.N. release state
+
+Repository: Tuttotorna/lon-mirror
+Release tag: v2026.05.21
+Release commit: c8e23be
+Release DOI: 10.5281/zenodo.20322678
+
+Boundary:
+
+measurement != validation
+validation != orchestration
+orchestration != decision
+decision != measurement
+
+<!-- MB-X.01 LON RELEASE:END -->
+
 # MB-X.01 / OMNIA
 
 <!-- ZENODO DOI:START -->
 
 ## DOI
 
-[![DOI](https://zenodo.org/badge/1067137742.svg)](https://zenodo.org/badge/latestdoi/1067137742)
+[![DOI](https://zenodo.org/badge/DOI/10.5281%2Fzenodo.20322678.svg)](https://doi.org/10.5281/zenodo.20322678)
 
 Zenodo DOI badge for this repository.
 
 Repository: Tuttotorna/lon-mirror
 GitHub repository id: 1067137742
-Latest release DOI: pending Zenodo publication or resolved dynamically by Zenodo badge
+Release tag: v2026.05.21
+Latest release DOI: 10.5281/zenodo.20322678
 
 <!-- ZENODO DOI:END -->
 
