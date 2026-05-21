@@ -1,5 +1,23 @@
 # MB-X.01 / OMNIA
 
+<!-- MB-X.01 LON ROOT REFERENCE LINK:START -->
+## MB-X.01 / L.O.N. ecosystem entry point
+
+`lon-mirror` is the root reference observer for the MB-X.01 / Logical Origin Node ecosystem.
+
+Start here for the public ecosystem orientation:
+
+- MB-X.01 / L.O.N. Ecosystem Entry Point: https://github.com/Tuttotorna/OMNIA-VALIDATION/blob/main/docs/MBX01_LON_ECOSYSTEM_ENTRYPOINT.md
+- Root reference link: docs/MBX01_LON_ROOT_REFERENCE_LINK.md
+
+Boundary:
+
+~~~text
+measurement != validation != orchestration != decision
+~~~
+<!-- MB-X.01 LON ROOT REFERENCE LINK:END -->
+
+
 ## DOI
 
 [![DOI](https://zenodo.org/badge/1067137742.svg)](https://zenodo.org/badge/latestdoi/1067137742)

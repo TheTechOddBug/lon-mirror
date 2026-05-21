@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout lon-mirror
+        uses: actions/checkout@v4
+        with:
+          path: lon-mirror
+
+      - name: Checkout OMNIA
+        uses: actions/checkout@v4
+        with:
+          repository: Tuttotorna/OMNIA
+          path: OMNIA
+
+      - name: Checkout omnia-limit
+        uses: actions/checkout@v4
+        with:
+          repository: Tuttotorna/omnia-limit
+          path: omnia-limit
+
+      - name: Checkout OMNIA-VALIDATION
+        uses: actions/checkout@v4
+        with:
+          repository: Tuttotorna/OMNIA-VALIDATION
+          path: OMNIA-VALIDATION
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install local backbone packages
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pytest>=8.0 ruff>=0.5
+          python -m pip install -e ./omnia-limit
+          python -m pip install -e ./OMNIA
+          python -m pip install -e ./OMNIA-VALIDATION
+          python -m pip install -e ./lon-mirror
+
+      - name: Run lon-mirror tests
+        env:
+          OMNIA_SOURCE_DIR: ${{ github.workspace }}/OMNIA
+        run: |
+          cd lon-mirror
+          python -m pytest -q
+
+      - name: Run MB-X.01 LON root reference link test
+        env:
+          OMNIA_SOURCE_DIR: ${{ github.workspace }}/OMNIA
+        run: |
+          cd lon-mirror
+          python -m pytest -q tests/test_mbx01_lon_root_reference_link.py
