@@ -34,6 +34,34 @@ Boundary:
 
 <!-- LON-MIRROR PUBLIC ENTRYPOINT:END -->
 
+<!-- FIRST READER PATH:START -->
+## First reader path
+
+For a non-technical first orientation, start here:
+
+- First reader path: docs/FIRST_READER_PATH.md
+- First reader path URL: https://github.com/Tuttotorna/lon-mirror/blob/main/docs/FIRST_READER_PATH.md
+- Public entry point: https://github.com/Tuttotorna/lon-mirror/blob/main/docs/PUBLIC_ENTRYPOINT.md
+- Full ecosystem entry point: https://github.com/Tuttotorna/OMNIA-VALIDATION/blob/main/docs/MBX01_LON_ECOSYSTEM_ENTRYPOINT.md
+
+Thirty-second model:
+
+lon-mirror is the root reference observer.
+It belongs to the MB-X.01 / L.O.N. ecosystem.
+It observes the declared backbone boundary.
+It does not validate independently.
+It does not decide.
+
+Boundary:
+
+measurement != validation != orchestration != decision
+
+Patch anchors:
+
+OMNIA-VALIDATION commit: 2e7e63c
+lon-mirror commit: f74b799
+<!-- FIRST READER PATH:END -->
+
 
 ## DOI
 

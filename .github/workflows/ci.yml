@@ -63,6 +63,11 @@ jobs:
         run: |
           cd lon-mirror
           python -m pytest -q tests/test_mbx01_lon_root_reference_link.py
+
+      - name: Run first reader path test
+        run: |
+          cd lon-mirror
+          python -m pytest -q tests/test_first_reader_path.py
       - name: Run public entry point test
         env:
           OMNIA_SOURCE_DIR: ${{ github.workspace }}/OMNIA
